@@ -6,9 +6,51 @@ import metamaskIcon from "../../../assets/images/icon/MetaMask.svg";
 import formatic from "../../../assets/images/icon/Formatic.svg";
 import trustWalletIcon from "../../../assets/images/icon/Trust_Wallet.svg";
 import walletConnect from "../../../assets/images/icon/WalletConnect.svg";
+import Web3Modal from "web3modal";
+import { ethers } from 'ethers';
+
+
+const providerOptions = {
+};
+
 
 const WalletModal = () => {
-  const { walletModalHandle } = useModal();
+
+   const { walletModalHandle } = useModal();
+
+  async function connectWallet()
+  {
+
+    try {
+      let web3Modal=new Web3Modal({
+         network: "mainnet",
+        cacheProvider: false,
+        // use bsc as the provider name
+        providerOptions: providerOptions
+
+      });
+      const web3ModalInstance = await web3Modal.connect();
+      const web3ModalProvider= new ethers.providers.Web3Provider(web3ModalInstance);
+      const accounts = await web3ModalProvider.listAccounts();
+      console.log(accounts);
+      //get balance
+      const balance = await web3ModalProvider.getBalance(accounts[0]);
+      //convert balance to ether
+      const etherBalance = ethers.utils.formatEther(balance);
+      console.log(etherBalance);
+      //close current modal
+      walletModalHandle();
+      //if wallet is connected then set the wallet address in local storage
+      localStorage.setItem("walletAddress",accounts[0]);
+      //set balance in local storage
+      localStorage.setItem("balance",etherBalance);
+      
+    } catch (error) {
+      
+    }
+    
+  }
+ 
   return (
     <>
       <WalletModalStyleWrapper className="modal_overlay">
@@ -27,9 +69,9 @@ const WalletModal = () => {
                 Please select a wallet to connect for start Minting your NFTs
               </p>
               <div className="wallet_list">
-                <a href="# ">
-                  <img src={metamaskIcon} alt="Meta-mask" />
-                  MetaMask
+               <a href="# " onClick={connectWallet}>
+                  <img src={metamaskIcon} alt="Metmask" />
+                  Metamask
                   <span>
                     <FiChevronRight />
                   </span>

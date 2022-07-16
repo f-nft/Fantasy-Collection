@@ -6,9 +6,17 @@ import BannerV1Wrapper from "./Banner.style";
 import characterThumb from "../../../../assets/images/nft/Character1.png";
 import mintLiveText from "../../../../assets/images/nft/mint_live_text.png";
 import homeImageBG from "../../../../assets/images/nft/home_img_bg.png";
+import { useEffect } from "react";
+
 
 const Banner = () => {
   const { mintModalHandle } = useModal();
+    //clean local storage on page refresh
+
+  useEffect(() => {
+    localStorage.removeItem("walletAddress");
+    localStorage.removeItem("balance");
+  }, []);
   return (
     <BannerV1Wrapper id="home">
       <div className="container">
@@ -22,6 +30,18 @@ const Banner = () => {
                 </span>{" "}
                 / 10,000 Minted
               </h3>
+              <h5>
+                 Your Wallet Address:<br/>  
+                {localStorage.getItem("walletAddress")?
+               (<span style={{color:"white"}}>{localStorage.getItem("walletAddress")}</span>):
+                (<span style={{color:"white"}}>0x0</span>)}
+              </h5>
+               <h5>
+                Balance <br/>  
+                {localStorage.getItem("balance")?
+                (<span style={{color:"white"}}>{localStorage.getItem("balance")}</span>):
+                (<span style={{color:"white"}}>0.00</span>)}
+              </h5>
               <div className="banner_buttons">
                 <Button lg variant="mint" onClick={() => mintModalHandle()}>
                   {" "}
@@ -50,6 +70,7 @@ const Banner = () => {
                     </span>
                     <span className="mint_live_text rotated-style">
                       <img src={mintLiveText} alt="" />
+       
                     </span>
                   </div>
                 </div>
