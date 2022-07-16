@@ -72,13 +72,13 @@ const MobileMenu = ({ mobileMenuhandle }) => {
           </ul>
         </div>
         <div className="mobile_menu_social_links">
-          <a href="# ">
+          <a href="https://opensea.io/collection/fantasy-collections">
             <img src={openseaIcon} alt="f-nft social icon" />
           </a>
-          <a href="# ">
+          <a href="https://twitter.com/Fashion__NFT">
             <FaTwitter />
           </a>
-          <a href="# ">
+          <a href="https://discord.gg/FzCKUn3R">
             <FaDiscord />
           </a>
         </div>

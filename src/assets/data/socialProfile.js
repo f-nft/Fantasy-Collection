@@ -12,31 +12,31 @@ import mediumIcon from "../images/icon/med.svg";
 const data = [
   {
     thumb: openseaIcon,
-    url: "#",
+    url: "https://opensea.io/collection/fantasy-collections",
   },
   {
     icon: <FaTwitter />,
-    url: "#",
+    url: "https://twitter.com/Fashion__NFT",
   },
   {
     icon: <FaLinkedinIn />,
-    url: "#",
+    url: "https://www.linkedin.com/in/f-nft-project-887624231/",
   },
   {
     icon: <FaFacebook />,
-    url: "#",
+    url: "https://www.facebook.com/f.nft.metaverse/",
   },
   {
     icon: <FaInstagram />,
-    url: "#",
+    url: "https://www.instagram.com/fnft2022",
   },
   {
     icon: <FaTelegramPlane />,
-    url: "#",
+    url: "https://t.me/fashion_nft",
   },
   {
     thumb: mediumIcon,
-    url: "#",
+    url: "https://medium.com/@pnft56061/f-nft-revolution-of-fashion-33d1f796860a",
   },
 ];
 

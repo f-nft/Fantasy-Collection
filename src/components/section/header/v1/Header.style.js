@@ -224,9 +224,10 @@ const NavWrapper = styled.nav`
 
   @media (max-width: 540px) {
     .f-nft_menu_left_sect {
-      width: 180px;
+      width: 100px;
       .logo {
         img {
+          width:79%;
           width: 100px;
         }
       }

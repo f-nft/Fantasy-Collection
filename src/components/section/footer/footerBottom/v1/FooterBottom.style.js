@@ -24,6 +24,7 @@ const FooterBottomStyleWrapper = styled.div`
 
   .v2_footer_logo {
     margin-bottom: 46px;
+    width: 39%;
   }
 
   .bottom_footer_menulist {
