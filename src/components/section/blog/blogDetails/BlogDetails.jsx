@@ -31,11 +31,11 @@ const BlogDetails = () => {
               <div className="blog_post_meta">
                 <a href="# " className="post_author">
                   <img src={avatarIcon} alt="blog post avatar" />
-                  Inna Mouaz
+                  f0nft
                 </a>
                 <span>
                   {" "}
-                  <FaCalendarAlt /> 18 FEB, 2022
+                  <FaCalendarAlt /> 18 JULY, 2022
                 </span>
               </div>
               <h1 className="post_title">
@@ -43,41 +43,23 @@ const BlogDetails = () => {
               </h1>
               <div className="blog_description">
                 <p className="text-white">
-                  Contrary to popular belief, Lorem Ipsum is not simply random
-                  text. It has roots in a piece of classical Latin literature
-                  from 45 BC, making it over 2000 years old. Richard McClintock,
-                  a Latin professor at Hampden-Sydney College.
+                  Because of NFTs, the perception of online gaming and in-game asset purchases is changing. Because non-fungible tokens, are unique in nature and can be created to retain value beyond the game in which they were created, blockchain-based games have the potential to significantly expand the gaming industry. Props that enhance the gaming experience, such as characters, avatars, sound effects, city streets, and so on, can now be easily created as NFTs in three-dimensional space. 
                 </p>
                 <p>
-                  Contrary to popular belief, Lorem Ipsum is not simply random
-                  text. It has roots in a piece of classical Latin literature
-                  from 45 BC, making it over 2000 years old. Richard McClintock,
-                  a Latin professor at Hampden-Sydney College There are many
-                  variations of passages of Lorem Ipsum available, but the
-                  majority have suffered alteration in some form, by injected
-                  humour, or randomised words which don't look even slightly
-                  believable. If you are going to use a passage of Lorem Ipsum,
-                  you need to be sure there isn't anything embarrassing.
+                  Our goal is to launch a mixed-media Nft project with the goal of providing a new and reliable system-based technology in the form of a 3D Nft fantasy fashion. Experts will discuss the economy with Nft fantasy fashion, offer crypto advice, and take part in our play to earn game. Anyone with this Nft is welcome to join our community. We directly promote transparent and secure transactions and reward our investors, and we’re about to launch a new platform where investors can make a lot of money. 
                 </p>
                 <div>
                   <h4>Play-to-Earn</h4>
                   <p>
-                    Richard McClintock, a Latin professor at Hampden-Sydney
-                    College There are many variations of passages of available,
-                    but the majority have suffered alteration in some form.
+                    People have been making money from video games for years through practises like “gold farming” and unofficial marketplaces for in-game items, but the advent of blockchain technology and NFTs has changed the game completely. 
                   </p>
                   <p>
-                    Injected humour, or randomised words which don't look even
-                    slightly believable. If you are going to use a passage of
-                    Lorem Ipsum, you need to be sure there isn't anything
-                    embarrassing.making it over 2000 years old.{" "}
+                    Non-fungible tokens, or NFTs, are cryptographically distinct tokens that can be used to prove ownership of content like images or music. Users can take ownership of in-game items such as virtual clothing or land plots in Blockchain games. {" "}
                   </p>
                 </div>
                 <div className="blockquote">
                   <p>
-                    On the other hand, we denounce with righteous indignation
-                    and dislike men who are so beguiled and demoralized by the
-                    charms of pleasure.
+                    These are online games that, like any other game, reward you with objects, but these objects are NFTs, which means they are exchangeable and immutable, and thus sellable! Our project is about to help you and help investors to make money.
                   </p>
                 </div>
                 <div className="row">
