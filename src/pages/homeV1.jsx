@@ -13,6 +13,8 @@ import FAQ from "../components/section/faq/v1";
 import Footer from "../components/section/footer/v1";
 import MintNowModal from "../common/modal/mintNowModal";
 import WalletModal from "../common/modal/walletModal/WalletModal";
+import Partner from "../components/section/partner";
+
 const HomeV1 = () => {
   const { visibility, walletModalvisibility } = useModal();
   return (
@@ -29,6 +31,7 @@ const HomeV1 = () => {
       <RoadMap /> 
       <Team />
       <FAQ />
+      <Partner />
       <Footer />
     </Layout>
   );

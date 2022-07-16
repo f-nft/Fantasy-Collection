@@ -6,6 +6,7 @@ import Button from "../../../../common/button";
 import NavWrapper from "./Header.style";
 import MobileMenu from "../mobileMenu/MobileMenu";
 import logo from "../../../../assets/images/logo.png";
+
 const Header = () => {
   const { walletModalHandle } = useModal();
   const [isMobileMenu, setMobileMenu] = useState(false);
@@ -60,7 +61,7 @@ const Header = () => {
                   <a href="# ">Pages +</a>
                   <div className="sub_menu_sect">
                     <ul className="sub_menu_list">
-                      {/* <li>
+                      <li>
                         <a href="/">Home One</a>
                       </li>
                       <li>
@@ -68,7 +69,7 @@ const Header = () => {
                       </li>
                       <li>
                         <a href="/home-three">Home Three</a>
-                      </li> */}
+                      </li>
                       <li>
                         <a href="/blogs">Latest Blog</a>
                       </li>
