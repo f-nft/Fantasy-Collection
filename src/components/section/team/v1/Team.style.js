@@ -19,7 +19,7 @@ const TeamStyleWrapper = styled.section`
     padding: 110px 0 115px;
   }
 
-  .bithu_team_content {
+  .f-nft_team_content {
     margin-top: 53px;
     position: relative;
     z-index: 1;

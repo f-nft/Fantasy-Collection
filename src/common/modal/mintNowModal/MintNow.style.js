@@ -200,6 +200,9 @@ const MintModalStyleWrapper = styled.div`
       transform: rotate(180deg);
     }
   }
+  .mint_img {
+    
+  }
 `;
 
 export default MintModalStyleWrapper;

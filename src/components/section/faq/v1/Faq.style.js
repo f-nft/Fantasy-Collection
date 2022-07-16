@@ -4,14 +4,14 @@ const FAQStyleWrapper = styled.section`
   padding-bottom: 120px;
   padding-top: 130px;
 
-  .bithu_faq_content {
+  .f-nft_faq_content {
     max-width: 770px;
     width: 100%;
     margin: auto;
     position: relative;
   }
 
-  .bithu_faq_questions {
+  .f-nft_faq_questions {
     margin-top: 57px;
     position: relative;
 

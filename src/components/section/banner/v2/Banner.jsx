@@ -23,9 +23,9 @@ const Banner = () => {
     id: "countdownwrap",
   };
   return (
-    <BannerStyleWrapper className="bithu_v2_baner_sect" id="home">
+    <BannerStyleWrapper className="f-nft_v2_baner_sect" id="home">
       <div className="container">
-        <div className="bithu_v2_baner_content">
+        <div className="f-nft_v2_baner_content">
           <h2>
             {" "}
             <span className="banner-emot">🎉</span>Public Sale{" "}
@@ -37,13 +37,13 @@ const Banner = () => {
             </span>{" "}
             / 10000 Minted
           </h3>
-          <div className="bithu_v2_timer">
+          <div className="f-nft_v2_timer">
             <h4>TIME LEFT</h4>
             <div className="timer timer_1">
               <CountdownTimer {...settings} />
             </div>
           </div>
-          <div className="bithu_v2_baner_buttons text-center">
+          <div className="f-nft_v2_baner_buttons text-center">
             <Button lg variant="mint" onClick={() => mintModalHandle()}>
               Mint Now
             </Button>

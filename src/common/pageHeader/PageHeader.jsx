@@ -13,7 +13,7 @@ const PageHeader = () => {
                 <img
                   className="heading_shape"
                   src={titleShape}
-                  alt="bithu nft heading shape"
+                  alt="f-nft nft heading shape"
                 />
               </div>
               <h2 className="breadcrumb_title text-uppercase">Latest blog</h2>

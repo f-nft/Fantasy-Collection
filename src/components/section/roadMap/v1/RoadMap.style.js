@@ -65,7 +65,7 @@ const RoadMapStyleWrapper = styled.section`
     }
   }
 
-  .bithu_roadmap_mass_gard {
+  .f-nft_roadmap_mass_gard {
     position: absolute;
     right: 0px;
     top: 50%;

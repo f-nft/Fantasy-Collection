@@ -13,7 +13,7 @@ const BannerStyleWrapper = styled.section`
   justify-content: center;
   flex-direction: column;
 
-  .bithu_v2_baner_content {
+  .f-nft_v2_baner_content {
     margin-top: 135px;
     position: relative;
     .banner-emot {
@@ -52,7 +52,7 @@ const BannerStyleWrapper = styled.section`
       display: inline-block;
     }
 
-    .bithu_v2_timer {
+    .f-nft_v2_timer {
       position: relative;
       display: flex;
       align-items: center;
@@ -88,7 +88,7 @@ const BannerStyleWrapper = styled.section`
       }
     }
 
-    .bithu_v2_baner_buttons {
+    .f-nft_v2_baner_buttons {
       margin-top: 41px;
       button {
         margin: 0 auto;
@@ -104,7 +104,7 @@ const BannerStyleWrapper = styled.section`
   @media only screen and (max-width: 991px) {
     padding-bottom: 80px;
 
-    .bithu_v2_baner_content {
+    .f-nft_v2_baner_content {
       h2 {
         font-size: 50px;
       }
@@ -113,7 +113,7 @@ const BannerStyleWrapper = styled.section`
         font-size: 35px;
       }
 
-      .bithu_v2_timer {
+      .f-nft_v2_timer {
         h4 {
           font-size: 35px;
         }
@@ -122,7 +122,7 @@ const BannerStyleWrapper = styled.section`
   }
 
   @media only screen and (max-width: 575px) {
-    .bithu_v2_baner_content {
+    .f-nft_v2_baner_content {
       h2 {
         font-size: 30px;
         margin-bottom: 20px;
@@ -131,7 +131,7 @@ const BannerStyleWrapper = styled.section`
         font-size: 21px;
       }
 
-      .bithu_v2_timer {
+      .f-nft_v2_timer {
         h4 {
           font-size: 21px;
         }

@@ -7,7 +7,7 @@ const BlogItem = ({ thumbnail, title, timeStamp, categories, excerpt }) => {
     <BlogItemStyleWrapper className="single_blog_item">
       <div className="blog_thumb">
         <a href="/post">
-          <img src={thumbnail} alt="bithu nft blog" />
+          <img src={thumbnail} alt="f-nft nft blog" />
         </a>
       </div>
       <div className="blog_content">

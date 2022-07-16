@@ -7,9 +7,9 @@ import TeamStyleWrapper from "./Team.style";
 const Team = () => {
   return (
     <TeamStyleWrapper>
-      <div className="bithu_team_sect" id="team">
+      <div className="f-nft_team_sect" id="team">
         <div className="team_bear_img">
-          <img src={teamBearImg} alt="bithu nft team" />
+          <img src={teamBearImg} alt="f-nft nft team" />
         </div>
         <div className="container">
           <SectionTitle
@@ -18,7 +18,7 @@ const Team = () => {
             subtitle="TEAM MEMBERS"
             className="text-center"
           />
-          <div className="bithu_team_content">
+          <div className="f-nft_team_content">
             <div className="row">
               {data?.map((member, i) => (
                 <div key={i} className="col-lg-3 col-md-4 col-sm-6">

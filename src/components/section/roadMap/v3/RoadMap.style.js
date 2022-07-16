@@ -22,14 +22,14 @@ const RoadMapStyleWrapper = styled.section`
     row-gap: 20px;
   }
 
-  .bithu_roadmap_item {
+  .f-nft_roadmap_item {
     height: 170px;
     display: flex;
     align-items: center;
     justify-content: center;
   }
 
-  .bithu_roadmap_content {
+  .f-nft_roadmap_content {
     width: calc(100% - 385px);
     height: 170px;
     display: flex;
@@ -69,7 +69,7 @@ const RoadMapStyleWrapper = styled.section`
     }
   }
 
-  .bithu_roadmap_text {
+  .f-nft_roadmap_text {
     position: relative;
     z-index: 9;
     p {
@@ -109,10 +109,10 @@ const RoadMapStyleWrapper = styled.section`
   }
 
   @media only screen and (max-width: 1024px) {
-    .bithu_roadmap_item {
+    .f-nft_roadmap_item {
       height: auto;
     }
-    .bithu_roadmap_content {
+    .f-nft_roadmap_content {
       height: 200px;
     }
 
@@ -123,13 +123,13 @@ const RoadMapStyleWrapper = styled.section`
   }
 
   @media only screen and (max-width: 992px) {
-    .bithu_roadmap_item {
+    .f-nft_roadmap_item {
       flex-wrap: wrap;
       justify-content: space-between;
       position: relative;
     }
 
-    .bithu_roadmap_content {
+    .f-nft_roadmap_content {
       height: auto;
       width: calc(100% - 190px);
       flex-flow: nowrap;
@@ -160,12 +160,12 @@ const RoadMapStyleWrapper = styled.section`
     }
   }
   @media only screen and (max-width: 480px) {
-    .bithu_roadmap_item {
+    .f-nft_roadmap_item {
       column-gap: 0;
       row-gap: 20px;
     }
 
-    .bithu_roadmap_text {
+    .f-nft_roadmap_text {
       h5 {
         font-size: 20px;
       }
@@ -192,7 +192,7 @@ const RoadMapStyleWrapper = styled.section`
       }
     }
 
-    .bithu_roadmap_content {
+    .f-nft_roadmap_content {
       width: 100%;
       order: 1;
     }

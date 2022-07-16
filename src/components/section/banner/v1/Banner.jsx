@@ -4,7 +4,6 @@ import Button from "../../../../common/button";
 import BannerV1Wrapper from "./Banner.style";
 
 import characterThumb from "../../../../assets/images/nft/Character1.png";
-import mintLiveDownArrow from "../../../../assets/images/nft/mint_live_down_arrow.svg";
 import mintLiveText from "../../../../assets/images/nft/mint_live_text.png";
 import homeImageBG from "../../../../assets/images/nft/home_img_bg.png";
 
@@ -15,7 +14,7 @@ const Banner = () => {
       <div className="container">
         <div className="row">
           <div className="col-lg-6">
-            <div className="bithu_v1_baner_left">
+            <div className="f-nft_v1_baner_left">
               <h2>f-nft Fantasy 👗 NFT collections</h2>
               <h3>
                 <span className="count">
@@ -43,8 +42,8 @@ const Banner = () => {
             </div>
           </div>
           <div className="col-lg-6">
-            <div className="bithu_v1_baner_right">
-              <div className="bithu_v1_baner_right_img_sect">
+            <div className="f-nft_v1_baner_right">
+              <div className="f-nft_v1_baner_right_img_sect">
                 <div className="mint_live_circle_sect">
                   <div className="mint_live_circle">
                     <span>
@@ -54,10 +53,10 @@ const Banner = () => {
                     </span>
                   </div>
                 </div>
-                <div className="bithu_v1_baner_right_img_bg">
+                <div className="f-nft_v1_baner_right_img_bg">
                   <img src={homeImageBG} alt="" />
                 </div>
-                <div className="bithu_v1_baner_right_img">
+                <div className="f-nft_v1_baner_right_img">
                   <img src={characterThumb} alt="avater" />
                 </div>
               </div>

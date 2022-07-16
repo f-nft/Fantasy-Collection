@@ -31,12 +31,12 @@ const About = () => {
                     <img
                       className="author-thumbnail"
                       src={item.thumb}
-                      alt="bithu nft about"
+                      alt="f-nft nft about"
                     />
                     <div className="ab-text pt-20">
                       <h5>
                         {item.name}
-                        <img src={item.icon} alt="bithu nft about icon" />
+                        <img src={item.icon} alt="f-nft nft about icon" />
                       </h5>
                     </div>
                     <span>{item.role}</span>

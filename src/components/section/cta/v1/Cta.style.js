@@ -42,7 +42,7 @@ const star7 = keyframes`
 `;
 
 const CTAStyleWrapper = styled.section`
-  .bithu_title_section {
+  .f-nft_title_section {
     width: 45%;
     margin: 0 auto;
     img {
@@ -59,7 +59,7 @@ const CTAStyleWrapper = styled.section`
     font-size: 50px;
   }
 
-  .bithu_v1_cta_content {
+  .f-nft_v1_cta_content {
     position: relative;
     z-index: 1;
 
@@ -189,7 +189,7 @@ const CTAStyleWrapper = styled.section`
   }
 
   @media only screen and (max-width: 768px) {
-    .bithu_title_section {
+    .f-nft_title_section {
       width: 60%;
     }
     .title-emo {
@@ -230,7 +230,7 @@ const CTAStyleWrapper = styled.section`
   }
 
   @media (max-width: 425px) {
-    .bithu_title_section {
+    .f-nft_title_section {
       width: 85%;
     }
     .title-emo {

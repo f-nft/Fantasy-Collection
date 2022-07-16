@@ -48,7 +48,7 @@ const RoadMap = () => {
       <div className="container">
         <SectionTitle title="Roadmap" subtitle="Our Goals" />
         <div className="v1_roadmap_divider">
-          <img src={dividerImgShape} alt="bithu nft section divider" />
+          <img src={dividerImgShape} alt="f-nft nft section divider" />
         </div>
         <div className="v1_roadmap_contents_inner">
           <div className="v1_roadmap_contents">
@@ -58,7 +58,7 @@ const RoadMap = () => {
                   <div className="v1_roadmap_contents_text">
                     <div className="roadmap_step">
                       <h3> {item.title} </h3>{" "}
-                      <img src={item.icon} alt="bithu road map icon" />
+                      <img src={item.icon} alt="f-nft road map icon" />
                     </div>
                     <h4>{item.subtitle}</h4>
                     <p>{item.text}</p>
@@ -69,8 +69,8 @@ const RoadMap = () => {
           </div>
         </div>
       </div>
-      <div className="bithu_roadmap_mass_gard">
-        <img src={roadMapBgGrand} alt="bithu nft road map bg" />
+      <div className="f-nft_roadmap_mass_gard">
+        <img src={roadMapBgGrand} alt="f-nft nft road map bg" />
       </div>
     </RoadMapStyleWrapper>
   );

@@ -17,7 +17,7 @@ import FAQStyleWrapper from "./Faq.style";
 const FAQ = () => { 
 
   return (
-    <FAQStyleWrapper className="bithu_faq_sect" id="faq">
+    <FAQStyleWrapper className="f-nft_faq_sect" id="faq">
       <div className="container">
         <div className="row">
           <div className="col-md-6">
@@ -27,7 +27,7 @@ const FAQ = () => {
               className="section_title"
             />
 
-            <div className="bithu_title_text">
+            <div className="f-nft_title_text">
               <span>Don't get your answer?</span>
               <span>
                 Fell free to leave a message,<a href="# ">Ask Here!</a>
@@ -36,8 +36,8 @@ const FAQ = () => {
           </div>
 
           <div className="col-md-6">
-            <div className="bithu_faq_content">
-              <div className="bithu_faq_questions">
+            <div className="f-nft_faq_content">
+              <div className="f-nft_faq_questions">
                 <Accordion className="faq_questions">
                   {data?.map((item, i) => (
                     <AccordionItem key={i}>
@@ -63,7 +63,7 @@ const FAQ = () => {
           </div>
         </div>
         <div className="faq_bg_wattermark">
-          <img src={faqBgThumb} alt="bithu nft faq" />
+          <img src={faqBgThumb} alt="f-nft nft faq" />
         </div>
       </div>
     </FAQStyleWrapper>

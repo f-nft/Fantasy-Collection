@@ -8,7 +8,7 @@ const Comment = () => {
         {comments?.map((comment, i) => (
           <div key={i} className="comment_item">
             <div className="commnet_inner">
-              <img src={comment.thumb} alt="bithu comment" />
+              <img src={comment.thumb} alt="f-nft comment" />
               <div className="comment_body">
                 <div className="comment_author">
                   <a href="# ">{comment.author}</a>
@@ -16,7 +16,7 @@ const Comment = () => {
                 </div>
                 <p>{comment.text}</p>
                 <a href="# " className="replay_btn">
-                  <img src={replayIcon} alt="bithu nft replay" /> replay
+                  <img src={replayIcon} alt="f-nft nft replay" /> replay
                 </a>
               </div>
             </div>
@@ -24,7 +24,7 @@ const Comment = () => {
             {comment.replys?.map((replay, i) => (
               <div key={i} className="comment_item replay_box">
                 <div className="commnet_inner">
-                  <img src={replay.thumb} alt="bithu comment" />
+                  <img src={replay.thumb} alt="f-nft comment" />
                   <div className="comment_body">
                     <div className="comment_author">
                       <a href="# ">{replay.author}</a>
@@ -32,7 +32,7 @@ const Comment = () => {
                     </div>
                     <p>{replay.text}</p>
                     <a href="# " className="replay_btn">
-                      <img src={replayIcon} alt="bithu nft replay" /> replay
+                      <img src={replayIcon} alt="f-nft nft replay" /> replay
                     </a>
                   </div>
                 </div>

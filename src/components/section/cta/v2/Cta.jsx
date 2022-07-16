@@ -26,11 +26,11 @@ const CTA = () => {
   ];
   return (
     <CTAStyleWrapper>
-      <div className="bithu_v2_cta_sect">
+      <div className="f-nft_v2_cta_sect">
         <div className="container">
           <div className="row align-items-center">
             <div className="col-lg-6">
-              <div className="bithu_cta_title">
+              <div className="f-nft_cta_title">
                 <h3>Join Our community &amp; get Early access</h3>
               </div>
             </div>
@@ -49,7 +49,7 @@ const CTA = () => {
           <div className="cta_particles">
             {particleShapes?.map((shape, i) => (
               <span key={i} className={`star_${i + 1} particle_rotated`}>
-                <img src={shape} alt="bithu nft background particle" />
+                <img src={shape} alt="f-nft nft background particle" />
               </span>
             ))}
           </div>
@@ -59,22 +59,22 @@ const CTA = () => {
       <img
         src={bgShape2}
         className="bg-shape shape-left shape-top"
-        alt="bithu bg shape"
+        alt="f-nft bg shape"
       />
       <img
         src={bgShape1}
         className="bg-shape shape-left shape-bottom"
-        alt="bithu bg shape"
+        alt="f-nft bg shape"
       />
       <img
         src={bgShape2}
         className="bg-shape shape-right shape-top"
-        alt="bithu bg shape"
+        alt="f-nft bg shape"
       />
       <img
         src={bgShape1}
         className="bg-shape shape-right shape-bottom"
-        alt="bithu bg shape"
+        alt="f-nft bg shape"
       />
     </CTAStyleWrapper>
   );

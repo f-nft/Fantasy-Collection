@@ -8,7 +8,7 @@ const Layout = ({ children }) => {
         <meta charset="utf-8" />
         <title>
           {" "}
-          Bithu - NFT Minting/Collection Landing Page React-Nextjs Template
+          f-nft - NFT Minting/Collection Landing Page React-Nextjs Template
         </title>
         <meta name="description" content="" />
         <link rel="shortcut icon" type="image/x-icon" href={favIcon} />

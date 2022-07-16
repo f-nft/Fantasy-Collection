@@ -17,9 +17,9 @@ import FAQStyleWrapper from "./Faq.style";
 
 const FAQ = () => {
   return (
-    <FAQStyleWrapper className="bithu_faq_sect" id="faq">
+    <FAQStyleWrapper className="f-nft_faq_sect" id="faq">
       <div className="container">
-        <div className="bithu_faq_content">
+        <div className="f-nft_faq_content">
           <SectionTitle
             isCenter={true}
             title="FREQUENTLY ASKED QUESTIONS"
@@ -27,9 +27,9 @@ const FAQ = () => {
             className="text-center faq-title"
           />
 
-          <div className="bithu_faq_questions">
+          <div className="f-nft_faq_questions">
             <div className="faq_bear_img">
-              <img src={faqBearShape} alt="bithu nft faq" />
+              <img src={faqBearShape} alt="f-nft nft faq" />
             </div>
             <Accordion className="faq_questions">
               {data?.map((item, i) => (
@@ -53,7 +53,7 @@ const FAQ = () => {
             </Accordion>
 
             <div className="faq_bg_wattermark">
-              <img src={faqBgThumb} alt="bithu nft faq" />
+              <img src={faqBgThumb} alt="f-nft nft faq" />
             </div>
           </div>
         </div>

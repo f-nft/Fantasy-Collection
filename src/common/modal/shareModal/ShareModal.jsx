@@ -22,7 +22,7 @@ const ShareModal = () => {
                 {data?.map((item, i) => (
                   <a key={i} href={item.url}>
                     {item.thumb ? (
-                      <img src={item.thumb} alt="bithu nft social" />
+                      <img src={item.thumb} alt="f-nft nft social" />
                     ) : (
                       item.icon
                     )}
@@ -39,10 +39,10 @@ const ShareModal = () => {
 
             <div className="modal_bottom_shape_wrap">
               <span className="modal_bottom_shape shape_left">
-                <img src={hoverShape} alt="bithu nft hover shape" />
+                <img src={hoverShape} alt="f-nft nft hover shape" />
               </span>
               <span className="modal_bottom_shape shape_right">
-                <img src={hoverShape} alt="bithu nft hover shape" />
+                <img src={hoverShape} alt="f-nft nft hover shape" />
               </span>
             </div>
           </div>

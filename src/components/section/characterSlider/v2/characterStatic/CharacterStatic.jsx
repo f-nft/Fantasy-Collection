@@ -8,7 +8,7 @@ const CharacterStatic = () => {
         i <= 3 ? (
           <div key={i} className="character_item_wrap">
             <div className="character_item_thumb">
-              <img src={item.thumb} alt="bithu nft character" />
+              <img src={item.thumb} alt="f-nft nft character" />
             </div>
             <div className="character_item_blank"></div>
           </div>
@@ -16,7 +16,7 @@ const CharacterStatic = () => {
           <div key={i} className="character_item_wrap">
             <div className="character_item_blank"></div>
             <div className="character_item_thumb">
-              <img src={item.thumb} alt="bithu nft character" />
+                <img src={item.thumb} alt="f-nft nft character" />
             </div>
           </div>
         )

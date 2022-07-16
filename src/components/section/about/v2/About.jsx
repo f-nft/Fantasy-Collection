@@ -39,12 +39,12 @@ The Ethereum blockchain contains the majority of NFTs. Ethereum is a Cryptocurre
           </div>
           <div className="v2_about_img v2_about_img_left">
             <span>
-              <img src={aboutImageLeft} alt="bithu nft about" />
+              <img src={aboutImageLeft} alt="nft about" />
             </span>
           </div>
           <div className="v2_about_img v2_about_img_right">
             <span>
-              <img src={aboutImageRight} alt="bithu nft thumb" />
+              <img src={aboutImageRight} alt="nft thumb" />
             </span>
           </div>
         </div>

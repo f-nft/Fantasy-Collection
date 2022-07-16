@@ -10,7 +10,7 @@ const SectionTitle = ({ title, subtitle, isCenter, ...props }) => {
         <h2>
           {isCenter ? <img src={sectionTitleShape2} alt="" /> : ""}
           {subtitle}{" "}
-          <img src={sectionTitleShape} alt="bithu nft section title shape" />{" "}
+          <img src={sectionTitleShape} alt="f-nft nft section title shape" />{" "}
         </h2>
       )}
       {title && <h3>{title}</h3>}

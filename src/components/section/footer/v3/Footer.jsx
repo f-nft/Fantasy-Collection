@@ -14,10 +14,10 @@ const Footer = () => {
             <div className="col-lg-4">
               <div className="footer_image">
                 <a href="# ">
-                  <img src={footerLogo} alt="bithu nft footer logo" />
+                  <img src={footerLogo} alt="f-nft nft footer logo" />
                 </a>
                 <p>
-                  Bithu is great solution for launch your NFT for minting. It
+                  f-nft is great solution for launch your NFT for minting. It
                   uses a dictionary over 200 Latin words, combined with a
                   handful.
                 </p>
@@ -50,7 +50,7 @@ const Footer = () => {
                     required
                   />
                   <button>
-                    <img src={btnArrow} alt="bithu nft arrow" />
+                    <img src={btnArrow} alt="f-nft nft arrow" />
                   </button>
                 </div>
               </div>

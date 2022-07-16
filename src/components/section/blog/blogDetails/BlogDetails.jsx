@@ -26,7 +26,7 @@ const BlogDetails = () => {
             {/* post details col  */}
             <div className="col-lg-8 col-md-12">
               <div className="post_thumbnail">
-                <img src={postThumb} alt="bithu nft blog" />
+                <img src={postThumb} alt="f-nft nft blog" />
               </div>
               <div className="blog_post_meta">
                 <a href="# " className="post_author">
@@ -149,14 +149,14 @@ const BlogDetails = () => {
               {/* related posts  */}
               <div className="related_posts_wrapper">
                 <a href="# " className="related_post_item">
-                  <img src={postThumb4} alt="bithu nft post" />
+                  <img src={postThumb4} alt="f-nft nft post" />
                   <div className="related_post__title">
                     <span>PREVIOUS</span>
                     How to Create Your 1st Crypto NFTs 🎉
                   </div>
                 </a>
                 <a href="# " className="related_post_item next">
-                  <img src={postThumb5} alt="bithu nft post" />
+                  <img src={postThumb5} alt="f-nft nft post" />
 
                   <div className="related_post__title">
                     <span>Next</span>

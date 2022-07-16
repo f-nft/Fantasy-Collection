@@ -4,7 +4,7 @@ import { slideInRight } from "react-animations";
 const menuAnimation = keyframes`${slideInRight}`;
 
 const MobileMenuStyleWrapper = styled.div`
-  &.bithu_mobile_menu {
+  &.f-nft_mobile_menu {
     position: absolute;
     right: 0;
     top: 0;
@@ -27,7 +27,7 @@ const MobileMenuStyleWrapper = styled.div`
     }
   }
 
-  .bithu_mobile_menu_content {
+  .f-nft_mobile_menu_content {
     background: #000000;
     height: 100vh;
     width: 400px;
@@ -56,7 +56,7 @@ const MobileMenuStyleWrapper = styled.div`
     }
   }
 
-  .bithu_mobile_menu_list {
+  .f-nft_mobile_menu_list {
     margin-top: 50px;
     ul {
       margin: 0;
@@ -137,7 +137,7 @@ const MobileMenuStyleWrapper = styled.div`
   }
 
   @media (max-width: 480px) {
-    .bithu_mobile_menu_content {
+    .f-nft_mobile_menu_content {
       width: 100%;
     }
   }

@@ -14,7 +14,7 @@ const CTAStyleWrapper = styled.section`
   background: #10171d;
   padding: 75px 0;
 
-  .bithu_cta_title {
+  .f-nft_cta_title {
     position: relative;
     z-index: 1;
 
@@ -104,7 +104,7 @@ const CTAStyleWrapper = styled.section`
     }
   }
   @media only screen and (max-width: 667px) {
-    .bithu_cta_title {
+    .f-nft_cta_title {
       h3 {
         font-size: 40px;
       }
@@ -112,7 +112,7 @@ const CTAStyleWrapper = styled.section`
   }
   @media only screen and (max-width: 480px) {
     padding: 100px 0;
-    .bithu_cta_title {
+    .f-nft_cta_title {
       h3 {
         font-size: 32px;
         line-height: 1.6;

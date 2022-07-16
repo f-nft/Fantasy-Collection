@@ -30,22 +30,22 @@ const CoinInfoCounter = () => {
       <img
         src={bgShape2}
         className="bg-shape shape-left shape-top"
-        alt="bithu bg shape"
+        alt="f-nft bg shape"
       />
       <img
         src={bgShape1}
         className="bg-shape shape-left shape-bottom"
-        alt="bithu bg shape"
+        alt="f-nft bg shape"
       />
       <img
         src={bgShape2}
         className="bg-shape shape-right shape-top"
-        alt="bithu bg shape"
+        alt="f-nft bg shape"
       />
       <img
         src={bgShape1}
         className="bg-shape shape-right shape-bottom"
-        alt="bithu bg shape"
+        alt="f-nft bg shape"
       />
     </CoinInfoCounterWrapper>
   );

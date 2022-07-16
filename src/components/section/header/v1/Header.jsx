@@ -27,19 +27,19 @@ const Header = () => {
     };
   }, []);
   return (
-    <NavWrapper className="bithu_header" id="navbar">
+    <NavWrapper className="f-nft_header" id="navbar">
       <div className="container">
         {/* Main Menu Start */}
-        <div className="bithu_menu_sect">
-          <div className="bithu_menu_left_sect">
+        <div className="f-nft_menu_sect">
+          <div className="f-nft_menu_left_sect">
             <div className="logo">
               <a href="/">
-                <img src={logo} alt="bithu nft logo" />
+                <img src={logo} alt="f-nft nft logo" />
               </a>
             </div>
           </div>
-          <div className="bithu_menu_right_sect bithu_v1_menu_right_sect">
-            <div className="bithu_menu_list">
+          <div className="f-nft_menu_right_sect f-nft_v1_menu_right_sect">
+            <div className="f-nft_menu_list">
               <ul>
                 <li>
                   <a href="#home">Home</a>
@@ -60,7 +60,7 @@ const Header = () => {
                   <a href="# ">Pages +</a>
                   <div className="sub_menu_sect">
                     <ul className="sub_menu_list">
-                      <li>
+                      {/* <li>
                         <a href="/">Home One</a>
                       </li>
                       <li>
@@ -68,7 +68,7 @@ const Header = () => {
                       </li>
                       <li>
                         <a href="/home-three">Home Three</a>
-                      </li>
+                      </li> */}
                       <li>
                         <a href="/blogs">Latest Blog</a>
                       </li>
@@ -80,11 +80,11 @@ const Header = () => {
                 </li>
               </ul>
             </div>
-            <div className="bithu_menu_btns">
+            <div className="f-nft_menu_btns">
               <button className="menu_btn" onClick={() => handleMobileMenu()}>
                 <MdNotes />
               </button>
-              <Button sm variant="outline" className="join_btn">
+              <Button sm variant="outline" className="join_btn" ahref="https://discord.gg/58KS9smeCV">
                 <FaDiscord /> Join
               </Button>
               <Button

@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const NavWrapper = styled.nav`
   z-index: 999;
-  &.bithu_header {
+  &.f-nft_header {
     position: absolute;
     top: 0;
     left: 0;
@@ -23,7 +23,7 @@ const NavWrapper = styled.nav`
     }
   }
 
-  .bithu_menu_sect {
+  .f-nft_menu_sect {
     height: 90px;
     width: 100%;
     display: flex;
@@ -31,7 +31,7 @@ const NavWrapper = styled.nav`
     justify-content: space-between;
   }
 
-  .bithu_menu_left_sect {
+  .f-nft_menu_left_sect {
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -44,14 +44,14 @@ const NavWrapper = styled.nav`
     }
   }
 
-  .bithu_menu_right_sect {
+  .f-nft_menu_right_sect {
     width: 85%;
     display: flex;
     align-items: center;
     justify-content: end;
   }
 
-  .bithu_menu_list {
+  .f-nft_menu_list {
     margin-left: 65px;
     margin-right: 96px;
     max-width: 514px;
@@ -137,7 +137,7 @@ const NavWrapper = styled.nav`
     }
   }
 
-  .bithu_menu_btns {
+  .f-nft_menu_btns {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -181,27 +181,27 @@ const NavWrapper = styled.nav`
   }
 
   @media (max-width: 1024px) {
-    .bithu_menu_list {
+    .f-nft_menu_list {
       margin-right: 20px;
     }
   }
   @media (max-width: 991px) {
-    .bithu_menu_right_sect {
+    .f-nft_menu_right_sect {
       justify-content: end;
     }
-    .bithu_menu_btns {
+    .f-nft_menu_btns {
       justify-content: end;
       .menu_btn {
         display: block;
       }
     }
 
-    .bithu_menu_btns {
+    .f-nft_menu_btns {
       .join_btn {
         display: none;
       }
     }
-    .bithu_menu_list {
+    .f-nft_menu_list {
       display: none;
       visibility: hidden;
       opacity: 0;
@@ -209,7 +209,7 @@ const NavWrapper = styled.nav`
   }
 
   @media (max-width: 667px) {
-    .bithu_menu_btns {
+    .f-nft_menu_btns {
       .connect_btn {
         display: none;
       }
@@ -223,7 +223,7 @@ const NavWrapper = styled.nav`
   }
 
   @media (max-width: 540px) {
-    .bithu_menu_left_sect {
+    .f-nft_menu_left_sect {
       width: 180px;
       .logo {
         img {
@@ -232,9 +232,9 @@ const NavWrapper = styled.nav`
       }
     }
 
-    .bithu_menu_right_sect {
+    .f-nft_menu_right_sect {
       width: 50%;
-      .bithu_menu_right_sect {
+      .f-nft_menu_right_sect {
         width: 50%;
       }
     }

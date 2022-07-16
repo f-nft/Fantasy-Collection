@@ -6,6 +6,7 @@ import metamaskIcon from "../../../assets/images/icon/MetaMask.svg";
 import formatic from "../../../assets/images/icon/Formatic.svg";
 import trustWalletIcon from "../../../assets/images/icon/Trust_Wallet.svg";
 import walletConnect from "../../../assets/images/icon/WalletConnect.svg";
+
 const WalletModal = () => {
   const { walletModalHandle } = useModal();
   return (
@@ -64,10 +65,10 @@ const WalletModal = () => {
 
             <div className="modal_bottom_shape_wrap">
               <span className="modal_bottom_shape shape_left">
-                <img src={hoverShape} alt="bithu nft hover shape" />
+                <img src={hoverShape} alt="f-nft nft hover shape" />
               </span>
               <span className="modal_bottom_shape shape_right">
-                <img src={hoverShape} alt="bithu nft hover shape" />
+                <img src={hoverShape} alt="f-nft nft hover shape" />
               </span>
             </div>
           </div>

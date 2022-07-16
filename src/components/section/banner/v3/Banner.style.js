@@ -102,7 +102,7 @@ const BannerStyleWrapper = styled.section`
     }
   }
 
-  .bithu_v3_timer {
+  .f-nft_v3_timer {
     h5 {
       font-size: 18px;
       color: #fff;
@@ -202,7 +202,7 @@ const BannerStyleWrapper = styled.section`
   }
 
   @media only screen and (max-width: 991px) {
-    .bithu_v3_baner_sect {
+    .f-nft_v3_baner_sect {
       padding-bottom: 80px;
     }
 

@@ -28,11 +28,11 @@ const CTA = () => {
     <CTAStyleWrapper>
       <div className="container">
         <SectionTitle
-          className="bithu_title_section text-center"
+          className="f-nft_title_section text-center"
           title="Join Our community &amp; get Early access"
         ></SectionTitle>
         <div className="title-emo">🤙</div>
-        <div className="bithu_v1_cta_content">
+        <div className="f-nft_v1_cta_content">
           <div className="join_comunity_btns">
             <Button lg variant="mint" className="wishlist_btn">
               Whitelist Now
@@ -48,7 +48,7 @@ const CTA = () => {
                 <li key={i}>
                   <a href={item.url}>
                     {item.thumb ? (
-                      <img src={item.thumb} alt="bithu nft profiles" />
+                      <img src={item.thumb} alt="f-nft nft profiles" />
                     ) : (
                       item.icon
                     )}
@@ -56,7 +56,7 @@ const CTA = () => {
                   <img
                     className="social_hover_shape"
                     src={hoverShape}
-                    alt="bithu nft hover"
+                    alt="f-nft nft hover"
                   />
                 </li>
               ))}
@@ -67,7 +67,7 @@ const CTA = () => {
             <div className="footer_stars">
               {particleShapes?.map((shape, i) => (
                 <span key={i} className={`star_${i + 1}`}>
-                  <img src={shape} alt="bithu nft background particle" />
+                  <img src={shape} alt="f-nft nft background particle" />
                 </span>
               ))}
             </div>

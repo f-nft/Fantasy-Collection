@@ -12,7 +12,7 @@ const RoadMapItem = ({ id, icon, title, text }) => {
         <h3>
           {title}{" "}
           <span>
-            <img src={icon} alt="bithu nft road map" />
+            <img src={icon} alt="f-nft nft road map" />
           </span>
         </h3>
         <p>{text}</p>

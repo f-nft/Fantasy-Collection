@@ -11,7 +11,7 @@ const RecentPosts = () => {
         (post, i) =>
           i < 3 && (
             <div key={i} className="recent_post_item">
-              <img src={post.thumbnail} alt="bithu nft post thumb" />
+              <img src={post.thumbnail} alt="f-nft nft post thumb" />
               <div className="post_title">
                 <span>{post.timeStamp}</span>
                 <a href="# "> {post.title} </a>

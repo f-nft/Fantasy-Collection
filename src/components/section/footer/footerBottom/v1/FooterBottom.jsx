@@ -8,12 +8,12 @@ import footerShapesRight from "../../../../../assets/images/icon/footer_shapes_r
 import FooterBottomStyleWrapper from "./FooterBottom.style";
 const FooterBottom = () => {
   return (
-    <FooterBottomStyleWrapper className="bithu_v2_main_footer">
+    <FooterBottomStyleWrapper className="f-nft_v2_main_footer">
       <div className="v2_main_footer">
         <div className="v2_footer_menu">
           <div className="v2_footer_logo">
             <a href="# ">
-              <img src={footerLogo} alt="bithu nft logo" />
+              <img src={footerLogo} alt="f-nft nft logo" />
             </a>
           </div>
           <div className="bottom_footer_menulist">
@@ -26,18 +26,18 @@ const FooterBottom = () => {
             </ul>
           </div>
           <div className="v2_footer_copiright_text">
-            <p>Copyright ©2022 Bithu, All rights reserved.</p>
+            <p>Copyright ©2022 f-nft, All rights reserved.</p>
           </div>
           <a href="# " className="bact_to_top_btn">
-            <img src={backToTopIcon} alt="bithu nft back to top" />
+            <img src={backToTopIcon} alt="f-nft nft back to top" />
           </a>
         </div>
       </div>
       <span className="v2_footer_shapes_left">
-        <img src={footerShapesLeft} alt="bithu nft footer" />
+        <img src={footerShapesLeft} alt="f-nft nft footer" />
       </span>
       <span className="v2_footer_shapes_right">
-        <img src={footerShapesRight} alt="bithu nft footer" />
+        <img src={footerShapesRight} alt="f-nft nft footer" />
       </span>
     </FooterBottomStyleWrapper>
   );

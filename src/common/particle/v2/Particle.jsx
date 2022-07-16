@@ -4,7 +4,7 @@ const Particle = () => {
     <>
       {data?.map((shape, i) => (
         <span key={i} className={`shape_${i + 1} rotated-style`}>
-          <img src={shape} alt="bithu nft bg shape" />
+          <img src={shape} alt="f-nft nft bg shape" />
         </span>
       ))}
     </>

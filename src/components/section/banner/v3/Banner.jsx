@@ -28,7 +28,7 @@ const Banner = () => {
   };
 
   return (
-    <BannerStyleWrapper className="bithu_v3_baner_sect" id="home">
+    <BannerStyleWrapper className="f-nft_v3_baner_sect" id="home">
       <div className="container">
         <div className="row align-items-center">
           <div className="col-lg-6">
@@ -38,17 +38,17 @@ const Banner = () => {
               <img
                 className="banner-image banner-image1"
                 src={bannerThumb1}
-                alt="bithu banner thumb"
+                alt="f-nft banner thumb"
               />
               <img
                 className="banner-image banner-image2"
                 src={bannerThumb2}
-                alt="bithu banner thumb"
+                alt="f-nft banner thumb"
               />
               <img
                 className="banner-image banner-image3"
                 src={bannerThumb3}
-                alt="bithu banner thumb"
+                alt="f-nft banner thumb"
               />
             </div>
           </div>
@@ -58,7 +58,7 @@ const Banner = () => {
                 Whitelist : <span className="red-color">Soldout</span>
               </h4>
               <h1 className="banner-title text-uppercase">Mint is live now</h1>
-              <div className="bithu_v3_timer">
+              <div className="f-nft_v3_timer">
                 <h5 className="text-uppercase">Public Mint end in</h5>
                 <div className="timer timer_1">
                   <CountdownTimer {...settings} />
@@ -85,7 +85,7 @@ const Banner = () => {
                     +
                   </span>
                 </div>
-                <div className="bithu_v3_baner_buttons">
+                <div className="f-nft_v3_baner_buttons">
                   <Button lg variant="mint" onClick={() => mintModalHandle()}>
                     Mint Now
                   </Button>

@@ -53,7 +53,7 @@ const CharacterSlider = () => {
         {data?.map((item, i) => (
           <SliderItem key={i}>
             <div className="character-thumb">
-              <img src={item.thumb} alt="bithu nft character" />
+              <img src={item.thumb} alt="f-nft nft character" />
             </div>
           </SliderItem>
         ))}

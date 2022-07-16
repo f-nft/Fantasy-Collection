@@ -4,14 +4,14 @@ import hoverShape from "../../../../assets/images/icon/hov_shape_L.svg";
 const TeamMember = ({ avatar, name, designation, socialLinks }) => {
   return (
     <TeamMemberStyleWrapper>
-      <div className="bithu_team_card">
+      <div className="f-nft_team_card">
         <div className="team_member_img">
-          <img src={avatar} alt="bithu nft team avatar" />
+          <img src={avatar} alt="f-nft nft team avatar" />
         </div>
         <h3>{name}</h3>
         <h4>{designation}</h4>
         <span className="hover_shape hov_shape1">
-          <img src={hoverShape} alt="bithu nft team" />
+          <img src={hoverShape} alt="f-nft nft team" />
         </span>
         <span className="hover_shape hov_shape2">
           <img src={hoverShape} alt="" />
