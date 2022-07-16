@@ -58,10 +58,10 @@ const Header = () => {
                   <a href="#faq">FAQ</a>
                 </li>
                 <li className="submenu">
-                  <a href="# ">Pages +</a>
+                  <a href="# ">Blog +</a>
                   <div className="sub_menu_sect">
                     <ul className="sub_menu_list">
-                      <li>
+                      {/* <li>
                         <a href="/">Home One</a>
                       </li>
                       <li>
@@ -69,7 +69,7 @@ const Header = () => {
                       </li>
                       <li>
                         <a href="/home-three">Home Three</a>
-                      </li>
+                      </li> */}
                       <li>
                         <a href="/blogs">Latest Blog</a>
                       </li>
