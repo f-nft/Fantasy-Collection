@@ -12,7 +12,7 @@ import avatarThumb8 from "../../images/team/crew_avatar8.png";
 const data = [
   {
     avatar: avatarThumb1,
-    name: "Berneice Tran",
+    name: "Duong Le",
     designation: "Founder",
     socialLinks: [
       {
@@ -31,7 +31,7 @@ const data = [
   },
   {
     avatar: avatarThumb2,
-    name: "Nathan Bean",
+    name: "Alex Tuan",
     designation: "Co-Founder",
     socialLinks: [
       {
