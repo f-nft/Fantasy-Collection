@@ -1,5 +1,4 @@
 import { Slider, SliderItem } from "../../../../common/slider/Slider";
-
 import SectionTitle from "../../../../common/sectionTitle";
 import dividerImgShape from "../../../../assets/images/nft/v1_roadmap_divider_shape.png";
 import roadMapBgGrand from "../../../../assets/images/bg/bithu_roadmap_mash_Grad.png";
@@ -12,11 +11,11 @@ const RoadMap = () => {
     dots: false,
     arrows: false,
     autoplay: true,
-    autoplaySpeed: 5000,
+    autoplaySpeed: 3000,
     centerMode: true,
-    centerPadding: "0px",
+    centerPadding: "5px",
     infinite: true,
-    speed: 500,
+    speed: 1000,
     slidesToShow: 4,
     slidesToScroll: 1,
     responsive: [

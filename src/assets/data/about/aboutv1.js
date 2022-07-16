@@ -9,17 +9,17 @@ import aboutCardIcon3 from "../../images/icon/aboutus_card_icon3.svg"
         {
             icon: aboutCardIcon1,
             title: "3D NFT Fashion",
-            text: "When converted to NFTs, 3D assets will turn your 2D side-scrolling worlds upside down by bringing a magnificent three-dimensional experience of your favorite games. Instead of being limited to the details of pixel art, you can now see more realistic sentiment and movement. "
+            text: "When converted to NFTs, 3D assets will turn your 2D side-scrolling worlds upside down by bringing a magnificent three-dimensional experience of your favorite games. Instead of being limited to the details of pixel art, you can now see more realistic sentiment and movement."
         },
         {
             icon: aboutCardIcon2,
             title: "Play to Earn",
-            text: 'Earn a living Despite the fact that NFTs, like cryptocurrencies, appear to be useful to the majority of people, the industry is plagued by a lot of speculation, and while there are losers, the vast majority of players profit from trades. So why don’t you give it a shot? With Wear to Earn, you can start earning money right away! If you master NFTs and the blockchain, you will be able to take advantage of new Web 3 features such as Play to Earn. These are online games that, like any other game, reward you with objects, but these objects are NFTs, which means they are exchangeable and immutable, and thus sellable! Our project is about to help you and help investors to make money.'
+            text: 'Earn a living Despite the fact that NFTs, like cryptocurrencies, appear to be useful to the majority of people, the industry is plagued by a lot of speculation, and while there are losers, the vast majority of players profit from trades.'
         },
         {
             icon: aboutCardIcon3,
             title: "Metaverse Ready",
-            text: 'The Metaverse is exploding, propelled by 3D NFTs, the next evolution of the Internet. It’s also about much more than gaming or entertainment, as the financial sector looks to incorporate Metaverse growth opportunities into their business models. In addition, the use of 3D NFTs in the Metaverse will aid in the creation of a space for users to connect, interact, play, create, and participate in a decentralized economy with broader societal implications. '
+            text: 'The Metaverse is exploding, propelled by 3D NFTs, the next evolution of the Internet. It’s also about much more than gaming or entertainment, as the financial sector looks to incorporate Metaverse growth opportunities into their business models. eate, and participate in a decentralized economy with broader societal implications.'
         }
     ]
 }

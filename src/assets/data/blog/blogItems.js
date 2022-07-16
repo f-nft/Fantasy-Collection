@@ -100,7 +100,7 @@ const data = {
     },
     {
       thumbnail: thumb7,
-      author: "INNA MOUAZ",
+      author: "f-nft",
       title: "Metaverse Gaming NFT on The Way",
       excerpt:
         "On the other hand, we denounce with righteous indignation and dislike men who are so beguiled",

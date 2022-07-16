@@ -83,19 +83,19 @@ const BlogDetails = () => {
                 </p>
                 <ul>
                   <li>
-                    <span>Name: </span>MINTO NFT
+                    <span>Name: </span>Fantasy NFT
                   </li>
                   <li>
-                    <span>Token Type:</span> BNB
+                    <span>Token Type:</span> NFT
                   </li>
                   <li>
-                    <span>Total supply: </span>100 000 000
+                    <span>Total supply: </span>10,000
                   </li>
                   <li>
                     <span>Initial Mcap: </span>$679K
                   </li>
                   <li>
-                    <span>IGO Date: </span>March 30
+                    <span>IGO Date: </span>JUNE 30
                   </li>
                   <li>
                     <span>Allocation:</span> $400K (including 5% success fee)
@@ -112,9 +112,9 @@ const BlogDetails = () => {
                 <p>
                   Randomised words which don't look even slightly believable. If
                   you are going to use a passage
-                  <br /> of Lorem Ipsum, you need to be sure there isn't
+                  <br /> , you need to be sure there isn't
                   anything embarrassing.
-                  <br /> making it over 2000 years old.{" "}
+                  <br /> making it over 2,000 years old.{" "}
                 </p>
               </div>
 

@@ -5,38 +5,38 @@ const data = [
     {
         icon: checkIcon,
         title: "Phase 01 ",
-        subtitle: "25% Soldout",
-        text: "since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from de Finibus Bonorum actual teachings of the great explorer of the truth"
+        subtitle: "BRANDSTORM",
+        text: "IDEAS FOR A 3D FASHION BRAND CREATED WITH OBJECTIVES TO BRING A REAL VALUE TO THE NFT COMMUNITY"
     }, 
     {
         icon: checkIcon,
         title: "Phase 02",
-        subtitle: "50% Soldout",
-        text: "Pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth"
+        subtitle: "MARKET ANALYTICS",
+        text: "WE HAVE BEEN PROVIDED THE MOST POSSIBLE OPTIONS TO START PROJECT IMPLEMENTATION AND STATISTICS MARKET ANALYSIS BY LEADING PROS."
     }, 
     {
-        icon: checkIcon,
+        icon: spinnerIcon,
         title: "Phase 03",
-        subtitle: "Metaverse Launch",
-        text: "A complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects"
+        subtitle: "MARKET COVERAGE",
+        text: "SALES REACH 1% OF THE MARKET"
     }, 
     {
         icon: spinnerIcon,
         title: "Phase 04",
-        subtitle: "70% Soldout",
-        text: "The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from expound the actual"
+        subtitle: "DOMINATE THE MARKET",
+        text: "10% MARKET SHARES; DEVELOP NEXT APPICATION"
     }, 
     {
         icon: spinnerIcon,
         title: "Phase 05",
-        subtitle: "80% Soldout", 
-        text: "On the other hand, we denounce with righteous indignation and dislike men from expound the actual reproduced below for those interested"
+        subtitle: "APPLICATION",
+        text: "OPEN BETA MOST USER INTERFACE APP FOR TRAIL UPGRADE - COLLECTIONS - AR WEAR INTEGRATION TO OTHER PLATFORM"
     }, 
     {
         icon: spinnerIcon,
         title: "Phase 06",
-        subtitle: "90% Soldout", 
-        text: "Reproduced below for those interested. Sections 1.10.32 and 1.10.33 from de Finibus Bonorum et Malorum by Cicero are also reproduced"
+        subtitle: "TOP NFT BRAND",
+        text: "100% GROWTH; REACH 100K USERS; REVENUE REACH MORE THAN $2,000,000"
     }, 
 ]
 
