@@ -8,13 +8,13 @@ const CharacterSlider = () => {
     dots: false,
     arrows: false,
     autoplay: true,
-    speed: 2000,
-    autoplaySpeed: 2000,
+    speed: 3000,
+    autoplaySpeed: 3000,
     cssEase: "linear",
     centerMode: true,
     centerPadding: "0px",
     infinite: true,
-    slidesToShow: 6,
+    slidesToShow: 5,
     slidesToScroll: 1,
     responsive: [
       {
