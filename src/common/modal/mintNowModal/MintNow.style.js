@@ -7,8 +7,8 @@ const modalAnimation = keyframes`${fadeIn}`;
 const MintModalStyleWrapper = styled.div`
   &.modal_overlay {
     position: fixed;
-    height: 100%;
-    width: 100%;
+    height: 80%;
+    width: 80%;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
@@ -20,8 +20,8 @@ const MintModalStyleWrapper = styled.div`
       position: absolute;
       left: 0;
       top: 0;
-      height: 100%;
-      width: 100%;
+      height: 50%;
+      width: 50%;
       background: #000;
       content: "";
       opacity: 0.79;
@@ -48,13 +48,13 @@ const MintModalStyleWrapper = styled.div`
   }
 
   .mint_modal_content {
-    height: 50%;
-    width: 50%;
+    height: 30%;
+    width: 30%;
     background: url(${modalBg});
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
-    padding: 40px;
+    padding: 60px;
     padding-bottom: 50px;
     position: relative;
     display: flex;
@@ -156,8 +156,8 @@ const MintModalStyleWrapper = styled.div`
           }
 
           input {
-            max-width: 58px;
-            width: 100%;
+            max-width: 50px;
+            width: 50%;
             border: none;
             border-left: 1px solid rgba(255, 255, 255, 0.1);
             border-right: 1px solid rgba(255, 255, 255, 0.1);
@@ -166,13 +166,13 @@ const MintModalStyleWrapper = styled.div`
             align-items: center;
             justify-content: center;
             background: transparent;
-            padding: 0px 19px;
+            padding: 0px 20px;
             outline: none;
             font-family: "Bakbak One";
             font-style: normal;
-            font-weight: 400;
-            font-size: 16px;
-            line-height: 22px;
+            font-weight: 300;
+            font-size: 14px;
+            line-height: 20px;
             text-align: center;
             text-transform: uppercase;
             color: #ffffff;
@@ -201,8 +201,8 @@ const MintModalStyleWrapper = styled.div`
     }
   }
   .mint_img {
-    width: 100%;
-    height: 100%;
+    width: 50%;
+    height: 50%;
     
   }
 `;
