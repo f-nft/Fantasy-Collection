@@ -19,7 +19,7 @@ const Banner = () => {
     showTitle: true,
     labelSize: 14,
     backgroundColor: "transparent",
-    color: "#fff",
+    color: "#ffffff",
     dayTitle: "",
     hourTitle: "",
     minuteTitle: "",
