@@ -8,11 +8,24 @@ import characterThumb from "../../../../assets/images/nft/Character1.png";
 import mintLiveText from "../../../../assets/images/nft/mint_live_text.png";
 import homeImageBG from "../../../../assets/images/nft/home_img_bg.png";
 import { useEffect } from "react";
-
+import CountdownTimer from "react-component-countdown-timer";
 
 const Banner = () => {
   const { mintModalHandle } = useModal();
   //clean local storage on page refresh
+  const settings = {
+    count: 5432560,
+    showTitle: true,
+    size: 60,
+    labelSize: 14,
+    backgroundColor: "transparent",
+    color: "#fff",
+    dayTitle: "",
+    hourTitle: "",
+    minuteTitle: "",
+    secondTitle: "",
+    id: "countdownwrap",
+  };
 
   const settings = {
     count: 5432560,
@@ -38,6 +51,12 @@ const Banner = () => {
           <div className="col-lg-6">
             <div className="f-nft_v1_baner_left">
               <h2>f-nft Fantasy 👗 NFT collections</h2>
+              <div className="f-nft_v2_timer">
+                <h4>TIME LEFT</h4>
+                <div className="timer timer_1">
+                  <CountdownTimer {...settings} />
+                </div>
+              </div>
               <h3>
                 <span className="count">
                   <Counter end={55} duration={10000} />
