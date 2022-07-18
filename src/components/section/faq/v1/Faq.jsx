@@ -1,5 +1,4 @@
 import { FaMinus, FaPlus } from "react-icons/fa";
-
 import SectionTitle from "../../../../common/sectionTitle";
 import {
   Accordion,

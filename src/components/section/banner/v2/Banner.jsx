@@ -23,9 +23,9 @@ const Banner = () => {
     id: "countdownwrap",
   };
   return (
-    <BannerStyleWrapper className="f-nft_v2_baner_sect" id="home">
+    <BannerStyleWrapper className="f-nft_v1_baner_sect" id="home">
       <div className="container">
-        <div className="f-nft_v2_baner_content">
+        <div className="f-nft_v1_baner_content">
           <h2>
             {" "}
             <span className="banner-emot">🎉</span>Public Sale{" "}
