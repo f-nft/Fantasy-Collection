@@ -2,9 +2,9 @@ import aboutCardIcon1 from "../../images/icon/aboutus_card_icon1.svg"
 import aboutCardIcon2 from "../../images/icon/aboutus_card_icon2.svg"
 import aboutCardIcon3 from "../../images/icon/aboutus_card_icon3.svg"
 
- const data = {
-     aboutDescription1: 'The development of a digital economy relies heavily on blockchain technology. The blockchain, which enables the use of cryptocurrency and NFTs (Non-Fungible Tokens), is useful for digitized currency ownership and collectability, value transfer, governance, accessibility, and interoperability. Because blockchain allows users to protect their digital assets in virtual reality, it is an essential part of the metaverse. ',
-     aboutDescription2: 'Blockchain is a method of storing data that makes it difficult or impossible to alter, hack, or cheat it. A blockchain is a digital ledger of transactions that is duplicated and distributed across the network of computer systems that comprise the blockchain. Each block in the chain contains a number of transactions, and each time a new transaction occurs on the blockchain, a record of that transaction is added to each participant’s ledger. Distributed Ledger Technology (DLT) is a decentralized database that is managed by a group of people (DLT). ',
+const data = {
+    aboutDescription1: 'The development of a digital economy relies heavily on blockchain technology. The blockchain, which enables the use of cryptocurrency and NFTs (Non-Fungible Tokens), is useful for digitized currency ownership and collectability, value transfer, governance, accessibility, and interoperability. Because blockchain allows users to protect their digital assets in virtual reality, it is an essential part of the metaverse. ',
+    aboutDescription2: 'Blockchain is a method of storing data that makes it difficult or impossible to alter, hack, or cheat it. A blockchain is a digital ledger of transactions that is duplicated and distributed across the network of computer systems that comprise the blockchain. Each block in the chain contains a number of transactions, and each time a new transaction occurs on the blockchain, a record of that transaction is added to each participant’s ledger. Distributed Ledger Technology (DLT) is a decentralized database that is managed by a group of people (DLT). ',
     aboutInfo: [
         {
             icon: aboutCardIcon1,
