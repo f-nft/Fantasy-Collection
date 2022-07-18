@@ -8,10 +8,10 @@ import mintLiveText from "../../../../assets/images/nft/mint_live_text.png";
 import homeImageBG from "../../../../assets/images/nft/home_img_bg.png";
 import { useEffect } from "react";
 
-
 const Banner = () => {
   const { mintModalHandle } = useModal();
   //clean local storage on page refresh
+
 
   useEffect(() => {
     localStorage.removeItem("walletAddress");
@@ -26,7 +26,7 @@ const Banner = () => {
               <h2>f-nft Fantasy 👗 NFT collections</h2>
               <h3>
                 <span className="count">
-                  <Counter end={55} duration={10000} />
+                  <Counter end={1125} duration={10000} />
                 </span>{" "}
                 / 10,000 Minted
               </h3>
@@ -36,6 +36,11 @@ const Banner = () => {
                   (<span style={{ color: "white" }}>{localStorage.getItem("walletAddress")}</span>) :
                   (<span style={{ color: "white" }}>0x0</span>)}
               </h5>
+              <div className="f-nft_v1_timer">
+                <h5 className="text-uppercase">Public Mint end in</h5>
+                <div className="timer timer_1">
+                </div>
+              </div>
               <h5>
                 Balance <br />
                 {localStorage.getItem("balance") ?

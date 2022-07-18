@@ -170,15 +170,15 @@ const FooterStyleWrapper = styled.footer`
         }
 
         .footer_logo {
-          max-width: 100px;
+          max-width: 50px;
         }
       }
 
       .bottom_footer_right {
-        max-width: 300px;
+        max-width: 100px;
         ul {
           li + li {
-            padding-left: 15px;
+            padding-left: 5px;
           }
           li {
             a {
@@ -193,7 +193,7 @@ const FooterStyleWrapper = styled.footer`
   @media only screen and (max-width: 767px) {
     .f-nft_v1_main_footer {
       .footer_bottom {
-        min-height: 140px;
+        min-height: 100px;
       }
       .footer_menu {
         padding: 20px 0px;
