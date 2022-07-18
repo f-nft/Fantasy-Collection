@@ -35,7 +35,7 @@ const BlogItemStyleWrapper = styled.article`
       text-transform: uppercase;
       margin-bottom: 10px;
       .category_title {
-        color: #00ffa3;
+        color: #8B008B;
       }
 
       .time_stamp {

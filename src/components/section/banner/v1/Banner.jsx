@@ -2,6 +2,7 @@ import { useModal } from "../../../../utils/ModalContext";
 import Counter from "../../../../common/counter";
 import Button from "../../../../common/button";
 import BannerV1Wrapper from "./Banner.style";
+import CountdownTimer from "react-component-countdown-timer";
 
 import characterThumb from "../../../../assets/images/nft/Character1.png";
 import mintLiveText from "../../../../assets/images/nft/mint_live_text.png";
@@ -12,6 +13,19 @@ import { useEffect } from "react";
 const Banner = () => {
   const { mintModalHandle } = useModal();
   //clean local storage on page refresh
+
+  const settings = {
+    count: 5432560,
+    showTitle: true,
+    labelSize: 14,
+    backgroundColor: "transparent",
+    color: "#fff",
+    dayTitle: "",
+    hourTitle: "",
+    minuteTitle: "",
+    secondTitle: "",
+    id: "countdownwrap",
+  };
 
   useEffect(() => {
     localStorage.removeItem("walletAddress");
@@ -36,6 +50,12 @@ const Banner = () => {
                   (<span style={{ color: "white" }}>{localStorage.getItem("walletAddress")}</span>) :
                   (<span style={{ color: "white" }}>0x0</span>)}
               </h5>
+              <div className="f-nft_v3_timer">
+                <h5 className="text-uppercase">Public Mint end in</h5>
+                <div className="timer timer_1">
+                  <CountdownTimer {...settings} />
+                </div>
+              </div>
               <h5>
                 Balance <br />
                 {localStorage.getItem("balance") ?

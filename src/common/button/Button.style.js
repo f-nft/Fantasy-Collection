@@ -114,7 +114,7 @@ const ButtonWrapper = styled.button`
     ${({ variant }) =>
     variant === "mint" &&
     css`
-      background: #00ffa3;
+      background: #8B008B;
       color: #111111;
       border: none;
       .hover-shape {

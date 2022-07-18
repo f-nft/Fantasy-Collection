@@ -28,7 +28,7 @@ const PaginationStyleWrapper = styled.div`
     &:hover,
     &.active {
       background-color: #2e2f3c;
-      color: #00ffa3;
+      color: #8B008B;
     }
 
     &.active {

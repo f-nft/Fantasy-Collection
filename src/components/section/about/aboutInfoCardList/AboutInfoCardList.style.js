@@ -10,7 +10,7 @@ const AboutInfoCardListWrapper = styled.div`
     @media only screen and (max-width: 991px) {
         .about_us_text_card_sect {
         margin-top: 60px;
-
+        margin-right: -10px;
         &.md-mt-0 {
             margin-top: 0;
         }

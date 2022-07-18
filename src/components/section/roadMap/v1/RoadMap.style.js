@@ -38,7 +38,7 @@ const RoadMapStyleWrapper = styled.section`
         font-size: 18px;
         line-height: 25px;
         text-transform: uppercase;
-        color: #00ffa3;
+        color: #8B008B;
         margin-bottom: 0;
       }
     }
