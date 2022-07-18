@@ -13,24 +13,22 @@ import { ethers } from 'ethers';
 const providerOptions = {
 };
 
-
 const WalletModal = () => {
 
-   const { walletModalHandle } = useModal();
+  const { walletModalHandle } = useModal();
 
-  async function connectWallet()
-  {
+  async function connectWallet() {
 
     try {
-      let web3Modal=new Web3Modal({
-         network: "mainnet",
+      let web3Modal = new Web3Modal({
+        network: "mainnet",
         cacheProvider: false,
         // use bsc as the provider name
         providerOptions: providerOptions
 
       });
       const web3ModalInstance = await web3Modal.connect();
-      const web3ModalProvider= new ethers.providers.Web3Provider(web3ModalInstance);
+      const web3ModalProvider = new ethers.providers.Web3Provider(web3ModalInstance);
       const accounts = await web3ModalProvider.listAccounts();
       console.log(accounts);
       //get balance
@@ -41,16 +39,16 @@ const WalletModal = () => {
       //close current modal
       walletModalHandle();
       //if wallet is connected then set the wallet address in local storage
-      localStorage.setItem("walletAddress",accounts[0]);
+      localStorage.setItem("walletAddress", accounts[0]);
       //set balance in local storage
-      localStorage.setItem("balance",etherBalance);
-      
+      localStorage.setItem("balance", etherBalance);
+
     } catch (error) {
-      
+
     }
-    
+
   }
- 
+
   return (
     <>
       <WalletModalStyleWrapper className="modal_overlay">
@@ -69,7 +67,7 @@ const WalletModal = () => {
                 Please select a wallet to connect for start Minting your NFTs
               </p>
               <div className="wallet_list">
-               <a href="# " onClick={connectWallet}>
+                <a href="# " onClick={connectWallet}>
                   <img src={metamaskIcon} alt="Metmask" />
                   Metamask
                   <span>

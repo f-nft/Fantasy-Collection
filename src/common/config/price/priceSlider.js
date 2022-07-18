@@ -1,3 +1,5 @@
+
+
 <Row style={{ marginTop: "2em" }}>
     <Col sm={6} style={{ textAlign: "left" }}>
         <h1 style={{ fontWeight: "bold" }}>Rarity</h1>
@@ -18,6 +20,7 @@
                         INITIALIZATION 🚼
                     </a>
                 </Button>
+                <img className="d-block w-100" src="https://media.discordapp.net/attachments/945707668398567424/993388829627129866/1.gif" alt="39usd" />
             </li>
             <li>
                 <Button style={{
@@ -28,6 +31,7 @@
                         RECLAMATION ♻️
                     </a>
                 </Button>
+                <img className="d-block w-100" src="https://media.discordapp.net/attachments/945707668398567424/993388829920735322/2.gif" alt="69usd" />
             </li>
             <li>
                 <Button style={{
@@ -38,6 +42,7 @@
                         DISCOVER 🚀
                     </a>
                 </Button>
+                <img className="d-block w-100" src="https://media.discordapp.net/attachments/945707668398567424/993388830667325460/3.gif" alt="239usd" />
             </li>
             <li>
                 <Button style={{
@@ -48,6 +53,7 @@
                         ANGEL & DEVIL ☯️
                     </a>
                 </Button>
+                <img className="d-block w-100" src="https://media.discordapp.net/attachments/945707668398567424/993388831061585950/4.gif" alt="799usd" />
             </li>
             <li>
                 <Button style={{
@@ -58,9 +64,9 @@
                         CHAOS 🔞
                     </a>
                 </Button>
+                <img className="d-block w-100" src="https://media.discordapp.net/attachments/945707668398567424/993388831522947183/5.gif" alt="1999usd" />
             </li>
         </ul>
-
     </Col>
     <Col sm={6}>
         <img src={Commonimg} alt="about4" style={{ width: "100%" }} />

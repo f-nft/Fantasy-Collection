@@ -11,7 +11,7 @@ import { useEffect } from "react";
 
 const Banner = () => {
   const { mintModalHandle } = useModal();
-    //clean local storage on page refresh
+  //clean local storage on page refresh
 
   useEffect(() => {
     localStorage.removeItem("walletAddress");
@@ -26,21 +26,21 @@ const Banner = () => {
               <h2>f-nft Fantasy 👗 NFT collections</h2>
               <h3>
                 <span className="count">
-                  <Counter end={1} duration={25} />
+                  <Counter end={55} duration={10000} />
                 </span>{" "}
                 / 10,000 Minted
               </h3>
               <h5>
-                 Your Wallet Address:<br/>  
-                {localStorage.getItem("walletAddress")?
-               (<span style={{color:"white"}}>{localStorage.getItem("walletAddress")}</span>):
-                (<span style={{color:"white"}}>0x0</span>)}
+                Your Wallet Address:<br />
+                {localStorage.getItem("walletAddress") ?
+                  (<span style={{ color: "white" }}>{localStorage.getItem("walletAddress")}</span>) :
+                  (<span style={{ color: "white" }}>0x0</span>)}
               </h5>
-               <h5>
-                Balance <br/>  
-                {localStorage.getItem("balance")?
-                (<span style={{color:"white"}}>{localStorage.getItem("balance")}</span>):
-                (<span style={{color:"white"}}>0.00</span>)}
+              <h5>
+                Balance <br />
+                {localStorage.getItem("balance") ?
+                  (<span style={{ color: "white" }}>{localStorage.getItem("balance")}</span>) :
+                  (<span style={{ color: "white" }}>0.00</span>)}
               </h5>
               <div className="banner_buttons">
                 <Button lg variant="mint" onClick={() => mintModalHandle()}>
@@ -70,7 +70,7 @@ const Banner = () => {
                     </span>
                     <span className="mint_live_text rotated-style">
                       <img src={mintLiveText} alt="" />
-       
+
                     </span>
                   </div>
                 </div>

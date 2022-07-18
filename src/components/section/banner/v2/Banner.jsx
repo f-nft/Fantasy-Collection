@@ -19,7 +19,7 @@ const Banner = () => {
     dayTitle: "",
     hourTitle: "",
     minuteTitle: "",
-    secondTitle: "", 
+    secondTitle: "",
     id: "countdownwrap",
   };
   return (
@@ -33,7 +33,7 @@ const Banner = () => {
           </h2>
           <h3>
             <span className="count">
-              <Counter end={10000} duration={5555} />
+              <Counter end={10000} duration={10000} />
             </span>{" "}
             / 10000 Minted
           </h3>
