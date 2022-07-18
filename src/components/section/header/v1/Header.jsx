@@ -85,7 +85,11 @@ const Header = () => {
               <button className="menu_btn" onClick={() => handleMobileMenu()}>
                 <MdNotes />
               </button>
-              <Button sm variant="outline" className="join_btn" href="https://discord.gg/58KS9smeCV">
+              <Button sm variant="outline" className="join_btn"
+                onClick={() => {
+              window.open("https://discord.gg/FzCKUn3R", "_blank");
+            }
+            }>
                 <FaDiscord /> Join
               </Button>
               <Button

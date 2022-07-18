@@ -37,7 +37,12 @@ const CTA = () => {
             <Button lg variant="mint" className="wishlist_btn">
               Whitelist Now
             </Button>
-            <Button lg variant="blue" className="join_discord_btn" href="https://discord.gg/FzCKUn3R">
+            <Button lg variant="blue" className="join_discord_btn"
+            onClick={() => {
+              window.open("https://discord.gg/FzCKUn3R", "_blank");
+            }
+            }
+            >
               {" "}
               <FaDiscord /> Join Discord
             </Button>

@@ -8,11 +8,12 @@ import trustWalletIcon from "../../../assets/images/icon/Trust_Wallet.svg";
 import walletConnect from "../../../assets/images/icon/WalletConnect.svg";
 import Web3Modal from "web3modal";
 import { ethers } from 'ethers';
+import {NFTCONTRACT} from '../../config/config'
 
 
 const providerOptions = {
 };
-
+const { ethereum } = window;
 const WalletModal = () => {
 
   const { walletModalHandle } = useModal();
@@ -29,7 +30,7 @@ const WalletModal = () => {
       });
       const web3ModalInstance = await web3Modal.connect();
       const web3ModalProvider = new ethers.providers.Web3Provider(web3ModalInstance);
-      const accounts = await web3ModalProvider.listAccounts();
+      var accounts = await web3ModalProvider.listAccounts();
       console.log(accounts);
       //get balance
       const balance = await web3ModalProvider.getBalance(accounts[0]);
@@ -42,12 +43,23 @@ const WalletModal = () => {
       localStorage.setItem("walletAddress", accounts[0]);
       //set balance in local storage
       localStorage.setItem("balance", etherBalance);
+        //get account
+        try {
+            accounts = await ethereum.request({ method: "eth_accounts" });
+            console.log(accounts);
+            var account = accounts[0];
+            console.log("Account selected " + account);
+        } catch (err) {
+            alert(err.message);
+            return null;
+        }
 
     } catch (error) {
 
     }
 
   }
+
 
   return (
     <>
@@ -117,5 +129,48 @@ const WalletModal = () => {
     </>
   );
 };
+export async function mint() {
+   //mint for metamask polygon network
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        try {
+            if (!window.ethereum.selectedAddress) {
+                alert("Please unlock your MetaMask account");
+                return;
+            }
+
+            const accounts = await ethereum.request({ method: "eth_accounts" });
+            let balance = await provider.getBalance(accounts[0]);
+            if (balance.lt(ethers.utils.parseEther("0.1"))) {
+                alert("Please deposit at least 0.1 ETH to the MetaMask account");
+                return;
+            }
+            let bal = ethers.utils.formatEther(balance);
+            console.log(bal);
+            //pay for the NFT minting
+            ethereum.request({
+                method: "eth_sendTransaction", params: [{
+                    from: accounts[0],
+                    to: NFTCONTRACT,
+                    //convert value to String
+                    value: ethers.utils.parseEther("0.1").toString(),
+                    gas: "30000",
+                    gasPriceinWei: "1000",
+                    gasLimit: "30000"
+
+                }]
+            }).then(function (response) {
+                console.log(response);
+            }
+            ).catch(function (error) {
+                console.log(error);
+            }
+            );
+
+
+        }
+        catch (error) {
+            alert(error);
+        }
+}
 
 export default WalletModal;
