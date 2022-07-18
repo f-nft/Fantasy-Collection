@@ -24,14 +24,14 @@ const MintModalStyleWrapper = styled.div`
       width: 100%;
       background: #000;
       content: "";
-      opacity: 0.92;
+      opacity: 0.79;
       backdrop-filter: blur(33px);
     }
   }
 
   .mint_modal_box {
     position: relative;
-    width: 440px;
+    width: 350px;
     margin: auto;
     animation: 1s ${modalAnimation}; /* ********* */
 
@@ -48,13 +48,13 @@ const MintModalStyleWrapper = styled.div`
   }
 
   .mint_modal_content {
-    height: 100%;
-    width: 100%;
+    height: 50%;
+    width: 50%;
     background: url(${modalBg});
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
-    padding: 45px;
+    padding: 40px;
     padding-bottom: 50px;
     position: relative;
     display: flex;
@@ -67,7 +67,7 @@ const MintModalStyleWrapper = styled.div`
       font-family: "Bakbak One";
       font-style: normal;
       font-weight: 400;
-      font-size: 24px;
+      font-size: 20px;
       line-height: 28px;
       text-align: center;
       text-transform: uppercase;
@@ -201,6 +201,8 @@ const MintModalStyleWrapper = styled.div`
     }
   }
   .mint_img {
+    width: 100%;
+    height: 100%;
     
   }
 `;
