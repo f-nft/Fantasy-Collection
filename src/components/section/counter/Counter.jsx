@@ -1,6 +1,7 @@
 import Counter from "../../../common/counter";
 import bgShape1 from "../../../assets/images/icon/square_shape_1.png";
 import bgShape2 from "../../../assets/images/icon/square_shape_2.png";
+import Price from "../../price/priceSlider";
 
 import CoinInfoCounterWrapper from "./Counter.style";
 import coinInfoCounterData from "../../../assets/data/coinInfoCounter.json";
@@ -11,6 +12,7 @@ const CoinInfoCounter = () => {
   return (
     <CoinInfoCounterWrapper>
       <div className="container">
+        <Price />
         <ul>
           {info?.map((item, i) => (
             <li key={i}>

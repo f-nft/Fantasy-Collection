@@ -1,5 +1,4 @@
 import { useModal } from "../../../../utils/ModalContext";
-import CountdownTimer from "react-component-countdown-timer";
 import Counter from "../../../../common/counter";
 import Particle from "../../../../common/particle/v1";
 import Button from "../../../../common/button";
@@ -9,19 +8,7 @@ import BannerStyleWrapper from "./Banner.style";
 
 const Banner = () => {
   const { mintModalHandle } = useModal();
-  const settings = {
-    count: 5432560,
-    showTitle: true,
-    size: 60,
-    labelSize: 14,
-    backgroundColor: "transparent",
-    color: "#fff",
-    dayTitle: "",
-    hourTitle: "",
-    minuteTitle: "",
-    secondTitle: "",
-    id: "countdownwrap",
-  };
+
   return (
     <BannerStyleWrapper className="f-nft_v2_baner_sect" id="home">
       <div className="container">
@@ -40,7 +27,6 @@ const Banner = () => {
           <div className="f-nft_v2_timer">
             <h4>TIME LEFT</h4>
             <div className="timer timer_1">
-              <CountdownTimer {...settings} />
             </div>
           </div>
           <div className="f-nft_v2_baner_buttons text-center">
