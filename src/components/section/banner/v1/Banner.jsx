@@ -8,25 +8,10 @@ import characterThumb from "../../../../assets/images/nft/Character1.png";
 import mintLiveText from "../../../../assets/images/nft/mint_live_text.png";
 import homeImageBG from "../../../../assets/images/nft/home_img_bg.png";
 import { useEffect } from "react";
-import CountdownTimer from "react-component-countdown-timer";
 
 const Banner = () => {
   const { mintModalHandle } = useModal();
   //clean local storage on page refresh
-  const settings = {
-    count: 5432560,
-    showTitle: true,
-    size: 60,
-    labelSize: 14,
-    backgroundColor: "transparent",
-    color: "#fff",
-    dayTitle: "",
-    hourTitle: "",
-    minuteTitle: "",
-    secondTitle: "",
-    id: "countdownwrap",
-  };
-
   const settings = {
     count: 5432560,
     showTitle: true,
