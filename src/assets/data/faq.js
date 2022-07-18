@@ -12,11 +12,11 @@ const data = [
     text: "It makes the investment becomes very easy to store and portable.",
   },
   {
-    title: "Where we can buy and sell NFts ?",
+    title: "Where we can buy and sell NFts?",
     text: "In all markets, NFT, or between users with user",
   },
   {
-    title: "How secure is this token ?",
+    title: "How secure is this token?",
     text: "All our SmartContract is verified at Main network",
   },
   {
