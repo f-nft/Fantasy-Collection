@@ -12,8 +12,9 @@ import { useEffect } from "react";
 const Banner = () => {
   const { mintModalHandle } = useModal();
   //clean local storage on page refresh
+
   const settings = {
-    count: 5432560,
+    count: 432560,
     showTitle: true,
     labelSize: 14,
     backgroundColor: "transparent",
@@ -36,15 +37,9 @@ const Banner = () => {
           <div className="col-lg-6">
             <div className="f-nft_v1_baner_left">
               <h2>f-nft Fantasy 👗 NFT collections</h2>
-              <div className="f-nft_v2_timer">
-                <h4>TIME LEFT</h4>
-                <div className="timer timer_1">
-                  <CountdownTimer {...settings} />
-                </div>
-              </div>
               <h3>
                 <span className="count">
-                  <Counter end={55} duration={10000} />
+                  <Counter end={1155} duration={10000} />
                 </span>{" "}
                 / 10,000 Minted
               </h3>
@@ -54,7 +49,7 @@ const Banner = () => {
                   (<span style={{ color: "white" }}>{localStorage.getItem("walletAddress")}</span>) :
                   (<span style={{ color: "white" }}>0x0</span>)}
               </h5>
-              <div className="f-nft_v3_timer">
+              <div className="f-nft_v1_timer">
                 <h5 className="text-uppercase">Public Mint end in</h5>
                 <div className="timer timer_1">
                   <CountdownTimer {...settings} />
