@@ -174,7 +174,7 @@ const BlogDetailsStyleWrapper = styled.div`
 
         span {
           font-size: 14px;
-          color: #00ffa3;
+          color: #8A2BE2;
           text-transform: uppercase;
         }
       }

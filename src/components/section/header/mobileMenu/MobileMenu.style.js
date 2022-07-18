@@ -83,7 +83,7 @@ const MobileMenuStyleWrapper = styled.div`
           transition: all 0.4s;
 
           &:hover {
-            color: #00ffa3;
+            color: #8A2BE2;
           }
         }
 
@@ -105,7 +105,7 @@ const MobileMenuStyleWrapper = styled.div`
             padding: 0px 25px;
             a {
               &:hover {
-                color: #00ffa3;
+                color: #8A2BE2;
               }
             }
           }

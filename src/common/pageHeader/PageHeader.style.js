@@ -16,7 +16,7 @@ const PageHeaderStyleWrapper = styled.div`
       display: flex;
       align-items: center;
       font-size: 18px;
-      color: #00ffa3;
+      color: #8A2BE2;
       a {
         color: rgba(255, 255, 255, 0.7);
         text-decoration: none;

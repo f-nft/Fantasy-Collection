@@ -10,7 +10,7 @@ const SectionTitleWrapper = styled.div`
     font-weight: 400;
     font-size: 18px;
     line-height: 25px;
-    color: #00ffa3;
+    color: #8A2BE2;
     margin-bottom: 15px;
     text-transform: uppercase;
     img {

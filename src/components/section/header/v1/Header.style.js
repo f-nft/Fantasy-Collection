@@ -82,7 +82,7 @@ const NavWrapper = styled.nav`
 
         &:hover {
           a {
-            color: #00ffa3;
+            color: #8A2BE2;
           }
         }
 
@@ -117,7 +117,7 @@ const NavWrapper = styled.nav`
 
                 &:hover {
                   a {
-                    color: #00ffa3;
+                    color: #8A2BE2;
                   }
                 }
               }

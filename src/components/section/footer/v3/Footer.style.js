@@ -74,7 +74,7 @@ const FooterStyleWrapper = styled.footer`
         width: 70px;
         position: absolute;
         right: 0;
-        background: #00ffa3;
+        background: #8A2BE2;
         border: none;
         transition: all 0.3s;
 

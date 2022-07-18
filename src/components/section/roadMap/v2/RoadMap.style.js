@@ -74,7 +74,7 @@ const RoadMapStyleWrapper = styled.section`
           justify-content: space-between;
           font-size: 24px;
           line-height: 34px;
-          color: #00ffa3;
+          color: #8A2BE2;
           text-transform: uppercase;
           margin-bottom: 15px;
         }
