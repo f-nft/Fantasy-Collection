@@ -166,7 +166,7 @@ export async function mint(numberofNFTs,e) {
     const accounts = await ethereum.request({ method: "eth_accounts" });
     let balance = await provider.getBalance(accounts[0]);
     if (balance.lt(ethers.utils.parseEther("0.001"))) {
-      alert("Please connect Metamask and deposit at least 0.04 ETH / 70 Matic / 0.025 BNB to your account");
+      alert("Please deposit at least 0.01 ETH / 120 Matic / 0.025 BNB to the MetaMask account");
       return;
     }
     let bal = ethers.utils.formatEther(balance);
@@ -183,6 +183,7 @@ export async function mint(numberofNFTs,e) {
       ContractID=BSCNFTCONTRACT;
     }
     else if(chainId===1){
+      
       //mit for ETH network
       ContractID=ETHNFTCONTRACT;
     }
