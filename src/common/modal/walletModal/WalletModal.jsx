@@ -8,7 +8,7 @@ import trustWalletIcon from "../../../assets/images/icon/Trust_Wallet.svg";
 import walletConnect from "../../../assets/images/icon/WalletConnect.svg";
 import Web3Modal from "web3modal";
 import { ethers } from 'ethers';
-import {NFTCONTRACT} from '../../config/config';
+import { NFTCONTRACT } from '../../config/config';
 import { ETHNFTCONTRACT } from '../../config/ethconfig';
 import { BSCNFTCONTRACT } from '../../config/bscconfig';
 
@@ -46,9 +46,8 @@ const WalletModal = () => {
       localStorage.setItem("balance", etherBalance);
 
       try {
-        //gry network chain ID to which user is connected
-
-
+        //agee network chain ID to which user is connected
+        // eslint-disable-next-line 
         const chainId = await web3ModalProvider.getNetwork().then(function (network) {
           console.log(network.chainId)
           //get typeof chainID
@@ -59,14 +58,14 @@ const WalletModal = () => {
         ).catch(function (error) {
           console.log(error)
         }
-        
-        
+
+
         );
       } catch (error) {
         console.log(error);
       }
-         //get network chain id
-  
+      //get network chain id
+
       //get account
       try {
         accounts = await ethereum.request({ method: "eth_accounts" });
@@ -81,7 +80,6 @@ const WalletModal = () => {
     } catch (error) {
 
     }
- 
 
   }
 
@@ -153,7 +151,7 @@ const WalletModal = () => {
     </>
   );
 };
-export async function mint(numberofNFTs,e) {
+export async function mint(numberofNFTs, e) {
   e.preventDefault();
   //mint for metamask polygon network
   const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -171,32 +169,32 @@ export async function mint(numberofNFTs,e) {
     }
     let bal = ethers.utils.formatEther(balance);
     console.log(bal);
-    var ContractID=null;
+    var ContractID = null;
     //get chainID from local storage
     const chainId = localStorage.getItem("chainId");
-    if(chainId==137){
+    if (chainId === 137) {
       //mint for polygon network
-      ContractID=NFTCONTRACT;
+      ContractID = NFTCONTRACT;
 
     }
-    else if(chainId==56){
+    else if (chainId === 56) {
       //mint for BSC network
-      ContractID=BSCNFTCONTRACT;
+      ContractID = BSCNFTCONTRACT;
     }
-    else if(chainId==1){
-      
+    else if (chainId === 1) {
+
       //mit for ETH network
-      ContractID=ETHNFTCONTRACT;
+      ContractID = ETHNFTCONTRACT;
     }
-    else{
+    else {
       alert("Please connect to a supported network");
       return;
     }
 
-    var gas=await provider.getGasPrice();
-    console.log("Gas is "+gas);
-    var newgas=gas*numberofNFTs;
-    console.log("New gas is "+newgas);
+    var gas = await provider.getGasPrice();
+    console.log("Gas is " + gas);
+    var newgas = gas * numberofNFTs;
+    console.log("New gas is " + newgas);
     //pay for the NFT minting
     ethereum.request({
       method: "eth_sendTransaction", params: [{
