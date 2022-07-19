@@ -14,8 +14,8 @@ const MintNowModal = () => {
   const { mintModalHandle } = useModal();
   return (
     <>
-      <MintModalStyleWrapper className="modal_overlay">
-        <div className="mint_modal_box">
+      <MintModalStyleWrapper className="modal_overlay" >
+        <div className="mint_modal_box"style={{height:"maxContent"}}>
           <div className="mint_modal_content">
             <div className="modal_header">
               <h2>Collect YOUR NFT before end</h2>
