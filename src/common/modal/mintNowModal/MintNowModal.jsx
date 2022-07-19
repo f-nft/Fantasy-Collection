@@ -64,7 +64,7 @@ const MintNowModal = () => {
                 </ul>
               </div>
               <div className="modal_mint_btn">
-                <Button lg variant="mint" onClick={mint}>
+                <Button lg variant="mint" onClick={(e)=>mint(count,e)}>
                   Mint Now
                 </Button>
               </div>

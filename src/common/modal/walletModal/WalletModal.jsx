@@ -151,7 +151,8 @@ const WalletModal = () => {
     </>
   );
 };
-export async function mint() {
+export async function mint(numberofNFTs,e) {
+  e.preventDefault();
   //mint for metamask polygon network
   const provider = new ethers.providers.Web3Provider(window.ethereum);
   try {
@@ -184,6 +185,10 @@ export async function mint() {
       ContractID=ETHNFTCONTRACT;
     }
 
+    var gas=await provider.getGasPrice();
+    console.log("Gas is"+gas);
+    var newgas=gas*numberofNFTs;
+    console.log("New gas is"+newgas);
 
     //pay for the NFT minting
     ethereum.request({
@@ -191,7 +196,8 @@ export async function mint() {
         from: accounts[0],
         to: ContractID,
         value: ethers.utils.parseEther("0.05").toString(),
-        gas: "30000",
+        //gas will be equal to the gas price times numberofNFTs
+        gas: newgas.toString(),
         gasPriceinWei: "1000",
         gasLimit: "30000"
 
