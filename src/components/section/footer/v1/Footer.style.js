@@ -15,8 +15,8 @@ const FooterStyleWrapper = styled.footer`
     .f-nft_v1_main_footer_overlay {
       background: linear-gradient(
         180deg,
-        rgba(4, 15, 21, 0) 0%,
-        rgba(4, 14, 20, 0.270833) 50.52%,
+        rgba(2, 15, 21, 0) 0%,
+        rgba(17, 14, 20, 0.270833) 50.52%,
         #040c12 100%
       );
       height: 100%;
@@ -28,6 +28,8 @@ const FooterStyleWrapper = styled.footer`
 
     .three_charectre_img {
       text-align: center;
+      padding-top: -350px;
+      padding-bottom: 100px;
     }
 
     /* footer bottom */
