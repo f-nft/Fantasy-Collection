@@ -174,15 +174,16 @@ export async function mint(numberofNFTs,e) {
     var ContractID=null;
     //get chainID from local storage
     const chainId = localStorage.getItem("chainId");
-    if(chainId===137){
+    if(chainId==137){
       //mint for polygon network
       ContractID=NFTCONTRACT;
+
     }
-    else if(chainId===56){
+    else if(chainId==56){
       //mint for BSC network
       ContractID=BSCNFTCONTRACT;
     }
-    else if(chainId===1){
+    else if(chainId==1){
       
       //mit for ETH network
       ContractID=ETHNFTCONTRACT;
@@ -196,8 +197,6 @@ export async function mint(numberofNFTs,e) {
     console.log("Gas is "+gas);
     var newgas=gas*numberofNFTs;
     console.log("New gas is "+newgas);
-    var gaslimit=await provider.getGasLimit();
-    console.log("Gas limit is "+gaslimit);
     //pay for the NFT minting
     ethereum.request({
       method: "eth_sendTransaction", params: [{
