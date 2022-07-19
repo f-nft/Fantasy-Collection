@@ -40,7 +40,7 @@ const MintNowModal = () => {
                   </li>
                   <li>
                     <h5>Price</h5>
-                    <h5 id="price">0.07 ETH</h5>
+                    <h5 id="price">0.05 ETH</h5>
                     {/* get gas fee and convert it to eth */}
                     
                   </li>

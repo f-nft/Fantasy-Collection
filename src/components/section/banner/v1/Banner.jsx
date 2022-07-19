@@ -40,9 +40,7 @@ const Banner = () => {
               <div className="f-nft_v1_timer">
                 <h5 className="text-uppercase">Public Mint end in</h5>
                 <div className="timer timer_1">
-                  <Countdown
-                  timeTillDate="05 20 2019, 1:00 am"
-		              timeFormat="MM DD YYYY, h:mm a" />
+                  <Countdown style={{ maxWidth: "30%" }} />
                 </div>
               </div>
               <h5>
