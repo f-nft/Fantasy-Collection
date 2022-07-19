@@ -7,6 +7,7 @@ import characterThumb from "../../../../assets/images/nft/Character1.png";
 import mintLiveText from "../../../../assets/images/nft/mint_live_text.png";
 import homeImageBG from "../../../../assets/images/nft/home_img_bg.png";
 import { useEffect } from "react";
+import Countdown from "../../countdown/countDown";
 
 const Banner = () => {
   const { mintModalHandle } = useModal();
@@ -39,6 +40,7 @@ const Banner = () => {
               <div className="f-nft_v1_timer">
                 <h5 className="text-uppercase">Public Mint end in</h5>
                 <div className="timer timer_1">
+                  <Countdown />
                 </div>
               </div>
               <h5>

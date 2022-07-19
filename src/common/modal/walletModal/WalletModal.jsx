@@ -63,7 +63,6 @@ const WalletModal = () => {
         console.log(error);
       }
          //get network chain id
-    
   
       //get account
       try {
@@ -109,7 +108,7 @@ const WalletModal = () => {
                   </span>
                 </a>
                 <a href="# ">
-                  <img src={formatic} alt="Coinbase" />
+                  <img src={formatic} alt="coinbase" />
                   Coinbase
                   <span>
                     <FiChevronRight />

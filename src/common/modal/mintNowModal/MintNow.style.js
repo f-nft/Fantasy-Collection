@@ -54,8 +54,9 @@ const MintModalStyleWrapper = styled.div`
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
-    padding: 60px;
-    padding-bottom: 50px;
+    padding: 30px;
+    padding-top: 30px;
+    padding-bottom: 30px;
     position: relative;
     display: flex;
     flex-direction: column;
