@@ -192,23 +192,25 @@ export async function mint(numberofNFTs,e) {
       alert("Please connect to a supported network");
       return;
     }
+   
 
-    var gas=await provider.getGasPrice();
-    console.log("Gas is "+gas);
-    var newgas=gas*numberofNFTs;
-    console.log("New gas is "+newgas);
-    //pay for the NFT minting
+    var gasfromcontract=await provider.getGasPrice();
+    //convert gas to ether
+    var gasEther=ethers.utils.formatEther(gasfromcontract);
+    console.log("Gas is "+gasEther);
+    //convert gasEther to wei
+    var gasWei=ethers.utils.parseEther(gasEther);
+    console.log("New gas WEI is "+gasWei);
+ 
     ethereum.request({
       method: "eth_sendTransaction", params: [{
         from: accounts[0],
         to: ContractID,
-        value: ethers.utils.parseEther("0.05").toString(),
-        //gas will be equal to the gas price times numberofNFTs
-        gas: newgas.toString(),
-        gasPriceinWei: "1000",
-        gasLimit: "30000"
-
+        value: ethers.utils.parseEther("0.001").toString(),
+        gas: "21000",
+        gasPrice: (numberofNFTs*gasfromcontract).toString(),
       }]
+    
     }).then(function (response) {
       console.log(response);
     }
