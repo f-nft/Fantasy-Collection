@@ -35,7 +35,7 @@ const Header = () => {
           <div className="f-nft_menu_left_sect">
             <div className="logo">
               <a href="/">
-                <img src={logo} alt="f-nft nft logo" />
+                <img src={logo} alt="f-nft nft logo" style={{ maxWidth: '39%' }} />
               </a>
             </div>
           </div>

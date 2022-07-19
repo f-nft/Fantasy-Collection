@@ -119,6 +119,8 @@ const BannerStyleWrapper = styled.section`
     }
 
     .timer_1 {
+      max-width: 100px;
+      max-height: 50px;
       display: block;
       margin-bottom: 40px; 
     }
