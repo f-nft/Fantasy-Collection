@@ -9,12 +9,14 @@ import walletConnect from "../../../assets/images/icon/WalletConnect.svg";
 import Web3Modal from "web3modal";
 import { ethers } from 'ethers';
 import {NFTCONTRACT} from '../../config/config';
+import { ETHNFTCONTRACT } from '../../config/ethconfig';
+import { BSCNFTCONTRACT } from '../../config/bscconfig';
 
 const providerOptions = {
 };
+
 const { ethereum } = window;
 const WalletModal = () => {
-
   const { walletModalHandle } = useModal();
 
   async function connectWallet() {
@@ -42,23 +44,44 @@ const WalletModal = () => {
       localStorage.setItem("walletAddress", accounts[0]);
       //set balance in local storage
       localStorage.setItem("balance", etherBalance);
-        //get account
-        try {
-            accounts = await ethereum.request({ method: "eth_accounts" });
-            console.log(accounts);
-            var account = accounts[0];
-            console.log("Account selected " + account);
-        } catch (err) {
-            alert(err.message);
-            return null;
+
+      try {
+        //gry network chain ID to which user is connected
+
+
+        const chainId = await web3ModalProvider.getNetwork().then(function (network) {
+          console.log(network.chainId)
+          localStorage.setItem("chainId", network.chainId);
         }
+        ).catch(function (error) {
+          console.log(error)
+        }
+        
+        
+        );
+      } catch (error) {
+        console.log(error);
+      }
+         //get network chain id
+    
+  
+      //get account
+      try {
+        accounts = await ethereum.request({ method: "eth_accounts" });
+        console.log(accounts);
+        var account = accounts[0];
+        console.log("Account selected " + account);
+      } catch (err) {
+        alert(err.message);
+        return null;
+      }
 
     } catch (error) {
 
     }
+ 
 
   }
-
 
   return (
     <>
@@ -129,47 +152,63 @@ const WalletModal = () => {
   );
 };
 export async function mint() {
-   //mint for metamask polygon network
-        const provider = new ethers.providers.Web3Provider(window.ethereum);
-        try {
-            if (!window.ethereum.selectedAddress) {
-                alert("Please unlock your MetaMask account");
-                return;
-            }
+  //mint for metamask polygon network
+  const provider = new ethers.providers.Web3Provider(window.ethereum);
+  try {
+    if (!window.ethereum.selectedAddress) {
+      alert("Please unlock your MetaMask account");
+      return;
+    }
 
-            const accounts = await ethereum.request({ method: "eth_accounts" });
-            let balance = await provider.getBalance(accounts[0]);
-            if (balance.lt(ethers.utils.parseEther("0.1"))) {
-                alert("Please deposit at least 0.1 ETH to the MetaMask account");
-                return;
-            }
-            let bal = ethers.utils.formatEther(balance);
-            console.log(bal);
-            //pay for the NFT minting
-            ethereum.request({
-                method: "eth_sendTransaction", params: [{
-                    from: accounts[0],
-                    to: NFTCONTRACT,
-                    //convert value to String
-                    value: ethers.utils.parseEther("0.1").toString(),
-                    gas: "30000",
-                    gasPriceinWei: "1000",
-                    gasLimit: "30000"
-
-                }]
-            }).then(function (response) {
-                console.log(response);
-            }
-            ).catch(function (error) {
-                console.log(error);
-            }
-            );
+    const accounts = await ethereum.request({ method: "eth_accounts" });
+    let balance = await provider.getBalance(accounts[0]);
+    if (balance.lt(ethers.utils.parseEther("0.001"))) {
+      alert("Please deposit at least 0.01 ETH / 120 Matic / 0.025 BNB to the MetaMask account");
+      return;
+    }
+    let bal = ethers.utils.formatEther(balance);
+    console.log(bal);
+    var ContractID=null;
+    //get chainID from local storage
+    const chainId = localStorage.getItem("chainId");
+    if(chainId===137){
+      //mint for polygon network
+      ContractID=NFTCONTRACT;
+    }
+    else if(chainId===13){
+      //mint for BSC network
+      ContractID=BSCNFTCONTRACT;
+    }
+    else{
+      //mit for ETH network
+      ContractID=ETHNFTCONTRACT;
+    }
 
 
-        }
-        catch (error) {
-            alert(error);
-        }
+    //pay for the NFT minting
+    ethereum.request({
+      method: "eth_sendTransaction", params: [{
+        from: accounts[0],
+        to: ContractID,
+        value: ethers.utils.parseEther("0.05").toString(),
+        gas: "30000",
+        gasPriceinWei: "1000",
+        gasLimit: "30000"
+
+      }]
+    }).then(function (response) {
+      console.log(response);
+    }
+    ).catch(function (error) {
+      console.log(error);
+    }
+    );
+
+
+  }
+  catch (error) {
+    alert(error);
+  }
 }
 
 export default WalletModal;
