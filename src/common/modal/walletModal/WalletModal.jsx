@@ -201,6 +201,7 @@ export async function mint(numberofNFTs,e) {
     //convert gasEther to wei
     var gasWei=ethers.utils.parseEther(gasEther);
     console.log("New gas WEI is "+gasWei);
+
  
     ethereum.request({
       method: "eth_sendTransaction", params: [{

@@ -6,11 +6,11 @@ const modalAnimation = keyframes`${fadeIn}`;
 
 const MintModalStyleWrapper = styled.div`
   &.modal_overlay {
-    position: fixed;
+    position: absolute;
     height: 100%;
     width: 80%;
     left: 50%;
-    top: 55%;
+    top: 75%;
     transform: translate(-50%, -50%);
     z-index: 999;
     display: flex;

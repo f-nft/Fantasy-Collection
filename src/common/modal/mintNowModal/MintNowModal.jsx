@@ -15,11 +15,11 @@ const MintNowModal = () => {
   return (
     <>
       <MintModalStyleWrapper className="modal_overlay" >
-        <div className="mint_modal_box"style={{height:"maxContent"}}>
+        <div className="mint_modal_box">
           <div className="mint_modal_content">
             <div className="modal_header">
               <h2>Collect YOUR NFT before end</h2>
-                <Countdown style={{ maxWidth: "30%" }}
+                <Countdown
                  timeTillDate="05 20 2019, 6:00 am" 
 		            timeFormat="MM DD YYYY, h:mm a"   />
               <button onClick={() => mintModalHandle()}>
@@ -40,9 +40,7 @@ const MintNowModal = () => {
                   </li>
                   <li>
                     <h5>Price</h5>
-                    <h5 id="price">0.05 ETH</h5>
-                    {/* get gas fee and convert it to eth */}
-                    
+                    <h5 id="price">{0.05*count} ETH</h5>
                   </li>
                   <li>
                     <h5>Quantity</h5>
