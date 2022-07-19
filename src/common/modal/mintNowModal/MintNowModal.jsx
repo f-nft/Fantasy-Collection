@@ -20,9 +20,9 @@ const MintNowModal = () => {
             <div className="modal_header">
               <h2>Collect YOUR NFT before end</h2>
               <Countdown style={{ color: "blue", maxWidth: "50px" }} />
-              <button onClick={() => mintModalHandle()}>
+              <Button onClick={() => mintModalHandle()}>
                 <FiX />
-              </button>
+              </Button>
             </div>
             <div className="modal_body text-center">
               <div className="mint_img">

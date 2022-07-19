@@ -23,6 +23,10 @@ const CTA = () => {
     particleShape4,
     particleShape2,
     particleShape5,
+    particleShape7,
+    particleShape4,
+    particleShape2,
+    particleShape5,
   ];
   return (
     <CTAStyleWrapper>

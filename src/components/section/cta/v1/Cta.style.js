@@ -20,6 +20,36 @@ const star2 = keyframes`
         top: 23%;
     }
 `;
+const star3 = keyframes`
+        0%,
+    100% {
+        top: 20%;
+    }
+
+    50% {
+        top: 23%;
+    }
+`;
+const star4 = keyframes`
+        0%,
+    100% {
+        top: 25%;
+    }
+
+    50% {
+        top: 33%;
+    }
+`;
+const star5 = keyframes`
+        0%,
+    100% {
+        top: 30%;
+    }
+
+    50% {
+        top: 43%;
+    }
+`;
 const star6 = keyframes`
       0%,
     100% {
@@ -91,17 +121,17 @@ const CTAStyleWrapper = styled.section`
         .star_3 {
           top: 34%;
           left: 20%;
-          /* animation: star3 4s infinite; */
+          /* animation: ${star3} 4s infinite; */
         }
         .star_4 {
           top: 50%;
           left: 44%;
-          /* animation: star4 4s infinite; */
+          /* animation: ${star4} 4s infinite; */
         }
         .star_5 {
           bottom: 26%;
           right: 27%;
-          /* animation: star5 4s infinite; */
+          /* animation: ${star5} 4s infinite; */
         }
         .star_6 {
           bottom: 15%;

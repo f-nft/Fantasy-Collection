@@ -31,23 +31,23 @@ const Banner = () => {
                 </span>{" "}
                 / 10,000 Minted
               </h3>
-              <h5>
+              <h5 style={{ color: "green" }}>
                 Your Wallet Address:<br />
                 {localStorage.getItem("walletAddress") ?
                   (<span style={{ color: "white" }}>{localStorage.getItem("walletAddress")}</span>) :
                   (<span style={{ color: "white" }}>0x0</span>)}
               </h5>
               <div className="f-nft_v1_timer">
-                <h5 className="text-uppercase">Public Mint end in</h5>
+                <h5 className="text-uppercase" style={{ color: "red" }}>Public Mint end in</h5>
                 <div className="timer timer_1">
                   <Countdown style={{ maxWidth: "30%" }} />
                 </div>
               </div>
-              <h5>
+              <h5 style={{ color: "green" }}>
                 Balance <br />
                 {localStorage.getItem("balance") ?
                   (<span style={{ color: "white" }}>{localStorage.getItem("balance")}</span>) :
-                  (<span style={{ color: "white" }}>0.00</span>)}
+                  (<span style={{ color: "blue" }}>0.00</span>)}
               </h5>
               <div className="banner_buttons">
                 <Button lg variant="mint" onClick={() => mintModalHandle()}>
@@ -55,7 +55,7 @@ const Banner = () => {
                   Mint now
                 </Button>
                 <Button lg variant="outline">
-                  Wishlist now
+                  NFT Price
                 </Button>
               </div>
               <div className="coin-info">
