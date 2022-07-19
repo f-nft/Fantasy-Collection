@@ -102,10 +102,20 @@ const BannerStyleWrapper = styled.section`
     }
   }
 
-  .f-nft_v3_timer {
+  .f-nft_v1_timer {
     h5 {
       font-size: 18px;
-      color: #fff;
+      color: #ffffff;
+    }
+
+    h4 {
+      font-size: 22px;
+      color: #ffffff;
+    }
+
+    h3 {
+      font-size: 26px;
+      color: #ffffff;
     }
 
     .timer_1 {
@@ -202,7 +212,7 @@ const BannerStyleWrapper = styled.section`
   }
 
   @media only screen and (max-width: 991px) {
-    .f-nft_v3_baner_sect {
+    .f-nft_1_baner_sect {
       padding-bottom: 80px;
     }
 
