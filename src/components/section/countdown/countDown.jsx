@@ -4,10 +4,10 @@ import "./countDown.css";
 
 class Countdown extends React.Component {
     state = {
-        days: undefined,
-        hours: undefined,
-        minutes: undefined,
-        seconds: undefined
+        days: 0,
+        hours: 0,
+        minutes: 0,
+        seconds: 0
     };
 
     componentDidMount() {
@@ -15,13 +15,13 @@ class Countdown extends React.Component {
             const { timeTillDate, timeFormat } = this.props;
             const then = moment(timeTillDate, timeFormat);
             const now = moment();
-            const countdown = moment(then - now);
+            const countdown = moment(then - now);   
             const days = countdown.format('D');
             const hours = countdown.format('HH');
             const minutes = countdown.format('mm');
             const seconds = countdown.format('ss');
             this.setState({ days, hours, minutes, seconds });
-        }, 1000);
+        },1000);
     }
 
     componentWillUnmount() {
@@ -32,12 +32,14 @@ class Countdown extends React.Component {
 
     render() {
         const { days, hours, minutes, seconds } = this.state;
-
+    
+    
         // Mapping the date values to radius values
         const daysRadius = mapNumber(days, 30, 0, 0, 360);
         const hoursRadius = mapNumber(hours, 24, 0, 0, 360);
         const minutesRadius = mapNumber(minutes, 60, 0, 0, 360);
         const secondsRadius = mapNumber(seconds, 60, 0, 0, 360);
+
 
         if (!seconds) {
             return null;
@@ -84,9 +86,11 @@ const SVGCircle = ({ radius }) => (
     <svg className="countdown-svg">
         <path
             fill="none"
-            stroke="#333"
+            stroke="blue"
             strokeWidth="4"
-            d={describeArc(50, 50, 48, 0, radius)}
+            d={describeArc(50, 50, 40, 0, radius)}
+            // d={describeArc(50, 50, 48, 0, radius)} --orignial value
+            
         />
     </svg>
 );

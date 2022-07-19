@@ -51,6 +51,9 @@ const WalletModal = () => {
 
         const chainId = await web3ModalProvider.getNetwork().then(function (network) {
           console.log(network.chainId)
+          //get typeof chainID
+          console.log("typeof chainID", typeof network.chainId)
+
           localStorage.setItem("chainId", network.chainId);
         }
         ).catch(function (error) {
@@ -175,20 +178,25 @@ export async function mint(numberofNFTs,e) {
       //mint for polygon network
       ContractID=NFTCONTRACT;
     }
-    else if(chainId===13){
+    else if(chainId===56){
       //mint for BSC network
       ContractID=BSCNFTCONTRACT;
     }
-    else{
+    else if(chainId===1){
       //mit for ETH network
       ContractID=ETHNFTCONTRACT;
     }
+    else{
+      alert("Please connect to a supported network");
+      return;
+    }
 
     var gas=await provider.getGasPrice();
-    console.log("Gas is"+gas);
+    console.log("Gas is "+gas);
     var newgas=gas*numberofNFTs;
-    console.log("New gas is"+newgas);
-
+    console.log("New gas is "+newgas);
+    var gaslimit=await provider.getGasLimit();
+    console.log("Gas limit is "+gaslimit);
     //pay for the NFT minting
     ethereum.request({
       method: "eth_sendTransaction", params: [{
