@@ -19,7 +19,9 @@ const MintNowModal = () => {
           <div className="mint_modal_content">
             <div className="modal_header">
               <h2>Collect YOUR NFT before end</h2>
-              <Countdown style={{ color: "blue", maxWidth: "50px" }} />
+                <Countdown style={{ maxWidth: "30%" }}
+                 timeTillDate="05 20 2019, 6:00 am" 
+		            timeFormat="MM DD YYYY, h:mm a"   />
               <button onClick={() => mintModalHandle()}>
                 <FiX />
               </button>
