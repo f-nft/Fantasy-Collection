@@ -42,7 +42,7 @@ const Banner = () => {
                 <div className="timer timer_1">
                   <Countdown style={{ maxWidth: "30%" }}
                  timeTillDate="05 20 2019, 6:00 am" 
-		            timeFormat="MM DD YYYY, h:mm a"   />
+		            timeFormat="MM DD YYYY, h:mm a"/>
                 </div>
               </div>
               <h5 style={{ color: "green" }}>
