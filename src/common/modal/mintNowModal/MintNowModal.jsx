@@ -20,7 +20,9 @@ const MintNowModal = () => {
           <div className="mint_modal_content">
             <div className="modal_header">
               <h2>Collect YOUR NFT before end</h2>
-                <Countdown/>
+                <Countdown style={{ maxWidth: "30%" }}
+                 timeTillDate="06 20 2019, 6:00 am" 
+		            timeFormat="MM DD YYYY, h:mm a"/>
               <button onClick={() => mintModalHandle()}>
                 <FiX />
               </button>
@@ -39,7 +41,13 @@ const MintNowModal = () => {
                   </li>
                   <li>
                     <h5>Price Total</h5>
+                    {localStorage.getItem("maticPrice") ? (
+                      <h5>
+                        {localStorage.getItem("maticPrice")*count} ETH
+                      </h5>
+                    ) : (
                     <h5 id="price"> {0.05 * count} ETH</h5>
+                    )}
                   </li>
                   <li>
                     <h5>Quantity</h5>

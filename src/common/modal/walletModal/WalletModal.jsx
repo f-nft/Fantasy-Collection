@@ -11,6 +11,7 @@ import { ethers } from 'ethers';
 import {NFTCONTRACT} from '../../config/config';
 import { ETHNFTCONTRACT } from '../../config/ethconfig';
 import { BSCNFTCONTRACT } from '../../config/bscconfig';
+import { useState } from 'react';
 
 var nftPrice = null;
 
@@ -20,6 +21,7 @@ const providerOptions = {
 const { ethereum } = window;
 const WalletModal = () => {
   const { walletModalHandle } = useModal();
+  const [maticRate, setMaticRate] = useState(0);
 
   async function connectWallet() {
 
@@ -80,6 +82,12 @@ const WalletModal = () => {
 
     } catch (error) {
     }
+     const maticPrice = "https://api.binance.com/api/v3/ticker/price?symbol=MATICUSDT";
+  const responseMatic = await fetch(maticPrice);
+  const dataMatic = await responseMatic.json()
+  console.log("Matic " + dataMatic.price); //data.price is the price of BTC in USDT
+  localStorage.setItem("maticPrice", dataMatic.price);
+  setMaticRate(1 / dataMatic.price)
   }
 
   return (
@@ -153,12 +161,12 @@ const WalletModal = () => {
 
 export async function mint(numberofNFTs, e) {
 
-  const maticPrice = "https://api.binance.com/api/v3/ticker/price?symbol=MATICUSDT";
+ const maticPrice = "https://api.binance.com/api/v3/ticker/price?symbol=MATICUSDT";
   const responseMatic = await fetch(maticPrice);
   const dataMatic = await responseMatic.json()
   console.log("Matic " + dataMatic.price); //data.price is the price of BTC in USDT
-  e.preventDefault();
-  var maticRate = 1 / dataMatic.price;
+  var maticRate = 1 / dataMatic.price
+
 
   const bnbPrice = "https://api.binance.com/api/v3/ticker/price?symbol=BNBUSDT";
   const responseBnb = await fetch(bnbPrice);
