@@ -7,7 +7,7 @@ import mintImg from "../../../assets/images/icon/fnft.gif";
 import hoverShape from "../../../assets/images/icon/hov_shape_L.svg";
 import { MdPriceChange } from "react-icons/md";
 import { mint } from "../walletModal/WalletModal";
-import Countdown from "../../../components/section/countdown/countDown";
+// import Countdown from "../../../components/section/countdown/countDown";
 
 const MintNowModal = () => {
   const [count, setCount] = useState(1);
@@ -21,15 +21,18 @@ const MintNowModal = () => {
           <div className="mint_modal_content">
             <div className="modal_header">
               <h2>Collect YOUR NFT before end</h2>
-                <Countdown/>
+              {/* <Countdown style={{ maxWidth: "100%", margin: "top", maginLeft: "-50px", maginRight: "-50px" }}
+                timeTillDate="08 30 2022, 6:00 am"
+                timeFormat="MM DD YYYY, h:mm a" /> */}
+              <div className="mint_img">
+                <img src={mintImg} alt="f-nft mint" />
+              </div>
               <button onClick={() => mintModalHandle()} onExit={reload}>
                 <FiX />
               </button>
             </div>
             <div className="modal_body text-center">
-              <div className="mint_img">
-                <img src={mintImg} alt="f-nft mint" />
-              </div>
+
               <div className="mint_count_list">
                 <ul>
                   <li>

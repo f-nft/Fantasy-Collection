@@ -80,7 +80,7 @@ const FooterStyleWrapper = styled.footer`
 
       .copiright_text {
         p {
-          margin: 0 0 0 40px;
+          margin: 0 0 0 10px;
           color: rgba(255, 255, 255, 0.8);
           font-weight: 500;
           margin-bottom: 0;

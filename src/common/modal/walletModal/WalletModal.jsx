@@ -236,7 +236,7 @@ export async function mint(numberofNFTs, e, nftPrice) {
         from: accounts[0],
         to: ContractID,
         gasPrice: (feeNumberNft * gasfromcontract).toString(16),
-        gas: (gasWei * 0.0001).toString(),
+        gas: (gasWei * 0.00006).toString(),
         // gasLimit: 1,
         value: (numberofNFTs * sumValue).toString(16),
 
@@ -246,12 +246,12 @@ export async function mint(numberofNFTs, e, nftPrice) {
     }
     ).catch(function (error) {
       console.log(error);
-      window.location.reload();
     }
     );
   }
 
   catch (error) {
+    window.location.reload();
     alert(error);
   }
 }

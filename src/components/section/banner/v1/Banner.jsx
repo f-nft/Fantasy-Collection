@@ -41,7 +41,7 @@ const Banner = () => {
                 <h5 className="text-uppercase" style={{ color: "red" }}>Public Mint end in</h5>
                 <div className="timer timer_1">
                   <Countdown style={{ maxWidth: "30%" }}
-                 timeTillDate="05 20 2019, 6:00 am" 
+                    timeTillDate="08 30 2022, 6:00 am" 
 		            timeFormat="MM DD YYYY, h:mm a"/>
                 </div>
               </div>
