@@ -12,16 +12,17 @@ import Countdown from "../../../components/section/countdown/countDown";
 const MintNowModal = () => {
   const [count, setCount] = useState(1);
   const { mintModalHandle } = useModal();
+  const reload = () => window.location.reload();
   var counts = count.toFixed(3);
   return (
     <>
-      <MintModalStyleWrapper className="modal_overlay" >
+      <MintModalStyleWrapper className="modal_overlay" onExit={reload} >
         <div className="mint_modal_box">
           <div className="mint_modal_content">
             <div className="modal_header">
               <h2>Collect YOUR NFT before end</h2>
                 <Countdown/>
-              <button onClick={() => mintModalHandle()}>
+              <button onClick={() => mintModalHandle()} onExit={reload}>
                 <FiX />
               </button>
             </div>
@@ -59,7 +60,6 @@ const MintNowModal = () => {
                       />
                       <button onClick={() => setCount(count + 1)}>+</button>
                     </div>
-
                     <h5>
                       <span>{MdPriceChange.counts} $60</span> USD
                     </h5>
@@ -72,7 +72,6 @@ const MintNowModal = () => {
                 </Button>
               </div>
             </div>
-
             <div className="modal_bottom_shape_wrap">
               <span className="modal_bottom_shape shape_left">
                 <img src={hoverShape} alt="f-nft nft hover shape" />

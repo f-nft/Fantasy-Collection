@@ -6,13 +6,13 @@ const modalAnimation = keyframes`${fadeIn}`;
 
 const MintModalStyleWrapper = styled.div`
   &.modal_overlay {
-    position: absolute;
-    height: 100%;
-    width: 80%;
+    position: fixed;
+    height: 50%;
+    width: 100%;
     left: 50%;
-    top: 75%;
+    top: 20%;
     transform: translate(-50%, -50%);
-    z-index: 999;
+    z-index: 99;
     display: flex;
     justify-content: center;
 
@@ -30,7 +30,7 @@ const MintModalStyleWrapper = styled.div`
   }
 
   .mint_modal_box {
-    position: relative;
+    position: absolute;
     width: 390px;
     margin: auto;
     animation: 1s ${modalAnimation}; /* ********* */
