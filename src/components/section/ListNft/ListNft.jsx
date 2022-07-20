@@ -5,9 +5,9 @@ import { useEffect, useState } from 'react'
 import 'sf-font';
 import axios from 'axios';
 import VAULTABI from '../config/VAULTABI.json';
-import { NFTCONTRACT, STAKINGCONTRACT, moralisapi, nftpng } from '../config/ethconfig';
-import { ETHNFTCONTRACT, ETHSTAKINGCONTRACT, moralisapi, ethnftpng } from '../config/ethconfig.js';
-import { BSCNFTCONTRACT, BSCSTAKINGCONTRACT, moralisapi, bscnftpng } from '../config/bscconfig.js';
+import { NFTCONTRACT, STAKINGCONTRACT, moralisapi, nftpng } from '../../../common/config/ethconfig.js';
+import { ETHNFTCONTRACT, ETHSTAKINGCONTRACT, moralisapi, ethnftpng } from '../../../common/config/ethconfig.js';
+import { BSCNFTCONTRACT, BSCSTAKINGCONTRACT, moralisapi, bscnftpng } from '../../../common/config/bscconfig.js';
 
 import Web3Modal from "web3modal";
 import WalletConnectProvider from "@walletconnect/web3-provider";
@@ -87,6 +87,41 @@ export default function ListNft() {
                     return id;
                 })
             const nftstk = await Promise.all(stakednfts.map(async i => {
+                let stkid = {
+                    tokenId: i,
+                }
+                return stkid
+            }))
+            getNfts(apicall)
+            getStk(nftstk)
+            console.log(apicall);
+            setLoadingState('loaded');
+            console.log("[INFO] Success")
+        } catch (error) {
+            console.log("[ERROR]:", error)
+        }
+
+        try {
+            vaultcontract = new web3.eth.Contract(VAULTABI, BSCSTAKINGCONTRACT);
+            let config = { 'X-API-Key': moralisapikey, 'accept': 'application/json' };
+            const bscnfts = await axios.get((moralisapi + `/nft/${BSCNFTCONTRACT}/owners?chain=bsc&format=decimal`), { headers: config })
+                .then(output => {
+                    const { result } = output.data
+                    return result;
+                })
+            const apicall = await Promise.all(bscnfts.map(async i => {
+                let item = {
+                    tokenId: i.token_id,
+                    holder: i.owner_of,
+                    wallet: account,
+                }
+                return item
+            }))
+            const bscstakednfts = await vaultcontract.methods.tokensOfOwner(account).call()
+                .then(id => {
+                    return id;
+                })
+            const bscnftstk = await Promise.all(bscstakednfts.map(async i => {
                 let stkid = {
                     tokenId: i,
                 }
