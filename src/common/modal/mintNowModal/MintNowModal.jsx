@@ -12,6 +12,7 @@ import Countdown from "../../../components/section/countdown/countDown";
 const MintNowModal = () => {
   const [count, setCount] = useState(1);
   const { mintModalHandle } = useModal();
+  var counts = count.toFixed(3);
   return (
     <>
       <MintModalStyleWrapper className="modal_overlay" >
@@ -53,14 +54,14 @@ const MintNowModal = () => {
                       <input
                         type="text"
                         id="quantity"
-                        value={count}
+                        value={counts}
                         onChange={(e) => setCount(e.target.value)}
                       />
                       <button onClick={() => setCount(count + 1)}>+</button>
                     </div>
 
                     <h5>
-                      <span>{MdPriceChange.count}</span> ETH
+                      <span>{MdPriceChange.counts}</span> ETH
                     </h5>
                   </li>
                 </ul>
