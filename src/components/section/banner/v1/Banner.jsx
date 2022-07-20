@@ -10,6 +10,25 @@ import { useEffect } from "react";
 import Countdown from "../../countdown/countDown";
 import PriceSlider from "../../../price";
 
+var modal = document.getElementById("PriceSlider");
+var btn = document.getElementById("myBtn");
+var span = document.getElementsByClassName("close")[0];
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
 const Banner = () => {
   const { mintModalHandle } = useModal();
   //clean local storage on page refresh
@@ -57,7 +76,7 @@ const Banner = () => {
                   {" "}
                   Mint now
                 </Button>
-                <Button lg variant="outline" onClick={() => PriceSlider()}>
+                <Button lg variant="outline" onClick={() => PriceSlider}>
                   NFT Price
                 </Button>
               </div>

@@ -15,7 +15,7 @@ const PriceSlider = () => {
     centerPadding: "0px",
     infinite: true,
     slidesToShow: 3,
-    slidesToScroll: 2,
+    slidesToScroll: 1,
     responsive: [
       {
         breakpoint: 1425,
