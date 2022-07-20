@@ -30,6 +30,7 @@ const CharacterSliderWrapper = styled.section`
     justify-content: center;
     align-items: center;
     background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
   }
 `;
 

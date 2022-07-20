@@ -9,8 +9,10 @@ import homeImageBG from "../../../../assets/images/nft/home_img_bg.png";
 import { useEffect } from "react";
 import Countdown from "../../countdown/countDown";
 import PriceSlider from "../../../../components/price/priceSlider";
+import { useState } from "react";
 const Banner = () => {
   const { mintModalHandle } = useModal();
+  const[show, setShow] = useState(false);
   // clean local storage on page refresh
 
   useEffect(() => {
@@ -19,7 +21,9 @@ const Banner = () => {
   }, []);
   return (
     <BannerV1Wrapper id="home">
+       {show?(<PriceSlider />):(null)}
       <div className="container" style={{ marginTop: "-200px" }}>
+        
         <div className="row">
           <div className="col-lg-6">
             <div className="f-nft_v1_baner_left">
@@ -54,8 +58,11 @@ const Banner = () => {
                 <Button lg variant="mint" onClick={() => mintModalHandle()}>
                   Mint now
                 </Button>
-                <Button lg variant="outline" data-toggle="modal" data-target="#exampleModalCenter">
-                  NFT Price</Button>
+                <Button lg variant="outline" data-toggle="modal" data-target="#exampleModalCenter"
+                 //onClick display PriceSlider component
+                  onClick={() => {show?(setShow(false)) :(setShow(true))}}>
+                 {show?("Close"):("NFT Price")}
+                  </Button>
                 <div className="modal fade" id="exampleModalCenter" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                   <div className="modal-dialog modal-dialog-centered" role="document">
                     <div className="modal-content">
@@ -65,9 +72,7 @@ const Banner = () => {
                           <span aria-hidden="true">&times;</span>
                         </Button>
                       </div>
-                      <div className="modal-body">
-                        <PriceSlider />
-                      </div>
+                     
                       <div className="modal-footer">
                         <Button type="button" data-dismiss="modal">Close</Button>
                       </div>
