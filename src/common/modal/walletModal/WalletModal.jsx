@@ -11,7 +11,6 @@ import { ethers } from 'ethers';
 import {NFTCONTRACT} from '../../config/config';
 import { ETHNFTCONTRACT } from '../../config/ethconfig';
 import { BSCNFTCONTRACT } from '../../config/bscconfig';
-import $ from 'jquery';
 
 const providerOptions = {
 };
