@@ -8,6 +8,7 @@ import mintLiveText from "../../../../assets/images/nft/mint_live_text.png";
 import homeImageBG from "../../../../assets/images/nft/home_img_bg.png";
 import { useEffect } from "react";
 import Countdown from "../../countdown/countDown";
+import PriceSlider from "../../../price";
 
 const Banner = () => {
   const { mintModalHandle } = useModal();
@@ -20,14 +21,14 @@ const Banner = () => {
   }, []);
   return (
     <BannerV1Wrapper id="home">
-      <div className="container">
+      <div className="container" style={{ marginTop: "-100px" }}>
         <div className="row">
           <div className="col-lg-6">
             <div className="f-nft_v1_baner_left">
               <h2>f-nft Fantasy 👗 NFT collections</h2>
               <h3>
                 <span className="count">
-                  <Counter end={1125} duration={10000} />
+                  <Counter end={1325} duration={10000} />
                 </span>{" "}
                 / 10,000 Minted
               </h3>
@@ -56,7 +57,7 @@ const Banner = () => {
                   {" "}
                   Mint now
                 </Button>
-                <Button lg variant="outline">
+                <Button lg variant="outline" onClick={() => PriceSlider()}>
                   NFT Price
                 </Button>
               </div>
