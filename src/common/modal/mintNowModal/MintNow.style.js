@@ -6,13 +6,13 @@ const modalAnimation = keyframes`${fadeIn}`;
 
 const MintModalStyleWrapper = styled.div`
   &.modal_overlay {
-    position: absolute;
-    height: 100%;
-    width: 80%;
+    position: fixed;
+    height: 30%;
+    width: 100%;
     left: 50%;
-    top: 75%;
+    top: 25%;
     transform: translate(-50%, -50%);
-    z-index: 999;
+    z-index: 99;
     display: flex;
     justify-content: center;
 
@@ -30,8 +30,8 @@ const MintModalStyleWrapper = styled.div`
   }
 
   .mint_modal_box {
-    position: relative;
-    width: 390px;
+    position: absolute;
+    width: 500px;
     margin: auto;
     animation: 1s ${modalAnimation}; /* ********* */
 
@@ -68,22 +68,22 @@ const MintModalStyleWrapper = styled.div`
       font-family: "Bakbak One";
       font-style: normal;
       font-weight: 200;
-      font-size: 14px;
-      line-height: 22px;
+      font-size: 18px;
+      line-height: 18px;
       text-align: center;
       text-transform: uppercase;
       color: #ffffff;
       max-width: 280px;
       margin: auto;
-      margin-bottom: 26px;
+      margin-bottom: 10px;
     }
 
     button {
       background: transparent;
       border: none;
       outline: none;
-      height: 45px;
-      width: 45px;
+      height: 39px;
+      width: 39px;
       position: absolute;
       right: 0px;
       top: 0px;
@@ -125,9 +125,9 @@ const MintModalStyleWrapper = styled.div`
         h5 {
           font-family: "Inter";
           font-style: normal;
-          font-weight: 600;
+          font-weight: 800;
           font-size: 16px;
-          line-height: 19px;
+          line-height: 16px;
           text-align: right;
           color: #ffffff;
           margin: 0;
@@ -137,7 +137,7 @@ const MintModalStyleWrapper = styled.div`
           display: flex;
           align-items: center;
           justify-content: space-between;
-          max-width: 106px;
+          max-width: 100px;
           width: 100%;
           height: 100%;
 
@@ -148,9 +148,9 @@ const MintModalStyleWrapper = styled.div`
             padding: 0px;
             font-family: "Bakbak One";
             font-style: normal;
-            font-weight: 400;
-            font-size: 16px;
-            line-height: 22px;
+            font-weight: 800;
+            font-size: 20px;
+            line-height: 16px;
             text-align: center;
             text-transform: uppercase;
             color: #ffffff;
@@ -185,12 +185,13 @@ const MintModalStyleWrapper = styled.div`
 
   .modal_mint_btn {
     button {
+      align: center;
       width: 100%;
     }
   }
   .modal_bottom_shape {
     position: absolute;
-    bottom: 10px;
+    bottom: 30px;
 
     &.shape_left {
       left: 10px;
@@ -202,8 +203,9 @@ const MintModalStyleWrapper = styled.div`
     }
   }
   .mint_img {
-    width: 50%;
-    height: 50%;
+    align: center;
+    width: 100%;
+    height: 100%;
     
   }
 `;

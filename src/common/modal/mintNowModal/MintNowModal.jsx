@@ -7,30 +7,33 @@ import mintImg from "../../../assets/images/icon/fnft.gif";
 import hoverShape from "../../../assets/images/icon/hov_shape_L.svg";
 import { MdPriceChange } from "react-icons/md";
 import { mint } from "../walletModal/WalletModal";
-import Countdown from "../../../components/section/countdown/countDown";
+// import Countdown from "../../../components/section/countdown/countDown";
 
 const MintNowModal = () => {
   const [count, setCount] = useState(1);
   const { mintModalHandle } = useModal();
+  const reload = () => window.location.reload();
   var counts = count.toFixed(3);
   return (
     <>
-      <MintModalStyleWrapper className="modal_overlay" >
+      <MintModalStyleWrapper className="modal_overlay" onExit={reload} >
         <div className="mint_modal_box">
           <div className="mint_modal_content">
             <div className="modal_header">
               <h2>Collect YOUR NFT before end</h2>
-                <Countdown style={{ maxWidth: "30%" }}
-                 timeTillDate="06 20 2019, 6:00 am" 
-		            timeFormat="MM DD YYYY, h:mm a"/>
-              <button onClick={() => mintModalHandle()}>
+              {/* <Countdown style={{ maxWidth: "100%", margin: "top", maginLeft: "-50px", maginRight: "-50px" }}
+                timeTillDate="08 30 2022, 6:00 am"
+                timeFormat="MM DD YYYY, h:mm a" /> */}
+              <div className="mint_img">
+                <img src={mintImg} alt="f-nft mint" />
+                <h5 style={{ color: "red" }}>Please Refesh Page if You Change The Network</h5> 
+              </div>
+              <button onClick={() => mintModalHandle()} onExit={reload}>
                 <FiX />
               </button>
             </div>
             <div className="modal_body text-center">
-              <div className="mint_img">
-                <img src={mintImg} alt="f-nft mint" />
-              </div>
+
               <div className="mint_count_list">
                 <ul>
                   <li>
@@ -67,7 +70,6 @@ const MintNowModal = () => {
                       />
                       <button onClick={() => setCount(count + 1)}>+</button>
                     </div>
-
                     <h5>
                       <span>{MdPriceChange.counts} $60</span> USD
                     </h5>
@@ -80,7 +82,6 @@ const MintNowModal = () => {
                 </Button>
               </div>
             </div>
-
             <div className="modal_bottom_shape_wrap">
               <span className="modal_bottom_shape shape_left">
                 <img src={hoverShape} alt="f-nft nft hover shape" />

@@ -3,30 +3,27 @@ import { FiX, FiChevronRight } from "react-icons/fi";
 import WalletModalStyleWrapper from "./WalletModal.style";
 import hoverShape from "../../../assets/images/icon/hov_shape_L.svg";
 import metamaskIcon from "../../../assets/images/icon/MetaMask.svg";
-// import formatic from "../../../assets/images/icon/Formatic.svg";
-// import trustWalletIcon from "../../../assets/images/icon/Trust_Wallet.svg";
-// import walletConnect from "../../../assets/images/icon/WalletConnect.svg";
+import formatic from "../../../assets/images/icon/Formatic.svg";
+import trustWalletIcon from "../../../assets/images/icon/Trust_Wallet.svg";
+import walletConnect from "../../../assets/images/icon/WalletConnect.svg";
 import Web3Modal from "web3modal";
 import { ethers } from 'ethers';
 import { NFTCONTRACT } from '../../config/config';
 import { ETHNFTCONTRACT } from '../../config/ethconfig';
 import { BSCNFTCONTRACT } from '../../config/bscconfig';
-import { useState } from 'react';
 
 const providerOptions = {
 };
 
 const { ethereum } = window;
-const WalletModal = () => {
+const NftPrice = () => {
   const { walletModalHandle } = useModal();
-  const [maticRate, setMaticRate] = useState(0);
-
   async function connectWallet() {
 
     try {
       let web3Modal = new Web3Modal({
         network: "mainnet",
-        cacheProvider: false,
+        cacheProvider: true,
         providerOptions: providerOptions
 
       });
@@ -76,15 +73,7 @@ const WalletModal = () => {
       }
     } catch (error) {
     }
-     const maticPrice = "https://api.binance.com/api/v3/ticker/price?symbol=MATICUSDT";
-  const responseMatic = await fetch(maticPrice);
-  const dataMatic = await responseMatic.json()
-  console.log("Matic " + dataMatic.price); //data.price is the price of BTC in USDT
-  localStorage.setItem("maticPrice", dataMatic.price);
-  setMaticRate(1 / dataMatic.price)
   }
-
-  const reload = () => window.location.reload();
 
   return (
     <>
@@ -95,7 +84,7 @@ const WalletModal = () => {
           <div className="mint_modal_content">
             <div className="modal_header">
               <h2>CONNECT WALLET</h2>
-              <button onClick={() => walletModalHandle()} onExit={reload}>
+              <button onClick={() => walletModalHandle()}>
                 <FiX />
               </button>
             </div>
@@ -104,14 +93,14 @@ const WalletModal = () => {
                 Please select a wallet to connect for start Minting your NFTs
               </p>
               <div className="wallet_list">
-                <a href="# " onClick={connectWallet} >
+                <a href="# " onClick={connectWallet}>
                   <img src={metamaskIcon} alt="Metmask" />
                   Metamask
                   <span>
                     <FiChevronRight />
                   </span>
                 </a>
-                {/* <a href="# ">
+                <a href="# ">
                   <img src={formatic} alt="coinbase" />
                   Coinbase
                   <span>
@@ -131,7 +120,7 @@ const WalletModal = () => {
                   <span>
                     <FiChevronRight />
                   </span>
-                </a> */}
+                </a>
               </div>
               <div className="modal_bottom_text">
                 By connecting your wallet, you agree to our
@@ -197,7 +186,7 @@ export async function mint(numberofNFTs, e, nftPrice) {
     const chainId = localStorage.getItem("chainId");
     // eslint-disable-next-line
     if (chainId == 137) {
-        //mint for polygon network
+      //mint for polygon network
       ContractID = NFTCONTRACT;
       nftPrice = 60 * maticRate;
       console.log("NFT Price in Matic " + nftPrice);
@@ -212,22 +201,19 @@ export async function mint(numberofNFTs, e, nftPrice) {
       localStorage.setItem("nftPriceBNB", nftPrice);
 
     }
-      // eslint-disable-next-line
+    // eslint-disable-next-line
     else if (chainId == 1) {
       //mit for ETH network
       ContractID = ETHNFTCONTRACT;
       nftPrice = 60 * ethRate;
       localStorage.setItem("nftPriceETH", nftPrice);
-
     }
-
     else {
       alert("Please connect to a supported network");
-      window.location.reload();
       return;
     }
 
-    var gasfromcontract = await provider.getGasPrice(16);
+    var gasfromcontract = await provider.getGasPrice();
     //convert gas to ether
     var gasEther = ethers.utils.formatEther(gasfromcontract);
     console.log("Gas is " + gasEther);
@@ -235,34 +221,36 @@ export async function mint(numberofNFTs, e, nftPrice) {
     var gasWei = ethers.utils.parseEther(gasEther);
     console.log("New gas WEI is " + gasWei);
 
-    var sumValue = ethers.utils.parseEther(nftPrice.toString());
-    console.log("Total in Wei" + sumValue);
+    // var rateValue = nftPrice;
+    var sumValue = numberofNFTs * nftPrice;
+    console.log("Total " + sumValue);
 
-    var feeNumberNft = numberofNFTs * 1.5
+    var sumValues = ethers.utils.formatEther(sumValue);
+    console.log("Total in Wei" + sumValues);
+    // var sum = BigNumber.sumValues;
 
     ethereum.request({
       method: "eth_sendTransaction", params: [{
         from: accounts[0],
         to: ContractID,
-        gasPrice: (feeNumberNft * gasfromcontract).toString(16),
-        gas: (gasWei * 0.00006).toString(),
-        // gasLimit: 1,
-        value: (numberofNFTs * sumValue).toString(16),
-
+        // gas: (gasWei * 0.0003).toString(),
+        gasLimit: 30000,
+        gasPrice: (numberofNFTs * gasfromcontract).toString(),
+        value: sumValues.toString(),
+        id: "tx",
       }]
-    }).then(function (tx) {
-      console.log(tx);
+
+    }).then(function (response) {
+      console.log(response);
     }
     ).catch(function (error) {
       console.log(error);
     }
     );
   }
-
   catch (error) {
-    window.location.reload();
     alert(error);
   }
 }
 
-export default WalletModal;
+export default NftPrice;
