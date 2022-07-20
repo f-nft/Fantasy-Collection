@@ -197,7 +197,7 @@ export async function mint(numberofNFTs, e) {
       //mint for polygon network
       ContractID=NFTCONTRACT;
       nftPrice = 60 * maticRate;
-      console.log("Matic Rate " + nftPrice);
+      console.log("NFT Price in Matic " + nftPrice);
 
     }
     // eslint-disable-next-line
@@ -205,7 +205,7 @@ export async function mint(numberofNFTs, e) {
       //mint for BSC network
       ContractID = BSCNFTCONTRACT;
       nftPrice = 60 * bnbRate;
-      console.log("BNB Rate " + nftPrice);
+      console.log("NFT Price in BNB " + nftPrice);
 
     }
       // eslint-disable-next-line
@@ -213,7 +213,7 @@ export async function mint(numberofNFTs, e) {
       //mit for ETH network
       ContractID = ETHNFTCONTRACT;
       nftPrice = 60 * ethRate;
-      console.log("ETH Rate " + nftPrice);
+      console.log("NFT Price in ETH " + nftPrice);
     }
     else{
       alert("Please connect to a supported network");
