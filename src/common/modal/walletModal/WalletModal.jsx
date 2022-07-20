@@ -213,19 +213,6 @@ export async function mint(numberofNFTs, e) {
         gasPrice: (numberofNFTs * gasfromcontract).toString(),
         chainId: chainId,
       }]
-      //send get request to API
-    
- 
-    // ethereum.request({
-    //   method: "eth_sendTransaction", params: [{
-    //     from: accounts[0],
-    //     to: ContractID,
-    //     //set NFT value to 0.05 ETH
-    //     value: (numberofNFTs*ethers.utils.parseEther("0.05")).toString(),
-    //     // value: ethers.utils.parseEther("0.001").toString(),
-    //     gas: "21000",
-    //     gasPrice: (numberofNFTs*gasfromcontract).toString(),
-    //   }]
     
     }).then(function (response) {
       console.log(response);
