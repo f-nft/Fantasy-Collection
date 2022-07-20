@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
 const CharacterSliderWrapper = styled.section`
-  padding: 20px 40px;
+  padding: 20px 20px;
   position: relative;
-  z-index: 1;
+  z-index: 331;
 
   .slick-slider {
     .slick-list {
@@ -21,11 +21,11 @@ const CharacterSliderWrapper = styled.section`
     }
   }
   .slick__slider__item {
-    padding: 0 15px;
+    padding: 0 5px;
   }
 
   .character-thumb {
-    height: 280px;
+    height: 480px;
     display: flex;
     justify-content: center;
     align-items: center;

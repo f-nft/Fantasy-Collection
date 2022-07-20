@@ -8,12 +8,10 @@ import mintLiveText from "../../../../assets/images/nft/mint_live_text.png";
 import homeImageBG from "../../../../assets/images/nft/home_img_bg.png";
 import { useEffect } from "react";
 import Countdown from "../../countdown/countDown";
-import PriceSlider from "../../../price";
-
+import PriceSlider from "../../../../components/price/priceSlider";
 const Banner = () => {
   const { mintModalHandle } = useModal();
-  //clean local storage on page refresh
-
+  // clean local storage on page refresh
 
   useEffect(() => {
     localStorage.removeItem("walletAddress");
@@ -42,8 +40,8 @@ const Banner = () => {
                 <h5 className="text-uppercase" style={{ color: "red" }}>Public Mint end in</h5>
                 <div className="timer timer_1">
                   <Countdown style={{ maxWidth: "30%" }}
-                    timeTillDate="10 30 2022, 6:00 am" 
-		            timeFormat="MM DD YYYY, h:mm a"/>
+                    timeTillDate="10 30 2022, 6:00 am"
+                    timeFormat="MM DD YYYY, h:mm a" />
                 </div>
               </div>
               <h5 style={{ color: "green" }}>
@@ -54,12 +52,28 @@ const Banner = () => {
               </h5>
               <div className="banner_buttons">
                 <Button lg variant="mint" onClick={() => mintModalHandle()}>
-                  {" "}
                   Mint now
                 </Button>
-                <Button lg variant="outline" onClick={() => PriceSlider}>
-                  NFT Price
-                </Button>
+                <Button lg variant="outline" data-toggle="modal" data-target="#exampleModalCenter">
+                  NFT Price</Button>
+                <div className="modal fade" id="exampleModalCenter" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                  <div className="modal-dialog modal-dialog-centered" role="document">
+                    <div className="modal-content">
+                      <div className="modal-header">
+                        <h5 className="modal-title" id="exampleModalCenterTitle">NFT Price</h5>
+                        <Button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </Button>
+                      </div>
+                      <div className="modal-body">
+                        <PriceSlider />
+                      </div>
+                      <div className="modal-footer">
+                        <Button type="button" data-dismiss="modal">Close</Button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
               <div className="coin-info">
                 <span>Max 10 NFTs per wallet . Price $60 + gas</span>
@@ -80,7 +94,6 @@ const Banner = () => {
                     </span>
                     <span className="mint_live_text rotated-style">
                       <img src={mintLiveText} alt="" />
-
                     </span>
                   </div>
                 </div>

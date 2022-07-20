@@ -1,6 +1,5 @@
 import { Slider, SliderItem } from "../../common/slider/Slider";
 import priceData from "../../assets/data/characterSlider/PriceSlider";
-
 import CharacterSliderWrapper from "./CharacterSlider.style";
 
 const PriceSlider = () => {
@@ -9,7 +8,7 @@ const PriceSlider = () => {
     arrows: false,
     autoplay: true,
     speed: 5000,
-    autoplaySpeed: 5000,
+    autoplaySpeed: 3000,
     cssEase: "linear",
     centerMode: true,
     centerPadding: "0px",
