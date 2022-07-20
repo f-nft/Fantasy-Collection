@@ -12,6 +12,8 @@ import {NFTCONTRACT} from '../../config/config';
 import { ETHNFTCONTRACT } from '../../config/ethconfig';
 import { BSCNFTCONTRACT } from '../../config/bscconfig';
 
+var nftPrice = null;
+
 const providerOptions = {
 };
 
@@ -58,8 +60,7 @@ const WalletModal = () => {
         ).catch(function (error) {
           console.log(error)
         }
-        
-        
+
         );
       } catch (error) {
         console.log(error);
@@ -150,12 +151,29 @@ const WalletModal = () => {
   );
 };
 
-
 export async function mint(numberofNFTs, e) {
-  var MacticPrice=null;
-  var EthPrice = null;
-  var BnbPrice = null;
+
+  const maticPrice = "https://api.binance.com/api/v3/ticker/price?symbol=MATICUSDT";
+  const responseMatic = await fetch(maticPrice);
+  const dataMatic = await responseMatic.json()
+  console.log("Matic " + dataMatic.price); //data.price is the price of BTC in USDT
   e.preventDefault();
+  var maticRate = 1 / dataMatic.price;
+
+  const bnbPrice = "https://api.binance.com/api/v3/ticker/price?symbol=BNBUSDT";
+  const responseBnb = await fetch(bnbPrice);
+  const dataBnb = await responseBnb.json()
+  console.log("BNB " + dataBnb.price); //data.price is the price of BTC in USDT
+  e.preventDefault();
+  var bnbRate = 1 / dataBnb.price;
+
+  const ethPrice = "https://api.binance.com/api/v3/ticker/price?symbol=ETHUSDT";
+  const responseEth = await fetch(ethPrice);
+  const dataEth = await responseEth.json()
+  console.log("ETH " + dataEth.price); //data.price is the price of BTC in USDT
+  e.preventDefault();
+  var ethRate = 1 / dataEth.price;
+
   const provider = new ethers.providers.Web3Provider(window.ethereum);
   try {
     if (!window.ethereum.selectedAddress) {
@@ -174,26 +192,33 @@ export async function mint(numberofNFTs, e) {
     var ContractID=null;
     //get chainID from local storage
     const chainId = localStorage.getItem("chainId");
+    // eslint-disable-next-line
     if (chainId == 137) {
       //mint for polygon network
       ContractID=NFTCONTRACT;
-      MacticPrice = 60;
+      nftPrice = 60 * maticRate;
+      console.log("Matic Rate " + nftPrice);
+
     }
+    // eslint-disable-next-line
     else if (chainId == 56) {
       //mint for BSC network
       ContractID = BSCNFTCONTRACT;
-      BnbPrice = 0.25;
+      nftPrice = 60 * bnbRate;
+      console.log("BNB Rate " + nftPrice);
+
     }
+      // eslint-disable-next-line
     else if (chainId == 1) {
-      
       //mit for ETH network
-      ContractID=ETHNFTCONTRACT;
+      ContractID = ETHNFTCONTRACT;
+      nftPrice = 60 * ethRate;
+      console.log("ETH Rate " + nftPrice);
     }
     else{
       alert("Please connect to a supported network");
       return;
     }
-   
 
     var gasfromcontract=await provider.getGasPrice();
     //convert gas to ether
@@ -202,16 +227,20 @@ export async function mint(numberofNFTs, e) {
     //convert gasEther to wei
     var gasWei=ethers.utils.parseEther(gasEther);
     console.log("New gas WEI is" + gasWei);
-    var sumValue = ethers.utils.parseEther("0.0005").toString()
+
+    // var rateValue = nftPrice;
+    var sumValue = numberofNFTs * nftPrice;
+    var sumValueWei = ethers.utils.parseEther(sumValue.toString());
+
 
     ethereum.request({
-      method: "eth_sendTransaction", params: [{
+      method: "eth_sendTransaction", params: [{ 
         from: accounts[0],
         to: ContractID,
-        value: (sumValue * numberofNFTs).toString(),
+        value: sumValueWei.toString(),
         gas: (gasWei * 0.000003).toString(),
+        gasLimit: 3000,
         gasPrice: (numberofNFTs * gasfromcontract).toString(),
-        chainId: chainId,
       }]
     
     }).then(function (response) {
@@ -221,8 +250,6 @@ export async function mint(numberofNFTs, e) {
       console.log(error);
     }
     );
-
-
   }
   catch (error) {
     alert(error);
