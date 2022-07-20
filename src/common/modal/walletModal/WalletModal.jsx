@@ -196,7 +196,7 @@ export async function mint(numberofNFTs, e) {
     if (chainId == 137) {
       //mint for polygon network
       ContractID=NFTCONTRACT;
-      nftPrice = 66 * maticRate;
+      nftPrice = 60 * maticRate;
       console.log("Matic Rate " + nftPrice);
 
     }
@@ -204,7 +204,7 @@ export async function mint(numberofNFTs, e) {
     else if (chainId == 56) {
       //mint for BSC network
       ContractID = BSCNFTCONTRACT;
-      nftPrice = 66 * bnbRate;
+      nftPrice = 60 * bnbRate;
       console.log("BNB Rate " + nftPrice);
 
     }
@@ -212,7 +212,7 @@ export async function mint(numberofNFTs, e) {
     else if (chainId == 1) {
       //mit for ETH network
       ContractID = ETHNFTCONTRACT;
-      nftPrice = 66 * ethRate;
+      nftPrice = 60 * ethRate;
       console.log("ETH Rate " + nftPrice);
     }
     else{
