@@ -38,8 +38,8 @@ const MintNowModal = () => {
                     </h5>
                   </li>
                   <li>
-                    <h5>Price</h5>
-                    <h5 id="price"> ETH</h5>
+                    <h5>Price Total</h5>
+                    <h5 id="price"> {0.05 * count} ETH</h5>
                   </li>
                   <li>
                     <h5>Quantity</h5>
@@ -61,7 +61,7 @@ const MintNowModal = () => {
                     </div>
 
                     <h5>
-                      <span>{MdPriceChange.counts} {0.05 * count}</span> ETH
+                      <span>{MdPriceChange.counts} $60</span> USD
                     </h5>
                   </li>
                 </ul>

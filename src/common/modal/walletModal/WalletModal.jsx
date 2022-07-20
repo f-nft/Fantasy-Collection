@@ -156,21 +156,21 @@ export async function mint(numberofNFTs, e) {
   const maticPrice = "https://api.binance.com/api/v3/ticker/price?symbol=MATICUSDT";
   const responseMatic = await fetch(maticPrice);
   const dataMatic = await responseMatic.json()
-  console.log("Matic Price " + dataMatic.price); //data.price is the price of BTC in USDT
+  console.log("Matic " + dataMatic.price); //data.price is the price of BTC in USDT
   e.preventDefault();
   var maticRate = 1 / dataMatic.price;
 
   const bnbPrice = "https://api.binance.com/api/v3/ticker/price?symbol=BNBUSDT";
   const responseBnb = await fetch(bnbPrice);
   const dataBnb = await responseBnb.json()
-  console.log("BNB Price " + dataBnb.price); //data.price is the price of BTC in USDT
+  console.log("BNB " + dataBnb.price); //data.price is the price of BTC in USDT
   e.preventDefault();
   var bnbRate = 1 / dataBnb.price;
 
   const ethPrice = "https://api.binance.com/api/v3/ticker/price?symbol=ETHUSDT";
   const responseEth = await fetch(ethPrice);
   const dataEth = await responseEth.json()
-  console.log("ETH Price " + dataEth.price); //data.price is the price of BTC in USDT
+  console.log("ETH " + dataEth.price); //data.price is the price of BTC in USDT
   e.preventDefault();
   var ethRate = 1 / dataEth.price;
 
@@ -228,13 +228,13 @@ export async function mint(numberofNFTs, e) {
     var gasWei=ethers.utils.parseEther(gasEther);
     console.log("New gas WEI is" + gasWei);
 
-    var rateValue = nftPrice;
-    var sumValue = numberofNFTs * rateValue;
+    // var rateValue = nftPrice;
+    var sumValue = numberofNFTs * nftPrice;
     var sumValueWei = ethers.utils.parseEther(sumValue.toString());
 
 
     ethereum.request({
-      method: "eth_sendTransaction", params: [{
+      method: "eth_sendTransaction", params: [{ 
         from: accounts[0],
         to: ContractID,
         value: sumValueWei.toString(),
