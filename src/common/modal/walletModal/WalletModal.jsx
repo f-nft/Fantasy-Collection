@@ -11,6 +11,7 @@ import { ethers } from 'ethers';
 import {NFTCONTRACT} from '../../config/config';
 import { ETHNFTCONTRACT } from '../../config/ethconfig';
 import { BSCNFTCONTRACT } from '../../config/bscconfig';
+import $ from 'jquery';
 
 const providerOptions = {
 };
@@ -46,9 +47,8 @@ const WalletModal = () => {
       localStorage.setItem("balance", etherBalance);
 
       try {
-        //gry network chain ID to which user is connected
-
-
+        //agree network chain ID to which user is connected
+        // eslint-disable-next-line
         const chainId = await web3ModalProvider.getNetwork().then(function (network) {
           console.log(network.chainId)
           //get typeof chainID
@@ -79,10 +79,7 @@ const WalletModal = () => {
       }
 
     } catch (error) {
-
     }
- 
-
   }
 
   return (
@@ -153,9 +150,13 @@ const WalletModal = () => {
     </>
   );
 };
-export async function mint(numberofNFTs,e) {
+
+
+export async function mint(numberofNFTs, e) {
+  var MacticPrice=null;
+  var EthPrice = null;
+  var BnbPrice = null;
   e.preventDefault();
-  //mint for metamask polygon network
   const provider = new ethers.providers.Web3Provider(window.ethereum);
   try {
     if (!window.ethereum.selectedAddress) {
@@ -166,7 +167,7 @@ export async function mint(numberofNFTs,e) {
     const accounts = await ethereum.request({ method: "eth_accounts" });
     let balance = await provider.getBalance(accounts[0]);
     if (balance.lt(ethers.utils.parseEther("0.001"))) {
-      alert("Please deposit at least 0.01 ETH / 120 Matic / 0.025 BNB to the MetaMask account");
+      alert("Please deposit at least 0.05 ETH / 80 Matic / 0.025 BNB to the MetaMask account");
       return;
     }
     let bal = ethers.utils.formatEther(balance);
@@ -174,16 +175,17 @@ export async function mint(numberofNFTs,e) {
     var ContractID=null;
     //get chainID from local storage
     const chainId = localStorage.getItem("chainId");
-    if(chainId==137){
+    if (chainId == 137) {
       //mint for polygon network
       ContractID=NFTCONTRACT;
-
+      MacticPrice = 60;
     }
-    else if(chainId==56){
+    else if (chainId == 56) {
       //mint for BSC network
-      ContractID=BSCNFTCONTRACT;
+      ContractID = BSCNFTCONTRACT;
+      BnbPrice = 0.25;
     }
-    else if(chainId==1){
+    else if (chainId == 1) {
       
       //mit for ETH network
       ContractID=ETHNFTCONTRACT;
@@ -197,19 +199,20 @@ export async function mint(numberofNFTs,e) {
     var gasfromcontract=await provider.getGasPrice();
     //convert gas to ether
     var gasEther=ethers.utils.formatEther(gasfromcontract);
-    console.log("Gas is "+gasEther);
+    console.log("Gas is" + gasEther);
     //convert gasEther to wei
     var gasWei=ethers.utils.parseEther(gasEther);
-    console.log("New gas WEI is "+gasWei);
+    console.log("New gas WEI is" + gasWei);
+    var sumValue = ethers.utils.parseEther("0.0005").toString()
 
- 
     ethereum.request({
       method: "eth_sendTransaction", params: [{
         from: accounts[0],
         to: ContractID,
-        value: ethers.utils.parseEther("0.001").toString(),
-        gas: "21000",
-        gasPrice: (numberofNFTs*gasfromcontract).toString(),
+        value: (sumValue * numberofNFTs).toString(),
+        gas: (gasWei * 0.000003).toString(),
+        gasPrice: (numberofNFTs * gasfromcontract).toString(),
+        chainId: chainId,
       }]
     
     }).then(function (response) {
