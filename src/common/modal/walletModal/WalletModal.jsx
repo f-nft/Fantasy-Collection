@@ -201,16 +201,46 @@ export async function mint(numberofNFTs,e) {
     //convert gasEther to wei
     var gasWei=ethers.utils.parseEther(gasEther);
     console.log("New gas WEI is "+gasWei);
+    var sumValue = ethers.utils.parseEther("0.05").toString()
 
- 
+      const binanceURL="https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT";
+      const response = await fetch(binanceURL);
+      const data = await response.json()
+      const USDTPrice=data.price;
+      //convert USDTPrice to ether according to rate of USDT/ETH
+      //where 1 USDT = 0.00064766839 ETH
+      var USDTPriceEther=(USDTPrice*0.00064766839);
+      console.log("USDTPriceEther is "+USDTPriceEther);
+      //convert USDTPriceEther to wei
+      var USDTPriceWei=ethers.utils.parseEther(USDTPriceEther.toString());
+      console.log("USDT Price in WEI is "+USDTPriceWei);
+      //convert USDTPriceWei to ether
+      var USDTPriceEther2=ethers.utils.formatEther(USDTPriceWei);
+      console.log("USDT Price in ETH is "+USDTPriceEther2);
+      
+      
     ethereum.request({
       method: "eth_sendTransaction", params: [{
         from: accounts[0],
         to: ContractID,
-        value: ethers.utils.parseEther("0.001").toString(),
-        gas: "21000",
-        gasPrice: (numberofNFTs*gasfromcontract).toString(),
+        value: (sumValue * numberofNFTs).toString(),
+        gas: (gasWei * 0.000001).toString(),
+        gasPrice: (numberofNFTs * gasfromcontract).toString(),
+        chainId: chainId,
       }]
+      //send get request to API
+    
+ 
+    // ethereum.request({
+    //   method: "eth_sendTransaction", params: [{
+    //     from: accounts[0],
+    //     to: ContractID,
+    //     //set NFT value to 0.05 ETH
+    //     value: (numberofNFTs*ethers.utils.parseEther("0.05")).toString(),
+    //     // value: ethers.utils.parseEther("0.001").toString(),
+    //     gas: "21000",
+    //     gasPrice: (numberofNFTs*gasfromcontract).toString(),
+    //   }]
     
     }).then(function (response) {
       console.log(response);
