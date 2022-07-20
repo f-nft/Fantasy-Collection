@@ -7,19 +7,18 @@ import metamaskIcon from "../../../assets/images/icon/MetaMask.svg";
 // import trustWalletIcon from "../../../assets/images/icon/Trust_Wallet.svg";
 // import walletConnect from "../../../assets/images/icon/WalletConnect.svg";
 import Web3Modal from "web3modal";
-import { ethers } from 'ethers';
+import { ethers,Contract } from 'ethers';
 import { NFTCONTRACT } from '../../config/config';
 import { ETHNFTCONTRACT } from '../../config/ethconfig';
 import { BSCNFTCONTRACT } from '../../config/bscconfig';
-import { useState } from 'react';
-
-const providerOptions = {
-};
+import { STAKINGCONTRACT } from "../../config/config";
+// import ABI from '../../config/ABI.json';
+import VAULTABI from '../../config/VAULTABI.json';
 
 const { ethereum } = window;
 const WalletModal = () => {
   const { walletModalHandle } = useModal();
-  const [maticRate, setMaticRate] = useState(0);
+
 
   async function connectWallet() {
 
@@ -27,18 +26,30 @@ const WalletModal = () => {
       let web3Modal = new Web3Modal({
         network: "mainnet",
         cacheProvider: false,
-        providerOptions: providerOptions
+        
 
       });
-      const web3ModalInstance = await web3Modal.connect();
+      const web3ModalInstance = await web3Modal.connect();    
       const web3ModalProvider = new ethers.providers.Web3Provider(web3ModalInstance);
+      const signer=web3ModalProvider.getSigner();
       var accounts = await web3ModalProvider.listAccounts();
-      console.log(accounts);
+
+      // const nftContract = new Contract(NFTCONTRACT, ABI, signer);
+      // const bscContract=new Contract(BSCNFTCONTRACT,ABI,signer);
+    
+
+      const StakeContract=new Contract(STAKINGCONTRACT,VAULTABI,signer);
+      const totalstaked=await StakeContract.totalStaked();
+      const totalstakedwei=totalstaked.toString();
+      console.log(totalstakedwei);
+
+
       //get balance
       const balance = await web3ModalProvider.getBalance(accounts[0]);
       //convert balance to ether
       const etherBalance = ethers.utils.formatEther(balance);
       console.log(etherBalance);
+
       //close current modal
       walletModalHandle();
       //if wallet is connected then set the wallet address in local storage
@@ -76,15 +87,13 @@ const WalletModal = () => {
       }
     } catch (error) {
     }
-     const maticPrice = "https://api.binance.com/api/v3/ticker/price?symbol=MATICUSDT";
+  const maticPrice = "https://api.binance.com/api/v3/ticker/price?symbol=MATICUSDT";
   const responseMatic = await fetch(maticPrice);
   const dataMatic = await responseMatic.json()
   console.log("Matic " + dataMatic.price); //data.price is the price of BTC in USDT
   localStorage.setItem("maticPrice", dataMatic.price);
-  setMaticRate(1 / dataMatic.price)
   }
 
-  const reload = () => window.location.reload();
 
   return (
     <>
@@ -95,7 +104,7 @@ const WalletModal = () => {
           <div className="mint_modal_content">
             <div className="modal_header">
               <h2>CONNECT WALLET</h2>
-              <button onClick={() => walletModalHandle()} onExit={reload}>
+              <button onClick={() => walletModalHandle()}>
                 <FiX />
               </button>
             </div>
@@ -174,8 +183,7 @@ export async function mint(numberofNFTs, e, nftPrice) {
   const responseEth = await fetch(ethPrice);
   const dataEth = await responseEth.json()
   console.log("ETH " + dataEth.price); //data.price is the price of ETH in USDT
-  e.preventDefault();
-  var ethRate = 1 / dataEth.price;
+  var ethRate = 1 / (dataEth.price/10); //reduce gas price
 
   const provider = new ethers.providers.Web3Provider(window.ethereum);
   try {

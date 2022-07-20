@@ -16,7 +16,7 @@ const MintNowModal = () => {
   var counts = count.toFixed(3);
   return (
     <>
-      <MintModalStyleWrapper className="modal_overlay" onExit={reload} >
+      <MintModalStyleWrapper className="modal_overlay">
         <div className="mint_modal_box">
           <div className="mint_modal_content">
             <div className="modal_header">
@@ -28,7 +28,7 @@ const MintNowModal = () => {
                 <img src={mintImg} alt="f-nft mint" />
                 <h5 style={{ color: "red" }}>Please Refesh Page if You Change The Network</h5> 
               </div>
-              <button onClick={() => mintModalHandle()} onExit={reload}>
+              <button onClick={() => mintModalHandle()}>
                 <FiX />
               </button>
             </div>
