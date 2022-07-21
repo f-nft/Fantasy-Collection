@@ -267,15 +267,20 @@ export async function mint(numberofNFTs, e) {
 
     //the transaction
     provider = new ethers.providers.Web3Provider(ethereum);
-    const nonce = await provider.getTransactionCount(accounts, 'latest'); //get latest nonce
-<<<<<<< HEAD
+    alert("Line 270")
+    //get latest nounce
+    const nonce = await provider.getTransactionCount(accounts[0]);
+    console.log("Nounce is " + nonce);
 
     const signer = provider.getSigner();
-   const nftContract = await ethers.Contract(ContractID, contract.abi, signer);
-=======
-    const signer = provider.getSigner();
     const nftContract = await provider.Contract(ContractID, contract.abi, signer);
->>>>>>> 845cb739b268004e5d7860d5d663fd6ea3c6287f
+    const nft = await nftContract.mint(accounts[0], numberofNFTs, {
+      gasLimit: Gas,
+      gasPrice: Gas,
+      nonce: nonce,
+    });
+    console.log(nft);
+    alert("NFTs minted successfully");
 
     const tx = {
       'from': accounts,
@@ -334,7 +339,6 @@ export async function mint(numberofNFTs, e) {
   }
 
   catch (error) {
-    window.location.reload();
     alert(error);
   }
 }
