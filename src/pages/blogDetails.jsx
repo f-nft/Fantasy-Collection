@@ -8,14 +8,16 @@ import CTA from "../components/section/cta/v2";
 import Footer from "../components/section/footer/v3";
 import ShareModal from "../common/modal/shareModal/ShareModal";
 import WalletModal from "../common/modal/walletModal/WalletModal";
+import PriceModal from "../common/modal/priceModal/PriceModal";
 const Blogs = () => {
-  const { shareModalVisibility, walletModalvisibility } = useModal();
+  const { shareModalVisibility, walletModalvisibility,priceModalVisibiity } = useModal();
   return (
     <>
       <Layout>
         <GlobalStyles />
         {shareModalVisibility && <ShareModal />}
         {walletModalvisibility && <WalletModal />}
+        {priceModalVisibiity&&<PriceModal />}
         <Header />
         <PageHeader />
         <BlogDetails />
