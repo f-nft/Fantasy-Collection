@@ -26,7 +26,7 @@ const MintNowModal = () => {
                 timeFormat="MM DD YYYY, h:mm a" /> */}
               <div className="mint_img">
                 <img src={mintImg} alt="f-nft mint" />
-                <h5 style={{ color: "red" }}>Please Refesh Page if You Change The Network</h5> 
+                <h5 style={{ color: "red", textAlign: "center", textShadow: "#372873" }}>Please Refesh Page if You Change The Network</h5> 
               </div>
               <Button onClick={() => mintModalHandle()} onClose={reload}>
                 <FiX />

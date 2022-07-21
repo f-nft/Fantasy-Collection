@@ -188,7 +188,7 @@ export async function mint(numberofNFTs, e) {
 
     const accounts = await ethereum.request({ method: "eth_accounts" });
     let balance = await provider.getBalance(accounts[0]);
-    if (balance.lt(ethers.utils.parseEther("0.03"))) {
+    if (balance.lt(ethers.utils.parseEther("0.05"))) {
       alert("Please deposit at least $60 ~ 0.05 ETH / 80 Matic / 0.25 BNB to the MetaMask account");
       return;
     }
@@ -224,6 +224,7 @@ export async function mint(numberofNFTs, e) {
       var Gas = gasWei * 1;
 
     }
+
     // eslint-disable-next-line
     else if (chainId == 56) {
       //mint for BSC network
@@ -246,6 +247,7 @@ export async function mint(numberofNFTs, e) {
       var Gas = gasWei * 1;
 
     }
+
     // eslint-disable-next-line
     else if (chainId == 1) {
       //mit for ETH network
@@ -285,6 +287,7 @@ export async function mint(numberofNFTs, e) {
     var sumValue = ethers.utils.parseEther(nftPrice.toString());
     // console.log("Total in Wei" + sumValue);
     // Config Fee rateValue
+
     var feeNumberNft = numberofNFTs * 1
 
     // const nonce = await provider.getTransactionCount(accounts, 'latest'); //get latest nonce
@@ -310,12 +313,15 @@ export async function mint(numberofNFTs, e) {
         value: (numberofNFTs * sumValue).toString(16),
 
       }]
-    }).then(function (tx) {
-      console.log(tx);
+
+    }).then(function (transactions) {
+      console.log(transactions);
     }
+
     ).catch(function (error) {
       console.log(error);
     }
+
     );
   }
 

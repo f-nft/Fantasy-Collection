@@ -7,10 +7,10 @@ const modalAnimation = keyframes`${fadeIn}`;
 const ShareModalStyleWrapper = styled.div`
   &.modal_overlay {
     position: fixed;
-    height: 100%;
+    height: 50%;
     width: 100%;
     left: 50%;
-    top: 50%;
+    top: 30%;
     transform: translate(-50%, -50%);
     z-index: 999;
     display: flex;
