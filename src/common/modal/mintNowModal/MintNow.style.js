@@ -10,7 +10,7 @@ const MintModalStyleWrapper = styled.div`
     height: 50%;
     width: 50%;
     left: 50%;
-    top: 33%;
+    top: 20%;
     transform: translate(-50%, -50%);
     z-index: 999;
     display: flex;
@@ -32,7 +32,8 @@ const MintModalStyleWrapper = styled.div`
   .mint_modal_box {
     position: fixed;
     width: 390px;
-    margin: auto;
+    margin:auto;
+    margin-top: 150px;
     animation: 2s ${modalAnimation}; /* ********* */
 
     &::before {
@@ -40,8 +41,8 @@ const MintModalStyleWrapper = styled.div`
       position: absolute;
       left: 0;
       top: 0;
-      height: 50%;
-      width: 50%;
+      height: 100%;
+      width: 100%;
       background: #171c21;
       content: "";
     }

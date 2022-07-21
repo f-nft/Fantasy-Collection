@@ -2,8 +2,15 @@ import styled from "styled-components";
 
 const CharacterSliderWrapper = styled.section`
   padding: 20px 20px;
-  position: relative;
-  z-index: 331;
+  position: fixed;
+  z-index: 999;
+  height: 50%;
+  width: 50%;
+  left: 50%;
+  top: 20%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
 
   .slick-slider {
     .slick-list {
@@ -24,14 +31,6 @@ const CharacterSliderWrapper = styled.section`
     padding: 0 5px;
   }
 
-  .character-thumb {
-    height: 480px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 10px;
-  }
 `;
 
 export default CharacterSliderWrapper;

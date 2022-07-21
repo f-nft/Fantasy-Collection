@@ -52,9 +52,13 @@ const BannerV1Wrapper = styled.section`
     }
 
     .banner_buttons {
-      display: flex;
-      column-gap: 30px;
-      margin-top: 58px;
+      display: fixed;
+      column-gap: 5px;
+      margin-top: 1px;
+      align-items: center;
+      justify-content: center;
+      z-index: 1;
+
     }
 
     .coin-info {
