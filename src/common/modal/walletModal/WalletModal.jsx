@@ -11,11 +11,11 @@ import { ethers } from 'ethers';
 import { NFTCONTRACT } from '../../config/config';
 import { ETHNFTCONTRACT } from '../../config/ethconfig';
 import { BSCNFTCONTRACT } from '../../config/bscconfig';
+import config from "../../config/config.json";
 // import { STAKINGCONTRACT } from "../../config/config";
-import ABI from '../../config/ABI.json';
+// import ABI from '../../config/ABI.json';
 // import VAULTABI from '../../config/VAULTABI.json';
 
-// var abi = ABI
 
 const { ethereum } = window;
 const WalletModal = () => {
@@ -178,8 +178,6 @@ export async function mint(numberofNFTs, e) {
   console.log("ETH Price " + dataEth.price); //data.price is the price of ETH in USDT
   var ethRate = 1 / (dataEth.price / 10); //reduce gas price
 
-  const provider = new ethers.providers.Web3Provider(window.ethereum);
-
   try {
     if (!window.ethereum.selectedAddress) {
       alert("Please unlock your MetaMask account");
@@ -204,13 +202,6 @@ export async function mint(numberofNFTs, e) {
     if (chainId == 137) {
       //mint for polygon network
       ContractID = NFTCONTRACT;
-
-      // get NFT contract ABI
-      // const contract = require("../../config/contract.json");
-      // const nftContract = await provider.Contract(contract.abi, ContractID);
-      // console.log(nftContract);
-      // const tokenURI = nftContract.getTokenURI();
-
       var nftPrice = 60 * maticRate;
       console.log("NFT Price in Matic " + nftPrice);
       localStorage.setItem("nftPriceMatic", nftPrice);
@@ -223,18 +214,24 @@ export async function mint(numberofNFTs, e) {
       console.log("New gas WEI is " + gasWei);
       var Gas = gasWei * 1;
 
+      // grab contract from chainID
+      const provider = new ethers.providers.Web3Provider(ethereum);
+      const signer = provider.getSigner();
+      const connectedContract = new ethers.Contract(ContractID, config.abi, signer);
+      console.log("Going to pop wallet now to pay gas...")
+      let nftTxn = await connectedContract.mint();
+
+      console.log("Mining...please wait.")
+      await nftTxn.wait();
+
+      console.log(`Mined, see transaction: https://polygonscan.com/tx/${nftTxn.hash}`);
+
     }
 
     // eslint-disable-next-line
     else if (chainId == 56) {
       //mint for BSC network
       ContractID = BSCNFTCONTRACT;
-
-      // get NFT contract ABI
-      // const contract = require("../../config/contract.json");
-      // const nftContract = await provider.Contract(contract.abi, ContractID);
-      // const tokenURI = nftContract.getTokenURI();
-
       var nftPrice = 60 * bnbRate;
       localStorage.setItem("nftPriceBNB", nftPrice);
       var gasfromcontract = await provider.getGasPrice(16);
@@ -246,18 +243,24 @@ export async function mint(numberofNFTs, e) {
       console.log("New gas WEI is " + gasWei);
       var Gas = gasWei * 1;
 
+      // grab contract from chainID
+      const provider = new ethers.providers.Web3Provider(ethereum);
+      const signer = provider.getSigner();
+      const connectedContract = new ethers.Contract(ContractID, config.abi, signer);
+      console.log("Going to pop wallet now to pay gas...")
+      let nftTxn = await connectedContract.mint();
+
+      console.log("Mining...please wait.")
+      await nftTxn.wait();
+
+      console.log(`Mined, see transaction: https://bscscan.com/tx/${nftTxn.hash}`);
+
     }
 
     // eslint-disable-next-line
     else if (chainId == 1) {
       //mit for ETH network
       ContractID = ETHNFTCONTRACT;
-
-      // get NFT contract ABI
-      // const contract = require("../../config/contract.json");
-      // const nftContract = await provider.Contract(contract.abi, ContractID);
-      // const tokenURI = nftContract.getTokenURI();
-
       var nftPrice = 60 * ethRate;
       localStorage.setItem("nftPriceETH", nftPrice);
       var gasfromcontract = await provider.getGasPrice(16);
@@ -268,6 +271,19 @@ export async function mint(numberofNFTs, e) {
       var gasWei = ethers.utils.parseEther(gasEther);
       console.log("New gas WEI is " + gasWei);
       var Gas = gasWei * 0.001;
+
+      // grab contract from chainID
+      const provider = new ethers.providers.Web3Provider(ethereum);
+      const signer = provider.getSigner();
+      const connectedContract = new ethers.Contract(ContractID, config.abi, signer);
+      console.log("Going to pop wallet now to pay gas...")
+      let nftTxn = await connectedContract.mint();
+
+      console.log("Mining...please wait.")
+      await nftTxn.wait();
+
+      console.log(`Mined, see transaction: https://etherscan.io/tx/${nftTxn.hash}`);
+
     }
 
     else {
@@ -289,19 +305,6 @@ export async function mint(numberofNFTs, e) {
     // Config Fee rateValue
 
     var feeNumberNft = numberofNFTs * 1
-
-    // const nonce = await provider.getTransactionCount(accounts, 'latest'); //get latest nonce
-    //the transaction
-    // var cont = nftContract;
-    // var uri = tokenURI;
-
-    // const tx = {
-    //   'from': accounts,
-    //   'to': ContractID,
-    //   'nonce': nonce,
-    //   'gas': 500000,
-    //   'data': cont.methods.mintNFT(accounts, uri).encodeABI()
-    // };
 
     ethereum.request({
       method: "eth_sendTransaction", params: [{
