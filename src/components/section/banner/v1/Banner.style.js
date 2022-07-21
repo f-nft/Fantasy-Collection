@@ -18,7 +18,7 @@ const BannerV1Wrapper = styled.section`
   background-size: cover;
   background-position: top center;
   background-repeat: no-repeat;
-  padding-top: 139px;
+  padding-top: 179px;
   
   .f-nft_v1_baner_left {
     margin-top: 200px;
@@ -275,7 +275,7 @@ const BannerV1Wrapper = styled.section`
       right: 35px;
     }
   }
-  
+
 `;
 
 export default BannerV1Wrapper;

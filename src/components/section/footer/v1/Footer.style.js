@@ -172,7 +172,7 @@ const FooterStyleWrapper = styled.footer`
         }
 
         .footer_logo {
-          max-width: 50px;
+          max-width: 79px;
         }
       }
 
