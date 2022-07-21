@@ -268,8 +268,14 @@ export async function mint(numberofNFTs, e) {
     //the transaction
     provider = new ethers.providers.Web3Provider(ethereum);
     const nonce = await provider.getTransactionCount(accounts, 'latest'); //get latest nonce
+<<<<<<< HEAD
+
+    const signer = provider.getSigner();
+   const nftContract = await ethers.Contract(ContractID, contract.abi, signer);
+=======
     const signer = provider.getSigner();
     const nftContract = await provider.Contract(ContractID, contract.abi, signer);
+>>>>>>> 845cb739b268004e5d7860d5d663fd6ea3c6287f
 
     const tx = {
       'from': accounts,
