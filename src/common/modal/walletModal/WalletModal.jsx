@@ -11,7 +11,7 @@ import { ethers } from 'ethers';
 import { NFTCONTRACT } from '../../config/config';
 import { ETHNFTCONTRACT } from '../../config/ethconfig';
 import { BSCNFTCONTRACT } from '../../config/bscconfig';
-import config from "../../config/config.json";
+import config from "../../config/contract.json";
 // import { STAKINGCONTRACT } from "../../config/config";
 // import ABI from '../../config/ABI.json';
 // import VAULTABI from '../../config/VAULTABI.json';
