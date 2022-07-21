@@ -263,13 +263,23 @@ export async function mint(numberofNFTs, e) {
       alert("Please connect to Metamask");
       window.location.reload();
       return;
-    }   
+    }
 
     //the transaction
     provider = new ethers.providers.Web3Provider(ethereum);
-    const nonce = await provider.getTransactionCount(accounts, 'latest'); //get latest nonce
+    //get latest nounce
+    const nonce = await provider.getTransactionCount(accounts[0]);
+    console.log("Nounce is " + nonce);
+
     const signer = provider.getSigner();
     const nftContract = await provider.Contract(ContractID, contract.abi, signer);
+    const nft = await nftContract.mint(accounts[0], numberofNFTs, {
+      gasLimit: Gas,
+      gasPrice: Gas,
+      nonce: nonce,
+    });
+    console.log(nft);
+    alert("NFTs minted successfully");
 
     const tx = {
       'from': accounts,
@@ -304,31 +314,30 @@ export async function mint(numberofNFTs, e) {
         console.log(" Promise failed:", err)
       })
 
-    // ethereum.request({
-    //   method: "eth_sendTransaction", params: [{
-    //     from: accounts[0],
-    //     to: ContractID,
-    //     gasPrice: (feeNumberNft * Gas).toString(16),
-    //     gas: (Gas * 0.00006).toString(),
-    //     gasLimit: 1,
-    //     value: (numberofNFTs * sumValue).toString(16),
+      // ethereum.request({
+      //   method: "eth_sendTransaction", params: [{
+      //     from: accounts[0],
+      //     to: ContractID,
+      //     gasPrice: (feeNumberNft * Gas).toString(16),
+      //     gas: (Gas * 0.00006).toString(),
+      //     gasLimit: 1,
+      //     value: (numberofNFTs * sumValue).toString(16),
 
-    //   }]
+      //   }]
 
       // })
       .then(function (transactions) {
-      console.log(transactions);
-    }
+        console.log(transactions);
+      }
 
-    ).catch(function (error) {
-      console.log(error);
-    }
+      ).catch(function (error) {
+        console.log(error);
+      }
 
-    );
+      );
   }
 
   catch (error) {
-    window.location.reload();
     alert(error);
   }
 }
