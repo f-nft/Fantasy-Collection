@@ -238,7 +238,7 @@ export async function mint(numberofNFTs, e, nftPriceETH) {
       console.log("New gas WEI is " + gasWei);
       Gas = gasWei * 0.0000000000000005;
       gasLimit = 30000;
-      gasLimitPlus = gasLimit * 0.5;
+      gasLimitPlus = gasLimit * 0.8;
     }
 
     // eslint-disable-next-line
