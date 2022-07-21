@@ -14,14 +14,16 @@ import Footer from "../components/section/footer/v1";
 import MintNowModal from "../common/modal/mintNowModal";
 import WalletModal from "../common/modal/walletModal/WalletModal";
 import Partner from "../components/section/partner";
+import PriceModal from "../common/modal/priceModal/PriceModal";
 
 const HomeV1 = () => {
-  const { visibility, walletModalvisibility } = useModal();
+  const { visibility, walletModalvisibility,priceModalVisibiity } = useModal();
   return (
     <Layout>
        <GlobalStyles /> 
       {visibility && <MintNowModal />}
       {walletModalvisibility && <WalletModal />}
+      {priceModalVisibiity&&<PriceModal />}
       <Header />
       <Banner />
       <Counter />

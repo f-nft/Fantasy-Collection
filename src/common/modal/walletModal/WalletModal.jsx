@@ -1,3 +1,4 @@
+// eslint-disable-next-line
 import { useModal } from "../../../utils/ModalContext";
 import { FiX, FiChevronRight } from "react-icons/fi";
 import WalletModalStyleWrapper from "./WalletModal.style";
@@ -11,13 +12,12 @@ import { ethers } from 'ethers';
 import { NFTCONTRACT } from '../../config/config';
 import { ETHNFTCONTRACT } from '../../config/ethconfig';
 import { BSCNFTCONTRACT } from '../../config/bscconfig';
+import contract from "../../config/contract.json";
 // import { STAKINGCONTRACT } from "../../config/config";
-import ABI from '../../config/ABI.json';
+// import ABI from '../../config/ABI.json';
 // import VAULTABI from '../../config/VAULTABI.json';
-
-// var abi = ABI
-
 const { ethereum } = window;
+var provider = null;
 const WalletModal = () => {
   const { walletModalHandle } = useModal();
 
@@ -30,6 +30,7 @@ const WalletModal = () => {
 
       });
 
+      provider = new ethers.providers.Web3Provider(window.ethereum);
       const web3ModalInstance = await web3Modal.connect();
       const web3ModalProvider = new ethers.providers.Web3Provider(web3ModalInstance);
       // const signer = web3ModalProvider.getSigner();
@@ -37,7 +38,6 @@ const WalletModal = () => {
 
       // const nftContract = new Contract(NFTCONTRACT, ABI, signer);
       // const bscContract=new Contract(BSCNFTCONTRACT,ABI,signer);
-
       // const StakeContract = new Contract(STAKINGCONTRACT, VAULTABI, signer);
       // const totalstaked = await StakeContract.totalStaked();
       // const totalstakedwei = totalstaked.toString();
@@ -178,8 +178,6 @@ export async function mint(numberofNFTs, e) {
   console.log("ETH Price " + dataEth.price); //data.price is the price of ETH in USDT
   var ethRate = 1 / (dataEth.price / 10); //reduce gas price
 
-  const provider = new ethers.providers.Web3Provider(window.ethereum);
-
   try {
     if (!window.ethereum.selectedAddress) {
       alert("Please unlock your MetaMask account");
@@ -188,7 +186,7 @@ export async function mint(numberofNFTs, e) {
 
     const accounts = await ethereum.request({ method: "eth_accounts" });
     let balance = await provider.getBalance(accounts[0]);
-    if (balance.lt(ethers.utils.parseEther("0.05"))) {
+    if (balance.lt(ethers.utils.parseEther("0.005"))) {
       alert("Please deposit at least $60 ~ 0.05 ETH / 80 Matic / 0.25 BNB to the MetaMask account");
       return;
     }
@@ -204,12 +202,6 @@ export async function mint(numberofNFTs, e) {
     if (chainId == 137) {
       //mint for polygon network
       ContractID = NFTCONTRACT;
-
-      // get NFT contract ABI
-      // const contract = require("../../config/contract.json");
-      // const nftContract = await provider.Contract(contract.abi, ContractID);
-      // console.log(nftContract);
-      // const tokenURI = nftContract.getTokenURI();
 
       var nftPrice = 60 * maticRate;
       console.log("NFT Price in Matic " + nftPrice);
@@ -229,22 +221,18 @@ export async function mint(numberofNFTs, e) {
     else if (chainId == 56) {
       //mint for BSC network
       ContractID = BSCNFTCONTRACT;
-
-      // get NFT contract ABI
-      // const contract = require("../../config/contract.json");
-      // const nftContract = await provider.Contract(contract.abi, ContractID);
-      // const tokenURI = nftContract.getTokenURI();
-
-      var nftPrice = 60 * bnbRate;
+      nftPrice = 60 * bnbRate;
+      console.log("NFT Price in BNB " + nftPrice);
       localStorage.setItem("nftPriceBNB", nftPrice);
-      var gasfromcontract = await provider.getGasPrice(16);
+
+      gasfromcontract = await provider.getGasPrice(16);
       //convert gas to ether
-      var gasEther = ethers.utils.formatEther(gasfromcontract);
+      gasEther = ethers.utils.formatEther(gasfromcontract);
       console.log("Gas is " + gasEther);
       //convert gasEther to wei
-      var gasWei = ethers.utils.parseEther(gasEther);
+      gasWei = ethers.utils.parseEther(gasEther);
       console.log("New gas WEI is " + gasWei);
-      var Gas = gasWei * 1;
+      Gas = gasWei * 1;
 
     }
 
@@ -253,68 +241,53 @@ export async function mint(numberofNFTs, e) {
       //mit for ETH network
       ContractID = ETHNFTCONTRACT;
 
-      // get NFT contract ABI
-      // const contract = require("../../config/contract.json");
-      // const nftContract = await provider.Contract(contract.abi, ContractID);
-      // const tokenURI = nftContract.getTokenURI();
+      nftPrice = 60 * ethRate;
+      console.log("NFT Price in ETH " + nftPrice);
 
-      var nftPrice = 60 * ethRate;
       localStorage.setItem("nftPriceETH", nftPrice);
-      var gasfromcontract = await provider.getGasPrice(16);
+      gasfromcontract = await provider.getGasPrice(16);
       //convert gas to ether
-      var gasEther = ethers.utils.formatEther(gasfromcontract);
+      gasEther = ethers.utils.formatEther(gasfromcontract);
       console.log("Gas is " + gasEther);
       //convert gasEther to wei
-      var gasWei = ethers.utils.parseEther(gasEther);
+      gasWei = ethers.utils.parseEther(gasEther);
       console.log("New gas WEI is " + gasWei);
-      var Gas = gasWei * 0.001;
+      Gas = gasWei * 0.001;
     }
 
     else {
       alert("Please connect to Metamask");
       window.location.reload();
       return;
+    }   
+
+    const nonce = await provider.getTransactionCount(accounts, 'latest'); //get latest nonce
+    //the transaction
+    provider = new ethers.providers.Web3Provider(ethereum);
+    const signer = provider.getSigner();
+    const nftContract = new ethers.Contract(ContractID, contract.abi, signer);
+
+    const tx = {
+      'from': accounts,
+      'to': ContractID,
+      'nonce': nonce,
+      'gas': Gas,
+      'data': nftContract.methods.mint(accounts, numberofNFTs).encodeABI()
     }
 
-    // var gasfromcontract = await provider.getGasPrice(16);
-    // //convert gas to ether
-    // var gasEther = ethers.utils.formatEther(gasfromcontract);
-    // console.log("Gas is " + gasEther);
-    // //convert gasEther to wei
-    // var gasWei = ethers.utils.parseEther(gasEther);
-    // console.log("New gas WEI is " + gasWei);
+    // ethereum.request({
+    //   method: "eth_sendTransaction", params: [{
+    //     from: accounts[0],
+    //     to: ContractID,
+    //     gasPrice: (feeNumberNft * Gas).toString(16),
+    //     gas: (Gas * 0.00006).toString(),
+    //     gasLimit: 1,
+    //     value: (numberofNFTs * sumValue).toString(16),
 
-    var sumValue = ethers.utils.parseEther(nftPrice.toString());
-    // console.log("Total in Wei" + sumValue);
-    // Config Fee rateValue
+    //   }]
 
-    var feeNumberNft = numberofNFTs * 1
-
-    // const nonce = await provider.getTransactionCount(accounts, 'latest'); //get latest nonce
-    //the transaction
-    // var cont = nftContract;
-    // var uri = tokenURI;
-
-    // const tx = {
-    //   'from': accounts,
-    //   'to': ContractID,
-    //   'nonce': nonce,
-    //   'gas': 500000,
-    //   'data': cont.methods.mintNFT(accounts, uri).encodeABI()
-    // };
-
-    ethereum.request({
-      method: "eth_sendTransaction", params: [{
-        from: accounts[0],
-        to: ContractID,
-        gasPrice: (feeNumberNft * Gas).toString(16),
-        gas: (Gas * 0.00006).toString(),
-        gasLimit: 1,
-        value: (numberofNFTs * sumValue).toString(16),
-
-      }]
-
-    }).then(function (transactions) {
+      // })
+      .then(function (transactions) {
       console.log(transactions);
     }
 

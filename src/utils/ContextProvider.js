@@ -5,10 +5,16 @@ const ContextProvider = ({ children }) => {
   const [visibility, setVisibility] = useState(false);
   const [walletModalvisibility, setModalvisibility] = useState(false);
   const [shareModalVisibility, setShareModalvisibility] = useState(false);
+  const [priceModalVisibiity, setPriceModalVisibility] = useState(false);
+
 
   const mintModalHandle = () => {
     setVisibility(!visibility);
   };
+  
+  const priceModalHandle=()=>{
+    setPriceModalVisibility(!priceModalVisibiity);
+  }
   const walletModalHandle = () => {
     setModalvisibility(!walletModalvisibility);
   };
@@ -25,7 +31,9 @@ const ContextProvider = ({ children }) => {
         walletModalHandle,
         walletModalvisibility,
         shareModalVisibility,
+        priceModalVisibiity,
         shareModalHandle,
+        priceModalHandle,
       }}
     >
       {children}

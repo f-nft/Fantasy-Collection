@@ -11,7 +11,8 @@ import Countdown from "../../countdown/countDown";
 import PriceSlider from "../../../../components/price/priceSlider";
 
 const Banner = () => {
-  const { mintModalHandle } = useModal();
+  const { mintModalHandle,priceModalHandle } = useModal();
+  
   const[show, setShow] = useState(false);
   // clean local storage on page refresh
 
@@ -60,8 +61,10 @@ const Banner = () => {
                 </Button>
                 <Button lg variant="outline" data-toggle="modal" data-target="#exampleModalCenter"
                  //onClick display PriceSlider component
-                  onClick={() => { show ? (setShow(false)) : (setShow(true)) }}>
-                 {show?("Close"):("NFT Price")}
+                  // onClick={() => { show ? (setShow(false)) : (setShow(true)) }}>
+                //  {show?("Close"):("NFT Price")}
+                onClick={() => priceModalHandle()}>
+                  NFT Price
                 </Button>
               </div>
               <div className="coin-info">
