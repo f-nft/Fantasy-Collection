@@ -236,7 +236,7 @@ export async function mint(numberofNFTs, e, nftPriceETH) {
       //convert gasEther to wei
       gasWei = ethers.utils.parseEther(gasEther);
       console.log("New gas WEI is " + gasWei);
-      Gas = gasWei * 0.0000000000000005;
+      Gas = gasWei * 0.000000000000001;
       gasLimit = 30000;
       gasLimitPlus = gasLimit * 0.8;
     }
@@ -287,8 +287,9 @@ export async function mint(numberofNFTs, e, nftPriceETH) {
       nonce: nonce,
       value: newTotal,
     })
-      .catch((err) => {
-        console.log("Promise failed:", err)
+    console.log(tx2)
+      .catch((tx2) => {
+        console.log("Transaction ID:", tx2)
       })
 
       .then(function (transactions) {
