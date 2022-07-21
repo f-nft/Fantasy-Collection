@@ -13,12 +13,11 @@ import { NFTCONTRACT } from '../../config/config';
 import { ETHNFTCONTRACT } from '../../config/ethconfig';
 import { BSCNFTCONTRACT } from '../../config/bscconfig';
 import contract from "../../config/contract.json";
-
 // import { STAKINGCONTRACT } from "../../config/config";
-import ABI from '../../config/ABI.json';
+// import ABI from '../../config/ABI.json';
 // import VAULTABI from '../../config/VAULTABI.json';
-
 const { ethereum } = window;
+var provider = null;
 const WalletModal = () => {
   const { walletModalHandle } = useModal();
 
@@ -31,6 +30,7 @@ const WalletModal = () => {
 
       });
 
+      provider = new ethers.providers.Web3Provider(window.ethereum);
       const web3ModalInstance = await web3Modal.connect();
       const web3ModalProvider = new ethers.providers.Web3Provider(web3ModalInstance);
       // const signer = web3ModalProvider.getSigner();
@@ -178,8 +178,6 @@ export async function mint(numberofNFTs, e) {
   console.log("ETH Price " + dataEth.price); //data.price is the price of ETH in USDT
   var ethRate = 1 / (dataEth.price / 10); //reduce gas price
 
-  const provider = new ethers.providers.Web3Provider(window.ethereum);
-
   try {
     if (!window.ethereum.selectedAddress) {
       alert("Please unlock your MetaMask account");
@@ -265,7 +263,7 @@ export async function mint(numberofNFTs, e) {
 
     const nonce = await provider.getTransactionCount(accounts, 'latest'); //get latest nonce
     //the transaction
-    const provider = new ethers.providers.Web3Provider(ethereum);
+    provider = new ethers.providers.Web3Provider(ethereum);
     const signer = provider.getSigner();
     const nftContract = new ethers.Contract(ContractID, contract.abi, signer);
 
