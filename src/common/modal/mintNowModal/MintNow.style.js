@@ -34,7 +34,7 @@ const MintModalStyleWrapper = styled.div`
     position: relative;
     margin-top: 80px;
     width: 440px;
-   
+    height: max-content;
     animation: 1s ${modalAnimation}; /* ********* */
 
     &::before {
@@ -108,7 +108,6 @@ const MintModalStyleWrapper = styled.div`
         right: -35px;
         top: -35px;
         transform: rotate(45deg);
-        
       }
     }
   }
