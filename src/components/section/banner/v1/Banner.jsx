@@ -65,7 +65,7 @@ const Banner = () => {
                 </Button>
               </div>
               <div className="coin-info">
-                <span>Max 10 NFTs per wallet . Price $60 + gas</span>
+                <span>Max 10 NFTs per wallet. Price $60 + gas</span>
                 <span>
                   MINT IS LIVE{" "}
                   <span className="highlighted">UNTIL 01 JULY 04:00H</span>

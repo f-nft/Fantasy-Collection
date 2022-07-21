@@ -13,16 +13,9 @@ const PriceSlider = () => {
     centerMode: true,
     centerPadding: "0px",
     infinite: true,
-    slidesToShow: 1,
+    slidesToShow: 3,
     slidesToScroll: 1,
     responsive: [
-      {
-        breakpoint: 1425,
-        settings: {
-          slidesToShow: 5,
-          slidesToScroll: 1,
-        },
-      },
       {
         breakpoint: 1025,
         settings: {
@@ -31,21 +24,21 @@ const PriceSlider = () => {
         },
       },
       {
-        breakpoint: 992,
+        breakpoint: 592,
         settings: {
           slidesToShow: 3,
           slidesToScroll: 1,
         },
       },
       {
-        breakpoint: 641,
+        breakpoint: 241,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
         },
       },
       {
-        breakpoint: 480,
+        breakpoint: 50,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
