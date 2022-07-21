@@ -15,7 +15,7 @@ import { BSCNFTCONTRACT } from '../../config/bscconfig';
 import ABI from '../../config/ABI.json';
 // import VAULTABI from '../../config/VAULTABI.json';
 
-var abi = ABI
+// var abi = ABI
 
 const { ethereum } = window;
 const WalletModal = () => {
@@ -157,7 +157,7 @@ const WalletModal = () => {
   );
 };
 
-export async function mint(numberofNFTs, e, nftPrice) {
+export async function mint(numberofNFTs, e) {
   const maticPrice = "https://api.binance.com/api/v3/ticker/price?symbol=MATICUSDT";
   const responseMatic = await fetch(maticPrice);
   const dataMatic = await responseMatic.json()
@@ -204,13 +204,14 @@ export async function mint(numberofNFTs, e, nftPrice) {
     if (chainId == 137) {
       //mint for polygon network
       ContractID = NFTCONTRACT;
-      const contract = require("../../config/contract.json");
-      const nftContract = await ethers.Contract(contract.abi, ContractID);
-      console.log(nftContract);
 
-      const tokenURI = nftContract.getTokenURI();
+      // get NFT contract ABI
+      // const contract = require("../../config/contract.json");
+      // const nftContract = await provider.Contract(contract.abi, ContractID);
+      // console.log(nftContract);
+      // const tokenURI = nftContract.getTokenURI();
 
-      nftPrice = 60 * maticRate;
+      var nftPrice = 60 * maticRate;
       console.log("NFT Price in Matic " + nftPrice);
       localStorage.setItem("nftPriceMatic", nftPrice);
       var gasfromcontract = await provider.getGasPrice(16);
@@ -227,11 +228,13 @@ export async function mint(numberofNFTs, e, nftPrice) {
     else if (chainId == 56) {
       //mint for BSC network
       ContractID = BSCNFTCONTRACT;
-      const contract = require("../../config/contract.json");
-      const nftContract = await ethers.Contract(contract.abi, ContractID);
-      const tokenURI = nftContract.getTokenURI();
 
-      nftPrice = 60 * bnbRate;
+      // get NFT contract ABI
+      // const contract = require("../../config/contract.json");
+      // const nftContract = await provider.Contract(contract.abi, ContractID);
+      // const tokenURI = nftContract.getTokenURI();
+
+      var nftPrice = 60 * bnbRate;
       localStorage.setItem("nftPriceBNB", nftPrice);
       var gasfromcontract = await provider.getGasPrice(16);
       //convert gas to ether
@@ -247,11 +250,13 @@ export async function mint(numberofNFTs, e, nftPrice) {
     else if (chainId == 1) {
       //mit for ETH network
       ContractID = ETHNFTCONTRACT;
-      const contract = require("../../config/contract.json");
-      const nftContract = await ethers.Contract(contract.abi, ContractID);
-      const tokenURI = nftContract.getTokenURI();
 
-      nftPrice = 60 * ethRate;
+      // get NFT contract ABI
+      // const contract = require("../../config/contract.json");
+      // const nftContract = await provider.Contract(contract.abi, ContractID);
+      // const tokenURI = nftContract.getTokenURI();
+
+      var nftPrice = 60 * ethRate;
       localStorage.setItem("nftPriceETH", nftPrice);
       var gasfromcontract = await provider.getGasPrice(16);
       //convert gas to ether
@@ -282,15 +287,18 @@ export async function mint(numberofNFTs, e, nftPrice) {
     // Config Fee rateValue
     var feeNumberNft = numberofNFTs * 1
 
-    const nonce = await provider.getTransactionCount(accounts, 'latest'); //get latest nonce
+    // const nonce = await provider.getTransactionCount(accounts, 'latest'); //get latest nonce
     //the transaction
-    const tx = {
-      'from': accounts,
-      'to': ContractID,
-      'nonce': nonce,
-      'gas': 500000,
-      'data': nftContract.methods.mintNFT(accounts, tokenURI).encodeABI()
-    };
+    // var cont = nftContract;
+    // var uri = tokenURI;
+
+    // const tx = {
+    //   'from': accounts,
+    //   'to': ContractID,
+    //   'nonce': nonce,
+    //   'gas': 500000,
+    //   'data': cont.methods.mintNFT(accounts, uri).encodeABI()
+    // };
 
     ethereum.request({
       method: "eth_sendTransaction", params: [{

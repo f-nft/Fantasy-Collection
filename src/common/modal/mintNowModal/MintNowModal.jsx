@@ -28,7 +28,7 @@ const MintNowModal = () => {
                 <img src={mintImg} alt="f-nft mint" />
                 <h5 style={{ color: "red" }}>Please Refesh Page if You Change The Network</h5> 
               </div>
-              <Button onClick={() => mintModalHandle()} onExit={reload}>
+              <Button onClick={() => mintModalHandle()} onClose={reload}>
                 <FiX />
               </Button>
             </div>
