@@ -267,6 +267,15 @@ const BannerV1Wrapper = styled.section`
     background: greenyellow;
   }
   
+  @media screen and (max-height: 450px) {
+    .overlay a {font-size: 20px}
+    .overlay .closebtn {
+      font-size: 40px;
+      top: 15px;
+      right: 35px;
+    }
+  }
+  
 `;
 
 export default BannerV1Wrapper;
