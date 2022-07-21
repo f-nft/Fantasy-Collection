@@ -18,9 +18,8 @@ const BannerV1Wrapper = styled.section`
   background-size: cover;
   background-position: top center;
   background-repeat: no-repeat;
-  padding-top: 192px;
+  padding-top: 139px;
   
-
   .f-nft_v1_baner_left {
     margin-top: 200px;
     max-width: 500px;
@@ -39,7 +38,7 @@ const BannerV1Wrapper = styled.section`
       line-height: 80px;
       text-transform: uppercase;
       color: #ffffff;
-      margin-bottom: 32px;
+      margin-bottom: -5px;
     }
 
     h3 {
@@ -178,8 +177,8 @@ const BannerV1Wrapper = styled.section`
     .f-nft_v1_baner_left {
       h2 {
         font-size: 40px;
-        line-height: 50px;
-        margin-bottom: 20px;
+        line-height: 20px;
+        margin-bottom: 5px;
       }
 
       h3 {
@@ -258,6 +257,16 @@ const BannerV1Wrapper = styled.section`
       }
     }
   }
+
+  .modal {
+    position: fixed;
+    top: 150px;
+    left: 150px;
+    width: 50%;
+    height: 50%;
+    background: greenyellow;
+  }
+  
 `;
 
 export default BannerV1Wrapper;

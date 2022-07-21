@@ -28,12 +28,11 @@ const MintNowModal = () => {
                 <img src={mintImg} alt="f-nft mint" />
                 <h5 style={{ color: "red" }}>Please Refesh Page if You Change The Network</h5> 
               </div>
-              <button onClick={() => mintModalHandle()}>
+              <Button onClick={() => mintModalHandle()} onExit={reload}>
                 <FiX />
-              </button>
+              </Button>
             </div>
             <div className="modal_body text-center">
-
               <div className="mint_count_list">
                 <ul>
                   <li>
@@ -44,9 +43,9 @@ const MintNowModal = () => {
                   </li>
                   <li>
                     <h5>Price Total</h5>
-                    {localStorage.getItem("maticPrice") ? (
+                    {localStorage.getItem("ethPrice") ? (
                       <h5>
-                        {localStorage.getItem("maticPrice")*count} ETH
+                        {localStorage.getItem("ethPrice") * count} ETH
                       </h5>
                     ) : (
                     <h5 id="price"> {0.05 * count} ETH</h5>

@@ -6,10 +6,10 @@ import BannerV1Wrapper from "./Banner.style";
 import characterThumb from "../../../../assets/images/nft/Character1.png";
 import mintLiveText from "../../../../assets/images/nft/mint_live_text.png";
 import homeImageBG from "../../../../assets/images/nft/home_img_bg.png";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Countdown from "../../countdown/countDown";
 import PriceSlider from "../../../../components/price/priceSlider";
-import { useState } from "react";
+
 const Banner = () => {
   const { mintModalHandle } = useModal();
   const[show, setShow] = useState(false);
@@ -19,11 +19,11 @@ const Banner = () => {
     localStorage.removeItem("walletAddress");
     localStorage.removeItem("balance");
   }, []);
+
   return (
     <BannerV1Wrapper id="home">
        {show?(<PriceSlider />):(null)}
       <div className="container" style={{ marginTop: "-200px" }}>
-        
         <div className="row">
           <div className="col-lg-6">
             <div className="f-nft_v1_baner_left">
@@ -41,7 +41,7 @@ const Banner = () => {
                   (<span style={{ color: "white" }}>0x0</span>)}
               </h5>
               <div className="f-nft_v1_timer">
-                <h5 className="text-uppercase" style={{ color: "red" }}>Public Mint end in</h5>
+                <h5 className="text-uppercase" style={{ color: "red" }}>Public Mint End In</h5>
                 <div className="timer timer_1">
                   <Countdown style={{ maxWidth: "30%" }}
                     timeTillDate="10 30 2022, 6:00 am"
@@ -60,25 +60,9 @@ const Banner = () => {
                 </Button>
                 <Button lg variant="outline" data-toggle="modal" data-target="#exampleModalCenter"
                  //onClick display PriceSlider component
-                  onClick={() => {show?(setShow(false)) :(setShow(true))}}>
+                  onClick={() => { show ? (setShow(false)) : (setShow(true)) }}>
                  {show?("Close"):("NFT Price")}
-                  </Button>
-                <div className="modal fade" id="exampleModalCenter" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                  <div className="modal-dialog modal-dialog-centered" role="document">
-                    <div className="modal-content">
-                      <div className="modal-header">
-                        <h5 className="modal-title" id="exampleModalCenterTitle">NFT Price</h5>
-                        <Button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                        </Button>
-                      </div>
-                     
-                      <div className="modal-footer">
-                        <Button type="button" data-dismiss="modal">Close</Button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                </Button>
               </div>
               <div className="coin-info">
                 <span>Max 10 NFTs per wallet . Price $60 + gas</span>
