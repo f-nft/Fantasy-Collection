@@ -16,7 +16,6 @@ import contract from "../../config/contract.json";
 // import { STAKINGCONTRACT } from "../../config/config";
 // import ABI from '../../config/ABI.json';
 // import VAULTABI from '../../config/VAULTABI.json';
-const contr = process.env.smp
 
 const { ethereum } = window;
 var provider = null;
@@ -159,7 +158,7 @@ const WalletModal = () => {
   );
 };
 
-export async function mint(numberofNFTs, e) {
+export async function mint(numberofNFTs, e, nftPriceETH) {
   const maticPrice = "https://api.binance.com/api/v3/ticker/price?symbol=MATICUSDT";
   const responseMatic = await fetch(maticPrice);
   const dataMatic = await responseMatic.json()
