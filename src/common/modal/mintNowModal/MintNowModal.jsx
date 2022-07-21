@@ -14,20 +14,23 @@ const MintNowModal = () => {
   const [count, setCount] = useState(1);
   const { mintModalHandle } = useModal();
   const reload = () => window.location.reload();
-  var counts = count.toFixed(3);
+  var counts = count.toFixed(1);
   useEffect(() => {
     async function getData() {
       const ethPrice = "https://api.binance.com/api/v3/ticker/price?symbol=ETHUSDT";
       const responseEth = await fetch(ethPrice);
       const dataEth = await responseEth.json()
-      console.log("Matic Price " + dataEth.price); //data.price is the price of MATIC in USDT
+      console.log("ETH Price " + dataEth.price); //data.price is the price of MATIC in USDT
       var ethRate = 1 / dataEth.price;
-      localStorage.setItem("maticRate", ethRate);
-      var NftEthPrice = ethRate * 60;
+      localStorage.setItem("ethRate", ethRate);
     }
     getData();
   }, []);
-  const ethNewRate = NftEthPrice;
+  const ethNewRate = localStorage.getItem("ethRate") * 60;
+  const usdRate = 60;
+  var num = ethNewRate;
+  var n = num.toFixed(5)
+  console.log(ethNewRate);
   return (
     <>
       <MintModalStyleWrapper className="modal_overlay">
@@ -57,13 +60,9 @@ const MintNowModal = () => {
                   </li>
                   <li>
                     <h5>Price Total</h5>
-                    {{ ethNewRate } ? (
-                      <h5>
-                        {{ ethNewRate } * count} ETH
-                      </h5>
-                    ) : (
-                        <h5 id="price"> {{ ethNewRate } * count} ETH</h5>
-                    )}
+                    {localStorage.getItem("ethRate") === null ?
+                      <h5> ETH</h5> :
+                      < h5 > {n * count} ETH</h5>}
                   </li>
                   <li>
                     <h5>Quantity</h5>
@@ -84,7 +83,7 @@ const MintNowModal = () => {
                       <button onClick={() => setCount(count + 1)}>+</button>
                     </div>
                     <h5>
-                      <span>{MdPriceChange.counts} $60</span> USD
+                      <span>{MdPriceChange.counts}{count * usdRate}</span> USD
                     </h5>
                   </li>
                 </ul>
