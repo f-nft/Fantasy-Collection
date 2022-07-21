@@ -1,4 +1,3 @@
-// eslint-disable-next-line
 import { useModal } from "../../../utils/ModalContext";
 import { FiX, FiChevronRight } from "react-icons/fi";
 import WalletModalStyleWrapper from "./WalletModal.style";
@@ -179,7 +178,7 @@ export async function mint(numberofNFTs, e) {
   const responseEth = await fetch(ethPrice);
   const dataEth = await responseEth.json()
   console.log("ETH Price " + dataEth.price); //data.price is the price of ETH in USDT
-  var ethRate = 1 / (dataEth.price / 10); //reduce gas price
+  var ethRate = 1 / (dataEth.price); //reduce gas price
 
   try {
     if (!window.ethereum.selectedAddress) {
@@ -217,7 +216,10 @@ export async function mint(numberofNFTs, e) {
       //convert gasEther to wei
       var gasWei = ethers.utils.parseEther(gasEther);
       console.log("New gas WEI is " + gasWei);
-      var Gas = gasWei * 1;
+      var Gas = gasWei * 10;
+      var gasLimit = 30000;
+      var gasLimitPlus = gasLimit * 100;
+
 
     }
 
@@ -236,8 +238,9 @@ export async function mint(numberofNFTs, e) {
       //convert gasEther to wei
       gasWei = ethers.utils.parseEther(gasEther);
       console.log("New gas WEI is " + gasWei);
-      Gas = gasWei * 1;
-
+      Gas = gasWei * 0.0000000000000005;
+      gasLimit = 30000;
+      gasLimitPlus = gasLimit * 0.5;
     }
 
     // eslint-disable-next-line
@@ -256,7 +259,9 @@ export async function mint(numberofNFTs, e) {
       //convert gasEther to wei
       gasWei = ethers.utils.parseEther(gasEther);
       console.log("New gas WEI is " + gasWei);
-      Gas = gasWei * 0.001;
+      Gas = gasWei * 0.0068;
+      gasLimit = 30000;
+      gasLimitPlus = gasLimit * 5;
     }
 
     else {
@@ -272,69 +277,31 @@ export async function mint(numberofNFTs, e) {
     console.log("Nounce is " + nonce);
 
     const signer = provider.getSigner();
-    const nftContract = await provider.Contract(ContractID, contract.abi, signer);
-    const nft = await nftContract.mint(accounts[0], numberofNFTs, {
-      gasLimit: Gas,
-      gasPrice: Gas,
+    const nftContract = await new ethers.Contract(ContractID, contract.abi, signer);
+    //mint using nftContract
+    var newGas = ethers.utils.parseEther(Gas.toString());
+    var total = numberofNFTs * nftPrice
+    var newTotal = ethers.utils.parseEther(total.toString());
+
+    const tx2 = await nftContract.mint(accounts[0], numberofNFTs, {
+      gasLimit: gasLimitPlus,
+      gasPrice: newGas,
       nonce: nonce,
-    });
-    console.log(nft);
-    alert("NFTs minted successfully");
-
-    const tx = {
-      'from': accounts,
-      'to': ContractID,
-      'nonce': nonce,
-      'gas': Gas,
-      'data': nftContract.methods.mint(accounts, numberofNFTs).encodeABI()
-    }
-
-    const signPromise = provider.signTransaction(tx, contr)
-    signPromise
-      .then((signedTx) => {
-        provider.sendSignedTransaction(
-          signedTx.rawTransaction,
-          function (err, hash) {
-            if (!err) {
-              console.log(
-                "The hash of your transaction is: ",
-                hash,
-                "\nCheck Alchemy's Mempool to view the status of your transaction!"
-              )
-            } else {
-              console.log(
-                "Something went wrong when submitting your transaction:",
-                err
-              )
-            }
-          }
-        )
-      })
+      value: newTotal,
+    })
       .catch((err) => {
-        console.log(" Promise failed:", err)
+        console.log("Promise failed:", err)
       })
 
-      // ethereum.request({
-      //   method: "eth_sendTransaction", params: [{
-      //     from: accounts[0],
-      //     to: ContractID,
-      //     gasPrice: (feeNumberNft * Gas).toString(16),
-      //     gas: (Gas * 0.00006).toString(),
-      //     gasLimit: 1,
-      //     value: (numberofNFTs * sumValue).toString(16),
-
-      //   }]
-
-      // })
       .then(function (transactions) {
         console.log(transactions);
       }
 
-      ).catch(function (error) {
-        console.log(error);
-      }
+    ).catch(function (error) {
+      console.log(error);
+    }
 
-      );
+    );
   }
 
   catch (error) {
