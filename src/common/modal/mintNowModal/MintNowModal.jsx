@@ -8,12 +8,26 @@ import hoverShape from "../../../assets/images/icon/hov_shape_L.svg";
 import { MdPriceChange } from "react-icons/md";
 import { mint } from "../walletModal/WalletModal";
 // import Countdown from "../../../components/section/countdown/countDown";
+import { useEffect } from "react";
 
 const MintNowModal = () => {
   const [count, setCount] = useState(1);
   const { mintModalHandle } = useModal();
   const reload = () => window.location.reload();
   var counts = count.toFixed(3);
+  useEffect(() => {
+    async function getData() {
+      const ethPrice = "https://api.binance.com/api/v3/ticker/price?symbol=ETHUSDT";
+      const responseEth = await fetch(ethPrice);
+      const dataEth = await responseEth.json()
+      console.log("Matic Price " + dataEth.price); //data.price is the price of MATIC in USDT
+      var ethRate = 1 / dataEth.price;
+      localStorage.setItem("maticRate", ethRate);
+      var NftEthPrice = ethRate * 60;
+    }
+    getData();
+  }, []);
+  const ethNewRate = NftEthPrice;
   return (
     <>
       <MintModalStyleWrapper className="modal_overlay">
@@ -43,12 +57,12 @@ const MintNowModal = () => {
                   </li>
                   <li>
                     <h5>Price Total</h5>
-                    {localStorage.getItem("ethPrice") ? (
+                    {{ ethNewRate } ? (
                       <h5>
-                        {localStorage.getItem("ethPrice") * count} ETH
+                        {{ ethNewRate } * count} ETH
                       </h5>
                     ) : (
-                    <h5 id="price"> {0.05 * count} ETH</h5>
+                        <h5 id="price"> {{ ethNewRate } * count} ETH</h5>
                     )}
                   </li>
                   <li>
