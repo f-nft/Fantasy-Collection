@@ -7,10 +7,10 @@ const modalAnimation = keyframes`${fadeIn}`;
 const MintModalStyleWrapper = styled.div`
   &.modal_overlay {
     position: fixed;
-    height: 30%;
-    width: 60%;
+    height: 50%;
+    width: 50%;
     left: 50%;
-    top: 25%;
+    top: 33%;
     transform: translate(-50%, -50%);
     z-index: 999;
     display: flex;
@@ -20,28 +20,28 @@ const MintModalStyleWrapper = styled.div`
       position: absolute;
       left: 0;
       top: 0;
-      height: 50%;
-      width: 50%;
+      height: 100%;
+      width: 100%;
       background: #000;
       content: "";
       opacity: 0.79;
-      backdrop-filter: blur(33px);
+      backdrop-filter: blur(39px);
     }
   }
 
   .mint_modal_box {
     position: fixed;
-    width: 400px;
+    width: 390px;
     margin: auto;
-    animation: 1s ${modalAnimation}; /* ********* */
+    animation: 2s ${modalAnimation}; /* ********* */
 
     &::before {
-      backdrop-filter: blur(5px);
+      backdrop-filter: blur(39px);
       position: absolute;
       left: 0;
       top: 0;
-      height: 100%;
-      width: 100%;
+      height: 50%;
+      width: 50%;
       background: #171c21;
       content: "";
     }
@@ -67,7 +67,7 @@ const MintModalStyleWrapper = styled.div`
     h2 {
       font-family: "Bakbak One";
       font-style: normal;
-      font-weight: 200;
+      font-weight: 300;
       font-size: 18px;
       line-height: 18px;
       text-align: center;
