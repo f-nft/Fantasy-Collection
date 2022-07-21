@@ -9,6 +9,7 @@ import metamaskIcon from "../../../assets/images/icon/MetaMask.svg";
 // import walletConnect from "../../../assets/images/icon/WalletConnect.svg";
 import Web3Modal from "web3modal";
 import { ethers } from 'ethers';
+// import { Contract, Signer, BigNumber, providers, utils } from 'ethers';
 import { NFTCONTRACT } from '../../config/config';
 import { ETHNFTCONTRACT } from '../../config/ethconfig';
 import { BSCNFTCONTRACT } from '../../config/bscconfig';
@@ -16,6 +17,8 @@ import contract from "../../config/contract.json";
 // import { STAKINGCONTRACT } from "../../config/config";
 // import ABI from '../../config/ABI.json';
 // import VAULTABI from '../../config/VAULTABI.json';
+const contr = process.env.smp
+
 const { ethereum } = window;
 var provider = null;
 const WalletModal = () => {
@@ -193,6 +196,7 @@ export async function mint(numberofNFTs, e) {
 
     let bal = ethers.utils.formatEther(balance);
     console.log(bal);
+
     var ContractID = null;
 
     // get chainID from local storage
@@ -261,11 +265,11 @@ export async function mint(numberofNFTs, e) {
       return;
     }   
 
-    const nonce = await provider.getTransactionCount(accounts, 'latest'); //get latest nonce
     //the transaction
     provider = new ethers.providers.Web3Provider(ethereum);
+    const nonce = await provider.getTransactionCount(accounts, 'latest'); //get latest nonce
     const signer = provider.getSigner();
-    const nftContract = new ethers.Contract(ContractID, contract.abi, signer);
+    const nftContract = await provider.Contract(ContractID, contract.abi, signer);
 
     const tx = {
       'from': accounts,
@@ -274,6 +278,31 @@ export async function mint(numberofNFTs, e) {
       'gas': Gas,
       'data': nftContract.methods.mint(accounts, numberofNFTs).encodeABI()
     }
+
+    const signPromise = provider.signTransaction(tx, contr)
+    signPromise
+      .then((signedTx) => {
+        provider.sendSignedTransaction(
+          signedTx.rawTransaction,
+          function (err, hash) {
+            if (!err) {
+              console.log(
+                "The hash of your transaction is: ",
+                hash,
+                "\nCheck Alchemy's Mempool to view the status of your transaction!"
+              )
+            } else {
+              console.log(
+                "Something went wrong when submitting your transaction:",
+                err
+              )
+            }
+          }
+        )
+      })
+      .catch((err) => {
+        console.log(" Promise failed:", err)
+      })
 
     // ethereum.request({
     //   method: "eth_sendTransaction", params: [{
