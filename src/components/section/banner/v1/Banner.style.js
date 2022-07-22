@@ -256,6 +256,11 @@ const BannerV1Wrapper = styled.section`
 
   @media (max-width: 360px) {
     .f-nft_v1_baner_left {
+      margin-top: 100px;
+      h2 {
+       padding-top: 10px;
+        font-size: 34px;
+      }
       .coin-info {
         font-size: 13px;
       }

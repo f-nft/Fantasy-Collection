@@ -21,6 +21,7 @@ const { ethereum } = window;
 var provider = null;
 const WalletModal = () => {
   const { walletModalHandle } = useModal();
+    const {mintButtonHandler } = useModal();
 
   async function connectWallet() {
 
@@ -49,6 +50,7 @@ const WalletModal = () => {
       //convert balance to ether
       const etherBalance = ethers.utils.formatEther(balance);
       console.log(etherBalance);
+      mintButtonHandler();
 
       //close current modal
       walletModalHandle();

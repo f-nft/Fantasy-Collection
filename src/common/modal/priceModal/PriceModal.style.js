@@ -6,7 +6,7 @@ const modalAnimation = keyframes`${fadeIn}`;
 
 const PriceModalStyleWrapper = styled.div`
   &.modal_overlay {
-    position: fixed;
+    position: absolute;
     height: max-content;
     width: 75%;
     left: 50%;

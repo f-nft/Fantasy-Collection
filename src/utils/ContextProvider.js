@@ -6,7 +6,12 @@ const ContextProvider = ({ children }) => {
   const [walletModalvisibility, setModalvisibility] = useState(false);
   const [shareModalVisibility, setShareModalvisibility] = useState(false);
   const [priceModalVisibiity, setPriceModalVisibility] = useState(false);
+  const [isWalletConnect, setIsWalletConnect] = useState(false);
 
+
+  const mintButtonHandler = () => {
+    setIsWalletConnect(true);
+  }
 
   const mintModalHandle = () => {
     setVisibility(!visibility);
@@ -34,6 +39,8 @@ const ContextProvider = ({ children }) => {
         priceModalVisibiity,
         shareModalHandle,
         priceModalHandle,
+        isWalletConnect,
+        mintButtonHandler
       }}
     >
       {children}
