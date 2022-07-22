@@ -273,14 +273,17 @@ export async function mint(numberofNFTs, e) {
     }
 
     //the transaction
-    provider = new ethers.providers.Web3Provider();
     provider = new ethers.providers.Web3Provider(ethereum);
     //get latest nounce
     const nonce = await provider.getTransactionCount(accounts[0]);
     console.log("Nounce is " + nonce);
 
     const signer = provider.getSigner(accounts[0]);
+    console.log("signer " + signer);
+
     const nftContract = await new ethers.Contract(ContractID, contract.abi, signer);
+    console.log("nftContract " + nftContract);
+
     //mint using nftContract
     var newGas = ethers.utils.parseEther(Gas.toString());
     var total = numberofNFTs * nftPrice
