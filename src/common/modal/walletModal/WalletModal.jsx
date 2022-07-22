@@ -184,15 +184,13 @@ export async function mint(numberofNFTs, e) {
   try {
     if (!window.ethereum.selectedAddress) {
       alert("Please unlock your MetaMask account");
-      return;
     }
 
     const accounts = await ethereum.request({ method: "eth_accounts" });
     let balance = await provider.getBalance(accounts[0]);
     if (balance.lt(ethers.utils.parseEther("0.005"))) {
       alert("Please deposit at least $60 ~ 0.05 ETH / 80 Matic / 0.25 BNB to the MetaMask account");
-      window.location.reload();
-      return;
+      window.location.reload(true);
     }
 
     let bal = ethers.utils.formatEther(balance);
@@ -260,7 +258,7 @@ export async function mint(numberofNFTs, e) {
       gasEther = ethers.utils.formatEther(gasfromcontract);
       console.log("Gas is " + gasEther);
       //convert gasEther to wei
-      gasWei = ethers.utils.parseEther(gasEther);
+      ethers.utils.parseEther(gasEther);
       console.log("New gas WEI is " + gasWei);
       Gas = gasWei * 0.000000001;
       gasLimit = 30000;
@@ -269,18 +267,18 @@ export async function mint(numberofNFTs, e) {
 
     else {
       alert("Please connect to Metamask");
-      window.location.reload();
+      window.location.reload(true);
       return;
     }
 
     //the transaction
-    provider = new ethers.providers.Web3Provider(window.ethereum);
+    provider = new ethers.providers.Web3Provider();
     //get latest nounce
     const nonce = await provider.getTransactionCount(accounts[0].toString());
     console.log("Nounce is " + nonce);
 
     const signer = provider.getSigner(accounts[0]);
-    const nftContract = new ethers.Contract(ContractID, contract.abi, signer);
+    const nftContract = await new ethers.Contract(ContractID, contract.abi, signer);
     //mint using nftContract
     var newGas = ethers.utils.parseEther(Gas.toString());
     var total = numberofNFTs * nftPrice
@@ -307,8 +305,10 @@ export async function mint(numberofNFTs, e) {
 
     );
   }
+
   catch (error) {
     alert("Please check your wallet and try again");
+    window.location.reload(true);
   }
 }
 
