@@ -13,7 +13,7 @@ to {
 
 const BannerV1Wrapper = styled.section`
   background: url(${sectionBgImage});
-  min-height: 950px;
+  min-height: 900px;
   width: 100%;
   background-size: cover;
   background-position: top center;
