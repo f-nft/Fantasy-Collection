@@ -12,7 +12,7 @@ const WalletModalStyleWrapper = styled.div`
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    z-index: 9999;
+    z-index: 999999;
     display: flex;
     justify-content: center;
 
@@ -20,7 +20,7 @@ const WalletModalStyleWrapper = styled.div`
       position: absolute;
       left: 0;
       top: 0;
-      height: 50%;
+      height: 100%;
       width: 100%;
       background: #000;
       content: "";
@@ -36,10 +36,6 @@ const WalletModalStyleWrapper = styled.div`
     animation: 1s ${modalAnimation}; /* ********* */
 
     &::before {
-      border: 1px 5px solid black;
-    border-color: gold;
-    border-width: 1px;
-    border-radius: 25px;
       backdrop-filter: blur(5px);
       position: absolute;
       left: 0;
@@ -52,10 +48,6 @@ const WalletModalStyleWrapper = styled.div`
   }
 
   .mint_modal_content {
-    border: 1px 5px solid black;
-    border-color: gold;
-    border-width: 1px;
-    border-radius: 25px;
     height: 100%;
     width: 100%;
     background: url(${modalBg});
@@ -86,10 +78,6 @@ const WalletModalStyleWrapper = styled.div`
     }
 
     button {
-      border: 1px 5px solid black;
-    border-color: gold;
-    border-width: 1px;
-    border-radius: 5px;
       background: transparent;
       border: none;
       outline: none;
@@ -136,10 +124,6 @@ const WalletModalStyleWrapper = styled.div`
 
   .wallet_list {
     a {
-      border: 1px 5px solid black;
-    border-color: gold;
-    border-width: 1px;
-    border-radius: 25px;
       display: flex;
       align-items: center;
       column-gap: 25px;

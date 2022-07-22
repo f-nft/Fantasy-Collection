@@ -6,87 +6,51 @@ const modalAnimation = keyframes`${fadeIn}`;
 
 const MintModalStyleWrapper = styled.div`
   &.modal_overlay {
-    border: 1px 5px solid black;
-    border-color: gold;
-    border-width: 1px;
-    border-radius: 25px;
     position: absolute;
-    max-height: 79%;
-    max-width: 79%;
+    height: 100%;
+    width: 100%;
     left: 50%;
-    top: 39%;
+    top: 50%;
     transform: translate(-50%, -50%);
     z-index: 999;
     display: flex;
     justify-content: center;
 
     &::before {
-      border: 1px 5px solid black;
-      border-color: gold;
-      border-width: 1px;
-      border-radius: 25px;
       position: absolute;
-      justify-content: center;
-      left: 30;
-      top: 50;
-      height: 500%;
-      width: 500%;
+      left: 0;
+      top: 0;
+      height: 150%;
+      width: 100%;
       background: #000;
       content: "";
-      opacity: 0.82;
-      backdrop-filter: blur(39px);
+      opacity: 0.92;
+      backdrop-filter: blur(33px);
     
     }
-    .mint_img 
-  {
-    border: 1px 5px solid black;
-    border-color: gold;
-    border-width: 1px;
-    border-radius: 25px;
-  }
   }
 
   .mint_modal_box {
-    border: 1px 5px solid black;
-    border-color: gold;
-    border-width: 1px;
-    border-radius: 25px;
     position: relative;
     margin-top: 80px;
-    width: 450px;
-    max-height: 70%;
+    width: 440px;
    
     animation: 1s ${modalAnimation}; /* ********* */
 
     &::before {
-      border: 1px 5px solid black;
-    border-color: gold;
-    border-width: 1px;
-    border-radius: 25px;
       backdrop-filter: blur(5px);
       position: absolute;
       left: 0;
       top: 0;
-      height: 120%;
+      height: 150%;
       width: 100%;
       background: #171c21;
       content: "";
 
     }
-    .mint_img 
-  {
-    border: 1px 5px solid black;
-    border-color: gold;
-    border-width: 1px;
-    border-radius: 25px;
-  }
   }
 
   .mint_modal_content {
-    border: 1px 5px solid black;
-    border-color: gold;
-    border-width: 1px;
-    border-radius: 25px;
     height: 100%;
     width: 100%;
     background: url(${modalBg});
@@ -94,7 +58,7 @@ const MintModalStyleWrapper = styled.div`
     background-position: center center;
     background-repeat: no-repeat;
     padding: 45px;
-    padding-bottom: 10px;
+    padding-bottom: 50px;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -104,24 +68,19 @@ const MintModalStyleWrapper = styled.div`
   .modal_header {
     h2 {
       font-family: "Bakbak One";
-      font-style: bold;
-      font-weight: 500;
-      font-size: 20px;
-      line-height: 20px;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 24px;
+      line-height: 28px;
       text-align: center;
       text-transform: uppercase;
       color: #ffffff;
-      max-width: 380px;
+      max-width: 280px;
       margin: auto;
-      margin-top: -10px;
-      margin-bottom: 10px;
+      margin-bottom: 26px;
     }
 
     button {
-      border: 5px solid black;
-    border-color: gold;
-    border-width: 0px;
-    border-radius: 5px;
       background: transparent;
       border: none;
       outline: none;
@@ -141,10 +100,6 @@ const MintModalStyleWrapper = styled.div`
       }
 
       &:before {
-        border: 1px 5px solid black;
-    border-color: gold;
-    border-width: 1px;
-    border-radius: 25px;
         content: "";
         background: rgba(255, 255, 255, 0.1);
         height: 150%;
@@ -174,7 +129,7 @@ const MintModalStyleWrapper = styled.div`
           font-family: "Inter";
           font-style: normal;
           font-weight: 600;
-          font-size: 18px;
+          font-size: 16px;
           line-height: 19px;
           text-align: right;
           color: #ffffff;
@@ -190,10 +145,7 @@ const MintModalStyleWrapper = styled.div`
           height: 100%;
 
           button {
-            border: 5px solid black;
-            border-color: gold;
-            border-width: 1px;
-            border-radius: 25px;
+            border: none;
             outline: none;
             background: transparent;
             padding: 0px;
@@ -236,20 +188,12 @@ const MintModalStyleWrapper = styled.div`
 
   .modal_mint_btn {
     button {
-      border: 1px solid black;
-    border-color: black;
-    border-width: 1px;
-    border-radius: 25px;
       width: 100%;
     }
   }
   .modal_bottom_shape {
-    border: 1px 5px solid black;
-    border-color: gold;
-    border-width: 1px;
-    border-radius: 25px;
     position: absolute;
-    bottom: 5px;
+    bottom: 10px;
 
     &.shape_left {
       left: 10px;
@@ -260,12 +204,8 @@ const MintModalStyleWrapper = styled.div`
       transform: rotate(180deg);
     }
   }
-  .mint_img 
-  {
-    border: 1px 5px solid black;
-    border-color: gold;
-    border-width: 1px;
-    border-radius: 25px;
+  .mint_img {
+    
   }
 `;
 
