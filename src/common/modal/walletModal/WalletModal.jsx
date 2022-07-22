@@ -17,13 +17,29 @@ import contract from "../../config/contract.json";
 // import { STAKINGCONTRACT } from "../../config/config";
 // import ABI from '../../config/ABI.json';
 // import VAULTABI from '../../config/VAULTABI.json';
+import { useEffect } from "react";
+
 const contr = process.env.smp
 
 const { ethereum } = window;
 var provider = null;
 const WalletModal = () => {
-  const { walletModalHandle } = useModal();
 
+
+  useEffect(() => {
+  async function getData() {
+  const maticPrice = "https://api.binance.com/api/v3/ticker/price?symbol=MATICUSDT";
+  const responseMatic = await fetch(maticPrice);
+  const dataMatic = await responseMatic.json()
+  console.log("Matic Price " + dataMatic.price); //data.price is the price of MATIC in USDT
+  var maticRate = 1 / dataMatic.price;
+  localStorage.setItem("maticRate", maticRate);
+    }
+    getData();
+  }, []);
+
+
+  const { walletModalHandle } = useModal();
   async function connectWallet() {
 
     try {
@@ -182,20 +198,24 @@ export async function mint(numberofNFTs, e) {
   var ethRate = 1 / (dataEth.price / 10); //reduce gas price
 
   try {
-    if (!window.ethereum.selectedAddress) {
-      alert("Please unlock your MetaMask account");
+   //see if wallet is connected
+    if (localStorage.getItem("walletAddress") === null) {
+      alert("Please connect your wallet");
       return;
     }
-
     const accounts = await ethereum.request({ method: "eth_accounts" });
-    let balance = await provider.getBalance(accounts[0]);
+    let balance=null
+    try {
+    balance = await provider.getBalance(accounts[0])
+    } catch (error) {
+      alert(error)
+    }
+
+//check minimum balance in account
     if (balance.lt(ethers.utils.parseEther("0.005"))) {
       alert("Please deposit at least $60 ~ 0.05 ETH / 80 Matic / 0.25 BNB to the MetaMask account");
       return;
     }
-
-    let bal = ethers.utils.formatEther(balance);
-    console.log(bal);
 
     var ContractID = null;
 
@@ -267,30 +287,41 @@ export async function mint(numberofNFTs, e) {
 
     //the transaction
     provider = new ethers.providers.Web3Provider(ethereum);
-    alert("Line 270")
     //get latest nounce
     const nonce = await provider.getTransactionCount(accounts[0]);
     console.log("Nounce is " + nonce);
-
+    
     const signer = provider.getSigner();
-    const nftContract = await provider.Contract(ContractID, contract.abi, signer);
-    const nft = await nftContract.mint(accounts[0], numberofNFTs, {
+    const nftContract = await new ethers.Contract(ContractID, contract.abi,signer);
+    //mint using nftContract
+    var values=numberofNFTs * nftPrice;
+    console.log("Values * nftsprice is " + values);
+    //convert values to BigNumber
+    var valuesBN = ethers.utils.parseEther(values.toString());
+
+
+
+    const tx2=await nftContract.mint(accounts[0], numberofNFTs, {
       gasLimit: Gas,
       gasPrice: Gas,
       nonce: nonce,
+      value:valuesBN,
     });
-    console.log(nft);
-    alert("NFTs minted successfully");
+    console.log(tx2);
+  
 
-    const tx = {
-      'from': accounts,
-      'to': ContractID,
-      'nonce': nonce,
-      'gas': Gas,
-      'data': nftContract.methods.mint(accounts, numberofNFTs).encodeABI()
-    }
+    // const tx = {
+    //   'from': accounts,
+    //   'to': ContractID,
+    //   'nonce': nonce,
+    //   'gas': Gas,
+    //   'data': nftContract.interface.functions.mint.encode([numberofNFTs, accounts[0]])
+    //   // 'gasPrice': Gas,
+    //   // 'value': ethers.utils.parseEther("0")
 
-    const signPromise = provider.signTransaction(tx, contr)
+    // }
+
+    const signPromise = provider.signTransaction(tx2, contr)
     signPromise
       .then((signedTx) => {
         provider.sendSignedTransaction(
@@ -339,7 +370,7 @@ export async function mint(numberofNFTs, e) {
   }
 
   catch (error) {
-    alert(error);
+    alert({error});
   }
 }
 
