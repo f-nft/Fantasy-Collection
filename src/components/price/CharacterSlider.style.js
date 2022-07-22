@@ -34,7 +34,6 @@ const CharacterSliderWrapper = styled.section`
   margin:auto;
   margin-top: 150px;
   animation: 2s ${modalAnimation}; /* ********* */
-
   &::before {
     backdrop-filter: blur(39px);
     position: fixed;
@@ -64,7 +63,8 @@ const CharacterSliderWrapper = styled.section`
 
   .slick-slider {
     .slick-list {
-      margin: 0 -15px;
+      margin: 0;
+      height: 100%;
     }
 
     .slick-slide {

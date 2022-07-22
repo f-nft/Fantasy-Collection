@@ -16,10 +16,10 @@ const PriceModal=()=> {
     <>
       <PriceModalStyleWrapper className="modal_overlay">
         <div className="mint_modal_box">
-          <div className="mint_modal_content"> 
-              <Button onClick={() => priceModalHandle()} onClose={reload}>
+           <Button style={{"width":"max-content"}} onClick={() => priceModalHandle()} onClose={reload}>
                 <FiX />
               </Button>
+            <div className="mint_modal_content">
                <PriceSlider/>
           </div>
         </div>

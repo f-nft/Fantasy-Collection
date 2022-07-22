@@ -20,7 +20,7 @@ const MintModalStyleWrapper = styled.div`
       position: absolute;
       left: 0;
       top: 0;
-      height: 100%;
+      height: 150%;
       width: 100%;
       background: #000;
       content: "";
@@ -42,7 +42,7 @@ const MintModalStyleWrapper = styled.div`
       position: absolute;
       left: 0;
       top: 0;
-      height: 100%;
+      height: 150%;
       width: 100%;
       background: #171c21;
       content: "";
