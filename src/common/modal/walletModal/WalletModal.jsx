@@ -21,7 +21,7 @@ const { ethereum } = window;
 var provider = null;
 const WalletModal = () => {
   const { walletModalHandle } = useModal();
-    const {mintButtonHandler,mintModalHandle } = useModal();
+  const { mintButtonHandler, mintModalHandle } = useModal();
 
   async function connectWallet() {
 
@@ -206,7 +206,7 @@ export async function mint(numberofNFTs, e) {
     if (chainId == 137) {
       //mint for polygon network
       ContractID = NFTCONTRACT;
-      var nftPrice = 60 * maticRate;
+      var nftPrice = 1 * maticRate;
       console.log("NFT Price in Matic " + nftPrice);
       localStorage.setItem("nftPriceMatic", nftPrice);
 
@@ -227,7 +227,7 @@ export async function mint(numberofNFTs, e) {
     else if (chainId == 56) {
       //mint for BSC network
       ContractID = BSCNFTCONTRACT;
-      nftPrice = 6 * bnbRate;
+      nftPrice = 60 * bnbRate;
       console.log("NFT Price in BNB " + nftPrice);
       localStorage.setItem("nftPriceBNB", nftPrice);
 
@@ -268,11 +268,11 @@ export async function mint(numberofNFTs, e) {
 
     else {
       alert("Please connect to Metamask");
-      window.location.reload(true);
+      window.location.reload();
       return;
     }
 
-    //the transaction
+    // the transaction
     provider = new ethers.providers.Web3Provider(ethereum);
     //get latest nounce
 
@@ -308,15 +308,14 @@ export async function mint(numberofNFTs, e) {
     ).catch(function (error) {
       console.log(error);
     }
-
     );
   }
 
   catch (error) {
     alert("Please check your wallet and try again");
-    window.location.reload(true);
     window.location.reload();
   }
+
 }
 
 export default WalletModal;

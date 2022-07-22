@@ -31,7 +31,7 @@ const Banner = () => {
               <h2>collections</h2>
               <h3>
                 <span className="count">
-                  <Counter end={1325} duration={10000} />
+                  <Counter end={1325} duration={1500} />
                 </span>{" "}
                 / 10,000 Minted
               </h3>
