@@ -4,11 +4,11 @@ import modalBg from "../../../assets/images/bg/modal2_overlay.png";
 
 const modalAnimation = keyframes`${fadeIn}`;
 
-const MintModalStyleWrapper = styled.div`
+const PriceModalStyleWrapper = styled.div`
   &.modal_overlay {
-    position: absolute;
-    height: 100%;
-    width: 100%;
+    position: fixed;
+    height: max-content;
+    width: 75%;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
@@ -33,7 +33,8 @@ const MintModalStyleWrapper = styled.div`
   .mint_modal_box {
     position: relative;
     margin-top: 80px;
-    width: 440px;
+    width: 90%;
+    margin-bottom: 80px;
    
     animation: 1s ${modalAnimation}; /* ********* */
 
@@ -51,18 +52,17 @@ const MintModalStyleWrapper = styled.div`
   }
 
   .mint_modal_content {
-    height: 100%;
+    text-align: right;
+    height: auto;
     width: 100%;
     background: url(${modalBg});
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
-    padding: 45px;
-    padding-bottom: 50px;
     position: relative;
     display: flex;
     flex-direction: column;
-    width: 100%;
+    padding-bottom: 40px;
   }
 
   .modal_header {
@@ -209,4 +209,4 @@ const MintModalStyleWrapper = styled.div`
   }
 `;
 
-export default MintModalStyleWrapper;
+export default PriceModalStyleWrapper;

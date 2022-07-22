@@ -1,4 +1,3 @@
-// eslint-disable-next-line
 import { useModal } from "../../../utils/ModalContext";
 import { FiX, FiChevronRight } from "react-icons/fi";
 import WalletModalStyleWrapper from "./WalletModal.style";
@@ -17,29 +16,12 @@ import contract from "../../config/contract.json";
 // import { STAKINGCONTRACT } from "../../config/config";
 // import ABI from '../../config/ABI.json';
 // import VAULTABI from '../../config/VAULTABI.json';
-import { useEffect } from "react";
-
-const contr = process.env.smp
 
 const { ethereum } = window;
 var provider = null;
 const WalletModal = () => {
-
-
-  useEffect(() => {
-  async function getData() {
-  const maticPrice = "https://api.binance.com/api/v3/ticker/price?symbol=MATICUSDT";
-  const responseMatic = await fetch(maticPrice);
-  const dataMatic = await responseMatic.json()
-  console.log("Matic Price " + dataMatic.price); //data.price is the price of MATIC in USDT
-  var maticRate = 1 / dataMatic.price;
-  localStorage.setItem("maticRate", maticRate);
-    }
-    getData();
-  }, []);
-
-
   const { walletModalHandle } = useModal();
+
   async function connectWallet() {
 
     try {
@@ -176,7 +158,7 @@ const WalletModal = () => {
   );
 };
 
-export async function mint(numberofNFTs, e) {
+export async function mint(numberofNFTs, e, nftPriceETH) {
   const maticPrice = "https://api.binance.com/api/v3/ticker/price?symbol=MATICUSDT";
   const responseMatic = await fetch(maticPrice);
   const dataMatic = await responseMatic.json()
@@ -195,27 +177,23 @@ export async function mint(numberofNFTs, e) {
   const responseEth = await fetch(ethPrice);
   const dataEth = await responseEth.json()
   console.log("ETH Price " + dataEth.price); //data.price is the price of ETH in USDT
-  var ethRate = 1 / (dataEth.price / 10); //reduce gas price
+  var ethRate = 1 / (dataEth.price); //reduce gas price
 
   try {
-   //see if wallet is connected
-    if (localStorage.getItem("walletAddress") === null) {
-      alert("Please connect your wallet");
+    if (!window.ethereum.selectedAddress) {
+      alert("Please unlock your MetaMask account");
       return;
     }
-    const accounts = await ethereum.request({ method: "eth_accounts" });
-    let balance=null
-    try {
-    balance = await provider.getBalance(accounts[0])
-    } catch (error) {
-      alert(error)
-    }
 
-//check minimum balance in account
+    const accounts = await ethereum.request({ method: "eth_accounts" });
+    let balance = await provider.getBalance(accounts[0]);
     if (balance.lt(ethers.utils.parseEther("0.005"))) {
       alert("Please deposit at least $60 ~ 0.05 ETH / 80 Matic / 0.25 BNB to the MetaMask account");
       return;
     }
+
+    let bal = ethers.utils.formatEther(balance);
+    console.log(bal);
 
     var ContractID = null;
 
@@ -237,7 +215,9 @@ export async function mint(numberofNFTs, e) {
       //convert gasEther to wei
       var gasWei = ethers.utils.parseEther(gasEther);
       console.log("New gas WEI is " + gasWei);
-      var Gas = gasWei * 1;
+      var Gas = gasWei * 10;
+      var gasLimit = 30000;
+      var gasLimitPlus = gasLimit * 5000;
 
     }
 
@@ -256,8 +236,9 @@ export async function mint(numberofNFTs, e) {
       //convert gasEther to wei
       gasWei = ethers.utils.parseEther(gasEther);
       console.log("New gas WEI is " + gasWei);
-      Gas = gasWei * 1;
-
+      Gas = gasWei * 0.000000000000001;
+      gasLimit = 30000;
+      gasLimitPlus = gasLimit * 0.8;
     }
 
     // eslint-disable-next-line
@@ -276,91 +257,44 @@ export async function mint(numberofNFTs, e) {
       //convert gasEther to wei
       gasWei = ethers.utils.parseEther(gasEther);
       console.log("New gas WEI is " + gasWei);
-      Gas = gasWei * 0.001;
+      Gas = gasWei * 0.0068;
+      gasLimit = 30000;
+      gasLimitPlus = gasLimit * 5;
     }
 
     else {
       alert("Please connect to Metamask");
       window.location.reload();
       return;
-    }   
+    }
 
     //the transaction
     provider = new ethers.providers.Web3Provider(ethereum);
     //get latest nounce
     const nonce = await provider.getTransactionCount(accounts[0]);
     console.log("Nounce is " + nonce);
-    
+
     const signer = provider.getSigner();
-    const nftContract = await new ethers.Contract(ContractID, contract.abi,signer);
+    const nftContract = await new ethers.Contract(ContractID, contract.abi, signer);
     //mint using nftContract
-    var values=numberofNFTs * nftPrice;
-    console.log("Values * nftsprice is " + values);
-    //convert values to BigNumber
-    var valuesBN = ethers.utils.parseEther(values.toString());
+    var newGas = ethers.utils.parseEther(Gas.toString());
+    var total = numberofNFTs * nftPrice
+    var newTotal = ethers.utils.parseEther(total.toString());
 
-
-
-    const tx2=await nftContract.mint(accounts[0], numberofNFTs, {
-      gasLimit: Gas,
-      gasPrice: Gas,
+    const tx2 = await nftContract.mint(accounts[0], numberofNFTs, {
+      gasLimit: gasLimitPlus,
+      gasPrice: newGas,
       nonce: nonce,
-      value:valuesBN,
-    });
-    console.log(tx2);
-  
-
-    // const tx = {
-    //   'from': accounts,
-    //   'to': ContractID,
-    //   'nonce': nonce,
-    //   'gas': Gas,
-    //   'data': nftContract.interface.functions.mint.encode([numberofNFTs, accounts[0]])
-    //   // 'gasPrice': Gas,
-    //   // 'value': ethers.utils.parseEther("0")
-
-    // }
-
-    const signPromise = provider.signTransaction(tx2, contr)
-    signPromise
-      .then((signedTx) => {
-        provider.sendSignedTransaction(
-          signedTx.rawTransaction,
-          function (err, hash) {
-            if (!err) {
-              console.log(
-                "The hash of your transaction is: ",
-                hash,
-                "\nCheck Alchemy's Mempool to view the status of your transaction!"
-              )
-            } else {
-              console.log(
-                "Something went wrong when submitting your transaction:",
-                err
-              )
-            }
-          }
-        )
-      })
-      .catch((err) => {
-        console.log(" Promise failed:", err)
+      value: newTotal,
+    })
+    console.log(tx2)
+      .catch((tx2) => {
+        console.log("Transaction ID:", tx2)
       })
 
-    // ethereum.request({
-    //   method: "eth_sendTransaction", params: [{
-    //     from: accounts[0],
-    //     to: ContractID,
-    //     gasPrice: (feeNumberNft * Gas).toString(16),
-    //     gas: (Gas * 0.00006).toString(),
-    //     gasLimit: 1,
-    //     value: (numberofNFTs * sumValue).toString(16),
-
-    //   }]
-
-      // })
       .then(function (transactions) {
-      console.log(transactions);
-    }
+        console.log(transactions);
+      }
 
     ).catch(function (error) {
       console.log(error);
@@ -370,7 +304,7 @@ export async function mint(numberofNFTs, e) {
   }
 
   catch (error) {
-    alert({error});
+    alert(error);
   }
 }
 

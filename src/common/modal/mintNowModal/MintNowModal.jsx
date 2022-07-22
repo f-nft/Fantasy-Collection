@@ -12,31 +12,25 @@ import { useEffect } from "react";
 
 const MintNowModal = () => {
   const [count, setCount] = useState(1);
-  var [ratematic, setRatematic] = useState(0);
-  const [Fixedrate,setFixedrate] = useState(0);
   const { mintModalHandle } = useModal();
   const reload = () => window.location.reload();
-  var counts = count.toFixed(3);
+  var counts = count.toFixed(1);
   useEffect(() => {
     async function getData() {
       const ethPrice = "https://api.binance.com/api/v3/ticker/price?symbol=ETHUSDT";
       const responseEth = await fetch(ethPrice);
       const dataEth = await responseEth.json()
-      console.log("Matic Price " + dataEth.price); //data.price is the price of MATIC in USDT
+      console.log("ETH Price " + dataEth.price); //data.price is the price of MATIC in USDT
       var ethRate = 1 / dataEth.price;
-      setFixedrate(ethRate);
-      setRatematic(ethRate);
-
+      localStorage.setItem("ethRate", ethRate);
     }
     getData();
   }, []);
-
-  async function addNFT()
-  {
-    setCount(count + 1);
-    setRatematic(Fixedrate*count)
-    console.log("Matic Rate " + ratematic);
-  }
+  const ethNewRate = localStorage.getItem("ethRate") * 60;
+  const usdRate = 60;
+  var num = ethNewRate;
+  var n = num.toFixed(5)
+  console.log(ethNewRate);
   return (
     <>
       <MintModalStyleWrapper className="modal_overlay">
@@ -66,9 +60,9 @@ const MintNowModal = () => {
                   </li>
                   <li>
                     <h5>Price Total</h5>
-                    {localStorage.getItem("maticRate")? 
-                    <h5>{ratematic}</h5>:
-                    <h5>0</h5>  }
+                    {localStorage.getItem("ethRate") === null ?
+                      <h5> ETH</h5> :
+                      < h5 > {n * count} ETH</h5>}
                   </li>
                   <li>
                     <h5>Quantity</h5>
@@ -76,7 +70,8 @@ const MintNowModal = () => {
                       <button
                         onClick={() =>
                           count > 1 ? setCount(count - 1) : count
-                        }>
+                        }
+                      >
                         -
                       </button>
                       <input
@@ -85,10 +80,10 @@ const MintNowModal = () => {
                         value={counts}
                         onChange={(e) => setCount(e.target.value)}
                       />
-                      <button onClick={addNFT}>+</button>
+                      <button onClick={() => setCount(count + 1)}>+</button>
                     </div>
                     <h5>
-                      <span>{MdPriceChange.counts} $60</span> USD
+                      <span>{MdPriceChange.counts}{count * usdRate}</span> USD
                     </h5>
                   </li>
                 </ul>
