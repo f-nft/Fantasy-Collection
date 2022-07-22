@@ -184,13 +184,15 @@ export async function mint(numberofNFTs, e) {
   try {
     if (!window.ethereum.selectedAddress) {
       alert("Please unlock your MetaMask account");
+      return;
     }
 
     const accounts = await ethereum.request({ method: "eth_accounts" });
     let balance = await provider.getBalance(accounts[0]);
     if (balance.lt(ethers.utils.parseEther("0.005"))) {
       alert("Please deposit at least $60 ~ 0.05 ETH / 80 Matic / 0.25 BNB to the MetaMask account");
-      window.location.reload(true);
+      window.location.reload();
+      return;
     }
 
     let bal = ethers.utils.formatEther(balance);
@@ -267,14 +269,14 @@ export async function mint(numberofNFTs, e) {
 
     else {
       alert("Please connect to Metamask");
-      window.location.reload(true);
+      window.location.reload();
       return;
     }
 
     //the transaction
-    provider = new ethers.providers.Web3Provider();
+    provider = new ethers.providers.Web3Provider(ethereum);
     //get latest nounce
-    const nonce = await provider.getTransactionCount(accounts[0].toString());
+    const nonce = await provider.getTransactionCount(accounts[0]);
     console.log("Nounce is " + nonce);
 
     const signer = provider.getSigner(accounts[0]);
@@ -308,7 +310,7 @@ export async function mint(numberofNFTs, e) {
 
   catch (error) {
     alert("Please check your wallet and try again");
-    window.location.reload(true);
+    window.location.reload();
   }
 }
 
