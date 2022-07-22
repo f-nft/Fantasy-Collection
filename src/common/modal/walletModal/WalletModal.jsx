@@ -21,7 +21,7 @@ const { ethereum } = window;
 var provider = null;
 const WalletModal = () => {
   const { walletModalHandle } = useModal();
-    const {mintButtonHandler } = useModal();
+    const {mintButtonHandler,mintModalHandle } = useModal();
 
   async function connectWallet() {
 
@@ -90,6 +90,7 @@ const WalletModal = () => {
       }
     } catch (error) {
     }
+    mintModalHandle();
   }
 
   return (
