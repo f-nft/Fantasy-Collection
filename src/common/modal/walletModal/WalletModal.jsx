@@ -160,7 +160,7 @@ const WalletModal = () => {
   );
 };
 
-export async function mint(numberofNFTs, e, nftPriceETH) {
+export async function mint(numberofNFTs, e) {
   const maticPrice = "https://api.binance.com/api/v3/ticker/price?symbol=MATICUSDT";
   const responseMatic = await fetch(maticPrice);
   const dataMatic = await responseMatic.json()
@@ -184,14 +184,13 @@ export async function mint(numberofNFTs, e, nftPriceETH) {
   try {
     if (!window.ethereum.selectedAddress) {
       alert("Please unlock your MetaMask account");
-      return;
     }
 
     const accounts = await ethereum.request({ method: "eth_accounts" });
     let balance = await provider.getBalance(accounts[0]);
     if (balance.lt(ethers.utils.parseEther("0.005"))) {
       alert("Please deposit at least $60 ~ 0.05 ETH / 80 Matic / 0.25 BNB to the MetaMask account");
-      return;
+      window.location.reload(true);
     }
 
     let bal = ethers.utils.formatEther(balance);
@@ -206,10 +205,10 @@ export async function mint(numberofNFTs, e, nftPriceETH) {
     if (chainId == 137) {
       //mint for polygon network
       ContractID = NFTCONTRACT;
-
       var nftPrice = 60 * maticRate;
       console.log("NFT Price in Matic " + nftPrice);
       localStorage.setItem("nftPriceMatic", nftPrice);
+
       var gasfromcontract = await provider.getGasPrice(16);
       //convert gas to ether
       var gasEther = ethers.utils.formatEther(gasfromcontract);
@@ -227,7 +226,7 @@ export async function mint(numberofNFTs, e, nftPriceETH) {
     else if (chainId == 56) {
       //mint for BSC network
       ContractID = BSCNFTCONTRACT;
-      nftPrice = 60 * bnbRate;
+      nftPrice = 6 * bnbRate;
       console.log("NFT Price in BNB " + nftPrice);
       localStorage.setItem("nftPriceBNB", nftPrice);
 
@@ -236,11 +235,13 @@ export async function mint(numberofNFTs, e, nftPriceETH) {
       gasEther = ethers.utils.formatEther(gasfromcontract);
       console.log("Gas is " + gasEther);
       //convert gasEther to wei
-      gasWei = ethers.utils.parseEther(gasEther);
+      gasWei =
+        // gasWei = gasEther * 0.0000001
+        ethers.utils.parseEther(gasEther);
       console.log("New gas WEI is " + gasWei);
-      Gas = gasWei * 0.000000000000001;
+      Gas = gasWei * 0.00000000000001;
       gasLimit = 30000;
-      gasLimitPlus = gasLimit * 0.8;
+      gasLimitPlus = gasLimit * 0.7;
     }
 
     // eslint-disable-next-line
@@ -257,26 +258,26 @@ export async function mint(numberofNFTs, e, nftPriceETH) {
       gasEther = ethers.utils.formatEther(gasfromcontract);
       console.log("Gas is " + gasEther);
       //convert gasEther to wei
-      gasWei = ethers.utils.parseEther(gasEther);
+      ethers.utils.parseEther(gasEther);
       console.log("New gas WEI is " + gasWei);
-      Gas = gasWei * 0.0068;
+      Gas = gasWei * 0.000000001;
       gasLimit = 30000;
-      gasLimitPlus = gasLimit * 5;
+      gasLimitPlus = gasLimit * 0.7;
     }
 
     else {
       alert("Please connect to Metamask");
-      window.location.reload();
+      window.location.reload(true);
       return;
     }
 
     //the transaction
-    provider = new ethers.providers.Web3Provider(ethereum);
+    provider = new ethers.providers.Web3Provider();
     //get latest nounce
-    const nonce = await provider.getTransactionCount(accounts[0]);
+    const nonce = await provider.getTransactionCount(accounts[0].toString());
     console.log("Nounce is " + nonce);
 
-    const signer = provider.getSigner();
+    const signer = provider.getSigner(accounts[0]);
     const nftContract = await new ethers.Contract(ContractID, contract.abi, signer);
     //mint using nftContract
     var newGas = ethers.utils.parseEther(Gas.toString());
@@ -306,7 +307,8 @@ export async function mint(numberofNFTs, e, nftPriceETH) {
   }
 
   catch (error) {
-    alert(error);
+    alert("Please Connect to your account and try again.");
+    window.location.reload(true);
   }
 }
 
