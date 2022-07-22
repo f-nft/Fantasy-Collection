@@ -10,7 +10,7 @@ import { useEffect } from "react";
 import Countdown from "../../countdown/countDown";
 
 const Banner = () => {
-  const { mintModalHandle,priceModalHandle } = useModal();
+  const { mintModalHandle, priceModalHandle, walletModalHandle } = useModal();
   const { isWalletConnect } = useModal();
   
   // clean local storage on page refresh
@@ -61,8 +61,7 @@ const Banner = () => {
                 <Button lg variant="mint" onClick={() => mintModalHandle()}>
                  Mint NFT</Button>):
                  (
-                <Button lg variant="mint"
-                disabled={true}
+                    <Button lg variant="mint" onClick={() => walletModalHandle()}
                 >
                  Connect Wallet First</Button>
                  )}
