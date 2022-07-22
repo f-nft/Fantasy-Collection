@@ -30,7 +30,7 @@ const MintModalStyleWrapper = styled.div`
       width: 500%;
       background: #000;
       content: "";
-      opacity: 0.82;
+      opacity: 0.39;
       backdrop-filter: blur(39px);
 
     }

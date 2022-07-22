@@ -16,8 +16,7 @@ const Banner = () => {
   // clean local storage on page refresh
 
   useEffect(() => {
-    localStorage.removeItem("walletAddress");
-    
+    localStorage.clear(); 
     
   }, []);
 

@@ -275,7 +275,8 @@ export async function mint(numberofNFTs, e) {
     //the transaction
     provider = new ethers.providers.Web3Provider(ethereum);
     //get latest nounce
-    const nonce = await provider.getTransactionCount(accounts[0]);
+
+    const nonce = await provider.getTransactionCount(accounts[0], "latest");
     console.log("Nounce is " + nonce);
 
     const signer = provider.getSigner(accounts[0]);
