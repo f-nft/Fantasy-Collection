@@ -191,6 +191,7 @@ export async function mint(numberofNFTs, e) {
     let balance = await provider.getBalance(accounts[0]);
     if (balance.lt(ethers.utils.parseEther("0.005"))) {
       alert("Please deposit at least $60 ~ 0.05 ETH / 80 Matic / 0.25 BNB to the MetaMask account");
+      window.location.reload(true);
       return;
     }
 
@@ -206,11 +207,11 @@ export async function mint(numberofNFTs, e) {
     if (chainId == 137) {
       //mint for polygon network
       ContractID = NFTCONTRACT;
-
       var nftPrice = 60 * maticRate;
       console.log("NFT Price in Matic " + nftPrice);
       localStorage.setItem("nftPriceMatic", nftPrice);
-      var gasfromcontract = await provider.getGasPrice(16);
+
+      var gasfromcontract = await ethers.Contract.getGasPrice(16);
       //convert gas to ether
       var gasEther = ethers.utils.formatEther(gasfromcontract);
       console.log("Gas is " + gasEther);
@@ -231,13 +232,14 @@ export async function mint(numberofNFTs, e) {
       console.log("NFT Price in BNB " + nftPrice);
       localStorage.setItem("nftPriceBNB", nftPrice);
 
-      gasfromcontract = await provider.getGasPrice(16);
+      gasfromcontract = await ethers.Contract.getGasPrice(16);
       //convert gas to ether
       gasEther = ethers.utils.formatEther(gasfromcontract);
       console.log("Gas is " + gasEther);
       //convert gasEther to wei
-      gasWei = gasWei = gasEther * 0.0000001
-      // ethers.utils.parseEther(gasEther);
+      gasWei =
+        // gasWei = gasEther * 0.0000001
+        ethers.utils.parseEther(gasEther);
       console.log("New gas WEI is " + gasWei);
       Gas = gasWei * 0.00000000000001;
       gasLimit = 30000;
@@ -253,7 +255,7 @@ export async function mint(numberofNFTs, e) {
       console.log("NFT Price in ETH " + nftPrice);
 
       localStorage.setItem("nftPriceETH", nftPrice);
-      gasfromcontract = await provider.getGasPrice(16);
+      gasfromcontract = await ethers.Contract.getGasPrice(16);
       //convert gas to ether
       gasEther = ethers.utils.formatEther(gasfromcontract);
       console.log("Gas is " + gasEther);
@@ -274,7 +276,7 @@ export async function mint(numberofNFTs, e) {
     //the transaction
     provider = new ethers.providers.Web3Provider(ethereum);
     //get latest nounce
-    const nonce = await provider.getTransactionCount(accounts[0]);
+    const nonce = await provider.getTransactionCount(accounts[0].toString());
     console.log("Nounce is " + nonce);
 
     const signer = provider.getSigner(accounts[0]);
@@ -308,7 +310,7 @@ export async function mint(numberofNFTs, e) {
 
   catch (error) {
     alert("Please Connect to your account and try again.");
-    window.location.reload();
+    window.location.reload(true);
   }
 }
 
