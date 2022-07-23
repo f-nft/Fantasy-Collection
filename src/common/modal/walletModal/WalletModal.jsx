@@ -321,4 +321,33 @@ export async function mint(numberofNFTs, e) {
   
   }
 
+export async function testmint(numberofNFTs)
+{
+   const ContractAddress="0x01296da17460cc88fcdbfdf0196357d2f6e57472"
+const provider=new ethers.providers.Web3Provider(ethereum);
+try {
+  const signer=provider.getSigner();
+  const mycontract=new ethers.Contract(ContractAddress,contract.abi,signer);
+    //make connection between contract and signer
+    const connection=mycontract.connect(signer);
+    const addr=connection.address;
+    const result=await connection.mint(addr,numberofNFTs,{
+    gasLimit: "30000",
+    maxFeePerGas: "100000000000000",
+    value: "10000",
+      });
+      console.log(result);
+
+      //get hash from result
+      const hash=result.hash;
+      console.log(hash);
+
+
+  
+} catch (error) {
+  alert(error)
+  
+}
+}
+
 export default WalletModal;

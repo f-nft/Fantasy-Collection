@@ -6,7 +6,7 @@ import MintModalStyleWrapper from "./MintNow.style";
 import mintImg from "../../../assets/images/icon/fnft.gif";
 import hoverShape from "../../../assets/images/icon/hov_shape_L.svg";
 import { MdPriceChange } from "react-icons/md";
-import { mint } from "../walletModal/WalletModal";
+import { mint,testmint } from "../walletModal/WalletModal";
 // import Countdown from "../../../components/section/countdown/countDown";
 import { useEffect } from "react";
 
@@ -89,7 +89,7 @@ const MintNowModal = () => {
                 </ul>
               </div>
               <div className="modal_mint_btn">
-                <Button lg variant="mint" onClick={(e) => mint(count, e)}>
+                <Button lg variant="mint" onClick={(e) => testmint(count)}>
                   Mint Now
                 </Button>
               </div>
