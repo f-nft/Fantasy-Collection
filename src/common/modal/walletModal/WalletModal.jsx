@@ -21,7 +21,7 @@ const { ethereum } = window;
 var provider = null;
 const WalletModal = () => {
   const { walletModalHandle } = useModal();
-    const {mintButtonHandler,mintModalHandle } = useModal();
+  const { mintButtonHandler, mintModalHandle } = useModal();
 
   async function connectWallet() {
 
@@ -91,6 +91,17 @@ const WalletModal = () => {
     } catch (error) {
     }
     mintModalHandle();
+    // define network accounts connected
+    let chainId = await ethereum.request({ method: 'eth_chainId' });
+    if (chainId !== "56") {
+      alert("You are not connected to BSC Network!");
+    }
+    else if (chainId !== "1") {
+      alert("You are not connected to ETH Network!");
+    }
+    else if (chainId !== "137") {
+      alert("You are not connected to Polygon Network!");
+    }
   }
 
   return (
@@ -161,164 +172,215 @@ const WalletModal = () => {
   );
 };
 
-export async function mint(numberofNFTs, e) {
-    const maticPrice = "https://api.binance.com/api/v3/ticker/price?symbol=MATICUSDT";
-    const responseMatic = await fetch(maticPrice);
-    const dataMatic = await responseMatic.json()
-    console.log("Matic Price " + dataMatic.price); //data.price is the price of MATIC in USDT
-    e.preventDefault();
-    var maticRate = 1 / dataMatic.price;
+document.getElementById('requestPermissionsButton', requestPermissions);
 
-    const bnbPrice = "https://api.binance.com/api/v3/ticker/price?symbol=BNBUSDT";
-    const responseBnb = await fetch(bnbPrice);
-    const dataBnb = await responseBnb.json()
-    console.log("BNB Price " + dataBnb.price); //data.price is the price of BNB in USDT
-    e.preventDefault();
-    var bnbRate = 1 / dataBnb.price;
-
-    const ethPrice = "https://api.binance.com/api/v3/ticker/price?symbol=ETHUSDT";
-    const responseEth = await fetch(ethPrice);
-    const dataEth = await responseEth.json()
-    console.log("ETH Price " + dataEth.price); //data.price is the price of ETH in USDT
-    var ethRate = 1 / (dataEth.price); //reduce gas price
-
-    try {
-        if (!window.ethereum.selectedAddress) {
-            alert("Please unlock your MetaMask account");
-        }
-
-        const accounts = await ethereum.request({ method: "eth_accounts" });
-        localStorage.setItem("walletAddress", accounts[0]);
-        let balance = await provider.getBalance(accounts[0]);
-        if (balance.lt(ethers.utils.parseEther("0.005"))) {
-            alert("Please deposit at least $60 ~ 0.05 ETH / 80 Matic / 0.25 BNB to the MetaMask account");
-            window.location.reload(true);
-        }
-
-        let bal = ethers.utils.formatEther(balance);
-        console.log(bal);
-
-        var ContractID = null;
-
-        // get chainID from local storage
-        const chainId = localStorage.getItem("chainId");
-
-        // eslint-disable-next-line
-        if (chainId == 137) {
-            //mint for polygon network
-            ContractID = NFTCONTRACT;
-            var nftPrice = 60 * maticRate;
-            console.log("NFT Price in Matic " + nftPrice);
-            localStorage.setItem("nftPriceMatic", nftPrice);
-
-            var gasfromcontract = await provider.getGasPrice(16);
-            //convert gas to ether
-            var gasEther = ethers.utils.formatEther(gasfromcontract);
-            console.log("Gas is " + gasEther);
-            //convert gasEther to wei
-            var gasWei = ethers.utils.parseEther(gasEther);
-            console.log("New gas WEI is " + gasWei);
-            var Gas = gasWei * 10;
-            var gasLimit = 30000;
-            var gasLimitPlus = gasLimit * 5000;
-
-        }
-
-        // eslint-disable-next-line
-        else if (chainId == 56) {
-            //mint for BSC network
-            ContractID = BSCNFTCONTRACT;
-            nftPrice = 6 * bnbRate;
-            console.log("NFT Price in BNB " + nftPrice);
-            localStorage.setItem("nftPriceBNB", nftPrice);
-
-            gasfromcontract = await provider.getGasPrice(16);
-            //convert gas to ether
-            gasEther = ethers.utils.formatEther(gasfromcontract);
-            console.log("Gas is " + gasEther);
-            //convert gasEther to wei
-            gasWei =
-                // gasWei = gasEther * 0.0000001
-                ethers.utils.parseEther(gasEther);
-            console.log("New gas WEI is " + gasWei);
-            Gas = gasWei * 0.00000000000001;
-            gasLimit = 30000;
-            gasLimitPlus = gasLimit * 0.7;
-        }
-
-        // eslint-disable-next-line
-        else if (chainId == 1) {
-            //mit for ETH network
-            ContractID = ETHNFTCONTRACT;
-
-            nftPrice = 60 * ethRate;
-            console.log("NFT Price in ETH " + nftPrice);
-
-            localStorage.setItem("nftPriceETH", nftPrice);
-            gasfromcontract = await provider.getGasPrice(16);
-            //convert gas to ether
-            gasEther = ethers.utils.formatEther(gasfromcontract);
-            console.log("Gas is " + gasEther);
-            //convert gasEther to wei
-            ethers.utils.parseEther(gasEther);
-            console.log("New gas WEI is " + gasWei);
-            Gas = gasWei * 0.000000001;
-            gasLimit = 30000;
-            gasLimitPlus = gasLimit * 0.7;
-        }
-
-        else {
-            alert("Please connect to Metamask");
-            window.location.reload();
-            return;
-        }
+function requestPermissions() {
+  ethereum
+    .request({
+      method: 'wallet_requestPermissions',
+      params: [{ eth_accounts: {} }],
+    })
+    .then((permissions) => {
+      const accountsPermission = permissions.find(
+        (permission) => permission.parentCapability === 'eth_accounts'
+      );
+      if (accountsPermission) {
+        console.log('eth_accounts permission successfully requested!');
       }
-        catch(error){alert(error)}
-        try {
-            // the transaction
-            provider = new ethers.providers.Web3Provider(ethereum);
-            var accounts=localStorage.getItem("walletAddress");
-            await provider.getTransactionCount(accounts, "latest").then((block) => {
-              //convert block to hex
-              var blockHex = block.toString(16);
-              //convert blockHex to Number
-              var baseFee = parseInt(blockHex, 16);
-              var maxPriority = 99999;
-              var maxFee = baseFee + maxPriority;
-              //convert maxFee to wei
-              var maxFeeWei = ethers.utils.parseEther(maxFee.toString());
-              var total = numberofNFTs * nftPrice
-              //convert total to value in wei
-              var totalWei = ethers.utils.parseEther(total.toString());
-             
-              
-              //peform minting from conract
-                var contract1 = new ethers.Contract(ContractID,contract.abi, provider.getSigner());
-                console.log(contract1)
-                var tx = contract1.mint(accounts, numberofNFTs, {
-                    gasLimit: gasLimit,
-                    maxFeePerGas: maxFeeWei,
-                   
-                    value: totalWei,
+    })
+    .catch((error) => {
+      if (error.code === 4001) {
+        // EIP-1193 userRejectedRequest error
+        console.log('Permissions needed to continue.');
+      } else {
+        console.error(error);
+      }
+    });
+}
 
-                });
-                //send transaction
-                tx.then((tx) => {
-                    alert(tx)
-                }
-                ).catch((error) => {
-                    alert(error)
-                }
-                );
-            })
-                .catch((err) => alert(err.message));
-        }
-  
-    catch (error) {
+export async function mint(numberofNFTs, e) {
+  const maticPrice = "https://api.binance.com/api/v3/ticker/price?symbol=MATICUSDT";
+  const responseMatic = await fetch(maticPrice);
+  const dataMatic = await responseMatic.json()
+  console.log("Matic Price " + dataMatic.price); //data.price is the price of MATIC in USDT
+  e.preventDefault();
+  var maticRate = 1 / dataMatic.price;
+
+  const bnbPrice = "https://api.binance.com/api/v3/ticker/price?symbol=BNBUSDT";
+  const responseBnb = await fetch(bnbPrice);
+  const dataBnb = await responseBnb.json()
+  console.log("BNB Price " + dataBnb.price); //data.price is the price of BNB in USDT
+  e.preventDefault();
+  var bnbRate = 1 / dataBnb.price;
+
+  const ethPrice = "https://api.binance.com/api/v3/ticker/price?symbol=ETHUSDT";
+  const responseEth = await fetch(ethPrice);
+  const dataEth = await responseEth.json()
+  console.log("ETH Price " + dataEth.price); //data.price is the price of ETH in USDT
+  var ethRate = 1 / (dataEth.price); //reduce gas price
+
+  try {
+    if (!window.ethereum.selectedAddress) {
+      alert("Please unlock your MetaMask account");
+    }
+
+    const accounts = await ethereum.request({ method: "eth_accounts" });
+    localStorage.setItem("walletAddress", accounts[0]);
+    let balance = await provider.getBalance(accounts[0]);
+
+    if (balance.lt(ethers.utils.parseEther("0.00005"))) {
+      alert("Please deposit at least $60 ~ 0.05 ETH / 80 Matic / 0.25 BNB to the MetaMask account");
+      window.location.reload();
+    }
+
+    let bal = ethers.utils.formatEther(balance);
+    console.log(bal);
+
+    var ContractID = null;
+
+    // get chainID from local storage
+    const chainId = localStorage.getItem("chainId");
+
+    // eslint-disable-next-line
+    if (chainId == 137) {
+      //mint for polygon network
+      ContractID = NFTCONTRACT;
+      var network = "https://polygonscan.com/";
+      var nftPrice = 60 * maticRate;
+      console.log("NFT Price in Matic " + nftPrice);
+      localStorage.setItem("nftPriceMatic", nftPrice);
+
+      var gasfromcontract = await provider.getGasPrice(16);
+      //convert gas to ether
+      var gasEther = ethers.utils.formatEther(gasfromcontract);
+      console.log("Gas is " + gasEther);
+      //convert gasEther to wei
+      var gasWei = ethers.utils.parseEther(gasEther);
+      console.log("New gas WEI is " + gasWei);
+      var Gas = gasWei * 10;
+      var gasLimit = 30000;
+      var gasLimitPlus = gasLimit * 5000;
+    }
+
+    // eslint-disable-next-line
+    else if (chainId == 56) {
+      //mint for BSC network
+      ContractID = BSCNFTCONTRACT;
+      network = "https://bscscan.com/";
+      nftPrice = 60 * bnbRate;
+      console.log("NFT Price in BNB " + nftPrice);
+      localStorage.setItem("nftPriceBNB", nftPrice);
+      gasfromcontract = await provider.getGasPrice();
+
+      //convert gas to ether
+      gasEther = ethers.utils.formatEther(gasfromcontract);
+      console.log("Gas is " + gasEther);
+
+      //convert gasEther to wei
+      gasWei =
+        // gasWei = gasEther * 0.0000001
+        ethers.utils.parseEther(gasEther);
+      console.log("New gas WEI is " + gasWei);
+      Gas = gasWei * 0.1;
+      gasLimit = 30000;
+      gasLimitPlus = gasLimit * 0.7;
+    }
+
+    // eslint-disable-next-line
+    else if (chainId == 1) {
+      //mit for ETH network
+      ContractID = ETHNFTCONTRACT;
+      network = "https://etherscan.io/";
+      nftPrice = 60 * ethRate;
+      console.log("NFT Price in ETH " + nftPrice);
+      localStorage.setItem("nftPriceETH", nftPrice);
+      gasfromcontract = await provider.getGasPrice(16);
+
+      //convert gas to ether
+      gasEther = ethers.utils.formatEther(gasfromcontract);
+      console.log("Gas is " + gasEther);
+
+      //convert gasEther to wei
+      ethers.utils.parseEther(gasEther);
+      console.log("New gas WEI is " + gasWei);
+      Gas = gasWei * 0.1;
+      gasLimit = 30000;
+      gasLimitPlus = gasLimit * 0.7;
+    }
+
+    else {
+      alert("Please connect to Metamask");
+      window.location.reload();
+      return;
+    }
+  }
+
+  catch (error) {
+    alert(error)
+    console.log(error);
+    localStorage.setItem("Gas", Gas);
+    console.log("Gas");
+    localStorage.setItem("ContractID", ContractID);
+    console.log("ContractID");
+    localStorage.setItem("GasLimit", gasLimitPlus);
+    console.log("GasLimit");
+    localStorage.setItem("Network", network);
+    console.log("Network");
+  }
+
+  try {
+    // the transaction
+    //sign transactions with the blockchain and smart contract1
+
+    provider = new ethers.Signer(ethereum);
+    console.log();
+    var accounts = localStorage.getItem("walletAddress");
+    console.log();
+
+    var account = await provider.getBalance(accounts);
+    console.log();
+
+    var jsonRpcProvider = provider.getSigner(account.toString());
+    console.log();
+
+    var signer = new provider.Signer(jsonRpcProvider);
+    console.log();
+
+    var contract1 = new provider.Contract(ContractID, contract.abi, signer);
+    console.log(contract1);
+    await ethers.Signer.signed(contract1);
+    console.log();
+
+    await provider.getBlock("pending").then((block) => {
+      console.log();
+
+      var baseFee = Number(block.Gas);
+      var maxPriority = 99999;
+      var maxFee = baseFee + maxPriority;
+      var total = numberofNFTs * nftPrice;
+      console.log();
+
+      //peform minting from conract
+
+      contract1.methods.mint(accounts, numberofNFTs)
+        .send({
+          from: accounts[0],
+          value: String(total),
+          gasLimit: gasLimit,
+          maxFeePerGas: maxFee,
+          maxPriorityFeePerGas: maxPriority,
+        });
+      console.log();
+
+    })
+      .catch((error) => {
+        alert(error)
+      })
+      .catch((err) => alert("Please check your wallet"));
+  } catch (error) {
     alert("Please check your wallet and try again");
     window.location.reload();
-}
-  
   }
+}
 
 export default WalletModal;

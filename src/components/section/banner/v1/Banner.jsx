@@ -16,8 +16,9 @@ const Banner = () => {
   // clean local storage on page refresh
 
   useEffect(() => {
-    localStorage.clear(); 
-    
+    localStorage.removeItem("walletAddress");
+    localStorage.removeItem("balance");
+
   }, []);
 
   return (
@@ -31,7 +32,7 @@ const Banner = () => {
               <h2>collections</h2>
               <h3>
                 <span className="count">
-                  <Counter end={1325} duration={1500} />
+                  <Counter end={1325} duration={1790} />
                 </span>{" "}
                 / 10,000 Minted
               </h3>

@@ -18,10 +18,10 @@ const MintNowModal = () => {
   useEffect(() => {
     async function getData() {
       const ethPrice = "https://api.binance.com/api/v3/ticker/price?symbol=ETHUSDT";
-      const responseEth = await fetch(ethPrice);
-      const dataEth = await responseEth.json()
-      console.log("ETH Price " + dataEth.price); //data.price is the price of MATIC in USDT
-      var ethRate = 1 / dataEth.price;
+      const responseEth = await fetch(ethPrice, { cache: "force-cache" })
+      var data = await responseEth.json()
+      console.log("ETH Price " + data.price); //data.price is the price of MATIC in USDT
+      var ethRate = 1 / data.price;
       localStorage.setItem("ethRate", ethRate);
     }
     getData();
@@ -31,6 +31,7 @@ const MintNowModal = () => {
   var num = ethNewRate;
   var n = num.toFixed(5)
   console.log(ethNewRate);
+  
   return (
     <>
       <MintModalStyleWrapper className="modal_overlay">
