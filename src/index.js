@@ -5,6 +5,7 @@ import ContextProvider from "./utils/ContextProvider";
 import App from "./app/App";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+
 root.render(
   <ContextProvider>
     <BrowserRouter>

@@ -17,8 +17,8 @@ const Banner = () => {
 
   useEffect(() => {
     localStorage.removeItem("walletAddress");
-    
-    
+    localStorage.removeItem("balance");
+
   }, []);
 
   return (
@@ -32,7 +32,7 @@ const Banner = () => {
               <h2>collections</h2>
               <h3>
                 <span className="count">
-                  <Counter end={1325} duration={10000} />
+                  <Counter end={1325} duration={1790} />
                 </span>{" "}
                 / 10,000 Minted
               </h3>

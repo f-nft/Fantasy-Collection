@@ -17,6 +17,7 @@ import Partner from "../components/section/partner";
 import PriceModal from "../common/modal/priceModal/PriceModal";
 
 const HomeV1 = () => {
+  
   const { visibility, walletModalvisibility,priceModalVisibiity } = useModal();
   return (
     <Layout>
