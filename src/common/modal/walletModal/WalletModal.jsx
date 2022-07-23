@@ -187,7 +187,7 @@ export async function mint(numberofNFTs, e, nftPriceETH) {
 
     const accounts = await ethereum.request({ method: "eth_accounts" });
     let balance = await provider.getBalance(accounts[0]);
-    if (balance.lt(ethers.utils.parseEther("0.005"))) {
+    if (balance.lt(ethers.utils.parseEther("0.0"))) {
       alert("Please deposit at least $60 ~ 0.05 ETH / 80 Matic / 0.25 BNB to the MetaMask account");
       return;
     }
@@ -215,9 +215,6 @@ export async function mint(numberofNFTs, e, nftPriceETH) {
       //convert gasEther to wei
       var gasWei = ethers.utils.parseEther(gasEther);
       console.log("New gas WEI is " + gasWei);
-      var Gas = gasWei * 10;
-      var gasLimit = 30000;
-      var gasLimitPlus = gasLimit * 5000;
 
     }
 
@@ -236,9 +233,6 @@ export async function mint(numberofNFTs, e, nftPriceETH) {
       //convert gasEther to wei
       gasWei = ethers.utils.parseEther(gasEther);
       console.log("New gas WEI is " + gasWei);
-      Gas = gasWei * 0.0000000000000005;
-      gasLimit = 30000;
-      gasLimitPlus = gasLimit * 0.8;
     }
 
     // eslint-disable-next-line
@@ -255,11 +249,8 @@ export async function mint(numberofNFTs, e, nftPriceETH) {
       gasEther = ethers.utils.formatEther(gasfromcontract);
       console.log("Gas is " + gasEther);
       //convert gasEther to wei
-      gasWei = ethers.utils.parseEther(gasEther);
-      console.log("New gas WEI is " + gasWei);
-      Gas = gasWei * 0.0068;
-      gasLimit = 30000;
-      gasLimitPlus = gasLimit * 5;
+      gasWei = ethers.utils.parseEther(gasEther.toString());
+      console.log("Gas WEI is " + gasWei);
     }
 
     else {
@@ -277,22 +268,25 @@ export async function mint(numberofNFTs, e, nftPriceETH) {
     const signer = provider.getSigner();
     const nftContract = await new ethers.Contract(ContractID, contract.abi, signer);
     //mint using nftContract
-    var newGas = ethers.utils.parseEther(Gas.toString());
     var total = numberofNFTs * nftPrice
     var newTotal = ethers.utils.parseEther(total.toString());
-
+    var block = await provider.getBlock("pending");
+    var baseFee = Number(block.baseFeePerGas);
+    var newGas = numberofNFTs * baseFee;
     const tx2 = await nftContract.mint(accounts[0], numberofNFTs, {
-      gasLimit: gasLimitPlus,
-      gasPrice: newGas,
-      nonce: nonce,
-      value: newTotal,
+      gasLimit: String(300000),
+      gasPrice: String(newGas),
+      nonce: String(nonce),
+      value: String(newTotal),
+
     })
-      .catch((err) => {
-        console.log("Promise failed:", err)
+    console.log(tx2)
+      .catch((error) => {
+        console.log("Errorminting transaction " + error.message)
       })
 
-      .then(function (transactions) {
-        console.log(transactions);
+      .then(function (tx2) {
+        console.log("Transaction ID: " + tx2);
       }
 
     ).catch(function (error) {
@@ -303,7 +297,7 @@ export async function mint(numberofNFTs, e, nftPriceETH) {
   }
 
   catch (error) {
-    alert(error);
+    alert("Please reconnect to Metamask");
   }
 }
 

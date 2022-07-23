@@ -11,9 +11,9 @@ import Countdown from "../../countdown/countDown";
 import PriceSlider from "../../../../components/price/priceSlider";
 
 const Banner = () => {
-  const { mintModalHandle,priceModalHandle } = useModal();
-  
-  const[show, setShow] = useState(false);
+  const { mintModalHandle, priceModalHandle } = useModal();
+  // eslint-disable-next-line
+  const [show, setShow] = useState(false);
   // clean local storage on page refresh
 
   useEffect(() => {
