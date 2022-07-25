@@ -4,16 +4,16 @@ import CharacterSliderWrapper from "./CharacterSlider.style";
 
 const PriceSlider = () => {
   const settings = {
-    dots: false,
+    dots: true,
     arrows: false,
     autoplay: true,
-    speed: 2000,
+    speed: 500,
     autoplaySpeed: 3000,
     cssEase: "linear",
     centerMode: true,
     centerPadding: "0px",
     infinite: true,
-    slidesToShow: 3,
+    slidesToShow: 1,
     slidesToScroll: 1,
     responsive: [
       {

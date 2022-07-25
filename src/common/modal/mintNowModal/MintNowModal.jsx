@@ -10,7 +10,9 @@ import { mint } from "../walletModal/WalletModal";
 // import Countdown from "../../../components/section/countdown/countDown";
 import { useEffect } from "react";
 
+
 const MintNowModal = () => {
+  
   const [count, setCount] = useState(1);
   const { mintModalHandle } = useModal();
   const reload = () => window.location.reload();
@@ -31,6 +33,7 @@ const MintNowModal = () => {
   var num = ethNewRate;
   var n = num.toFixed(5)
   console.log(ethNewRate);
+  
   return (
     <>
       <MintModalStyleWrapper className="modal_overlay">

@@ -5,9 +5,13 @@ const modalAnimation = keyframes`${fadeIn}`;
 
 const CharacterSliderWrapper = styled.section`
 &.modal_overlay {
-  position: fixed;
-  height: 50%;
-  width: 50%;
+  border: 1px 5px solid black;
+  border-color: gold;
+  border-width: 1px;
+  border-radius: 25px;
+  position: absolute;
+  height: 39%;
+  width: 39%;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
@@ -16,6 +20,10 @@ const CharacterSliderWrapper = styled.section`
   justify-content: center;
 
   &::before {
+    border: 1px 5px solid black;
+    border-color: gold;
+    border-width: 1px;
+    border-radius: 25px;
     position: fixed;
     left: 0;
     top: 0;
@@ -23,8 +31,8 @@ const CharacterSliderWrapper = styled.section`
     width: 100%;
     background: #000;
     content: "";
-    opacity: 0.79;
-    backdrop-filter: blur(39px);
+    opacity: 0.89;
+    backdrop-filter: blur(1px);
   }
 }
 
@@ -40,8 +48,8 @@ const CharacterSliderWrapper = styled.section`
     position: fixed;
     left: 0;
     top: 0;
-    height: 100%;
-    width: 100%;
+    height: 70%;
+    width: 70%;
     background: #171c21;
     content: "";
   }
