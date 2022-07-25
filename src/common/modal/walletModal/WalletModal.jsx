@@ -8,7 +8,8 @@ import metamaskIcon from "../../../assets/images/icon/MetaMask.svg";
 // import walletConnect from "../../../assets/images/icon/WalletConnect.svg";
 import Web3Modal from "web3modal";
 import { ethers } from 'ethers';
-// import { Contract, Signer, BigNumber, providers, utils } from 'ethers';
+// import { WalletLinkConnector } from "@web3-react/walletlink-connector";
+// import WalletConnect from "walletconnect";
 import { NFTCONTRACT } from '../../config/config';
 import { ETHNFTCONTRACT } from '../../config/ethconfig';
 import { BSCNFTCONTRACT } from '../../config/bscconfig';
@@ -19,7 +20,35 @@ import contract from "../../config/contract.json";
 
 const { ethereum } = window;
 var provider = null;
+
 const WalletModal = () => {
+  // const providerOptions = {
+  //   binancechainwallet: { package: true },
+  //   WalletConnect: {
+  //     package: WalletConnect,
+  //     options: {
+  //       rpc:
+  //       {
+  //         56: 'https://bsc-dataseed1.defibit.io/'
+  //       },
+  //       network: 'binance',
+  //       chainId: 56,
+  //       infuraId: "50f6635fbcc742f18ce7a2a5cbe73ffa",
+  //     },
+  //   },
+  //   WalletLinkConnector: {
+  //     package: WalletLinkConnector,
+  //     options: {
+  //       appName: "f-nft Polygon",
+  //       infuraId: "50f6635fbcc742f18ce7a2a5cbe73ffa",
+  //       rpc: "",
+  //       chainId: 137,
+  //       appLogoUrl: null,
+  //       darkMode: true,
+  //     },
+  //   },
+  // };
+
   const { walletModalHandle } = useModal();
   const { mintButtonHandler, mintModalHandle } = useModal();
 
@@ -29,6 +58,8 @@ const WalletModal = () => {
       let web3Modal = new Web3Modal({
         network: "mainnet",
         cacheProvider: false,
+        // providerOptions,
+        darkMode: true,
 
       });
 
@@ -77,7 +108,6 @@ const WalletModal = () => {
       } catch (error) {
         console.log(error);
       }
-      // get network chain id
       // get account
       try {
         accounts = await ethereum.request({ method: "eth_accounts" });
@@ -92,15 +122,15 @@ const WalletModal = () => {
     }
     mintModalHandle();
     // define network accounts connected
-    let chainId = await ethereum.request({ method: 'eth_chainId' });
-    if (chainId !== "56") {
-      alert("You are not connected to BSC Network!");
+    let Id = await ethereum.request({ method: 'eth_chainId' });
+    if (Id == "56") {
+      alert("You are connected to BSC Network!");
     }
-    else if (chainId !== "1") {
-      alert("You are not connected to ETH Network!");
+    else if (Id == "1") {
+      alert("You are connected to ETH Network!");
     }
-    else if (chainId !== "137") {
-      alert("You are not connected to Polygon Network!");
+    else if (Id == "137") {
+      alert("You are connected to Polygon Network!");
     }
   }
 
@@ -113,7 +143,7 @@ const WalletModal = () => {
           <div className="mint_modal_content">
             <div className="modal_header">
               <h2>CONNECT WALLET</h2>
-              <button onClick={() => walletModalHandle()}>
+              <button onClick={() => walletModalHandle(1)}>
                 <FiX />
               </button>
             </div>
@@ -122,7 +152,7 @@ const WalletModal = () => {
                 Please select a wallet to connect for start Minting your NFTs
               </p>
               <div className="wallet_list">
-                <a href="# " onClick={connectWallet} >
+                <a href="# " onClick={() => connectWallet()} >
                   <img src={metamaskIcon} alt="Metmask" />
                   Metamask
                   <span>
@@ -172,33 +202,33 @@ const WalletModal = () => {
   );
 };
 
-document.getElementById('requestPermissionsButton', requestPermissions);
-
-function requestPermissions() {
-  ethereum
-    .request({
-      method: 'wallet_requestPermissions',
-      params: [{ eth_accounts: {} }],
-    })
-    .then((permissions) => {
-      const accountsPermission = permissions.find(
-        (permission) => permission.parentCapability === 'eth_accounts'
-      );
-      if (accountsPermission) {
-        console.log('eth_accounts permission successfully requested!');
-      }
-    })
-    .catch((error) => {
-      if (error.code === 4001) {
-        // EIP-1193 userRejectedRequest error
-        console.log('Permissions needed to continue.');
-      } else {
-        console.error(error);
-      }
-    });
-}
-
 export async function mint(numberofNFTs, e) {
+  document.getElementById('requestPermissionsButton', requestPermissions);
+
+  function requestPermissions() {
+    ethereum
+      .request({
+        method: 'wallet_requestPermissions',
+        params: [{ eth_accounts: {} }],
+      })
+      .then((permissions) => {
+        const accountsPermission = permissions.find(
+          (permission) => permission.parentCapability === 'eth_accounts'
+        );
+        if (accountsPermission) {
+          console.log('eth_accounts permission successfully requested!');
+        }
+      })
+      .catch((error) => {
+        if (error.code === 4001) {
+          // EIP-1193 userRejectedRequest error
+          console.log('Permissions needed to continue.');
+        } else {
+          console.error(error);
+        }
+      });
+  }
+
   const maticPrice = "https://api.binance.com/api/v3/ticker/price?symbol=MATICUSDT";
   const responseMatic = await fetch(maticPrice);
   const dataMatic = await responseMatic.json()
@@ -228,9 +258,8 @@ export async function mint(numberofNFTs, e) {
     localStorage.setItem("walletAddress", accounts[0]);
     let balance = await provider.getBalance(accounts[0]);
 
-    if (balance.lt(ethers.utils.parseEther("0.00005"))) {
+    if (balance.lt(ethers.utils.parseEther("0.00000"))) {
       alert("Please deposit at least $60 ~ 0.05 ETH / 80 Matic / 0.25 BNB to the MetaMask account");
-      window.location.reload();
     }
 
     let bal = ethers.utils.formatEther(balance);
@@ -245,7 +274,7 @@ export async function mint(numberofNFTs, e) {
     if (chainId == 137) {
       //mint for polygon network
       ContractID = NFTCONTRACT;
-      var network = "https://polygonscan.com/";
+      // var network = "https://polygonscan.com/";
       var nftPrice = 60 * maticRate;
       console.log("NFT Price in Matic " + nftPrice);
       localStorage.setItem("nftPriceMatic", nftPrice);
@@ -257,7 +286,7 @@ export async function mint(numberofNFTs, e) {
       //convert gasEther to wei
       var gasWei = ethers.utils.parseEther(gasEther);
       console.log("New gas WEI is " + gasWei);
-      var Gas = gasWei * 10;
+      var Gas = gasWei;
       var gasLimit = 30000;
       var gasLimitPlus = gasLimit * 5000;
     }
@@ -266,7 +295,7 @@ export async function mint(numberofNFTs, e) {
     else if (chainId == 56) {
       //mint for BSC network
       ContractID = BSCNFTCONTRACT;
-      network = "https://bscscan.com/";
+      // network = "https://bscscan.com/";
       nftPrice = 60 * bnbRate;
       console.log("NFT Price in BNB " + nftPrice);
       localStorage.setItem("nftPriceBNB", nftPrice);
@@ -277,11 +306,9 @@ export async function mint(numberofNFTs, e) {
       console.log("Gas is " + gasEther);
 
       //convert gasEther to wei
-      gasWei =
-        // gasWei = gasEther * 0.0000001
-        ethers.utils.parseEther(gasEther);
+      gasWei = ethers.utils.parseEther(gasEther);
       console.log("New gas WEI is " + gasWei);
-      Gas = gasWei * 0.1;
+      Gas = gasWei;
       gasLimit = 30000;
       gasLimitPlus = gasLimit * 0.7;
     }
@@ -290,7 +317,7 @@ export async function mint(numberofNFTs, e) {
     else if (chainId == 1) {
       //mit for ETH network
       ContractID = ETHNFTCONTRACT;
-      network = "https://etherscan.io/";
+      // network = "https://etherscan.io/";
       nftPrice = 60 * ethRate;
       console.log("NFT Price in ETH " + nftPrice);
       localStorage.setItem("nftPriceETH", nftPrice);
@@ -301,43 +328,24 @@ export async function mint(numberofNFTs, e) {
       console.log("Gas is " + gasEther);
 
       //convert gasEther to wei
-      ethers.utils.parseEther(gasEther);
+      gasWei = ethers.utils.parseEther(gasEther);
       console.log("New gas WEI is " + gasWei);
-      Gas = gasWei * 0.1;
+      Gas = gasWei;
       gasLimit = 30000;
       gasLimitPlus = gasLimit * 0.7;
     }
 
     else {
       alert("Please connect to Metamask");
-      window.location.reload();
       return;
     }
-  }
 
-  catch (error) {
-    alert(error)
-    console.log(error);
-    localStorage.setItem("Gas", Gas);
-    console.log("Gas");
-    localStorage.setItem("ContractID", ContractID);
-    console.log("ContractID");
-    localStorage.setItem("GasLimit", gasLimitPlus);
-    console.log("GasLimit");
-    localStorage.setItem("Network", network);
-    console.log("Network");
-  }
-
-  try {
     // the transaction
     //sign transactions with the blockchain and smart contract1
 
     provider = new ethers.Signer(ethereum);
     console.log();
-    var accounts = localStorage.getItem("walletAddress");
-    console.log();
-
-    var account = await provider.getBalance(accounts);
+    var account = await provider.getBalance(ethereum);
     console.log();
 
     var jsonRpcProvider = provider.getSigner(account.toString());
@@ -353,33 +361,31 @@ export async function mint(numberofNFTs, e) {
 
     await provider.getBlock("pending").then((block) => {
       console.log();
-
-      var baseFee = Number(block.Gas);
-      var maxPriority = 99999;
+      var baseFee = Number(block.baseFeePerGas);
+      var maxPriority = Number(block.maxFeePerGas);
       var maxFee = baseFee + maxPriority;
       var total = numberofNFTs * nftPrice;
+      var totals = total + baseFee;
       console.log();
 
       //peform minting from conract
-
       contract1.methods.mint(accounts, numberofNFTs)
         .send({
-          from: accounts[0],
-          value: String(total),
-          gasLimit: gasLimit,
-          maxFeePerGas: maxFee,
-          maxPriorityFeePerGas: maxPriority,
+          from: String("walletAddress"),
+          fee: String(Gas),
+          value: String(totals),
+          maxFeePerGas: String(maxFee),
+          maxPriorityFeePerGas: String(maxPriority),
         });
       console.log();
-
     })
       .catch((error) => {
         alert(error)
+        window.location.reload();
       })
-      .catch((err) => alert("Please check your wallet"));
+      .catch((err) => alert(err, "Please check your wallet"));
   } catch (error) {
     alert("Please check your wallet and try again");
-    window.location.reload();
   }
 }
 
