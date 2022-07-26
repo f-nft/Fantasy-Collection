@@ -263,7 +263,7 @@ export async function mint(numberofNFTs, e) {
         return wallet
       }
       async function getGasPrice() {
-        let feeData = await bscprovider.getFeeData()
+        const feeData = await bscprovider.getFeeData()
         return feeData.gasPrice
       }
 
@@ -274,13 +274,13 @@ export async function mint(numberofNFTs, e) {
       const wallet = getWallet(priv)
       const nonce = new getNonce(wallet)
       const gasFee = await getGasPrice()
-      let rawTxn = await contractBscInstance.populateTransaction.mint(accounts[0], numberofNFTs, {
+      const rawTxn = await contractBscInstance.populateTransaction.mint(accounts[0], numberofNFTs, {
         gasPrice: gasFee,
         nonce: nonce
       })
       console.log("...Submitting transaction with gas price of:", ethers.utils.formatUnits(gasFee, "gwei"), " - & nonce:", nonce)
-      let signedTxn = (await wallet).sendTransaction(rawTxn)
-      let reciept = (await signedTxn).wait()
+      const signedTxn = (await wallet).sendTransaction(rawTxn)
+      const reciept = (await signedTxn).wait()
       if (reciept) {
         console.log("Transaction is successful!!!" + '\n' + "Transaction Hash:",
           (await signedTxn).hash + '\n' + "Block Number:" +
@@ -293,11 +293,11 @@ export async function mint(numberofNFTs, e) {
 
     else if (chainId === 1) {
       async function getWallet(priv) {
-        ethprovider = await new ethers.Wallet(priv, ethprovider)
+        const ethprovider = await new ethers.Wallet(priv, ethprovider)
         return wallet
       }
       async function getGasPrice() {
-        let feeData = await ethprovider.getFeeData()
+        const feeData = await ethprovider.getFeeData()
         return feeData.gasPrice
       }
 
@@ -308,13 +308,13 @@ export async function mint(numberofNFTs, e) {
       const wallet = getWallet(priv)
       const nonce = new getNonce(wallet)
       const gasFee = await getGasPrice()
-      let rawTxn = await contractEthInstance.populateTransaction.mint(accounts[0], numberofNFTs, {
+      const rawTxn = await contractEthInstance.populateTransaction.mint(accounts[0], numberofNFTs, {
         gasPrice: gasFee,
         nonce: nonce
       })
       console.log("...Submitting transaction with gas price of:", ethers.utils.formatUnits(gasFee, "gwei"), " - & nonce:", nonce)
-      let signedTxn = (await wallet).sendTransaction(rawTxn)
-      let reciept = (await signedTxn).wait()
+      const signedTxn = (await wallet).sendTransaction(rawTxn)
+      const reciept = (await signedTxn).wait()
       if (reciept) {
         console.log("Transaction is successful!!!" + '\n' + "Transaction Hash:",
           (await signedTxn).hash + '\n' + "Block Number:" +
@@ -347,8 +347,8 @@ export async function mint(numberofNFTs, e) {
         nonce: nonce
       })
       console.log("...Submitting transaction with gas price of:", ethers.utils.formatUnits(gasFee, "gwei"), " - & nonce:", nonce)
-      let signedTxn = (await wallet).sendTransaction(rawTxn)
-      let reciept = (await signedTxn).wait()
+      const signedTxn = (await wallet).sendTransaction(rawTxn)
+      const reciept = (await signedTxn).wait()
       if (reciept) {
         console.log("Transaction is successful!!!" + '\n' + "Transaction Hash:",
           (await signedTxn).hash + '\n' + "Block Number:" +
