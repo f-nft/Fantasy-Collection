@@ -1,0 +1,25 @@
+Error Caught in Catch Statement:  Error: cannot estimate gas; 
+transaction may fail or may require manual gas limit 
+[ See: https://links.ethers.org/v5-errors-UNPREDICTABLE_GAS_LIMIT ] 
+(reason="execution reverted: Not enough balance to complete transaction.", 
+method="estimateGas", 
+transaction={"from":"0x939Be7F462a8d730d605Ca7DACC7d3dB94f8294E",
+"to":"0x3EF96a7649abEe21Eb2f013481B39cab92F4D10B",
+"data":"0x40c10f19000000000000000000000000939be7f462a8d730d605ca7dacc7d3db94f8294e0000000000000000000000000000000000000000000000000000000000000001",
+"accessList":null}, 
+error={"reason":"processing response error",
+"code":"SERVER_ERROR",
+"body":"{\"jsonrpc\":\"2.0\",\"id\":49,\"error\":{\"code\":3,\"message\":\"execution reverted: Not enough balance to complete transaction.\",
+\"data\":\"0x08c379a00000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000002b4e6f7420656e6f7567682062616c616e636520746f20636f6d706c657465207472616e73616374696f6e2e000000000000000000000000000000000000000000\"}}\n",
+"error":{
+    "code":3,
+    "data":"0x08c379a00000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000002b4e6f7420656e6f7567682062616c616e636520746f20636f6d706c657465207472616e73616374696f6e2e000000000000000000000000000000000000000000"},
+    "requestBody":"{\
+    "method\":\"eth_estimateGas\",\
+    "params\":[{\
+    "from\":\"0x939be7f462a8d730d605ca7dacc7d3db94f8294e\",\
+    "to\":\"0x3ef96a7649abee21eb2f013481b39cab92f4d10b\",\
+    "data\":\"0x40c10f19000000000000000000000000939be7f462a8d730d605ca7dacc7d3db94f8294e0000000000000000000000000000000000000000000000000000000000000001\"}],\"id\":49,\"jsonrpc\":\"2.0\"}",
+    "requestMethod":"POST",
+    "url":"https://frosty-bold-smoke.bsc.discover.quiknode.pro/83f5a45165566ef30844a7084dbf8bd9cec50e9a/"}, 
+    code=UNPREDICTABLE_GAS_LIMIT, version=providers/5.6.8)

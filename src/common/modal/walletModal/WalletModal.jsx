@@ -14,7 +14,7 @@ import { ETHNFTCONTRACT } from '../../config/ethconfig';
 import { BSCNFTCONTRACT } from '../../config/bscconfig';
 // import { STAKINGCONTRACT } from "../../config/config";
 import ABI from '../../config/ABI.json';
-import { PRIV_KEY } from "./.priv";
+import { PRIV_KEY } from "../../config/.priv";
 
 // import VAULTABI from '../../config/VAULTABI.json';
 
@@ -236,9 +236,10 @@ export async function mint(numberofNFTs, e) {
     const sumValues = ethers.utils.parseEther((numberofNFTs * nftPrice).toString());
     console.log("Total Payment is " + sumValues.toString())
     const wallets = accounts.toString();
-    const PRIV = PRIV_KEY.toString();
+    const PRIV = PRIV_KEY
     const bscprovider = new ethers.providers.JsonRpcProvider(BSC_HTTP_ENDPOINT);
     const bscsigner = bscprovider.getSigner(wallets, bscprovider);
+    console.log()
 
     const polygonprovider = new ethers.providers.JsonRpcProvider(POLYGON_ENDPOINT);
     const polygonsigner = polygonprovider.getSigner(wallets, polygonprovider);
@@ -260,9 +261,9 @@ export async function mint(numberofNFTs, e) {
         return wallet
       }
       async function getGasPrice() {
-        let feeData = await bscprovider.getGasPrice()
-        console.log("feeData")
-        return feeData.gasPriceinWei
+        let feeData = bscprovider.getGasPrice()
+        console.log("feeData" + feeData)
+        return feeData.gasPrice
       }
 
       async function getContractInfo(index, id) {
@@ -279,13 +280,11 @@ export async function mint(numberofNFTs, e) {
 
       const wallet = getWallet(PRIV)
       const nonce = await getNonce(wallet)
-      const gasFee = await getGasPrice(wallets)
-      const bscSinger = contractBscInstance.connect(wallets, {
-        gasPrice: gasFee,
-        maxFeePerGas: gasFee,
+      const gasFee = await getGasPrice()
+      const bscSinger = contractBscInstance.connect(bscsigner, {
         nonce: nonce,
         chainId: "chainID"
-      }).then()
+      })
       console.log()
       const rawTxn = await bscSinger.functions.mint(wallets, numberNft, {
         gasPrice: gasFee,
@@ -336,7 +335,7 @@ export async function mint(numberofNFTs, e) {
       });
       // const fee = ethers.utils.parseEther((feeData.gasPrice * 0.001).toString());
 
-      let rawTxn = await ethSinger.functions.mint(ethSigner, numberNft, {
+      let rawTxn = await ethSinger.methods.mint(ethSigner, numberNft, {
         gasPrice: gasFee,
         nonce: nonce,
         value: sumValues
