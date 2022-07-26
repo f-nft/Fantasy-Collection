@@ -62,7 +62,7 @@ const WalletModal = () => {
         const chainId = await web3ModalProvider.getNetwork().then(function (network) {
           console.log(network.chainId)
           //get typeof chainID
-          console.log("type of chainID", typeof network.chainId)
+          console.log("type of chainID " + typeof network.chainId)
 
           localStorage.setItem("chainId", network.chainId);
         }
