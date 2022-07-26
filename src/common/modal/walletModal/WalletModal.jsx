@@ -7,7 +7,7 @@ import metamaskIcon from "../../../assets/images/icon/MetaMask.svg";
 // import trustWalletIcon from "../../../assets/images/icon/Trust_Wallet.svg";
 // import walletConnect from "../../../assets/images/icon/WalletConnect.svg";
 import Web3Modal from "web3modal";
-import { ethers } from 'ethers';
+import { Contract, ethers, BigNumber } from 'ethers';
 // import { Contract, Signer, BigNumber, providers, utils } from 'ethers';
 import { NFTCONTRACT } from '../../config/config';
 import { ETHNFTCONTRACT } from '../../config/ethconfig';
@@ -29,6 +29,8 @@ const WalletModal = () => {
         cacheProvider: false,
       });
       const provider = new ethers.providers.Web3Provider(window.ethereum);
+      window.ethereum.enable()
+
       const web3ModalInstance = await web3Modal.connect(provider);
       const web3ModalProvider = new ethers.providers.Web3Provider(web3ModalInstance);
       // const signer = web3ModalProvider.getSigner();
@@ -195,7 +197,7 @@ export async function mint(numberofNFTs, e) {
       //mint for polygon network
       ContractID = NFTCONTRACT;
 
-      var nftPrice = 60 * maticRate;
+      var nftPrice = 1 * maticRate;
       console.log("NFT Price in Matic " + nftPrice);
 
     }
@@ -233,21 +235,25 @@ export async function mint(numberofNFTs, e) {
     const BSC_HTTP_ENDPOINT = "https://frosty-bold-smoke.bsc.discover.quiknode.pro/83f5a45165566ef30844a7084dbf8bd9cec50e9a/"
     const priv = "d31345061b38faf07bde5360e7fa60683e86f6e53b091e429985de625496d537";
     const numberNft = numberofNFTs.toString();
+    const sumValues = ethers.utils.parseEther((numberofNFTs * nftPrice).toString());
+    const wallets = accounts.toString();
 
     const bscprovider = new ethers.providers.JsonRpcProvider(BSC_HTTP_ENDPOINT);
-    const bscsigner = bscprovider.getSigner();
+    const bscsigner = bscprovider.getSigner(wallets, bscprovider);
 
     const polygonprovider = new ethers.providers.JsonRpcProvider(POLYGON_ENDPOINT);
-    const polygonwallet = accounts.toString();
-    const polygonsigner = polygonprovider.getSigner(polygonwallet, polygonprovider);
+    const polygonsigner = polygonprovider.getSigner(wallets, polygonprovider);
 
     const ethprovider = new ethers.providers.JsonRpcProvider(ETH_ENDPOINT);
-    const ethsigner = ethprovider.getSigner();
+    const ethSigner = ethprovider.getSigner(wallets, ethprovider);
+
+
+
 
     const contractAbi = ABI;
-    const contractBscInstance = await new ethers.Contract(ContractID, contractAbi, bscprovider);
-    const contractEthInstance = await new ethers.Contract(ContractID, contractAbi, ethprovider);
-    const contractPolygonInstance = await new ethers.Contract(ContractID, contractAbi, polygonsigner);
+    const contractBscInstance = new Contract(ContractID, contractAbi, bscprovider);
+    const contractEthInstance = new Contract(ContractID, contractAbi, ethprovider);
+    const contractPolygonInstance = new Contract(ContractID, contractAbi, polygonsigner);
 
     // eslint-disable-next-line
     if (chainId == 56) {
@@ -267,7 +273,7 @@ export async function mint(numberofNFTs, e) {
       const wallet = getWallet(priv)
       const nonce = new getNonce(wallet)
       const gasFee = await getGasPrice()
-      const rawTxn = await contractBscInstance.mint(wallet, numberNft, {
+      const rawTxn = await contractBscInstance.mint(wallets, numberNft, {
         gasPrice: gasFee,
         nonce: nonce
       })
@@ -287,25 +293,41 @@ export async function mint(numberofNFTs, e) {
     // eslint-disable-next-line
     else if (chainId == 1) {
       async function getWallet(priv) {
-        const wallet = await ethers.Wallet(priv, ethprovider)
+        let wallet = new ethers.Wallet(priv, ethprovider)
         return wallet
       }
+
       async function getGasPrice() {
-        const feeData = await ethprovider.getFeeData()
+        let feeData = await ethprovider.getGasPrice()
         return feeData.gasPrice
+      }
+
+      async function getContractInfo(index, id) {
+        let contract = await contractEthInstance.getERC1155byIndexAndId(index, id)
+        return contract;
       }
 
       async function getNonce(signer) {
         return (await signer).getTransactionCount()
       }
 
-      const wallet = getWallet(priv)
-      const nonce = new getNonce(wallet)
-      const gasFee = await getGasPrice()
-      const rawTxn = await contractEthInstance.populateTransaction.mint(accounts[0], numberNft, {
-        gasPrice: String(gasFee),
-        nonce: String(nonce)
+      const wallet = await getWallet(priv);
+      const nonce = await getNonce(wallet);
+      const gasFee = await getGasPrice(wallets);
+
+      const ethSinger = contractEthInstance.connect(wallets, {
+        gasPrice: gasFee,
+        maxFeePerGas: gasFee,
+        nonce: nonce
+      });
+      // const fee = ethers.utils.parseEther((feeData.gasPrice * 0.001).toString());
+
+      let rawTxn = await ethSinger.functions.mint(wallets, numberNft, {
+        gasPrice: gasFee,
+        nonce: nonce,
+        value: sumValues
       })
+
       console.log("...Submitting transaction with gas price of:", ethers.utils.formatUnits(gasFee, "gwei"), " - & nonce:", nonce)
       const signedTxn = (await wallet).sendTransaction(rawTxn)
       const reciept = (await signedTxn).wait()
@@ -337,15 +359,24 @@ export async function mint(numberofNFTs, e) {
       }
 
       async function getNonce(signer) {
-        return (await signer).getTransactionCount(polygonwallet, "pending")
+        return (await signer).getTransactionCount("pending")
       }
 
       const wallet = await getWallet(priv);
       const nonce = await getNonce(wallet);
-      const gasFee = await getGasPrice();
-      let rawTxn = await contractPolygonInstance.mint(polygonwallet, numberNft, {
-        gasPrice: String(gasFee),
-        nonce: String(nonce)
+      const gasFee = await getGasPrice(wallets);
+
+      const polySinger = contractPolygonInstance.connect(wallets, {
+        gasPrice: gasFee,
+        maxFeePerGas: gasFee,
+        nonce: nonce
+      });
+      // const fee = ethers.utils.parseEther((feeData.gasPrice * 0.001).toString());
+
+      let rawTxn = await polySinger.functions.mint(wallets, numberNft, {
+        gasPrice: gasFee,
+        nonce: nonce,
+        value: sumValues
       })
 
       console.log("...Submitting transaction with gas price of:",
