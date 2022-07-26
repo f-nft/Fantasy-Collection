@@ -197,7 +197,7 @@ export async function mint(numberofNFTs, e) {
       //mint for polygon network
       ContractID = NFTCONTRACT;
 
-      var nftPrice = 1 * maticRate;
+      var nftPrice = 60 * maticRate;
       console.log("NFT Price in Matic " + nftPrice);
 
     }
