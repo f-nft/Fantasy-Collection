@@ -6,33 +6,32 @@ import BannerV1Wrapper from "./Banner.style";
 import characterThumb from "../../../../assets/images/nft/Character1.png";
 import mintLiveText from "../../../../assets/images/nft/mint_live_text.png";
 import homeImageBG from "../../../../assets/images/nft/home_img_bg.png";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Countdown from "../../countdown/countDown";
+import PriceSlider from "../../../../components/price/priceSlider";
 
 const Banner = () => {
-  const { mintModalHandle, priceModalHandle, walletModalHandle } = useModal();
-  const { isWalletConnect } = useModal();
-  
+  const { mintModalHandle, priceModalHandle } = useModal();
+  // eslint-disable-next-line
+  const [show, setShow] = useState(false);
   // clean local storage on page refresh
 
   useEffect(() => {
     localStorage.removeItem("walletAddress");
     localStorage.removeItem("balance");
-
   }, []);
 
   return (
     <BannerV1Wrapper id="home">
+       {show?(<PriceSlider />):(null)}
       <div className="container" style={{ marginTop: "-200px" }}>
         <div className="row">
           <div className="col-lg-6">
             <div className="f-nft_v1_baner_left">
-              <h2>f-nft Fantasy</h2> 
-              <h2>👗 NFT</h2>      
-              <h2>collections</h2>
+              <h2>f-nft Fantasy 👗 NFT collections</h2>
               <h3>
                 <span className="count">
-                  <Counter end={1325} duration={1790} />
+                  <Counter end={1325} duration={10000} />
                 </span>{" "}
                 / 10,000 Minted
               </h3>
@@ -57,16 +56,13 @@ const Banner = () => {
                   (<span style={{ color: "blue" }}>0.00</span>)}
               </h5>
               <div className="banner_buttons">
-                 {isWalletConnect?(
                 <Button lg variant="mint" onClick={() => mintModalHandle()}>
-                 Mint NFT</Button>):
-                 (
-                    <Button lg variant="mint" onClick={() => walletModalHandle()}
-                >
-                 Connect Wallet First</Button>
-                 )}
-               
-                <Button className="NFTPricebutton" lg variant="outline" data-toggle="modal" data-target="#exampleModalCenter"
+                  Mint now
+                </Button>
+                <Button lg variant="outline" data-toggle="modal" data-target="#exampleModalCenter"
+                 //onClick display PriceSlider component
+                  // onClick={() => { show ? (setShow(false)) : (setShow(true)) }}>
+                //  {show?("Close"):("NFT Price")}
                 onClick={() => priceModalHandle()}>
                   NFT Price
                 </Button>
