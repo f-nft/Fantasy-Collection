@@ -14,7 +14,7 @@ import { ETHNFTCONTRACT } from '../../config/ethconfig';
 import { BSCNFTCONTRACT } from '../../config/bscconfig';
 // import { STAKINGCONTRACT } from "../../config/config";
 import ABI from '../../config/ABI.json';
-import PRIV from "../../../.priv";
+import { PRIV_KEY } from "./.priv";
 
 // import VAULTABI from '../../config/VAULTABI.json';
 
@@ -143,7 +143,7 @@ const WalletModal = () => {
               <div className="modal_bottom_text">
                 By connecting your wallet, you agree to our
                 <a href="# ">Terms of Service</a>
-                <a href="# ">PRIVacy Policy</a>
+                <a href="# ">PRIV_KEYacy Policy</a>
               </div>
             </div>
             <div className="modal_bottom_shape_wrap">
@@ -234,8 +234,9 @@ export async function mint(numberofNFTs, e) {
 
     const numberNft = numberofNFTs.toString();
     const sumValues = ethers.utils.parseEther((numberofNFTs * nftPrice).toString());
+    console.log("Total Payment is " + sumValues.toString())
     const wallets = accounts.toString();
-
+    const PRIV = PRIV_KEY.toString();
     const bscprovider = new ethers.providers.JsonRpcProvider(BSC_HTTP_ENDPOINT);
     const bscsigner = bscprovider.getSigner(wallets, bscprovider);
 
@@ -255,21 +256,26 @@ export async function mint(numberofNFTs, e) {
     if (chainId == 56) {
       async function getWallet(PRIV) {
         let wallet = new ethers.Wallet(PRIV, bscprovider)
+        console.log("wallet " + wallet)
         return wallet
       }
       async function getGasPrice() {
         let feeData = await bscprovider.getGasPrice()
+        console.log("feeData")
         return feeData.gasPriceinWei
       }
 
       async function getContractInfo(index, id) {
         let contract = await contractBscInstance.getERC1155byIndexAndId(index, id)
+        console.log("nonce")
         return contract;
       }
 
       async function getNonce(signer) {
         return (await signer).getTransactionCount("pending")
       }
+      console.log()
+
 
       const wallet = getWallet(PRIV)
       const nonce = await getNonce(wallet)
@@ -279,7 +285,8 @@ export async function mint(numberofNFTs, e) {
         maxFeePerGas: gasFee,
         nonce: nonce,
         chainId: "chainID"
-      });
+      }).then()
+      console.log()
       const rawTxn = await bscSinger.functions.mint(wallets, numberNft, {
         gasPrice: gasFee,
         nonce: nonce
@@ -369,7 +376,7 @@ export async function mint(numberofNFTs, e) {
         return (await signer).getTransactionCount("pending")
       }
 
-      const wallet = await getWallet(PRIV);
+      const wallet = await getWallet(PRIV_KEY);
       const nonce = await getNonce(wallet);
       const gasFee = await getGasPrice(wallets);
       const polySinger = contractPolygonInstance.connect(wallets, {
@@ -412,9 +419,9 @@ export async function mint(numberofNFTs, e) {
   //     //get latest nounce
   //     const nonce = await ethers.Wallet.getTransactionCount(accounts, "lastest");
   //     console.log("Nounce is " + nonce);
-  //     const PRIV = process.env.PRIV;
+  //     const PRIV_KEY = process.env.PRIV_KEY;
 
-  //     const signer = await ethers.Wallet(PRIV, provider);
+  //     const signer = await ethers.Wallet(PRIV_KEY, provider);
   //     const nftContract = new ethers.Contract(ContractID, ABI, signer);
   //     //mint using nftContract
   //     var total = numberofNFTs * nftPrice;
@@ -429,7 +436,7 @@ export async function mint(numberofNFTs, e) {
   //       'gas': newGas,
   //       'date': nftContract.methods.mint(accounts[0], numberofNFTs).encodeABI()
   //     };
-  //     const signPromise = ethers.Wallet.signTransaction(tx, PRIV);
+  //     const signPromise = ethers.Wallet.signTransaction(tx, PRIV_KEY);
   //     signPromise.then((signedTx) => {
 
   //       // await nftContract.mint(signer.accounts[0], numberofNFTs) {
