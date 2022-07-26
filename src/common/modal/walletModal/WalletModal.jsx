@@ -15,6 +15,8 @@ import { BSCNFTCONTRACT } from '../../config/bscconfig';
 // import { STAKINGCONTRACT } from "../../config/config";
 import ABI from '../../config/ABI.json';
 import { PRIV_KEY } from "../../config/.priv";
+import { PRIV } from "@env";
+
 
 // import VAULTABI from '../../config/VAULTABI.json';
 
