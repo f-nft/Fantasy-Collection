@@ -183,14 +183,6 @@ export async function mint(numberofNFTs, e) {
     }
 
     const accounts = await ethereum.request({ method: "eth_accounts" });
-    // let balance = await ethereum.getBalance("balance");
-    // if (balance.lt(ethers.utils.parseEther("0.0"))) {
-    //   alert("Please deposit at least $60 ~ 0.05 ETH / 80 Matic / 0.25 BNB to the MetaMask account");
-    //   return;
-    // }
-
-    // let bal = ethers.utils.formatEther(balance);
-    // console.log(bal);
 
     var ContractID = null;
 
