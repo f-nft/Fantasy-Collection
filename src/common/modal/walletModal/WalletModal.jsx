@@ -249,38 +249,36 @@ export async function mint(numberofNFTs, e) {
 
     const contractAbi = ABI;
     const contract = ContractID.toString();
-    const contractBscInstance = new Contract(contract, contractAbi, bscsigner);
+    const contractBscInstance = new Contract(ContractID, contractAbi, bscsigner);
     const contractEthInstance = new Contract(contract, contractAbi, ethSigner);
     const contractPolygonInstance = new Contract(contract, contractAbi, polygonsigner);
 
     // eslint-disable-next-line
     if (chainId == 56) {
       async function getWallet(PRIV) {
-        let wallet = new ethers.Wallet(PRIV, bscprovider)
+        let wallet = await new ethers.Wallet(PRIV, bscprovider)
         console.log("wallet " + wallet)
         return wallet
       }
       async function getGasPrice() {
-        let feeData = bscprovider.getGasPrice()
-        console.log("feeData" + feeData)
-        return feeData.gasPrice
+        let feeData = await bscprovider.getGasPrice()
+        console.log("feeData " + feeData)
+        return feeData.bscsigner
       }
 
       async function getContractInfo(index, id) {
         let contract = await contractBscInstance.getERC1155byIndexAndId(index, id)
-        console.log("nonce")
+        console.log("contract " + contract)
         return contract;
       }
 
-      async function getNonce(signer) {
-        return (await signer).getTransactionCount("pending")
+      async function getNonce(bscsigner) {
+        return (await bscsigner).getTransactionCount("pending")
       }
-      console.log()
-
-
-      const wallet = getWallet(PRIV)
-      const nonce = await getNonce(wallet)
-      const gasFee = await getGasPrice()
+      console.log("signer " + bscsigner)
+      let wallet = getWallet(PRIV)
+      let nonce = await getNonce(wallet)
+      let gasFee = await getGasPrice()
       const bscSinger = contractBscInstance.connect(bscsigner, {
         nonce: nonce,
         chainId: "chainID"
