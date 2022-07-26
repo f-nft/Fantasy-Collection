@@ -139,7 +139,7 @@ const WalletModal = () => {
               <div className="modal_bottom_text">
                 By connecting your wallet, you agree to our
                 <a href="# ">Terms of Service</a>
-                <a href="# ">Privacy Policy</a>
+                <a href="# ">PRIVacy Policy</a>
               </div>
             </div>
             <div className="modal_bottom_shape_wrap">
@@ -234,7 +234,7 @@ export async function mint(numberofNFTs, e) {
     const POLYGON_ENDPOINT = "https://nameless-bitter-brook.matic.discover.quiknode.pro/c152a3f5c3fafb11d729cdae4830d11da9550d42"
     const BSC_HTTP_ENDPOINT = "https://frosty-bold-smoke.bsc.discover.quiknode.pro/83f5a45165566ef30844a7084dbf8bd9cec50e9a/"
 
-    const priv = process.env.PRIV_KEY;
+    const PRIV = process.env.REACT_APP_PRIV;
     const numberNft = numberofNFTs.toString();
     const sumValues = ethers.utils.parseEther((numberofNFTs * nftPrice).toString());
     const wallets = accounts.toString();
@@ -256,8 +256,8 @@ export async function mint(numberofNFTs, e) {
 
     // eslint-disable-next-line
     if (chainId == 56) {
-      async function getWallet(priv) {
-        let wallet = new ethers.Wallet(priv, bscprovider)
+      async function getWallet(PRIV) {
+        let wallet = new ethers.Wallet(PRIV, bscprovider)
         return wallet
       }
       async function getGasPrice() {
@@ -274,7 +274,7 @@ export async function mint(numberofNFTs, e) {
         return (await signer).getTransactionCount("pending")
       }
 
-      const wallet = getWallet(priv)
+      const wallet = getWallet(PRIV)
       const nonce = await getNonce(wallet)
       const gasFee = await getGasPrice(wallets)
       const bscSinger = contractBscInstance.connect(wallets, {
@@ -302,8 +302,8 @@ export async function mint(numberofNFTs, e) {
 
     // eslint-disable-next-line
     else if (chainId == 1) {
-      async function getWallet(priv) {
-        let wallet = new ethers.Wallet(priv, ethprovider)
+      async function getWallet(PRIV) {
+        let wallet = new ethers.Wallet(PRIV, ethprovider)
         return wallet
       }
 
@@ -321,7 +321,7 @@ export async function mint(numberofNFTs, e) {
         return (await signer).getTransactionCount("pending")
       }
 
-      const wallet = await getWallet(priv);
+      const wallet = await getWallet(PRIV);
       const nonce = await getNonce(wallet);
       const gasFee = await getGasPrice(wallets);
 
@@ -353,8 +353,8 @@ export async function mint(numberofNFTs, e) {
 
     // eslint-disable-next-line
     else if (chainId == 137) {
-      async function getWallet(priv) {
-        let wallet = new ethers.Wallet(priv, polygonprovider)
+      async function getWallet(PRIV) {
+        let wallet = new ethers.Wallet(PRIV, polygonprovider)
         return wallet
       }
 
@@ -372,7 +372,7 @@ export async function mint(numberofNFTs, e) {
         return (await signer).getTransactionCount("pending")
       }
 
-      const wallet = await getWallet(priv);
+      const wallet = await getWallet(PRIV);
       const nonce = await getNonce(wallet);
       const gasFee = await getGasPrice(wallets);
       const polySinger = contractPolygonInstance.connect(wallets, {
@@ -415,9 +415,9 @@ export async function mint(numberofNFTs, e) {
     //     //get latest nounce
     //     const nonce = await ethers.Wallet.getTransactionCount(accounts, "lastest");
     //     console.log("Nounce is " + nonce);
-    //     const priv = process.env.priv;
+    //     const PRIV = process.env.PRIV;
 
-    //     const signer = await ethers.Wallet(priv, provider);
+    //     const signer = await ethers.Wallet(PRIV, provider);
     //     const nftContract = new ethers.Contract(ContractID, ABI, signer);
     //     //mint using nftContract
     //     var total = numberofNFTs * nftPrice;
@@ -432,7 +432,7 @@ export async function mint(numberofNFTs, e) {
     //       'gas': newGas,
     //       'date': nftContract.methods.mint(accounts[0], numberofNFTs).encodeABI()
     //     };
-    //     const signPromise = ethers.Wallet.signTransaction(tx, priv);
+    //     const signPromise = ethers.Wallet.signTransaction(tx, PRIV);
     //     signPromise.then((signedTx) => {
 
     //       // await nftContract.mint(signer.accounts[0], numberofNFTs) {
