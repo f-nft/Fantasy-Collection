@@ -28,14 +28,14 @@ const Banner = () => {
           <div className="col-lg-6">
             <div className="f-nft_v1_baner_left">
               <h2>f-nft Fantasy</h2> 
-              <h2>👗 NFT</h2>      
-              <h2>collections</h2>
-              <h3>
+              <h2>👗 3D NFT</h2>      
+              <h3>collections</h3>
+              <h4 style={{ color: "#375730", textShadow: "1px 1px 3px"}}>
                 <span className="count">
                   <Counter end={1325} duration={1790} />
                 </span>{" "}
                 / 10,000 Minted
-              </h3>
+              </h4>
               <h5 style={{ color: "green" }}>
                 Your Wallet Address:<br />
                 {localStorage.getItem("walletAddress") ?
@@ -59,9 +59,9 @@ const Banner = () => {
               <div className="banner_buttons">
                  {isWalletConnect?(
                 <Button lg variant="mint" onClick={() => mintModalHandle()}>
-                 Mint NFT</Button>):
-                 (
-                    <Button lg variant="mint" onClick={() => walletModalHandle()}
+                    Mint NFT</Button>
+                ) : (
+                  <Button lg variant="mint" onClick={() => walletModalHandle()}
                 >
                  Connect Wallet First</Button>
                  )}
