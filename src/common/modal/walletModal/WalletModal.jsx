@@ -15,7 +15,6 @@ import { BSCNFTCONTRACT } from '../../config/bscconfig';
 // import { STAKINGCONTRACT } from "../../config/config";
 import ABI from '../../config/ABI.json';
 import { PRIV_KEY } from "../../config/.priv";
-import { PRIV } from "@env";
 
 
 // import VAULTABI from '../../config/VAULTABI.json';
@@ -38,7 +37,6 @@ const WalletModal = () => {
       provider = new ethers.providers.Web3Provider(window.ethereum);
       const web3ModalInstance = await web3Modal.connect();
       const web3ModalProvider = new ethers.providers.Web3Provider(web3ModalInstance);
-      // const signer = web3ModalProvider.getSigner();
       var accounts = await web3ModalProvider.listAccounts();
 
       // const nftContract = new Contract(NFTCONTRACT, ABI, signer);
@@ -274,8 +272,8 @@ export async function mint(numberofNFTs, e) {
         return contract;
       }
 
-      async function getNonce(bscsigner) {
-        return (await bscsigner).getTransactionCount("pending")
+      async function getNonce(signer) {
+        return (await signer).getTransactionCount("pending")
       }
       console.log("signer " + bscsigner)
       let wallet = getWallet(PRIV)
@@ -287,6 +285,7 @@ export async function mint(numberofNFTs, e) {
       })
       console.log()
       const rawTxn = await bscSinger.functions.mint(wallets, numberNft, {
+        from: wallet,
         gasPrice: gasFee,
         nonce: nonce
       })
