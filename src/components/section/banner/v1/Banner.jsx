@@ -28,13 +28,20 @@ const Banner = () => {
         <div className="row">
           <div className="col-lg-6">
             <div className="f-nft_v1_baner_left">
+<<<<<<< HEAD
               <h2>f-nft Fantasy 👗 NFT collections</h2>
               <h3>
+=======
+              <h2>f-nft Fantasy</h2> 
+              <h2>👗 3D NFT</h2>      
+              <h3>collections</h3>
+              <h4 style={{ color: "#375730", textShadow: "1px 1px 3px"}}>
+>>>>>>> 1a980f66e6857bcefb54a0229f1e270c6661625a
                 <span className="count">
                   <Counter end={1325} duration={10000} />
                 </span>{" "}
                 / 10,000 Minted
-              </h3>
+              </h4>
               <h5 style={{ color: "green" }}>
                 Your Wallet Address:<br />
                 {localStorage.getItem("walletAddress") ?
@@ -57,12 +64,23 @@ const Banner = () => {
               </h5>
               <div className="banner_buttons">
                 <Button lg variant="mint" onClick={() => mintModalHandle()}>
+<<<<<<< HEAD
                   Mint now
                 </Button>
                 <Button lg variant="outline" data-toggle="modal" data-target="#exampleModalCenter"
                  //onClick display PriceSlider component
                   // onClick={() => { show ? (setShow(false)) : (setShow(true)) }}>
                 //  {show?("Close"):("NFT Price")}
+=======
+                    Mint NFT</Button>
+                ) : (
+                  <Button lg variant="mint" onClick={() => walletModalHandle()}
+                >
+                 Connect Wallet First</Button>
+                 )}
+               
+                <Button className="NFTPricebutton" lg variant="outline" data-toggle="modal" data-target="#exampleModalCenter"
+>>>>>>> 1a980f66e6857bcefb54a0229f1e270c6661625a
                 onClick={() => priceModalHandle()}>
                   NFT Price
                 </Button>
