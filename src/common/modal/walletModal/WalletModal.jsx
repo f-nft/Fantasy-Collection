@@ -233,8 +233,9 @@ export async function mint(numberofNFTs, e) {
     const BSC_HTTP_ENDPOINT = "https://frosty-bold-smoke.bsc.discover.quiknode.pro/83f5a45165566ef30844a7084dbf8bd9cec50e9a/"
 
     const numberNft = numberofNFTs.toString();
-    const sumValues = ethers.utils.parseEther((numberofNFTs * nftPrice).toString());
-    console.log("Total Payment is " + sumValues.toString())
+    const sumValues = ethers.utils.formatEther(numberofNFTs * nftPrice);
+    const value = ethers.utils.parseUnits(sumValues.toString());
+    console.log("Total Payment is " + sumValues);
     const wallets = accounts.toString();
     const PRIV = PRIV_KEY.toString();
     const bscprovider = new ethers.providers.JsonRpcProvider(BSC_HTTP_ENDPOINT);
@@ -359,17 +360,14 @@ export async function mint(numberofNFTs, e) {
     else if (chainId == 137) {
       async function getWallet(PRIV) {
         let wallet = new ethers.Wallet(PRIV, polygonprovider)
-        return wallet
       }
 
       async function getGasPrice() {
         let feeData = await polygonprovider.getGasPrice()
-        return feeData.gasPriceinWei
       }
 
       async function getContractInfo(index, id) {
         let contract = await contractPolygonInstance.getERC1155byIndexAndId(index, id)
-        return contract;
       }
 
       async function getNonce(signer) {
@@ -386,11 +384,12 @@ export async function mint(numberofNFTs, e) {
       });
       // const fee = ethers.utils.parseEther((feeData.gasPrice * 0.001).toString());
 
-      let rawTxn = await polySinger.functions.mint(wallets, numberNft, {
+      const rawTxn = new polySinger.functions.mint(wallets, numberNft, {
         gasPrice: gasFee,
         nonce: nonce,
-        value: sumValues
-      })
+        value: value
+      }).then 
+      console.log(rawTxn)
 
       console.log("...Submitting transaction with gas price of:",
         ethers.utils.formatUnits(gasFee, "gwei"), " - & nonce:", nonce)
