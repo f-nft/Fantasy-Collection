@@ -33,12 +33,8 @@ const WalletModal = () => {
           darkMode: true,
 
         })
-
-        // close current modal
         walletModalHandle();
 
-
-        try {
           // agree network chain ID to which user is connected
           // eslint-disable-next-line
           const chainId = await web3ModalProvider.getNetwork().then(function (network) {
@@ -51,11 +47,7 @@ const WalletModal = () => {
               console.log(error)
               window.location.reload();
             })
-        }
-        catch (error) {
-          console.log(error)
-        }
-        // get account
+               // get account
         try {
           const accounts = await window.ethereum.request({ method: "eth_accounts" });
           console.log(accounts);
@@ -64,14 +56,6 @@ const WalletModal = () => {
           const provider = new ethers.providers.Web3Provider(ethereum);
           const web3ModalInstance = await web3Modal.connect(provider);
           const web3ModalProvider = new ethers.providers.Web3Provider(web3ModalInstance);
-
-          // const nftContract = new Contract(NFTCONTRACT, ABI, signer);
-          // const bscContract=new Contract(BSCNFTCONTRACT,ABI,signer);
-          // const StakeContract = new Contract(STAKINGCONTRACT, VAULTABI, signer);
-          // const totalstaked = await StakeContract.totalStaked();
-          // const totalstakedwei = totalstaked.toString();
-          // console.log(totalstakedwei);
-
           // get balance
           const balance = await web3ModalProvider.getBalance(accounts[0]);
           //convert balance to ether
