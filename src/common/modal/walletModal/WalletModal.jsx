@@ -23,22 +23,21 @@ const WalletModal = () => {
   const { mintButtonHandler, mintModalHandle } = useModal();
 
   async function connectWallet() {
-
-    try {
-      let web3Modal = new Web3Modal({
+    
+    if (window.ethereum) {
+      var web3Modal = new Web3Modal(window.ethereum, {
         network: "mainnet",
         cacheProvider: false,
         // providerOptions,
         darkMode: true,
       });
-
-      const provider = new ethers.providers.Web3Provider(ethereum);
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
       const web3ModalInstance = await web3Modal.connect(provider);
       const web3ModalProvider = new ethers.providers.Web3Provider(web3ModalInstance);
-      var accounts = await web3ModalProvider.listAccounts();
+      var accounts1 = await web3ModalProvider.listAccounts(window.ethereum);
 
       // get balance
-      const balance = await web3ModalProvider.getBalance(accounts[0]);
+      const balance = await web3ModalProvider.getBalance(accounts1[0]);
       //convert balance to ether
       const etherBalance = ethers.utils.formatEther(balance);
       console.log(etherBalance);
@@ -47,43 +46,34 @@ const WalletModal = () => {
       // close current modal
       walletModalHandle();
       // if wallet is connected then set the wallet address in local storage
-      localStorage.setItem("walletAddress", accounts[0]);
+      localStorage.setItem("walletAddress", accounts1[0]);
       // set balance in local storage
       localStorage.setItem("balance", etherBalance);
 
-      try {
-        // agree network chain ID to which user is connected
-        // eslint-disable-next-line
-        const chainId = await web3ModalProvider.getNetwork().then(function (network) {
-          console.log(network.chainId)
-          //get typeof chainID
-          console.log("type of chainID", typeof network.chainId)
-          localStorage.setItem("chainId", network.chainId);
-        })
-          .catch(function (error) {
+      // agree network chain ID to which user is connected
+      // eslint-disable-next-line
+      const chainId = await web3ModalProvider.getNetwork().then(function (network) {
+        console.log(network.chainId)
+        //get typeof chainID
+        console.log("type of chainID", typeof network.chainId)
+        localStorage.setItem("chainId", network.chainId);
+      })
+        .catch(function (error) {
           console.log(error)
           window.location.reload();
-          })
-      }
-      catch (error) {
-        console.log(error)
-      }
+        })
+
+
       // get account
-      try {
-        accounts = await ethereum.request({ method: "eth_accounts" });
-        console.log(accounts);
-        var account = accounts[0];
-        console.log("Account selected" + account);
-      } catch (err) {
-        alert(err.message);
-        return null;
-      }
-    } catch (error) {
-      console.log(error)
+      await window.ethereum.send('eth_requestAccounts');
+      var accounts = await ethereum.getAccount();
+      const account = accounts[0];
+      console.log("Account selected" + account);
+
     }
     mintModalHandle();
   }
- return (
+  return (
     <>
       <WalletModalStyleWrapper className="modal_overlay">
         <div
@@ -182,7 +172,6 @@ export async function mint(numberofNFTs, e) {
       return
     }
 
-
     var ContractID = null;
 
     // get chainID from local storage
@@ -194,7 +183,6 @@ export async function mint(numberofNFTs, e) {
       ContractID = NFTCONTRACT;
       var nftPrice = 60 * maticRate;
       console.log("NFT Price in Matic " + nftPrice);
-
     }
 
     // eslint-disable-next-line
@@ -203,7 +191,6 @@ export async function mint(numberofNFTs, e) {
       ContractID = BSCNFTCONTRACT;
       nftPrice = 60 * bnbRate;
       console.log("NFT Price in BNB " + nftPrice);
-
     }
 
     // eslint-disable-next-line
@@ -212,7 +199,6 @@ export async function mint(numberofNFTs, e) {
       ContractID = ETHNFTCONTRACT;
       nftPrice = 60 * ethRate;
       console.log("NFT Price in ETH " + nftPrice);
-
     }
 
     else {
@@ -235,7 +221,7 @@ export async function mint(numberofNFTs, e) {
     const polygonRpcProvider = new ethers.providers.JsonRpcProvider(POLYGON_ENDPOINT);
     const polygonProvider = new ethers.providers.getDefaultProvider(POLYGON_ENDPOINT);
     const polygonSigner = polygonRpcProvider.getSigner(account, polygonRpcProvider);
-    
+
     const ethprovider = new ethers.providers.JsonRpcProvider(ETH_ENDPOINT);
     const ethSigner = ethprovider.getSigner(account, ethprovider);
 
@@ -247,18 +233,18 @@ export async function mint(numberofNFTs, e) {
 
     var _mintAmount = numberNft;
     var totalAmount = _mintAmount * nftPrice;
-    await ethereum.getBlock("pending").then((block) => {
-            var baseFee = Number(block.baseFeePerGas);
-            var maxPriority = Number(Gas);
-            var maxFee = baseFee + maxPriority;
-            contract.methods.mint(account, _mintAmount).send({
-              from: account,
-              value: String(totalAmount),
-              maxFeePerGas: maxFee,
-              maxPriorityFeePerGas: maxPriority,
-            });
-          })
-          .catch((err) => alert(err.message));
+    await window.ethereum.getBlock("pending").then((block) => {
+      var baseFee = Number(block.baseFeePerGas);
+      var maxPriority = Number(Gas);
+      var maxFee = baseFee + maxPriority;
+      contract.methods.mint(account, _mintAmount).send({
+        from: account,
+        value: String(totalAmount),
+        maxFeePerGas: maxFee,
+        maxPriorityFeePerGas: maxPriority,
+      });
+    })
+      .catch((err) => alert(err.message));
   } catch (e) {
     console.log("Error Caught in Catch Statement: ", e)
   }
