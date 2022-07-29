@@ -14,7 +14,6 @@ import ABI from '../../config/ABI.json';
 // import formatic from "../../../assets/images/icon/Formatic.svg";
 // import trustWalletIcon from "../../../assets/images/icon/Trust_Wallet.svg";
 // import walletConnect from "../../../assets/images/icon/WalletConnect.svg";
-// import { PRIV_KEY } from "../../config/.priv";
 // import VAULTABI from '../../config/VAULTABI.json';
 
 const { ethereum } = window;
@@ -24,57 +23,55 @@ const WalletModal = () => {
   const { mintButtonHandler, mintModalHandle } = useModal();
 
   async function connectWallet() {
+    
     if (window.ethereum) {
-      try {
-        let web3Modal = new Web3Modal({
-          network: "mainnet",
-          cacheProvider: false,
-          // providerOptions,
-          darkMode: true,
+      var web3Modal = new Web3Modal(window.ethereum, {
+        network: "mainnet",
+        cacheProvider: false,
+        // providerOptions,
+        darkMode: true,
+      });
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const web3ModalInstance = await web3Modal.connect(provider);
+      const web3ModalProvider = new ethers.providers.Web3Provider(web3ModalInstance);
+      var accounts1 = await web3ModalProvider.listAccounts(window.ethereum);
 
+      // get balance
+      const balance = await web3ModalProvider.getBalance(accounts1[0]);
+      //convert balance to ether
+      const etherBalance = ethers.utils.formatEther(balance);
+      console.log(etherBalance);
+      mintButtonHandler();
+
+      // close current modal
+      walletModalHandle();
+      // if wallet is connected then set the wallet address in local storage
+      localStorage.setItem("walletAddress", accounts1[0]);
+      // set balance in local storage
+      localStorage.setItem("balance", etherBalance);
+
+      // agree network chain ID to which user is connected
+      // eslint-disable-next-line
+      const chainId = await web3ModalProvider.getNetwork().then(function (network) {
+        console.log(network.chainId)
+        //get typeof chainID
+        console.log("type of chainID", typeof network.chainId)
+        localStorage.setItem("chainId", network.chainId);
+      })
+        .catch(function (error) {
+          console.log(error)
+          window.location.reload();
         })
-        walletModalHandle();
 
-          // agree network chain ID to which user is connected
-          // eslint-disable-next-line
-          const chainId = await web3ModalProvider.getNetwork().then(function (network) {
-            console.log(network.chainId)
-            //get typeof chainID
-            console.log("type of chainID", typeof network.chainId)
-            localStorage.setItem("chainId", network.chainId);
-          })
-            .catch(function (error) {
-              console.log(error)
-              window.location.reload();
-            })
-               // get account
-        try {
-          const accounts = await window.ethereum.request({ method: "eth_accounts" });
-          console.log(accounts);
-          var account = accounts[0];
-          console.log("Account selected " + account);
-          const provider = new ethers.providers.Web3Provider(ethereum);
-          const web3ModalInstance = await web3Modal.connect(provider);
-          const web3ModalProvider = new ethers.providers.Web3Provider(web3ModalInstance);
-          // get balance
-          const balance = await web3ModalProvider.getBalance(accounts[0]);
-          //convert balance to ether
-          const etherBalance = ethers.utils.formatEther(balance);
-          console.log(etherBalance);
-          // if wallet is connected then set the wallet address in local storage
-          localStorage.setItem("walletAddress", account[0]);
-          // set balance in local storage
-          localStorage.setItem("balance", etherBalance);
-          mintButtonHandler();
-        } catch (err) {
-          alert(err.message);
-          return account
-        }
-      } catch (error) {
-        console.log(error)
-      }
-      mintModalHandle();
+
+      // get account
+      await window.ethereum.send('eth_requestAccounts');
+      var accounts = await ethereum.getAccount();
+      const account = accounts[0];
+      console.log("Account selected" + account);
+
     }
+    mintModalHandle();
   }
   return (
     <>
@@ -165,6 +162,8 @@ export async function mint(numberofNFTs, e) {
   const dataEth = await responseEth.json()
   console.log("ETH Price " + dataEth.price); //data.price is the price of ETH in USDT
   var ethRate = 1 / (dataEth.price); //reduce gas price
+
+  const account = await ethereum.request({ method: "eth_accounts" });
   const Gas = await ethereum.request({ method: "eth_estimateGas" });
 
   try {
@@ -172,7 +171,6 @@ export async function mint(numberofNFTs, e) {
       alert("Please unlock your MetaMask account");
       return
     }
-
 
     var ContractID = null;
 
@@ -185,7 +183,6 @@ export async function mint(numberofNFTs, e) {
       ContractID = NFTCONTRACT;
       var nftPrice = 60 * maticRate;
       console.log("NFT Price in Matic " + nftPrice);
-
     }
 
     // eslint-disable-next-line
@@ -194,7 +191,6 @@ export async function mint(numberofNFTs, e) {
       ContractID = BSCNFTCONTRACT;
       nftPrice = 60 * bnbRate;
       console.log("NFT Price in BNB " + nftPrice);
-
     }
 
     // eslint-disable-next-line
@@ -203,7 +199,6 @@ export async function mint(numberofNFTs, e) {
       ContractID = ETHNFTCONTRACT;
       nftPrice = 60 * ethRate;
       console.log("NFT Price in ETH " + nftPrice);
-
     }
 
     else {
@@ -215,33 +210,28 @@ export async function mint(numberofNFTs, e) {
     const POLYGON_ENDPOINT = "https://nameless-bitter-brook.matic.discover.quiknode.pro/c152a3f5c3fafb11d729cdae4830d11da9550d42"
     const BSC_HTTP_ENDPOINT = "https://frosty-bold-smoke.bsc.discover.quiknode.pro/83f5a45165566ef30844a7084dbf8bd9cec50e9a"
 
-    const contractAbi = ABI;
-    const contract = ContractID.toString();
-
     const numberNft = numberofNFTs.toString();
-    const sumValues = ethers.utils.formatEther(numberofNFTs * nftPrice);
-    const value = ethers.utils.parseUnits(sumValues.toString());
-    console.log("Total Payment is " + sumValues);
-    const wallets = accounts.toString();
-    const PRIV = PRIV_KEY.toString();
+    const sumValues = ethers.utils.parseEther((numberofNFTs * nftPrice).toString());
+    console.log("Total Payment is " + sumValues.toString())
+    const account = accounts.toString();
     const bscprovider = new ethers.providers.JsonRpcProvider(BSC_HTTP_ENDPOINT);
-    const bscsigner = bscprovider.getSigner(wallets, bscprovider);
-    const contractBscInstance = new Contract(ContractID, contractAbi, bscsigner);
+    const bscsigner = bscprovider.getSigner(account, bscprovider);
     console.log()
 
     const polygonRpcProvider = new ethers.providers.JsonRpcProvider(POLYGON_ENDPOINT);
     const polygonProvider = new ethers.providers.getDefaultProvider(POLYGON_ENDPOINT);
-    const polygonSigner = polygonRpcProvider.getSigner(wallets, polygonRpcProvider);
-    const contractPolygonInstance = new Contract(contract, contractAbi, polygonSigner);
-    console.log()
+    const polygonSigner = polygonRpcProvider.getSigner(account, polygonRpcProvider);
 
     const ethprovider = new ethers.providers.JsonRpcProvider(ETH_ENDPOINT);
-    const ethSigner = ethprovider.getSigner(wallets, ethprovider);
+    const ethSigner = ethprovider.getSigner(account, ethprovider);
+
+    const contractAbi = ABI;
+    const contract = ContractID.toString();
+    const contractBscInstance = new Contract(contract, contractAbi, bscsigner);
     const contractEthInstance = new Contract(contract, contractAbi, ethSigner);
-    console.log()
+    const contractPolygonInstance = new Contract(contract, contractAbi, polygonSigner);
 
 
-    try {
       var accounts = "walletAddress";
       var _mintAmount = numberNft;
       var totalAmount = _mintAmount * nftPrice;
@@ -267,12 +257,12 @@ export async function mint(numberofNFTs, e) {
       } else {
         console.log("Error submitting transaction")
       }
-    }
+    
 
     // eslint-disable-next-line
-    else if (chainId == 1) {
-      async function getWallet(PRIV) {
-        let wallet = new ethers.Wallet(PRIV, ethprovider)
+    if (chainId == 1) {
+      async function getWallet() {
+        let wallet = new ethers.Wallet(ethprovider)
         return wallet
       }
 
@@ -290,7 +280,7 @@ export async function mint(numberofNFTs, e) {
         return (await signer).getTransactionCount("pending")
       }
 
-      const wallet = await getWallet(PRIV);
+      const wallet = await getWallet();
       const nonce = await getNonce(wallet);
       const gasFee = await getGasPrice(wallets);
 
@@ -322,8 +312,8 @@ export async function mint(numberofNFTs, e) {
 
     // eslint-disable-next-line
     else if (chainId == 137) {
-      async function getWallet(PRIV) {
-        let wallet = new ethers.Wallet(PRIV, polygonprovider)
+      async function getWallet() {
+        let wallet = new ethers.Wallet(polygonprovider)
       }
 
       async function getGasPrice() {
@@ -338,7 +328,7 @@ export async function mint(numberofNFTs, e) {
         return (await signer).getTransactionCount("pending")
       }
 
-      const wallet = await getWallet(PRIV_KEY);
+      const wallet = await getWallet();
       const nonce = await getNonce(wallet);
       const gasFee = await getGasPrice(wallets);
       const polySinger = contractPolygonInstance.connect(wallets, {
