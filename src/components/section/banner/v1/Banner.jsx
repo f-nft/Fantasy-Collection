@@ -11,13 +11,11 @@ import Countdown from "../../countdown/countDown";
 
 const Banner = () => {
   const { mintModalHandle, priceModalHandle, walletModalHandle } = useModal();
-  const { isWalletConnect } = useModal();
+  const { isWalletConnect,walletAddress,balance } = useModal();
   
   // clean local storage on page refresh
 
   useEffect(() => {
-    localStorage.removeItem("walletAddress");
-    localStorage.removeItem("balance");
 
   }, []);
 
@@ -38,8 +36,8 @@ const Banner = () => {
               </h4>
               <h5 style={{ color: "green" }}>
                 Your Wallet Address:<br />
-                {localStorage.getItem("walletAddress") ?
-                  (<span style={{ color: "white" }}>{localStorage.getItem("walletAddress")}</span>) :
+                {walletAddress ?
+                  (<span style={{ color: "white" }}>{walletAddress}</span>) :
                   (<span style={{ color: "white" }}>0x0</span>)}
               </h5>
               <div className="f-nft_v1_timer">
@@ -52,8 +50,8 @@ const Banner = () => {
               </div>
               <h5 style={{ color: "green" }}>
                 Balance <br />
-                {localStorage.getItem("balance") ?
-                  (<span style={{ color: "white" }}>{localStorage.getItem("balance")}</span>) :
+                {balance ?
+                  (<span style={{ color: "white" }}>{balance}</span>) :
                   (<span style={{ color: "blue" }}>0.00</span>)}
               </h5>
               <div className="banner_buttons">

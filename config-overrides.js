@@ -1,5 +1,4 @@
-const webpack = require('webpack');
-
+// final version of the file
 module.exports = function override(config) {
     const fallback = config.resolve.fallback || {};
     Object.assign(fallback, {
