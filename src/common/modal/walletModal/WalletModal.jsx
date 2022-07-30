@@ -11,7 +11,6 @@ import metamaskIcon from "../../../assets/images/icon/MetaMask.svg";
 import Web3 from 'web3';
 import { NFTCONTRACT } from '../../config/config';
 import ABI from '../../config/ABI.json';
-//account 2: 0xF2001E0cfE624D8B6B8C62CdD6d7972da35Cc55B
 
 
 // var provider = null;
