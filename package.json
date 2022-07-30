@@ -33,7 +33,11 @@
     "web-vitals": "^2.1.4",
     "web3": "^1.7.4",
     "web3-provider": "^1.0.0",
-    "web3modal": "^1.9.8"
+    "web3modal": "^1.9.8",
+    "buffer": "^6.0.3",
+    "process": "^0.11.10",
+    "stream-browserify": "^3.0.0",
+    "react-app-rewired": "^2.2.1"
   },
   "scripts": {
     "start": "react-app-rewired start",

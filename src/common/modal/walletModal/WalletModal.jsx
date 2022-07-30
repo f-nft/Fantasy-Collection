@@ -16,14 +16,14 @@ import ABI from '../../config/ABI.json';
 // var provider = null;
 var contract = null;
 const WalletModal = () => {
-const {walletModalHandle, 
-      mintButtonHandler,
-      setWalletAddress,
-      setBalance,
-      // setStateaccouts,
-      // setStateprovider,
-     setStateContract
-       } = useModal();
+  const { walletModalHandle,
+    mintButtonHandler,
+    setWalletAddress,
+    setBalance,
+    // setStateaccouts,
+    // setStateprovider,
+    setStateContract
+  } = useModal();
 
   // async function connectWallet() {
 
@@ -62,7 +62,7 @@ const {walletModalHandle,
   //         const chainId = await web3ModalProvider.getNetwork().then(function (network) {
   //         console.log(network.chainId)
   //         localStorage.setItem("chainId", network.chainId);
-          
+
   //       }
   //       ).catch(function (error) {
   //         console.log(error)
@@ -78,31 +78,29 @@ const {walletModalHandle,
 
   // }
 
-  async function connectWallet2(){
-    if(window.ethereum){
-      var web3=new Web3(window.ethereum);
+  async function connectWallet2() {
+    if (window.ethereum) {
+      var web3 = new Web3(window.ethereum);
       await window.ethereum.send("eth_requestAccounts");
-      var accounts=await web3.eth.getAccounts();
-      var account=accounts[0];
-      setWalletAddress(account);  
+      var accounts = await web3.eth.getAccounts();
+      var account = accounts[0];
+      setWalletAddress(account);
       setBalance(web3.utils.fromWei(await web3.eth.getBalance(account)));
       walletModalHandle();
 
       //get contract instance
-      try 
-      {
+      try {
         contract = new web3.eth.Contract(ABI, NFTCONTRACT);
         mintButtonHandler();
-      } 
-      catch (error) 
-      {
+      }
+      catch (error) {
         console.log(error)
       }
       setStateContract(contract);
     }
 
   }
- return (
+  return (
     <>
       <WalletModalStyleWrapper className="modal_overlay">
         <div
