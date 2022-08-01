@@ -181,9 +181,6 @@ const MintNowModal = () => {
   //     gasLimit: 30000,  //gasLimit
   //   })
 
-  // }
-
-
 // async function mint0(numberofNFTs) {
 //        var nftPrice = 0.1 * maticRate;
 //     var _mintprice = nftPrice * numberofNFTs;
