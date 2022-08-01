@@ -11,7 +11,6 @@ import metamaskIcon from "../../../assets/images/icon/MetaMask.svg";
 import Web3 from 'web3';
 import { NFTCONTRACT } from '../../config/config';
 import ABI from '../../config/ABI.json';
-//account 2: 0xF2001E0cfE624D8B6B8C62CdD6d7972da35Cc55B
 
 
 // var provider = null;
@@ -21,8 +20,63 @@ const WalletModal = () => {
     mintButtonHandler,
     setWalletAddress,
     setBalance,
-    setStateContract,
+    // setStateaccouts,
+    // setStateprovider,
+    setStateContract
   } = useModal();
+
+  // async function connectWallet() {
+
+
+
+  //   try {
+  //     let web3Modal = new Web3Modal({
+  //       cacheProvider: false,
+
+  //     });
+
+  //     provider = new ethers.providers.Web3Provider(window.ethereum);
+  //     const web3ModalInstance = await web3Modal.connect();
+  //     const web3ModalProvider = new ethers.providers.Web3Provider(web3ModalInstance);
+  //     var accounts = await web3ModalProvider.listAccounts();
+  //     setStateprovider(provider)
+  //     setStateaccouts(accounts)
+
+  //     //get balance
+  //     const balance = await web3ModalProvider.getBalance(accounts[0]);
+  //     //convert balance to ether
+  //     const etherBalance = ethers.utils.formatEther(balance);
+  //     console.log(etherBalance);
+  //     mintButtonHandler();
+
+  //     //close current modal
+  //     walletModalHandle();
+  //     //if wallet is connected then set the wallet address in local storage
+  //     setWalletAddress(accounts[0]);
+  //     //set balance in local storage
+  //     setBalance(etherBalance);
+
+  //     try {
+  //       //agree network chain ID to which user is connected
+  //       // eslint-disable-next-line
+  //         const chainId = await web3ModalProvider.getNetwork().then(function (network) {
+  //         console.log(network.chainId)
+  //         localStorage.setItem("chainId", network.chainId);
+
+  //       }
+  //       ).catch(function (error) {
+  //         console.log(error)
+  //         window.location.reload();
+  //       }
+  //       );
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   } catch (error) {
+  //   }
+
+
+  // }
 
   async function connectWallet2() {
     if (window.ethereum) {
@@ -44,6 +98,7 @@ const WalletModal = () => {
       }
       setStateContract(contract);
     }
+
   }
   return (
     <>
@@ -95,7 +150,7 @@ const WalletModal = () => {
               <div className="modal_bottom_text">
                 By connecting your wallet, you agree to our
                 <a href="# ">Terms of Service</a>
-                <a href="# ">Privacy Policy</a>
+                <a href="# ">PRIV_KEYacy Policy</a>
               </div>
             </div>
             <div className="modal_bottom_shape_wrap">

@@ -135,6 +135,4 @@ export async function mint(numberofNFTs, e) {
     catch (error) {
     alert("Please check your wallet and try again");
     window.location.reload();
-}
-  
-  }
+}}

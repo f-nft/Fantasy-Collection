@@ -4,8 +4,8 @@ import CharacterSliderWrapper from "./CharacterSlider.style";
 
 const PriceSlider = () => {
   const settings = {
-    dots: false,
-    arrows: false,
+    dots: true,
+    arrows: true,
     autoplay: true,
     speed: 2000,
     autoplaySpeed: 3000,
@@ -13,7 +13,7 @@ const PriceSlider = () => {
     centerMode: true,
     centerPadding: "0px",
     infinite: true,
-    slidesToShow: 3,
+    slidesToShow: 1,
     slidesToScroll: 1,
     responsive: [
       {
@@ -23,7 +23,7 @@ const PriceSlider = () => {
           slidesToScroll: 1,
         },
       },
-        {
+      {
         //breakpoint for medium screen
         breakpoint: 768,
         settings: {
