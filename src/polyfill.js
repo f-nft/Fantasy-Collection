@@ -7,3 +7,4 @@ global.process = {
     version: '',
     nextTick: require('next-tick')
 };
+global.Buffer = global.Buffer || require('buffer').Buffer;

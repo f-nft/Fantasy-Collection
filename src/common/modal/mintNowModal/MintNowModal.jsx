@@ -8,8 +8,8 @@ import hoverShape from "../../../assets/images/icon/hov_shape_L.svg";
 import { MdPriceChange } from "react-icons/md";
 // import Countdown from "../../../components/section/countdown/countDown";
 import { useEffect } from "react";
-import { ethers } from 'ethers';
-import Web3 from "web3";
+// import { ethers } from 'ethers';
+// import Web3 from "web3";
 // import { Contract, Signer, BigNumber, providers, utils } from 'ethers';
  import { NFTCONTRACT } from '../../config/config';
 import TOKENABI from '../../config/TOKENABI.json'
@@ -39,15 +39,30 @@ const MintNowModal = () => {
   useEffect(() => {
     async function getData() {
       const ethPrice = "https://api.binance.com/api/v3/ticker/price?symbol=ETHUSDT";
-      const responseEth = await fetch(ethPrice, { cache: "force-cache" })
+      const responseEth = await fetch(ethPrice)
       var data = await responseEth.json()
-      console.log("ETH Price " + data.price); //data.price is the price of MATIC in USDT
+      console.log("ETH Price " + data.price); //data.price is the price of Eth in USDT
       var ethRate = 1 / data.price;
       localStorage.setItem("ethRate", ethRate);
+
+      const bnbPrice = "https://api.binance.com/api/v3/ticker/price?symbol=BNBUSDT";
+      const responseBnb = await fetch(bnbPrice)
+      var bnbdata = await responseBnb.json()
+      console.log("ETH Price " + bnbdata.price); //data.price is the price of Bnb in USDT
+      var bnbRate = 1 / bnbdata.price;
+      localStorage.setItem("ethRate", bnbRate);
+
+      const maticPrice = "https://api.binance.com/api/v3/ticker/price?symbol=MATICUSDT";
+      const responseMatic = await fetch(maticPrice)
+      var maticdata = await responseMatic.json()
+      console.log("ETH Price " + maticdata.price); //data.price is the price of MATIC in USDT
+      var maticRate = 1 / maticdata.price;
+      localStorage.setItem("ethRate", maticRate);
     }
     getData();
     getRates()  
   }, []);
+
   const ethNewRate = localStorage.getItem("ethRate") * 60;
   const usdRate = 60;
   var num = ethNewRate;
@@ -134,286 +149,102 @@ const MintNowModal = () => {
 //     // const balance = await contractPolygonInstance.balanceOf(wallets);
 //     // return alert("Account balance is " + balance.toString())
     
-//     // eslint-disable-next-line
-//     // if (chainId == 56) {
-//     //   async function getWallet(PRIV) {
-  
-//     //     let wallet = await new ethers.Wallet(PRIV, bscprovider)
-//     //     console.log("wallet " + wallet)
-//     //     return wallet
-//     //   }
-//     //   async function getGasPrice() {
-//     //     let feeData = await bscprovider.getGasPrice()
-//     //     console.log("feeData " + feeData)
-//     //     return feeData.bscsigner
-//     //   }
+  // async function mint(numberofNFTs)
+  // {
+  //   var contract=stateContract; // contract instance from state
+  //   var _mintamount=numberofNFTs; 
+  //   var nftPrice = 0.1 * maticRate;
+  //   var _mintprice = nftPrice * _mintamount;
+  //   var _mintprice2 = ethers.utils.parseEther(_mintprice.toString());
+  //   //call cost of the transaction
+  //      contract.methods.cost().call().then(function(result){
+  //        console.log(result)
+  //       })
 
-//     //   async function getContractInfo(index, id) {
-//     //     let contract = await contractBscInstance.getERC1155byIndexAndId(index, id)
-//     //     console.log("contract " + contract)
-//     //     return contract;
-//     //   }
-      
-//     //   async function getNonce(signer) {
-//     //     return (await signer).getTransactionCount("pending")
-//     //   }
-//     //   console.log("signer " + bscsigner)
-//     //   let wallet = getWallet(PRIV)
-//     //   let nonce = await getNonce(wallet)
-//     //   let gasFee = await getGasPrice()
-//     //   const bscSinger = contractBscInstance.connect(bscsigner, {
-//     //     nonce: nonce,
-//     //     chainId: "chainID"
-//     //   })
-//     //   const rawTxn = await bscSinger.functions.mint(wallets, numberNft, {
-//     //     from: wallet,
-//     //     gasPrice: gasFee,
-//     //     nonce: nonce
-//     //   })
-//     //   console.log("...Submitting transaction with gas price of:", ethers.utils.formatUnits(gasFee, "gwei"), " - & nonce:", nonce)
-//     //   const signedTxn = (await wallet).sendTransaction(rawTxn)
-//     //   const reciept = (await signedTxn).wait()
-//     //   if (reciept) {
-//     //     console.log("Transaction is successful!!!" + '\n' + "Transaction Hash:",
-//     //       (await signedTxn).hash + '\n' + "Block Number:" +
-//     //       (await reciept).blockNumber + '\n' + "Navigate to https://bscscan.com/tx/" +
-//     //       (await signedTxn).hash, "to see your transaction")
-//     //   } else {
-//     //     console.log("Error submitting transaction")
-//     //   }
-//     // }
+  //   var accounts=walletAddress;
+  //   var web3=new Web3(window.ethereum);
+  //   //get provider using web3
+  //   var provider = new ethers.providers.Web3Provider(web3.currentProvider);
+  //   //get gas price
+  //   var gasPrice = await provider.getGasPrice();
+  //   //convert gasPrice to wei
+  //   var gasPriceWei = ethers.utils.parseEther(gasPrice.toString());
 
-//     // // eslint-disable-next-line
-//     // else if (chainId == 1) {
-//     //   async function getWallet(PRIV) {
-//     //     let wallet = new ethers.Wallet(PRIV, ethprovider)
-//     //     return wallet
-//     //   }
+  //   contract.methods.mint(accounts,_mintamount)
+  //   .send({
+  //     from: accounts,   //wallet address
+  //     value: _mintprice2, // price of NFT currently set to 0.0001 matic 
+  //     to: NFTCONTRACT,    //polygon contract address
+  //     gasPrice: gasPriceWei,  //gasPrice
+  //     maxPriorityFeePerGas: gasPrice,
+  //     maxFeePerGas: gasPrice,
+  //     gasLimit: 30000,  //gasLimit
+  //   })
 
-//     //   async function getGasPrice() {
-//     //     let feeData = await ethprovider.getGasPrice()
-//     //     return feeData.gasPrice
-//     //   }
-
-//     //   async function getContractInfo(index, id) {
-//     //     let contract = await contractEthInstance.getERC1155byIndexAndId(index, id)
-//     //     return contract;
-//     //   }
-
-//     //   async function getNonce(signer) {
-//     //     return (await signer).getTransactionCount("pending")
-//     //   }
-
-//     //   const wallet = await getWallet(PRIV);
-//     //   const nonce = await getNonce(wallet);
-//     //   const gasFee = await getGasPrice(wallets);
-
-//     //   const ethSinger = contractEthInstance.connect(ethSigner, {
-//     //     gasPrice: gasFee,
-//     //     maxFeePerGas: gasFee,
-//     //     nonce: nonce
-//     //   });
-//     //   // const fee = ethers.utils.parseEther((feeData.gasPrice * 0.001).toString());
-//     //   alert("gasPrice " + gasFee)
-//     //   let rawTxn = await ethSinger.methods.mint(ethSigner, numberNft, {
-//     //     gasPrice: gasFee,
-//     //     nonce: nonce,
-//     //     value: sumValues
-//     //   })
-
-//     //   console.log("...Submitting transaction with gas price of:", ethers.utils.formatUnits(gasFee, "gwei"), " - & nonce:", nonce)
-//     //   const signedTxn = (await wallet).sendTransaction(rawTxn)
-//     //   const reciept = (await signedTxn).wait()
-//     //   if (reciept) {
-//     //     console.log("Transaction is successful!!!" + '\n' + "Transaction Hash:",
-//     //       (await signedTxn).hash + '\n' + "Block Number:" +
-//     //       (await reciept).blockNumber + '\n' + "Navigate to https://etherscan.io/tx/" +
-//     //       (await signedTxn).hash, "to see your transaction")
-//     //   } else {
-//     //     console.log("Error submitting transaction")
-//     //   }
-//     // }
-
-//     // eslint-disable-next-line
-//      if (chainId == 137) {
-//       async function getWallet(PRIV) {
-//         let wallet = new ethers.Wallet(PRIV_KEY, polygonprovider)
-//         return wallet
-//       }
-
-//       async function getGasPrice() {
-//         let feeData = await polygonprovider.getGasPrice()
-//         return feeData
-//       }
-
-//       async function getContractInfo(index, id) {
-//         let contract = await contractPolygonInstance.getERC1155byIndexAndId(index, id)
-//         return contract;
-//       }
-
-//       async function getNonce(signer) {
-//         return (await signer).getTransactionCount("pending")
-//       }
-//       const wallet = await getWallet(PRIV_KEY);
-//       const nonce = await getNonce(wallet);
-//       const gasFee = await getGasPrice(wallets);
-//       const polySinger = contractPolygonInstance.connect(wallets, {
-//         gasPrice: gasFee,
-//         maxFeePerGas: gasFee,
-//         nonce: nonce
-//       });
-      
-//       let tx={
-//         gasLimit: 60000,
-//         gasPrice: ethers.utils.parseEther((gasFee * 0.001).toString()),
-//         from: wallets,
-//         nonce: nonce,
-//       }
-//       //sign the transaction
-  
-
-//       let signedTn =await wallet.signTransaction(tx,PRIV_KEY)
-//       setRespond(signedTn)
-//       //use sendsignedTransaction to send the transaction
-//       const reciept2 = polySinger.getTransactionCount()
-//       console.log("reciept2 " + reciept2)
-      
+  // }
 
 
-     
-//       //wait till Respond state is not empty
- 
-//       // let rawT2xn = await polySinger.functions.mint(accounts, numberNft,tx)
-//       console.log("...Submitting transaction ....")
-//       //send Raw transaction
-//     console.log(wallet)
-//     return
-      
+// async function mint0(numberofNFTs) {
+//        var nftPrice = 0.1 * maticRate;
+//     var _mintprice = nftPrice * numberofNFTs;
+//     var _mintprice2 = ethers.utils.parseEther(_mintprice.toString());
+//       var _pid = "0";
+//       var erc20address;
+//       var currency;
+//       var contract=stateContract; // contract instance from state
+//       var mintRate=maticRate;
+//       var _mintAmount = numberofNFTs
+//       var account=walletAddress;
+//       var totalAmount = mintRate * _mintAmount;
+//         var web3=new Web3(window.ethereum);
+//       try {
+//         erc20address = await contract.methods.getCryptotoken(_pid).call();
+//         currency = new web3.eth.Contract(TOKENABI, erc20address);
+//         mintRate = await contract.methods.getNFTCost(_pid).call();
 
-//       // let rawTxn = await polySinger.functions.mint(wallets, numberNft, {
-//       //   gasPrice: gasFee,
-//       //   nonce: nonce,
-//       //   value: sumValues
-//       // })
-
-//       // console.log("...Submitting transaction with gas price of:",
-//       //   ethers.utils.formatUnits(gasFee, "gwei"), " - & nonce:", nonce)
-//       // const signedTxn = (await wallet).sendTransaction(rawTxn)
-//       // const reciept = (await signedTxn).wait()
-//       // if (reciept) {
-//       //   console.log("Transaction is successful!!!" + '\n' + "Transaction Hash:",
-//       //     (await signedTxn).hash + '\n' + "Block Number:" +
-//       //     (await reciept).blockNumber + '\n' + "Navigate to https://etherscan.io/tx/" +
-//       //     (await signedTxn).hash, "to see your transaction")
-//       // } else {
-//       //   console.log("Error submitting transaction")
-//       // }
-//     }
-
-//     else {
-//       console.log("Wrong network - Connect to configured BSC, ETH, or Polygon first!")
-//     }
-//   } catch (e) {
-//     console.log("Error Caught in Catch Statement: ", e)
-//   }
-
-// }
-  async function mint2(numberofNFTs)
-  {
-    var contract=stateContract; // contract instance from state
-    var _mintamount=numberofNFTs; 
-    var nftPrice = 0.1 * maticRate;
-    var _mintprice = nftPrice * _mintamount;
-    var _mintprice2 = ethers.utils.parseEther(_mintprice.toString());
-    //call cost of the transaction
-       contract.methods.cost().call().then(function(result){
-         console.log(result)
-        })
-
-    var accounts=walletAddress;
-    var web3=new Web3(window.ethereum);
-    //get provider using web3
-    var provider = new ethers.providers.Web3Provider(web3.currentProvider);
-    //get gas price
-    var gasPrice = await provider.getGasPrice();
-    //convert gasPrice to wei
-    var gasPriceWei = ethers.utils.parseEther(gasPrice.toString());
-
-    contract.methods.mint(accounts,_mintamount)
-    .send({
-      from: accounts,   //wallet address
-      value: _mintprice2, // price of NFT currently set to 0.0001 matic 
-      to: NFTCONTRACT,    //polygon contract address
-      gasPrice: gasPriceWei,  //gasPrice
-      maxPriorityFeePerGas: gasPrice,
-      maxFeePerGas: gasPrice,
-      gasLimit: 750000,  //gasLimit
-    })
-
-  }
-
-
-async function mint0(numberofNFTs) {
-       var nftPrice = 0.1 * maticRate;
-    var _mintprice = nftPrice * numberofNFTs;
-    var _mintprice2 = ethers.utils.parseEther(_mintprice.toString());
-      var _pid = "0";
-      var erc20address;
-      var currency;
-      var contract=stateContract; // contract instance from state
-      var mintRate=maticRate;
-      var _mintAmount = numberofNFTs
-      var account=walletAddress;
-      var totalAmount = mintRate * _mintAmount;
-        var web3=new Web3(window.ethereum);
-      try {
-        erc20address = await contract.methods.getCryptotoken(_pid).call();
-        currency = new web3.eth.Contract(TOKENABI, erc20address);
-        mintRate = await contract.methods.getNFTCost(_pid).call();
-
-        await Web3Alc.eth.getMaxPriorityFeePerGas().then((tip) => {
-            Web3Alc.eth.getBlock("pending").then((block) => {
-                var baseFee = Number(block.baseFeePerGas);
-                var maxPriority = Number(tip);
-                var maxFee = maxPriority + baseFee;
+//         await Web3Alc.eth.getMaxPriorityFeePerGas().then((tip) => {
+//             Web3Alc.eth.getBlock("pending").then((block) => {
+//                 var baseFee = Number(block.baseFeePerGas);
+//                 var maxPriority = Number(tip);
+//                 var maxFee = maxPriority + baseFee;
                 
-                //convert to wei
-                var totalAmountWei = ethers.utils.parseEther(Number(totalAmount).toString());
-                currency.methods.approve(NFTCONTRACT, String(totalAmountWei))
-                .send(
-                  {
-                    from: account,
-                    value: _mintprice2,
-                    maxFeePerGas: maxFee,
-                    maxPriorityFeePerGas: maxPriority
-                  })
-                  .then(
-                    currency.methods.transfer(NFTCONTRACT, String(totalAmount))
-                    .send(
-                        {from: account,maxFeePerGas: maxFee,maxPriorityFeePerGas: maxPriority,},
-                        async function (error, transactionHash) {
-                          console.log("Transfer Submitted, Hash: ",transactionHash);
-                          let transactionReceipt = null;
-                          while (transactionReceipt == null) 
-                          {
-                            transactionReceipt =await Web3.eth.getTransactionReceipt(transactionHash);
-                            console.log(transactionReceipt);
-                          }
-                          console.log("Transfer Complete", transactionReceipt);
-                          contract.methods.mintpid(account, _mintAmount, _pid).send({from: account,maxFeePerGas: maxFee,maxPriorityFeePerGas: maxPriority,});
-                        }
-                      )
-                  )
-                  .catch((err) => alert(err.message));
-              })
-              .catch((err) => alert(err.message));
-          })
-          .catch((err) => alert(err.message));
-      } 
-      catch (error) {
-        alert(error);
-      }
-    }
+//                 //convert to wei
+//                 var totalAmountWei = ethers.utils.parseEther(Number(totalAmount).toString());
+//                 currency.methods.approve(NFTCONTRACT, String(totalAmountWei))
+//                 .send(
+//                   {
+//                     from: account,
+//                     value: _mintprice2,
+//                     maxFeePerGas: maxFee,
+//                     maxPriorityFeePerGas: maxPriority
+//                   })
+//                   .then(
+//                     currency.methods.transfer(NFTCONTRACT, String(totalAmount))
+//                     .send(
+//                         {from: account,maxFeePerGas: maxFee,maxPriorityFeePerGas: maxPriority,},
+//                         async function (error, transactionHash) {
+//                           console.log("Transfer Submitted, Hash: ",transactionHash);
+//                           let transactionReceipt = null;
+//                           while (transactionReceipt == null) 
+//                           {
+//                             transactionReceipt =await Web3.eth.getTransactionReceipt(transactionHash);
+//                             console.log(transactionReceipt);
+//                           }
+//                           console.log("Transfer Complete", transactionReceipt);
+//                           contract.methods.mintpid(account, _mintAmount, _pid).send({from: account,maxFeePerGas: maxFee,maxPriorityFeePerGas: maxPriority,});
+//                         }
+//                       )
+//                   )
+//                   .catch((err) => alert(err.message));
+//               })
+//               .catch((err) => alert(err.message));
+//           })
+//           .catch((err) => alert(err.message));
+//       } 
+//       catch (error) {
+//         alert(error);
+//       }
+//     }
 
 async function mintnative(numberofNFTs) {
       try {
@@ -443,9 +274,6 @@ async function mintnative(numberofNFTs) {
       }
     }
 
-
-
-
   async function getRates(){
   const maticPrice = "https://api.binance.com/api/v3/ticker/price?symbol=MATICUSDT";
   const responseMatic = await fetch(maticPrice);
@@ -464,11 +292,7 @@ async function mintnative(numberofNFTs) {
   const dataEth = await responseEth.json()
   console.log("ETH Price " + dataEth.price); //data.price is the price of ETH in USDT
   setEthRate(1 / (dataEth.price)) //reduce gas price
-
   }
-
-
-
   
   return (
     <>

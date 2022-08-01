@@ -24,7 +24,7 @@ const HomeV1 = () => {
        <GlobalStyles /> 
       {visibility && <MintNowModal />}
       {walletModalvisibility && <WalletModal />}
-      {priceModalVisibiity&&<PriceModal />}
+      {priceModalVisibiity && <PriceModal />}
       <Header />
       <Banner />
       <HowToMint />
