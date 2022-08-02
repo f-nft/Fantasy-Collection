@@ -32,7 +32,7 @@ const data = [
   {
     avatar: avatarThumb2,
     name: "Alex Tuan",
-    designation: "Co-Founder",
+    designation: "Marketing",
     socialLinks: [
       {
         icon: <FaLinkedinIn />,
@@ -69,8 +69,8 @@ const data = [
   },
   {
     avatar: avatarThumb4,
-    name: "Claudia Hicks",
-    designation: "Co-Artist",
+    name: "Free Man",
+    designation: "Web Develope",
     socialLinks: [
       {
         icon: <FaLinkedinIn />,
@@ -126,7 +126,7 @@ const data = [
   },
   {
     avatar: avatarThumb7,
-    name: "Sony Jina",
+    name: "Sonny Jina",
     designation: "Blockchain Dev",
     socialLinks: [
       {
