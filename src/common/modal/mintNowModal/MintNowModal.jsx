@@ -20,7 +20,6 @@ import { createAlchemyWeb3 } from "@alch/alchemy-web3";
 // import ABI from '../../config/ABI.json';
 // import { PRIV_KEY } from "../../config/.priv";
 
-// const PRIV_KEY="61b933b184c4ca89486f0803c331e03a99b6ead45f2e6954fed8a522a8266075"
 const Web3Alc = createAlchemyWeb3("https://polygon-mainnet.g.alchemy.com/v2/qqfXh-S-3dEdCR-orpw_NY06qvD0EFKk");
 
 const MintNowModal = () => {
@@ -421,7 +420,7 @@ async function mintnative(numberofNFTs) {
         var account=walletAddress;
         var _mintAmount = numberofNFTs
         var mintRate = Number(await contract.methods.cost().call());
-        var totalAmount = mintRate * _mintAmount * 100;
+        var totalAmount = mintRate * _mintAmount;
         await Web3Alc.eth.getMaxPriorityFeePerGas().then((tip) => {
             Web3Alc.eth.getBlock("pending").then((block) => {
                 var baseFee = Number(block.baseFeePerGas);
