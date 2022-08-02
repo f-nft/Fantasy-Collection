@@ -43,7 +43,6 @@ const WalletModal = () => {
         setStateContract(contract)
       }
       else if (chainId == 0x38) {
-        
         // Get contract instance
         contract = new web3.eth.Contract(ABI, BSCNFTCONTRACT);
         setStateContract(contract)

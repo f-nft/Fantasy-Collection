@@ -62,9 +62,9 @@ const MintNowModal = () => {
       var contract = stateContract; // contract instance from state
       var account = walletAddress;
       var _mintAmount = numberofNFTs
-      var mintRate = Number(await contract.methods.cost('msg.vale').call());
-      console.log("msg.vale", mintRate);
-      var totalAmount = mintRate * _mintAmount * 100;
+      var mintRate = await (contract.methods.cost().call()).toString();
+      console.log(mintRate);
+      var totalAmount = mintRate * _mintAmount;
       await Web3Alc.eth.getMaxPriorityFeePerGas().then((tip) => {
         Web3Alc.eth.getBlock("pending").then((block) => {
           var baseFee = Number(block.baseFeePerGas);
