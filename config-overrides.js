@@ -1,4 +1,3 @@
-
 const webpack = require("webpack")
 
 module.exports = function override(config, env) {
@@ -14,17 +13,15 @@ module.exports = function override(config, env) {
         os: require.resolve("os-browserify"),
         url: require.resolve("url"),
     }
-    // config.resolve.extensions = [...config.resolve.extensions, ".ts", ".js",".jsx"]
+    config.resolve.extensions = [
+        ...config.resolve.extensions, ".ts", ".js", ".jsx"]
     // config.ignoreWarnings = [/Failed to parse source map/]
     config.plugins = [
         ...config.plugins,
         new webpack.ProvidePlugin({
             process: "process/browser",
             Buffer: ["buffer", "Buffer"],
-
         }),
-        
     ]
-
     return config
 }
