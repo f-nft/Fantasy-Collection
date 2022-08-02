@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3ca34b6ceb769c0232b6a472f8dc3298711aff63
 const webpack = require("webpack")
 
 module.exports = function override(config, env) {
@@ -14,13 +17,20 @@ module.exports = function override(config, env) {
         os: require.resolve("os-browserify"),
         url: require.resolve("url"),
     }
+<<<<<<< HEAD
     config.resolve.extensions = [...config.resolve.extensions, ".ts", ".js",".jsx"]
     config.ignoreWarnings = [/Failed to parse source map/]
+=======
+    config.resolve.extensions = [
+        ...config.resolve.extensions, ".ts", ".js", ".jsx"]
+    // config.ignoreWarnings = [/Failed to parse source map/]
+>>>>>>> 3ca34b6ceb769c0232b6a472f8dc3298711aff63
     config.plugins = [
         ...config.plugins,
         new webpack.ProvidePlugin({
             process: "process/browser",
             Buffer: ["buffer", "Buffer"],
+<<<<<<< HEAD
 
         }),
         
@@ -53,3 +63,9 @@ module.exports = function override(config, env) {
 //  config.ignoreWarnings = [/Failed to parse source map/];
 // return config;
 // }
+=======
+        }),
+    ]
+    return config
+}
+>>>>>>> 3ca34b6ceb769c0232b6a472f8dc3298711aff63
