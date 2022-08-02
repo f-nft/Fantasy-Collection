@@ -50,6 +50,7 @@ const MintModalStyleWrapper = styled.div`
     margin-top: 80px;
     width: 450px;
     max-height: 70%;
+    height: 150%;
    
     animation: 1s ${modalAnimation}; /* ********* */
     &::before {
