@@ -8,7 +8,7 @@ const PriceModalStyleWrapper = styled.div`
   &.modal_overlay {
     position: absolute;
     height: max-content;
-    width: 75%;
+    width: 50%;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
