@@ -46,6 +46,7 @@ const MintNowModal = () => {
       var maticRate = 1 / maticdata.price;
       localStorage.setItem("maticRate", maticRate);
       setMaticRate(maticRate);
+
     }
     getRates()
   }, []);
@@ -57,13 +58,18 @@ const MintNowModal = () => {
   console.log(ethNewRate);
 
   async function mintnative(numberofNFTs) {
+
     try {
       var contract = stateContract; // contract instance from state
       var account = walletAddress;
       var _mintAmount = numberofNFTs
       var mintRate = Number(await contract.methods.cost().call());
+      var mintValue=maticRate*usdRate;
       console.log("msg.vale :", mintRate);
-      var totalAmount = mintRate * _mintAmount;
+      var totalAmount = mintValue * _mintAmount;
+      //convert totalAmount to wei
+      var totalAmountWei = Web3Alc.utils.toWei(totalAmount.toString(), "ether");
+      
       await Web3Alc.eth.getMaxPriorityFeePerGas().then((tip) => {
         Web3Alc.eth.getBlock("pending").then((block) => {
           var baseFee = Number(block.baseFeePerGas);
@@ -72,7 +78,7 @@ const MintNowModal = () => {
           contract.methods.mint(account, _mintAmount)
             .send({
               from: account,
-              value: String(totalAmount),
+              value:totalAmountWei,
               gasPrice: baseFee,
               maxFeePerGas: maxFee,
               maxPriorityFeePerGas: maxPriority
