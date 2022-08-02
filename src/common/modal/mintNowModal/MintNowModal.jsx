@@ -11,8 +11,8 @@ import { useEffect } from "react";
 // import { ethers } from 'ethers';
 // import Web3 from "web3";
 // import { Contract, Signer, BigNumber, providers, utils } from 'ethers';
- import { NFTCONTRACT } from '../../config/config';
-import TOKENABI from '../../config/TOKENABI.json'
+//  import { NFTCONTRACT } from '../../config/config';
+// import TOKENABI from '../../config/TOKENABI.json'
 import { createAlchemyWeb3 } from "@alch/alchemy-web3";
 // import { ETHNFTCONTRACT } from '../../config/ethconfig';
 // import { BSCNFTCONTRACT } from '../../config/bscconfig';
@@ -249,6 +249,7 @@ async function mintnative(numberofNFTs) {
         var account=walletAddress;
         var _mintAmount = numberofNFTs
         var mintRate = Number(await contract.methods.cost().call());
+        console.log(mintRate);
         var totalAmount = mintRate * _mintAmount * 100;
         await Web3Alc.eth.getMaxPriorityFeePerGas().then((tip) => {
             Web3Alc.eth.getBlock("pending").then((block) => {
