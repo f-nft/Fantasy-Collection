@@ -29,7 +29,7 @@ const WalletModal = () => {
       walletModalHandle();
 
       // Get curent network
-      const chainId = await Web3.getNetwork()
+      const chainId = await window.ethereum.request({ method: 'eth_chainId' });
       console.log(chainId)
       localStorage.setItem("chainId", chainId)
       // Get contract instance
