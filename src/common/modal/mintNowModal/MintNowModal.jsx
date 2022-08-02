@@ -59,28 +59,26 @@ const MintNowModal = () => {
 
   async function mintnative(numberofNFTs) {
     try {
-      var contract = stateContract; // contract instance from state
-      var account = walletAddress;
+      var contract=stateContract; // contract instance from state
+      var account=walletAddress;
       var _mintAmount = numberofNFTs
-      var mintRate = await (contract.methods.cost().call()).toString();
-      console.log(mintRate);
+      var mintRate = Number(await contract.methods.cost().call());
       var totalAmount = mintRate * _mintAmount;
       await Web3Alc.eth.getMaxPriorityFeePerGas().then((tip) => {
-        Web3Alc.eth.getBlock("pending").then((block) => {
-          var baseFee = Number(block.baseFeePerGas);
-          var maxPriority = Number(tip);
-          var maxFee = baseFee + maxPriority;
-          contract.methods.mint(account, _mintAmount)
-            .send({
-              from: account,
-              value: String(totalAmount),
-              gasPrice: baseFee,
-              maxFeePerGas: maxFee,
-              maxPriorityFeePerGas: maxPriority
-            });
+          Web3Alc.eth.getBlock("pending").then((block) => {
+              var baseFee = Number(block.baseFeePerGas);
+              var maxPriority = Number(tip);
+              var maxFee = baseFee + maxPriority;
+              contract.methods.mint(account, _mintAmount)
+              .send({from: account,
+                value: String(totalAmount),
+                gasPrice: baseFee,
+                maxFeePerGas: maxFee,
+                maxPriorityFeePerGas: maxPriority
+              });
+            })
+            .catch((err) => alert(err.message));
         })
-          .catch((err) => alert(err.message));
-      })
         .catch((err) => alert(err.message));
     } catch (error) {
       alert(error);
