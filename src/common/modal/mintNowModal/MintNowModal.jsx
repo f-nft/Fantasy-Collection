@@ -36,30 +36,33 @@ const MintNowModal = () => {
   //eslint-disable-next-line
   const [ethRate, setEthRate] = useState(0);
   var counts = count.toFixed(1);
+
   useEffect(() => {
-    async function getData() {
+    async function getRates() {
       const ethPrice = "https://api.binance.com/api/v3/ticker/price?symbol=ETHUSDT";
       const responseEth = await fetch(ethPrice)
       var data = await responseEth.json()
       console.log("ETH Price " + data.price); //data.price is the price of Eth in USDT
       var ethRate = 1 / data.price;
       localStorage.setItem("ethRate", ethRate);
+      setEthRate(ethRate);
 
       const bnbPrice = "https://api.binance.com/api/v3/ticker/price?symbol=BNBUSDT";
       const responseBnb = await fetch(bnbPrice)
       var bnbdata = await responseBnb.json()
       console.log("ETH Price " + bnbdata.price); //data.price is the price of Bnb in USDT
       var bnbRate = 1 / bnbdata.price;
-      localStorage.setItem("ethRate", bnbRate);
+      localStorage.setItem("bnbRate", bnbRate);
+      setBnBRate(bnbRate);
 
       const maticPrice = "https://api.binance.com/api/v3/ticker/price?symbol=MATICUSDT";
       const responseMatic = await fetch(maticPrice)
       var maticdata = await responseMatic.json()
       console.log("ETH Price " + maticdata.price); //data.price is the price of MATIC in USDT
       var maticRate = 1 / maticdata.price;
-      localStorage.setItem("ethRate", maticRate);
+      localStorage.setItem("maticRate", maticRate);
+      setMaticRate(maticRate);
     }
-    getData();
     getRates()
   }, []);
 
@@ -68,180 +71,6 @@ const MintNowModal = () => {
   var num = ethNewRate;
   var n = num.toFixed(5)
   console.log(ethNewRate);
-
-  //   async function mint(numberofNFTs, e) {
-  //   try {
-  //     if (!window.ethereum.selectedAddress) 
-  //          return alert("Please unlock your MetaMask account");
-
-  //     // get accounts fromm useState in ModalContext
-  //     const accounts = Stateaccounts
-
-  //     // get chainID from local storage
-  //     const chainId = localStorage.getItem("chainId");
-
-  //     // eslint-disable-next-line
-  //     if (chainId == 137) {
-  //       //mint for polygon network
-  //     setContractID(NFTCONTRACT)
-  //       var nftPrice = 60 * maticRate;
-  //       console.log("NFT Price in Matic " + nftPrice);
-
-  //     }
-
-  //     // eslint-disable-next-line
-  //     else if (chainId == 56) {
-  //       //mint for BSC network
-  //     setContractID(BSCNFTCONTRACT)
-  //       nftPrice = 60 * bnbRate;
-  //       console.log("NFT Price in BNB " + nftPrice);
-
-  //     }
-
-  //     // eslint-disable-next-line
-  //     else if (chainId == 1) {
-  //       //mit for ETH network
-  //     setContractID(ETHNFTCONTRACT)
-  //       nftPrice = 60 * ethRate;
-  //       console.log("NFT Price in ETH " + nftPrice);
-
-  //     }
-
-  //     else {
-  //       alert("Please connect to Metamask");
-  //       return;
-  //     }
-
-  //     const ETH_ENDPOINT = "https://lively-autumn-frost.discover.quiknode.pro/af0fdef077dab287f8be2f7ab319b2d4049f170d"
-  //     const POLYGON_ENDPOINT = "https://nameless-bitter-brook.matic.discover.quiknode.pro/c152a3f5c3fafb11d729cdae4830d11da9550d42"
-  //     const BSC_HTTP_ENDPOINT = "https://frosty-bold-smoke.bsc.discover.quiknode.pro/83f5a45165566ef30844a7084dbf8bd9cec50e9a/"
-
-  //     const numberNft = numberofNFTs.toString();
-  //     const sumValues = ethers.utils.parseEther((numberofNFTs * nftPrice).toString());
-  //     console.log("Total Payment is " + sumValues.toString())
-  //     const wallets = accounts.toString();
-  //     const PRIV = PRIV_KEY
-  //     const bscprovider = new ethers.providers.JsonRpcProvider(BSC_HTTP_ENDPOINT);
-
-  //     const bscsigner = bscprovider.getSigner(wallets, bscprovider);
-
-  //     const polygonprovider = new ethers.providers.JsonRpcProvider(POLYGON_ENDPOINT);
-
-  //     const polygonsigner = polygonprovider.getSigner(wallets, polygonprovider);
-
-  //     const ethprovider = new ethers.providers.JsonRpcProvider(ETH_ENDPOINT);
-
-  //     const ethSigner = ethprovider.getSigner(wallets, ethprovider);
-  //     console.log(polygonsigner)
-
-  //     const contractAbi = ABI;
-  //     const contract = ContractID.toString();
-  //     const contractBscInstance = new Contract(ContractID, contractAbi, bscsigner);
-  //     const contractEthInstance = new Contract(contract, contractAbi, ethSigner);
-  //     const contractPolygonInstance = new Contract(contract, contractAbi, polygonsigner);
-
-  //     console.log(contractPolygonInstance)
-
-  //     //call the contract to mint the NFT
-
-
-  //     //get account balance from contractPolygonInstance 
-  //     // const balance = await contractPolygonInstance.balanceOf(wallets);
-  //     // return alert("Account balance is " + balance.toString())
-
-  // async function mint(numberofNFTs)
-  // {
-  //   var contract=stateContract; // contract instance from state
-  //   var _mintamount=numberofNFTs; 
-  //   var nftPrice = 0.1 * maticRate;
-  //   var _mintprice = nftPrice * _mintamount;
-  //   var _mintprice2 = ethers.utils.parseEther(_mintprice.toString());
-  //   //call cost of the transaction
-  //      contract.methods.cost().call().then(function(result){
-  //        console.log(result)
-  //       })
-
-  //   var accounts=walletAddress;
-  //   var web3=new Web3(window.ethereum);
-  //   //get provider using web3
-  //   var provider = new ethers.providers.Web3Provider(web3.currentProvider);
-  //   //get gas price
-  //   var gasPrice = await provider.getGasPrice();
-  //   //convert gasPrice to wei
-  //   var gasPriceWei = ethers.utils.parseEther(gasPrice.toString());
-
-  //   contract.methods.mint(accounts,_mintamount)
-  //   .send({
-  //     from: accounts,   //wallet address
-  //     value: _mintprice2, // price of NFT currently set to 0.0001 matic 
-  //     to: NFTCONTRACT,    //polygon contract address
-  //     gasPrice: gasPriceWei,  //gasPrice
-  //     maxPriorityFeePerGas: gasPrice,
-  //     maxFeePerGas: gasPrice,
-  //     gasLimit: 30000,  //gasLimit
-  //   })
-
-  // async function mint0(numberofNFTs) {
-  //        var nftPrice = 0.1 * maticRate;
-  //     var _mintprice = nftPrice * numberofNFTs;
-  //     var _mintprice2 = ethers.utils.parseEther(_mintprice.toString());
-  //       var _pid = "0";
-  //       var erc20address;
-  //       var currency;
-  //       var contract=stateContract; // contract instance from state
-  //       var mintRate=maticRate;
-  //       var _mintAmount = numberofNFTs
-  //       var account=walletAddress;
-  //       var totalAmount = mintRate * _mintAmount;
-  //         var web3=new Web3(window.ethereum);
-  //       try {
-  //         erc20address = await contract.methods.getCryptotoken(_pid).call();
-  //         currency = new web3.eth.Contract(TOKENABI, erc20address);
-  //         mintRate = await contract.methods.getNFTCost(_pid).call();
-
-  //         await Web3Alc.eth.getMaxPriorityFeePerGas().then((tip) => {
-  //             Web3Alc.eth.getBlock("pending").then((block) => {
-  //                 var baseFee = Number(block.baseFeePerGas);
-  //                 var maxPriority = Number(tip);
-  //                 var maxFee = maxPriority + baseFee;
-
-  //                 //convert to wei
-  //                 var totalAmountWei = ethers.utils.parseEther(Number(totalAmount).toString());
-  //                 currency.methods.approve(NFTCONTRACT, String(totalAmountWei))
-  //                 .send(
-  //                   {
-  //                     from: account,
-  //                     value: _mintprice2,
-  //                     maxFeePerGas: maxFee,
-  //                     maxPriorityFeePerGas: maxPriority
-  //                   })
-  //                   .then(
-  //                     currency.methods.transfer(NFTCONTRACT, String(totalAmount))
-  //                     .send(
-  //                         {from: account,maxFeePerGas: maxFee,maxPriorityFeePerGas: maxPriority,},
-  //                         async function (error, transactionHash) {
-  //                           console.log("Transfer Submitted, Hash: ",transactionHash);
-  //                           let transactionReceipt = null;
-  //                           while (transactionReceipt == null) 
-  //                           {
-  //                             transactionReceipt =await Web3.eth.getTransactionReceipt(transactionHash);
-  //                             console.log(transactionReceipt);
-  //                           }
-  //                           console.log("Transfer Complete", transactionReceipt);
-  //                           contract.methods.mintpid(account, _mintAmount, _pid).send({from: account,maxFeePerGas: maxFee,maxPriorityFeePerGas: maxPriority,});
-  //                         }
-  //                       )
-  //                   )
-  //                   .catch((err) => alert(err.message));
-  //               })
-  //               .catch((err) => alert(err.message));
-  //           })
-  //           .catch((err) => alert(err.message));
-  //       } 
-  //       catch (error) {
-  //         alert(error);
-  //       }
-  //     }
 
   async function mintnative(numberofNFTs) {
     try {
@@ -271,26 +100,6 @@ const MintNowModal = () => {
     } catch (error) {
       alert(error);
     }
-  }
-
-  async function getRates() {
-    const maticPrice = "https://api.binance.com/api/v3/ticker/price?symbol=MATICUSDT";
-    const responseMatic = await fetch(maticPrice);
-    const dataMatic = await responseMatic.json()
-    console.log("Matic Price " + dataMatic.price); //data.price is the price of MATIC in USDT
-    setMaticRate(1 / dataMatic.price)
-
-    const bnbPrice = "https://api.binance.com/api/v3/ticker/price?symbol=BNBUSDT";
-    const responseBnb = await fetch(bnbPrice);
-    const dataBnb = await responseBnb.json()
-    console.log("BNB Price " + dataBnb.price); //data.price is the price of BNB in USDT
-    setBnBRate(1 / dataBnb.price)
-
-    const ethPrice = "https://api.binance.com/api/v3/ticker/price?symbol=ETHUSDT";
-    const responseEth = await fetch(ethPrice);
-    const dataEth = await responseEth.json()
-    console.log("ETH Price " + dataEth.price); //data.price is the price of ETH in USDT
-    setEthRate(1 / (dataEth.price)) //reduce gas price
   }
 
   return (

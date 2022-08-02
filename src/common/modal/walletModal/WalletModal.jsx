@@ -18,7 +18,7 @@ const WalletModal = () => {
     setStateContract
   } = useModal();
 
-  async function connectWallet2() {
+  async function connectWallet() {
     if (window.ethereum) {
       var web3 = new Web3(window.ethereum);
       await window.ethereum.send("eth_requestAccounts");
@@ -32,12 +32,26 @@ const WalletModal = () => {
       const chainId = await window.ethereum.request({ method: 'eth_chainId' });
       console.log(chainId)
       localStorage.setItem("chainId", chainId)
-      // Get contract instance
+      if (chainId == 0x89) {
+        // Get contract instance
         contract = new web3.eth.Contract(ABI, NFTCONTRACT);
-        setStateContract(contract);
+        setStateContract(contract)
+      }
+      else if (chainId == 0x1) {
+        // Get contract instance
+        contract = new web3.eth.Contract(ABI, ETHNFTCONTRACT);
+        setStateContract(contract)
+      }
+      else if (chainId == 0x38) {
+        
+        // Get contract instance
+        contract = new web3.eth.Contract(ABI, BSCNFTCONTRACT);
+        setStateContract(contract)
+      }
+      else return contract;
+      }
       return mintButtonHandler();
-    } 
-  }  
+     }
 
   return (
     <>
@@ -57,7 +71,7 @@ const WalletModal = () => {
                 Please select a wallet to connect for start Minting your NFTs
               </p>
               <div className="wallet_list">
-                <a href="# " onClick={connectWallet2} >
+                <a href="# " onClick={connectWallet} >
                   <img src={metamaskIcon} alt="Metmask" />
                   Metamask
                   <span>
@@ -104,7 +118,8 @@ const WalletModal = () => {
         </div>
       </WalletModalStyleWrapper>
     </>
-  )
+)     
 }
+
 
 export default WalletModal;
