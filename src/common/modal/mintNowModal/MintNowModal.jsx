@@ -15,13 +15,10 @@ const MintNowModal = () => {
   const [count, setCount] = useState(1);
   const { mintModalHandle, walletAddress,
     stateContract
-
   } = useModal();
   const reload = () => window.location.reload();
   const [maticRate, setMaticRate] = useState(0);
-  //eslint-disable-next-line
   const [bnbRate, setBnBRate] = useState(0);
-  //eslint-disable-next-line
   const [ethRate, setEthRate] = useState(0);
   var counts = count.toFixed(1);
 
@@ -97,9 +94,6 @@ const MintNowModal = () => {
           <div className="mint_modal_content">
             <div className="modal_header">
               <h2>Collect YOUR NFT before end</h2>
-              {/* <Countdown style={{ maxWidth: "100%", margin: "top", maginLeft: "-50px", maginRight: "-50px" }}
-                timeTillDate="08 30 2022, 6:00 am"
-                timeFormat="MM DD YYYY, h:mm a" /> */}
               <div className="mint_img">
                 <img src={mintImg} alt="f-nft mint" style={{ borderRadius: "15px", borderWidth: "5px", borderColor: "#ffffff", textAlign: "center", borderShadow: "#ffffff" }} />
                 <h5 style={{ color: "red", textAlign: "center", textShadow: "#372873" }} onClick={reload}>Please Refesh if You Change The Network</h5>

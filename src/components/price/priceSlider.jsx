@@ -7,7 +7,7 @@ const PriceSlider = () => {
     dots: true,
     arrows: true,
     autoplay: true,
-    speed: 500,
+    speed: 1000,
     autoplaySpeed: 3000,
     cssEase: "linear",
     centerMode: true,
