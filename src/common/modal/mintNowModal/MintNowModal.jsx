@@ -6,18 +6,8 @@ import MintModalStyleWrapper from "./MintNow.style";
 import mintImg from "../../../assets/images/icon/fnft.gif";
 import hoverShape from "../../../assets/images/icon/hov_shape_L.svg";
 import { MdPriceChange } from "react-icons/md";
-// import Countdown from "../../../components/section/countdown/countDown";
 import { useEffect } from "react";
-// import { ethers } from 'ethers';
-// import Web3 from "web3";
-// import { Contract, Signer, BigNumber, providers, utils } from 'ethers';
-//  import { NFTCONTRACT } from '../../config/config';
-// import TOKENABI from '../../config/TOKENABI.json'
 import { createAlchemyWeb3 } from "@alch/alchemy-web3";
-// import { ETHNFTCONTRACT } from '../../config/ethconfig';
-// import { BSCNFTCONTRACT } from '../../config/bscconfig';
-// import { STAKINGCONTRACT } from "../../config/config";
-// import ABI from '../../config/ABI.json';
 
 const Web3Alc = createAlchemyWeb3("https://polygon-mainnet.g.alchemy.com/v2/qqfXh-S-3dEdCR-orpw_NY06qvD0EFKk");
 
