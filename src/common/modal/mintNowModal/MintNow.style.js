@@ -9,10 +9,10 @@ const MintModalStyleWrapper = styled.div`
     border-width: 1px;
     border-radius: 25px;
     position: absolute;
-    max-height: 79%;
-    max-width: 79%;
+    max-height: 50%;
+    max-width: 50%;
     left: 50%;
-    top: 39%;
+    top: 29%;
     transform: translate(-50%, -50%);
     z-index: 999;
     display: flex;
@@ -24,13 +24,13 @@ const MintModalStyleWrapper = styled.div`
       border-radius: 25px;
       position: absolute;
       justify-content: center;
-      left: 30;
-      top: 50;
-      height: 500%;
-      width: 500%;
-      background: #000;
+      left: -450px;
+      top: 10px;
+      height: 250%;
+      width: 300%;
+      background: #fca132;
       content: "";
-      opacity: 0.39;
+      opacity: 0.19;
       backdrop-filter: blur(39px);
 
     }
@@ -49,7 +49,7 @@ const MintModalStyleWrapper = styled.div`
     position: relative;
     margin-top: 80px;
     width: 450px;
-    max-height: 70%;
+    max-height: 50%;
     height: 150%;
    
     animation: 1s ${modalAnimation}; /* ********* */
@@ -81,7 +81,7 @@ const MintModalStyleWrapper = styled.div`
     border-color: gold;
     border-width: 1px;
     border-radius: 25px;
-    height: 100%;
+    height: 70%;
     width: 100%;
     background: url(${modalBg});
     background-size: cover;
@@ -92,7 +92,6 @@ const MintModalStyleWrapper = styled.div`
     position: relative;
     display: flex;
     flex-direction: column;
-    width: 100%;
   }
 
   .modal_header {

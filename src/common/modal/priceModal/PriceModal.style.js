@@ -3,12 +3,11 @@ import { fadeIn } from "react-animations";
 import modalBg from "../../../assets/images/bg/modal2_overlay.png";
 
 const modalAnimation = keyframes`${fadeIn}`;
-
 const PriceModalStyleWrapper = styled.div`
   &.modal_overlay {
     position: absolute;
     height: max-content;
-    width: 75%;
+    width: 50%;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
@@ -20,9 +19,7 @@ const PriceModalStyleWrapper = styled.div`
       position: absolute;
       left: 0;
       top: 0;
-      height: 100%;
-      width: 100%;
-      background: #000;
+      background: #000000;
       content: "";
       opacity: 0.92;
       backdrop-filter: blur(33px);
@@ -36,7 +33,7 @@ const PriceModalStyleWrapper = styled.div`
     width: 100%;
     margin-bottom: 80px;
    
-    animation: 1s ${modalAnimation}; /* ********* */
+    animation: 3s ${modalAnimation}; /* ********* */
 
     &::before {
       backdrop-filter: blur(5px);
@@ -50,7 +47,6 @@ const PriceModalStyleWrapper = styled.div`
 
     }
   }
-
   .mint_modal_content {
     height: auto;
     width: 100%;
@@ -74,9 +70,7 @@ const PriceModalStyleWrapper = styled.div`
     .mint_modal_content {
       padding-bottom: 10px;
       height: 100%;
-
   }
-
 `;
 
 export default PriceModalStyleWrapper;
