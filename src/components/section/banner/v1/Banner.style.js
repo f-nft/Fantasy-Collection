@@ -64,11 +64,11 @@ const BannerV1Wrapper = styled.section`
     .coin-info {
       display: flex;
       flex-direction: column;
-      margin-top: 37px;
+      margin-top: 10px;
       span {
         font-family: "Bakbak One";
-        font-size: 18px;
-        line-height: 36px;
+        font-size: 16px;
+        line-height: 18px;
         text-transform: uppercase;
         color: rgba(255, 255, 255, 0.8);
 
