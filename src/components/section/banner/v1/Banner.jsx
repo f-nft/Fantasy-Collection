@@ -5,17 +5,63 @@ import BannerV1Wrapper from "./Banner.style";
 import characterThumb from "../../../../assets/images/nft/Character1.png";
 import mintLiveText from "../../../../assets/images/nft/mint_live_text.png";
 import homeImageBG from "../../../../assets/images/nft/home_img_bg.png";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Countdown from "../../countdown/countDown";
 
 const Banner = () => {
   const { mintModalHandle, priceModalHandle, walletModalHandle } = useModal();
   const { isWalletConnect, walletAddress, balance } = useModal();
-
-  // clean local storage on page refresh
-
+  const [maticRate, setMaticRate] = useState(null);
+  const [bnbRate, setBnBRate] = useState(null);
+  const [ethRate, setEthRate] = useState(null);
+  const [usdRate, setUsdRate] = useState(null);  
+  
   useEffect(() => {
+    async function getRates(usdRate, ethRate, bnbRate, maticRate) {
+      const ethPrice = "https://api.binance.com/api/v3/ticker/price?symbol=ETHUSDT";
+      const responseEth = await fetch(ethPrice)
+      var ethData = await responseEth.json()
+      console.log("ETH Price " + ethData.price); //data.price is the price of Eth in USDT
+      ethRate = 1 / ethData.price;
+      localStorage.setItem("ethRate", ethRate);
 
+      usdRate = 60;
+      setUsdRate(usdRate);
+      localStorage.setItem("usdRate", usdRate);
+
+      var nftPrice = usdRate * ethRate;
+      var nftPriceEth = nftPrice.toFixed(5);
+      setEthRate(nftPriceEth);
+      localStorage.setItem("nftPriceEth", nftPriceEth);
+
+
+      const bnbPrice = "https://api.binance.com/api/v3/ticker/price?symbol=BNBUSDT";
+      const responseBnb = await fetch(bnbPrice)
+      var bnbData = await responseBnb.json()
+      console.log("BNB Price " + bnbData.price); //data.price is the price of Bnb in USDT
+      bnbRate = 1 / bnbData.price;
+      localStorage.setItem("bnbRate", bnbRate);
+
+      var nftBnbPrice = usdRate * bnbRate;
+      var nftPriceBnb = nftBnbPrice.toFixed(5);
+      setBnBRate(nftPriceBnb);
+      localStorage.setItem("nftPriceBnb", nftPriceBnb);
+
+
+      const maticPrice = "https://api.binance.com/api/v3/ticker/price?symbol=MATICUSDT";
+      const responseMatic = await fetch(maticPrice)
+      var maticData = await responseMatic.json()
+      console.log("Matic Price " + maticData.price); //data.price is the price of MATIC in USDT
+      maticRate = 1 / maticData.price;
+      localStorage.setItem("maticRate", maticRate);
+
+      var nftEthPrice = usdRate * maticRate;
+      var nftPriceMatic = nftEthPrice.toFixed(5);
+      setMaticRate(nftPriceMatic);
+      localStorage.setItem("nftPriceMatic", nftPriceMatic);
+
+    };
+    getRates();
   }, []);
 
   return (
@@ -25,9 +71,16 @@ const Banner = () => {
           <div className="row">
             <div className="col-lg-6">
               <div className="f-nft_v1_baner_left">
-                <h2>f-nft Fantasy</h2>
+                <h1>f-nft Fantasy</h1>
                 <h2>👗 3D NFT</h2>
-                <h3>collections</h3>
+                <div className="f-nft_v1_timer">
+                  <h5 className="text-uppercase" style={{ color: "red" }}>Public Mint End In</h5>
+                  <div className="timer timer_1">
+                    <Countdown style={{ maxWidth: "30%" }}
+                      timeTillDate="10 30 2022, 6:00 am"
+                      timeFormat="MM DD YYYY, h:mm a" />
+                  </div>
+                </div>
                 <h4 style={{ color: "#375730", textShadow: "1px 1px 3px" }}>
                   <span className="count">
                     <Counter end={1325} duration={1790} />
@@ -40,14 +93,7 @@ const Banner = () => {
                     (<span style={{ color: "white" }}>{walletAddress}</span>) :
                     (<span style={{ color: "white" }}>0x0</span>)}
                 </h5>
-                <div className="f-nft_v1_timer">
-                  <h5 className="text-uppercase" style={{ color: "red" }}>Public Mint End In</h5>
-                  <div className="timer timer_1">
-                    <Countdown style={{ maxWidth: "30%" }}
-                      timeTillDate="10 30 2022, 6:00 am"
-                      timeFormat="MM DD YYYY, h:mm a" />
-                  </div>
-                </div>
+                
                 <h5 style={{ color: "green" }}>
                   Balance <br />
                   {balance ?
@@ -70,16 +116,18 @@ const Banner = () => {
                   </Button>
                 </div>
                 <div className="coin-info">
-                  <span>Max 10 NFTs per wallet. <br />
-                    Price $60 
-                    ~ {localStorage.getItem("nftPriceEth")} ETH 
-                    ~ {localStorage.getItem("nftPriceMatic")} Matic 
-                    ~ {localStorage.getItem("nftPriceBnb")} BNB + gas</span>
+                  <span>
+                    <h4>Mint Price ${usdRate} USD  <br /></h4>
+                    {ethRate} ETH <br />
+                    {maticRate} Matic <br />
+                    {bnbRate} BNB + gas<br />
+                    <br />
+                    Max 10 Mints per wallet. </span>
                   <span>
                     MINT IS LIVE{" "}
-                    <span className="highlighted">UNTIL 01 JULY 04:00H</span>
+                    <span className="highlighted">UNTIL 01 SEP 04:00</span>
                   </span>
-                  <span>Presale : SOLDOUT</span>
+                  <span><br />Presale : SOLDOUT</span>
                 </div>
               </div>
             </div>

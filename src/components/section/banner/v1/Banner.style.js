@@ -30,11 +30,22 @@ const BannerV1Wrapper = styled.section`
     justify-content: center;
     flex-direction: column;
 
+    h1 {
+      font-family: "Bakbak One";
+      font-style: normal;
+      font-weight: 500;
+      font-size: 60px;
+      line-height: 80px;
+      text-transform: uppercase;
+      color: #ffffff;
+      margin-bottom: -5px;
+    }
+
     h2 {
       font-family: "Bakbak One";
       font-style: normal;
       font-weight: 400;
-      font-size: 60px;
+      font-size: 50px;
       line-height: 80px;
       text-transform: uppercase;
       color: #ffffff;
@@ -70,7 +81,7 @@ const BannerV1Wrapper = styled.section`
         font-size: 16px;
         line-height: 18px;
         text-transform: uppercase;
-        color: rgba(255, 255, 255, 0.8);
+        color: rgba(255, 255, 33, 0.8);
 
         & .highlighted {
           color: #ffe600;

@@ -9,6 +9,7 @@ import { BSCNFTCONTRACT } from "../../config/bscconfig";
 import { ETHNFTCONTRACT } from "../../config/ethconfig";
 import ABI from '../../config/ABI.json';
 
+
 var contract = null;
 const WalletModal = () => {
   const { walletModalHandle,
@@ -18,7 +19,8 @@ const WalletModal = () => {
     setStateContract
   } = useModal();
 
-  async function connectWallet() {
+  async function ConnectWallet() {
+
     if (window.ethereum) {
       var web3 = new Web3(window.ethereum);
       await window.ethereum.send("eth_requestAccounts");
@@ -48,9 +50,9 @@ const WalletModal = () => {
         setStateContract(contract)
       }
       else return contract;
-      }
-      return mintButtonHandler();
-     }
+    }
+    return mintButtonHandler();
+  }
 
   return (
     <>
@@ -70,7 +72,7 @@ const WalletModal = () => {
                 Please select a wallet to connect for start Minting your NFTs
               </p>
               <div className="wallet_list">
-                <a href="# " onClick={connectWallet} >
+                <a href="# " onClick={ConnectWallet} >
                   <img src={metamaskIcon} alt="Metmask" />
                   Metamask
                   <span>
@@ -117,7 +119,7 @@ const WalletModal = () => {
         </div>
       </WalletModalStyleWrapper>
     </>
-)     
+  )
 }
 
 

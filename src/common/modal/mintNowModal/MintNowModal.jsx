@@ -6,7 +6,6 @@ import MintModalStyleWrapper from "./MintNow.style";
 import mintImg from "../../../assets/images/icon/fnft.gif";
 import hoverShape from "../../../assets/images/icon/hov_shape_L.svg";
 import { MdPriceChange } from "react-icons/md";
-import { useEffect } from "react";
 import { createAlchemyWeb3 } from "@alch/alchemy-web3";
 const Web3Alc = createAlchemyWeb3("https://polygon-mainnet.g.alchemy.com/v2/qqfXh-S-3dEdCR-orpw_NY06qvD0EFKk");
 
@@ -16,59 +15,11 @@ const MintNowModal = () => {
     stateContract
   } = useModal();
   const reload = () => window.location.reload();
-  const [maticRate, setMaticRate] = useState(0);
-  const [bnbRate, setBnBRate] = useState(0);
-  const [ethRate, setEthRate] = useState(0);
-  const [usdRate, setUsdRate] = useState(0);
   var counts = count.toFixed(1);
-
-  useEffect(() => {
-    async function getRates() {
-      const ethPrice = "https://api.binance.com/api/v3/ticker/price?symbol=ETHUSDT";
-      const responseEth = await fetch(ethPrice)
-      var data = await responseEth.json()
-      console.log("ETH Price " + data.price); //data.price is the price of Eth in USDT
-      var rate = 1 / data.price;
-      localStorage.setItem("ethRate", rate);
-      var usdRate = 60;
-      setUsdRate(usdRate);
-
-      var nftPrice = usdRate * rate;
-      var nftPriceEth = nftPrice.toFixed(5);
-      setEthRate(ethRate);
-      localStorage.setItem("nftPriceEth", nftPriceEth);
-
-
-      const bnbPrice = "https://api.binance.com/api/v3/ticker/price?symbol=BNBUSDT";
-      const responseBnb = await fetch(bnbPrice)
-      var bnbdata = await responseBnb.json()
-      console.log("ETH Price " + bnbdata.price); //data.price is the price of Bnb in USDT
-      rate = 1 / bnbdata.price;
-      localStorage.setItem("bnbRate", rate);
-      nftPrice = usdRate * rate;
-      var nftPriceBnb = nftPrice.toFixed(5);
-      setBnBRate(bnbRate);
-      localStorage.setItem("nftPriceBnb", nftPriceBnb);
-
-      const maticPrice = "https://api.binance.com/api/v3/ticker/price?symbol=MATICUSDT";
-      const responseMatic = await fetch(maticPrice)
-      var maticdata = await responseMatic.json()
-      console.log("ETH Price " + maticdata.price); //data.price is the price of MATIC in USDT
-      rate = 1 / maticdata.price;
-      localStorage.setItem("maticRate", rate);
-      nftPrice = usdRate * rate;
-      var nftPriceMatic = nftPrice.toFixed(5);
-      setMaticRate(maticRate);
-      localStorage.setItem("nftPriceMatic", nftPriceMatic);
-
-    };
-    getRates();
-  }, []);
-
   async function mintnative(numberofNFTs) {
-
     try {
       var price = localStorage.getItem("nftPriceMatic")
+      var maticRate = localStorage.getItem("maticRate");
       var contract = stateContract; // contract instance from state
       var account = walletAddress;
       var _mintAmount = numberofNFTs
@@ -129,7 +80,7 @@ const MintNowModal = () => {
                     <h5>Price Total</h5>
                     {localStorage.getItem("nftPriceEth") === null ?
                       <h5> ETH</h5> :
-                      < h5 > {ethRate * count} ETH</h5>}
+                      < h5 >{localStorage.getItem("nftPriceEth") * count} ETH</h5>}
                   </li>
                   <li>
                     <h5>Quantity</h5>
@@ -152,7 +103,7 @@ const MintNowModal = () => {
                       </button>
                     </div>
                     <h5>
-                      <span>{MdPriceChange.counts}{count * usdRate}</span> USD
+                      <span>{MdPriceChange.counts}{count * localStorage.getItem("usdRate")}</span> USD
                     </h5>
                   </li>
                 </ul>
