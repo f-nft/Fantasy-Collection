@@ -14,8 +14,8 @@ const Banner = () => {
   const [maticRate, setMaticRate] = useState(null);
   const [bnbRate, setBnBRate] = useState(null);
   const [ethRate, setEthRate] = useState(null);
-  const [usdRate, setUsdRate] = useState(null);  
-  
+  const [usdRate, setUsdRate] = useState(null);
+
   useEffect(() => {
     async function getRates(usdRate, ethRate, bnbRate, maticRate) {
       const ethPrice = "https://api.binance.com/api/v3/ticker/price?symbol=ETHUSDT";
@@ -93,7 +93,7 @@ const Banner = () => {
                     (<span style={{ color: "white" }}>{walletAddress}</span>) :
                     (<span style={{ color: "white" }}>0x0</span>)}
                 </h5>
-                
+
                 <h5 style={{ color: "green" }}>
                   Balance <br />
                   {balance ?
@@ -118,16 +118,11 @@ const Banner = () => {
                 <div className="coin-info">
                   <span>
                     <h4>Mint Price ${usdRate} USD  <br /></h4>
-                    {ethRate} ETH <br />
-                    {maticRate} Matic <br />
+                    {ethRate} ETH + gas <br />
+                    {maticRate} Matic + gas <br />
                     {bnbRate} BNB + gas<br />
                     <br />
-                    Max 10 Mints per wallet. </span>
-                  <span>
-                    MINT IS LIVE{" "}
-                    <span className="highlighted">UNTIL 01 SEP 04:00</span>
-                  </span>
-                  <span><br />Presale : SOLDOUT</span>
+                    </span>
                 </div>
               </div>
             </div>
@@ -147,10 +142,17 @@ const Banner = () => {
                     <img src={homeImageBG} alt="" />
                   </div>
                   <div className="f-nft_v1_baner_right_img">
-                    <img src={characterThumb} alt="avater" />
+                    <img src={characterThumb} alt="avata" />
                   </div>
                 </div>
-
+                <h4>
+                  <span >
+                    MINT IS LIVE UNTIL 01 SEP 04:00
+                  </span><br/>
+                  <span>
+                    Max 10 per wallet </span>
+                  <span><br />Presale: SOLDOUT</span>
+                </h4>
               </div>
             </div>
           </div>

@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 const HowToMintWrapper = styled.section`
-  margin-top: 113px;
-  padding-bottom: 85px;
+  margin-top: 33px;
+  padding-bottom: 35px;
 
   .how_to_mint_container {
     position: relative;

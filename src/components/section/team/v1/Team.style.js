@@ -16,7 +16,7 @@ const TeamStyleWrapper = styled.section`
     z-index: 1;
     height: 100%;
     width: 100%;
-    padding: 110px 0 115px;
+    padding: 50px 0 50px;
   }
 
   .f-nft_team_content {
