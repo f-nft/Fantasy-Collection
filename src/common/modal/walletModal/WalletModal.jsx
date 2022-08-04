@@ -20,9 +20,11 @@ const WalletModal = () => {
     setWalletAddress,
     setBalance,
     setStateContract,
-    setAlcstate,
+    setStateWeb3,
     setStateRate,
-    setStatePrice
+    setStatePrice,
+    setStateCrypto,
+    setStateChainId
   } = useModal();
 
   async function ConnectWallet() {
@@ -36,60 +38,79 @@ const WalletModal = () => {
       setBalance(web3.utils.fromWei(await web3.eth.getBalance(account)));
       walletModalHandle();
 
-      // Get curent network
+      // Get current network
       const chainId = await window.ethereum.request({ method: 'eth_chainId' });
-      console.log(chainId)
-      localStorage.setItem("chainId", chainId)
-        //eslint-disable-next-line
+       //eslint-disable-next-line
       if (chainId == 0x89) {
+        console.log("Polygon")
+        var crypto = "MATIC";
+        setStateCrypto(crypto);
         // Get contract instance
         contract = new web3.eth.Contract(ABI, NFTCONTRACT);
         setStateContract(contract);
         // Get rpc instance
         const Web3Alc = createAlchemyWeb3(PolygonRpc);
+        setStateWeb3(Web3Alc)
+        // Get rate
         var rate = localStorage.getItem("maticRate");
         setStateRate(rate);
-        var price = localStorage.getItem("nftPriceMatic")
+        // Get price
+        var price = 60 * rate;
         setStatePrice(price);
-        setAlcstate(Web3Alc)
+        // Show Crypto of ChainId connected
+        
+        setStateChainId(chainId);
       }
-        //eslint-disable-next-line
+
+       //eslint-disable-next-line
       else if (chainId == 0x1) {
+        console.log("Ethereum")
+        crypto = "ETH";
+        setStateCrypto(crypto);
         // Get contract instance
         contract = new web3.eth.Contract(ABI, ETHNFTCONTRACT);
         setStateContract(contract);
         // Get rpc instance
         const Web3Alc = createAlchemyWeb3(EthRpc);
-        setAlcstate(Web3Alc)
+        setStateWeb3(Web3Alc)
+        // Get rate
         rate = localStorage.getItem("ethRate");
         setStateRate(rate);
-        price = localStorage.getItem("nftPriceEth")
+        // Get price
+        price = 60 * rate;
         setStatePrice(price);
+        // Show Crypto of ChainId connected
+        setStateChainId(chainId);
+
       }
       //eslint-disable-next-line
       else if (chainId == 0x38) {
+        crypto = "BNB";
+        setStateCrypto(crypto);
         // Get contract instance
         contract = new web3.eth.Contract(ABI, BSCNFTCONTRACT);
         setStateContract(contract)
         const Web3Alc = createAlchemyWeb3(EthRpc);
-        setAlcstate(Web3Alc)
+        setStateWeb3(Web3Alc)
+        // Get rate
         rate = localStorage.getItem("bnbRate");
         setStateRate(rate);
-        price = localStorage.getItem("nftPricebnb");
+        // Get price
+        price = 60 * rate;
         setStatePrice(price);
+        // Show Crypto of ChainId connected
+        
+        setStateChainId(chainId);
+
       }
-    else return;
-  } 
-    
+    }
     return mintButtonHandler();
   }
 
   return (
     <>
       <WalletModalStyleWrapper className="modal_overlay">
-        <div
-          className="mint_modal_box"
-        >
+        <div className="mint_modal_box">
           <div className="mint_modal_content">
             <div className="modal_header">
               <h2>CONNECT WALLETss</h2>
@@ -103,7 +124,7 @@ const WalletModal = () => {
               </p>
               <div className="wallet_list">
                 <a href="# " onClick={ConnectWallet} >
-                  <img src={metamaskIcon} alt="Metmask" />
+                  <img src={metamaskIcon} alt="Metamask" />
                   Metamask
                   <span>
                     <FiChevronRight />
