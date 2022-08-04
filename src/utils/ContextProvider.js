@@ -12,7 +12,10 @@ const ContextProvider = ({ children }) => {
   const [Stateaccounts, setStateaccouts] = useState("");
   const [stateprovider, setStateprovider] = useState("");
   const [stateContract, setStateContract] = useState("");
-
+  const [StateRate, setStateRate] = useState("");
+  const [StatePrice, setStatePrice] = useState("");
+  const [Alcstate, setAlcstate] = useState("");
+  
 
 
   const mintButtonHandler = () => {
@@ -51,7 +54,10 @@ const ContextProvider = ({ children }) => {
         balance, setBalance,
         Stateaccounts, setStateaccouts,
         stateprovider, setStateprovider,
-        stateContract, setStateContract
+        stateContract, setStateContract,
+        Alcstate, setAlcstate,
+        setStateRate,StateRate,
+        StatePrice, setStatePrice
       }}
     >
       {children}

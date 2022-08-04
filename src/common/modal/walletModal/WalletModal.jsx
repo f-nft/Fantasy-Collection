@@ -8,17 +8,25 @@ import { NFTCONTRACT } from '../../config/config';
 import { BSCNFTCONTRACT } from "../../config/bscconfig";
 import { ETHNFTCONTRACT } from "../../config/ethconfig";
 import ABI from '../../config/ABI.json';
+import { createAlchemyWeb3 } from "@alch/alchemy-web3";
 
+const PolygonRpc = "https://polygon-mainnet.g.alchemy.com/v2/qqfXh-S-3dEdCR-orpw_NY06qvD0EFKk";
+const EthRpc = "https://eth-mainnet.g.alchemy.com/v2/wsIm0J69yBeB3UItacaaDKy1yOFkDcl5";
 var contract = null;
+
 const WalletModal = () => {
   const { walletModalHandle,
     mintButtonHandler,
     setWalletAddress,
     setBalance,
-    setStateContract
+    setStateContract,
+    setAlcstate,
+    setStateRate,
+    setStatePrice
   } = useModal();
 
-  async function connectWallet() {
+  async function ConnectWallet() {
+
     if (window.ethereum) {
       var web3 = new Web3(window.ethereum);
       await window.ethereum.send("eth_requestAccounts");
@@ -32,26 +40,49 @@ const WalletModal = () => {
       const chainId = await window.ethereum.request({ method: 'eth_chainId' });
       console.log(chainId)
       localStorage.setItem("chainId", chainId)
+        //eslint-disable-next-line
       if (chainId == 0x89) {
         // Get contract instance
         contract = new web3.eth.Contract(ABI, NFTCONTRACT);
-        setStateContract(contract)
+        setStateContract(contract);
+        // Get rpc instance
+        const Web3Alc = createAlchemyWeb3(PolygonRpc);
+        var rate = localStorage.getItem("maticRate");
+        setStateRate(rate);
+        var price = localStorage.getItem("nftPriceMatic")
+        setStatePrice(price);
+        setAlcstate(Web3Alc)
       }
+        //eslint-disable-next-line
       else if (chainId == 0x1) {
         // Get contract instance
         contract = new web3.eth.Contract(ABI, ETHNFTCONTRACT);
-        setStateContract(contract)
+        setStateContract(contract);
+        // Get rpc instance
+        const Web3Alc = createAlchemyWeb3(EthRpc);
+        setAlcstate(Web3Alc)
+        rate = localStorage.getItem("ethRate");
+        setStateRate(rate);
+        price = localStorage.getItem("nftPriceEth")
+        setStatePrice(price);
       }
+      //eslint-disable-next-line
       else if (chainId == 0x38) {
-        
         // Get contract instance
         contract = new web3.eth.Contract(ABI, BSCNFTCONTRACT);
         setStateContract(contract)
+        const Web3Alc = createAlchemyWeb3(EthRpc);
+        setAlcstate(Web3Alc)
+        rate = localStorage.getItem("bnbRate");
+        setStateRate(rate);
+        price = localStorage.getItem("nftPricebnb");
+        setStatePrice(price);
       }
-      else return contract;
-      }
-      return mintButtonHandler();
-     }
+    else return;
+  } 
+    
+    return mintButtonHandler();
+  }
 
   return (
     <>
@@ -71,7 +102,7 @@ const WalletModal = () => {
                 Please select a wallet to connect for start Minting your NFTs
               </p>
               <div className="wallet_list">
-                <a href="# " onClick={connectWallet} >
+                <a href="# " onClick={ConnectWallet} >
                   <img src={metamaskIcon} alt="Metmask" />
                   Metamask
                   <span>
@@ -103,7 +134,7 @@ const WalletModal = () => {
               <div className="modal_bottom_text">
                 By connecting your wallet, you agree to our
                 <a href="# ">Terms of Service</a>
-                <a href="# ">Priacy Policy</a>
+                <a href="# ">Privacy Policy</a>
               </div>
             </div>
             <div className="modal_bottom_shape_wrap">
@@ -118,7 +149,7 @@ const WalletModal = () => {
         </div>
       </WalletModalStyleWrapper>
     </>
-)     
+  )
 }
 
 

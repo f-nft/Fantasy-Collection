@@ -15,7 +15,7 @@ module.exports = function override(config, env) {
     }
     config.resolve.extensions = [
         ...config.resolve.extensions, ".ts", ".js", ".jsx"]
-    // config.ignoreWarnings = [/Failed to parse source map/]
+     config.ignoreWarnings = [/Failed to parse source map/]
     config.plugins = [
         ...config.plugins,
         new webpack.ProvidePlugin({
