@@ -28,41 +28,40 @@ const Header = () => {
     };
   }, []);
   return (
-    <>
-      <NavWrapper className="f-nft_header" id="navbar">
-        <div className="container">
-          {/* Main Menu Start */}
-          <div className="f-nft_menu_sect">
-            <div className="f-nft_menu_left_sect">
-              <div className="logo">
-                <a href="/">
-                  <img src={logo} alt="f-nft nft logo" style={{ maxWidth: '39%' }} />
-                </a>
-              </div>
+    <NavWrapper className="f-nft_header" id="navbar">
+      <div className="container">
+        {/* Main Menu Start */}
+        <div className="f-nft_menu_sect">
+          <div className="f-nft_menu_left_sect">
+            <div className="logo">
+              <a href="/">
+                <img src={logo} alt="f-nft nft logo" style={{ maxWidth: '39%' }} />
+              </a>
             </div>
-            <div className="f-nft_menu_right_sect f-nft_v1_menu_right_sect">
-              <div className="f-nft_menu_list">
-                <ul>
-                  <li>
-                    <a href="#home">Home</a>
-                  </li>
-                  <li>
-                    <a href="#about">About</a>
-                  </li>
-                  <li>
-                    <a href="#roadmap">Roadmap</a>
-                  </li>
-                  <li>
-                    <a href="#team">Team</a>
-                  </li>
-                  <li>
-                    <a href="#faq">FAQ</a>
-                  </li>
-                  <li className="submenu">
-                    <a href="# ">Blog +</a>
-                    <div className="sub_menu_sect">
-                      <ul className="sub_menu_list">
-                        {/* <li>
+          </div>
+          <div className="f-nft_menu_right_sect f-nft_v1_menu_right_sect">
+            <div className="f-nft_menu_list">
+              <ul>
+                <li>
+                  <a href="#home">Home</a>
+                </li>
+                <li>
+                  <a href="#about">About</a>
+                </li>
+                <li>
+                  <a href="#roadmap">Roadmap</a>
+                </li>
+                <li>
+                  <a href="#team">Team</a>
+                </li>
+                <li>
+                  <a href="#faq">FAQ</a>
+                </li>
+                <li className="submenu">
+                  <a href="# ">Blog +</a>
+                  <div className="sub_menu_sect">
+                    <ul className="sub_menu_list">
+                      {/* <li>
                         <a href="/">Home One</a>
                       </li>
                       <li>
@@ -71,44 +70,43 @@ const Header = () => {
                       <li>
                         <a href="/home-three">Home Three</a>
                       </li> */}
-                        <li>
-                          <a href="/blogs">Latest Blog</a>
-                        </li>
-                        <li>
-                          <a href="/post">Blog Details</a>
-                        </li>
-                      </ul>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-              <div className="f-nft_menu_btns">
-                <button className="menu_btn" onClick={() => handleMobileMenu()}>
-                  <MdNotes />
-                </button>
-                <Button sm variant="outline" className="join_btn"
-                  onClick={() => {
-                    window.open("https://discord.gg/FzCKUn3R", "_blank");
-                  }
-                  }>
-                  <FaDiscord /> Join
-                </Button>
-                <Button
-                  sm
-                  variant="hovered"
-                  className="connect_btn"
-                  onClick={() => walletModalHandle()}
-                >
-                  <FaWallet /> Connect
-                </Button>
-              </div>
+                      <li>
+                        <a href="/blogs">Latest Blog</a>
+                      </li>
+                      <li>
+                        <a href="/post">Blog Details</a>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div className="f-nft_menu_btns">
+              <button className="menu_btn" onClick={() => handleMobileMenu()}>
+                <MdNotes />
+              </button>
+              <Button sm variant="outline" className="join_btn"
+                onClick={() => {
+              window.open("https://discord.gg/FzCKUn3R", "_blank");
+            }
+            }>
+                <FaDiscord /> Join
+              </Button>
+              <Button
+                sm
+                variant="hovered"
+                className="connect_btn"
+                onClick={() => walletModalHandle()}
+              >
+                <FaWallet /> Connect
+              </Button>
             </div>
           </div>
-          {/* <!-- Main Menu END --> */}
-          {isMobileMenu && <MobileMenu mobileMenuhandle={handleMobileMenu} />}
         </div>
-      </NavWrapper>
-    </>
+        {/* <!-- Main Menu END --> */}
+        {isMobileMenu && <MobileMenu mobileMenuhandle={handleMobileMenu} />}
+      </div>
+    </NavWrapper>
   );
 };
 

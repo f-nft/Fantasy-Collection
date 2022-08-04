@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { ModalContext } from "./ModalContext";
 
-
 const ContextProvider = ({ children }) => {
   const [visibility, setVisibility] = useState(false);
   const [walletModalvisibility, setModalvisibility] = useState(false);
@@ -13,11 +12,10 @@ const ContextProvider = ({ children }) => {
   const [Stateaccounts, setStateaccouts] = useState("");
   const [stateprovider, setStateprovider] = useState("");
   const [stateContract, setStateContract] = useState("");
-  const [stateRate, setStateRate] = useState("");
-  const [statePrice, setStatePrice] = useState("");
-  const [stateCrypto, setStateCrypto] = useState("");
-  const [stateWeb3, setStateWeb3] = useState("");
-  const [stateChainId, setStateChainId] = useState("");
+  const [StateRate, setStateRate] = useState("");
+  const [StatePrice, setStatePrice] = useState("");
+  const [Alcstate, setAlcstate] = useState("");
+  
 
 
   const mintButtonHandler = () => {
@@ -57,11 +55,9 @@ const ContextProvider = ({ children }) => {
         Stateaccounts, setStateaccouts,
         stateprovider, setStateprovider,
         stateContract, setStateContract,
-        stateWeb3, setStateWeb3,
-        stateRate, setStateRate,
-        statePrice, setStatePrice,
-        stateCrypto, setStateCrypto,
-        stateChainId, setStateChainId
+        Alcstate, setAlcstate,
+        setStateRate,StateRate,
+        StatePrice, setStatePrice
       }}
     >
       {children}

@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 const FAQStyleWrapper = styled.section`
-  padding-bottom: 50px;
-  padding-top: 50px;
+  padding-bottom: 120px;
+  padding-top: 130px;
 
   .f-nft_faq_content {
     max-width: 770px;
