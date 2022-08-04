@@ -46,8 +46,8 @@ const MintNowModal = (contract) => {
       var rate = stateRate;
       var account = walletAddress;
       var _mintAmount = numberofNFTs;
-      var mintRate = await contract.methods.cost().call();
-      console.log(contract)
+      var mintRate = 300000;
+      console.log(contract);
 
       var mintValue = rate * price;
       console.log("msg.vale :", mintRate);
