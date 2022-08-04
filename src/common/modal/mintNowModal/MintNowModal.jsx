@@ -7,38 +7,65 @@ import mintImg from "../../../assets/images/icon/fnft.gif";
 import hoverShape from "../../../assets/images/icon/hov_shape_L.svg";
 import { MdPriceChange } from "react-icons/md";
 import { createAlchemyWeb3 } from "@alch/alchemy-web3";
-const Web3Alc = createAlchemyWeb3("https://polygon-mainnet.g.alchemy.com/v2/qqfXh-S-3dEdCR-orpw_NY06qvD0EFKk");
+import { NFTCONTRACT } from "../../config/config";
+import { ETHNFTCONTRACT } from "../../config/ethconfig";
+import { BSCNFTCONTRACT } from "../../config/bscconfig";
+const PolygonRpc = "https://polygon-mainnet.g.alchemy.com/v2/qqfXh-S-3dEdCR-orpw_NY06qvD0EFKk";
+const EthRpc = "https://eth-mainnet.g.alchemy.com/v2/wsIm0J69yBeB3UItacaaDKy1yOFkDcl5";
+
+
 
 const MintNowModal = () => {
+
   const [count, setCount] = useState(1);
   const { mintModalHandle, walletAddress,
-    stateContract
+    stateRate, statePrice, stateCrypto
   } = useModal();
+  const price = statePrice;
+  const crypto = stateCrypto;
   const reload = () => window.location.reload();
   var counts = count.toFixed(1);
   async function mintnative(numberofNFTs) {
+    var Web3Alc = null;
+    var contract = null;
     try {
-      var price = localStorage.getItem("nftPriceMatic")
-      var maticRate = localStorage.getItem("maticRate");
-      var contract = stateContract; // contract instance from state
+      const ChainId = await window.ethereum.request({ method: 'eth_chainId' });
+      if (ChainId == 0x89) {
+        Web3Alc = createAlchemyWeb3(PolygonRpc);
+        contract = NFTCONTRACT;
+      }
+
+      else if (ChainId == 0x1) {
+        Web3Alc = createAlchemyWeb3(EthRpc);
+        contract = ETHNFTCONTRACT;
+
+      }
+      else if (ChainId == 0x38) {
+        Web3Alc = createAlchemyWeb3(EthRpc);
+        contract = BSCNFTCONTRACT;
+
+      }
+      else return alert("Please Select a Valid Network");
+
+      var rate = stateRate;
       var account = walletAddress;
-      var _mintAmount = numberofNFTs
+      var _mintAmount = numberofNFTs;
       var mintRate = Number(await contract.methods.cost().call());
-      var mintValue=maticRate*price;
+      var mintValue = rate * price;
       console.log("msg.vale :", mintRate);
       var totalAmount = mintValue * _mintAmount;
       //convert totalAmount to wei
       var totalAmountWei = Web3Alc.utils.toWei(totalAmount.toString(), "ether");
-      
-      await Web3Alc.eth.getMaxPriorityFeePerGas().then((tip) => {
+
+      await Web3Alc.eth.getMaxPriorityFeePerGas().then((tips) => {
         Web3Alc.eth.getBlock("pending").then((block) => {
-          var baseFee = Number(block.baseFeePerGas);
-          var maxPriority = Number(tip);
+          var baseFee = Number(block.gasLimit);
+          var maxPriority = Number(tips);
           var maxFee = baseFee + maxPriority;
           contract.methods.mint(account, _mintAmount)
             .send({
               from: account,
-              value:totalAmountWei,
+              value: totalAmountWei,
               gasPrice: baseFee,
               maxFeePerGas: maxFee,
               maxPriorityFeePerGas: maxPriority
@@ -78,9 +105,9 @@ const MintNowModal = () => {
                   </li>
                   <li>
                     <h5>Price Total</h5>
-                    {localStorage.getItem("nftPriceEth") === null ?
+                    {(price) === null ?
                       <h5> ETH</h5> :
-                      < h5 >{localStorage.getItem("nftPriceEth") * count} ETH</h5>}
+                      < h5 >{(price * count).toFixed(5)} {(crypto)}</h5>}
                   </li>
                   <li>
                     <h5>Quantity</h5>

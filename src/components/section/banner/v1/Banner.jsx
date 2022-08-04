@@ -11,9 +11,9 @@ import Countdown from "../../countdown/countDown";
 const Banner = () => {
   const { mintModalHandle, priceModalHandle, walletModalHandle } = useModal();
   const { isWalletConnect, walletAddress, balance } = useModal();
-  const [maticRate, setMaticRate] = useState(null);
-  const [bnbRate, setBnBRate] = useState(null);
-  const [ethRate, setEthRate] = useState(null);
+  const [nftPriceMatic, setNftPriceMatic] = useState(null);
+  const [nftPriceBnb, setNftPriceBnb] = useState(null);
+  const [nftPriceEth, setNftPriceEth] = useState(null);
   const [usdRate, setUsdRate] = useState(null);
 
   useEffect(() => {
@@ -31,9 +31,8 @@ const Banner = () => {
 
       var nftPrice = usdRate * ethRate;
       var nftPriceEth = nftPrice.toFixed(5);
-      setEthRate(nftPriceEth);
+      setNftPriceEth(nftPriceEth);
       localStorage.setItem("nftPriceEth", nftPriceEth);
-
 
       const bnbPrice = "https://api.binance.com/api/v3/ticker/price?symbol=BNBUSDT";
       const responseBnb = await fetch(bnbPrice)
@@ -44,7 +43,7 @@ const Banner = () => {
 
       var nftBnbPrice = usdRate * bnbRate;
       var nftPriceBnb = nftBnbPrice.toFixed(5);
-      setBnBRate(nftPriceBnb);
+      setNftPriceBnb(nftPriceBnb);
       localStorage.setItem("nftPriceBnb", nftPriceBnb);
 
 
@@ -57,7 +56,7 @@ const Banner = () => {
 
       var nftEthPrice = usdRate * maticRate;
       var nftPriceMatic = nftEthPrice.toFixed(5);
-      setMaticRate(nftPriceMatic);
+      setNftPriceMatic(nftPriceMatic);
       localStorage.setItem("nftPriceMatic", nftPriceMatic);
 
     };
@@ -93,7 +92,6 @@ const Banner = () => {
                     (<span style={{ color: "white" }}>{walletAddress}</span>) :
                     (<span style={{ color: "white" }}>0x0</span>)}
                 </h5>
-
                 <h5 style={{ color: "green" }}>
                   Balance <br />
                   {balance ?
@@ -109,7 +107,6 @@ const Banner = () => {
                     >
                       Connect Wallet First</Button>
                   )}
-
                   <Button className="NFTPricebutton" lg variant="outline" data-toggle="modal" data-target="#exampleModalCenter"
                     onClick={() => priceModalHandle()}>
                     NFT Price
@@ -118,9 +115,9 @@ const Banner = () => {
                 <div className="coin-info">
                   <span>
                     <h4>Mint Price ${usdRate} USD  <br /></h4>
-                    {ethRate} ETH + gas <br />
-                    {maticRate} Matic + gas <br />
-                    {bnbRate} BNB + gas<br />
+                    {nftPriceEth} ETH + gas <br />
+                    {nftPriceMatic} Matic + gas <br />
+                    {nftPriceBnb} BNB + gas<br />
                     <br />
                     </span>
                 </div>
@@ -158,7 +155,6 @@ const Banner = () => {
           </div>
         </div>
       </BannerV1Wrapper>
-
     </>
   );
 };
