@@ -10,13 +10,14 @@ import { createAlchemyWeb3 } from "@alch/alchemy-web3";
 import { NFTCONTRACT } from "../../config/config";
 import { ETHNFTCONTRACT } from "../../config/ethconfig";
 import { BSCNFTCONTRACT } from "../../config/bscconfig";
+
 const PolygonRpc = "https://polygon-mainnet.g.alchemy.com/v2/qqfXh-S-3dEdCR-orpw_NY06qvD0EFKk";
 const EthRpc = "https://eth-mainnet.g.alchemy.com/v2/wsIm0J69yBeB3UItacaaDKy1yOFkDcl5";
+const BscRpc = "https://api.bscscan.com/api?module=proxy&action=eth_getBlockByNumber&tag=pending&boolean=true&apikey=46Y2MZHAZTE34SD1WQ32BUF42BTDYBY76A"
 
 
 
-const MintNowModal = () => {
-
+const MintNowModal = (contract) => {
   const [count, setCount] = useState(1);
   const { mintModalHandle, walletAddress,
     stateRate, statePrice, stateCrypto
@@ -30,25 +31,22 @@ const MintNowModal = () => {
       const ChainId = await window.ethereum.request({ method: 'eth_chainId' });
       if (ChainId == 0x89) {
         var Web3Alc = createAlchemyWeb3(PolygonRpc);
-        var contract = NFTCONTRACT;
+        contract = NFTCONTRACT;
       }
-
       else if (ChainId == 0x1) {
         Web3Alc = createAlchemyWeb3(EthRpc);
         contract = ETHNFTCONTRACT;
-
       }
       else if (ChainId == 0x38) {
-        Web3Alc = createAlchemyWeb3(EthRpc);
+        Web3Alc = createAlchemyWeb3(BscRpc);
         contract = BSCNFTCONTRACT;
-
       }
-      else return alert("Please Select a Valid Network");
+      else return alert("Please Select a Valid Network")
 
       var rate = stateRate;
       var account = walletAddress;
       var _mintAmount = numberofNFTs;
-      var mintRate = Number(await contract.methods.cost().call());
+      var mintRate = await contract.methods.cost().call();
       console.log(contract)
 
       var mintValue = rate * price;
@@ -59,7 +57,7 @@ const MintNowModal = () => {
 
       await Web3Alc.eth.getMaxPriorityFeePerGas().then((tips) => {
         Web3Alc.eth.getBlock("pending").then((block) => {
-          var baseFee = Number(block.gasLimit);
+          var baseFee = Number(block.baseFeePerGas);
           var maxPriority = Number(tips);
           var maxFee = baseFee + maxPriority;
           contract.methods.mint(account, _mintAmount)

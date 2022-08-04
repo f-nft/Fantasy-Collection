@@ -12,6 +12,7 @@ import { createAlchemyWeb3 } from "@alch/alchemy-web3";
 
 const PolygonRpc = "https://polygon-mainnet.g.alchemy.com/v2/qqfXh-S-3dEdCR-orpw_NY06qvD0EFKk";
 const EthRpc = "https://eth-mainnet.g.alchemy.com/v2/wsIm0J69yBeB3UItacaaDKy1yOFkDcl5";
+const BscRpc = "https://api.bscscan.com/api?module=proxy&action=eth_getBlockByNumber&tag=0xa11446&boolean=true&apikey=46Y2MZHAZTE34SD1WQ32BUF42BTDYBY76A"
 var contract = null;
 
 const WalletModal = () => {
@@ -42,7 +43,7 @@ const WalletModal = () => {
       const chainId = await window.ethereum.request({ method: 'eth_chainId' });
       console.log(chainId)
       if (chainId == 0x89) {
-        var crypto = "MATIC";
+        var crypto = "Polygon";
         setStateCrypto(crypto);
         // Get contract instance
         contract = new web3.eth.Contract(ABI, NFTCONTRACT);
@@ -63,7 +64,7 @@ const WalletModal = () => {
 
 
       else if (chainId == 0x1) {
-        crypto = "ETH";
+        crypto = "Ethereum";
         setStateCrypto(crypto);
         // Get contract instance
         contract = new web3.eth.Contract(ABI, ETHNFTCONTRACT);
@@ -83,12 +84,12 @@ const WalletModal = () => {
       }
 
       else if (chainId == 0x38) {
-        crypto = "BNB";
+        crypto = "Binance Chain";
         setStateCrypto(crypto);
         // Get contract instance
         contract = new web3.eth.Contract(ABI, BSCNFTCONTRACT);
         setStateContract(contract)
-        const Web3Alc = createAlchemyWeb3(EthRpc);
+        const Web3Alc = createAlchemyWeb3(BscRpc);
         setStateWeb3(Web3Alc)
         // Get rate
         rate = localStorage.getItem("bnbRate");

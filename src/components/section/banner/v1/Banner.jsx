@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 import Countdown from "../../countdown/countDown";
 
 const Banner = () => {
-  const { mintModalHandle, priceModalHandle, walletModalHandle, isWalletConnect, walletAddress, balance, crypto } = useModal();
+  const { mintModalHandle, priceModalHandle, walletModalHandle, isWalletConnect, walletAddress, balance, stateCrypto } = useModal();
   const [nftPriceMatic, setNftPriceMatic] = useState(null);
   const [nftPriceBnb, setNftPriceBnb] = useState(null);
   const [nftPriceEth, setNftPriceEth] = useState(null);
@@ -84,17 +84,17 @@ const Banner = () => {
                   </span>{" "}
                   / 10,000 Minted
                 </h4>
-                {{crypto} ?
-                    (<span>You Are Connected to {(crypto)} Network</span>) :
-                    (<span></span>)}<br />
                 <h5 style={{ color: "green" }}>
                   Your Wallet Address:<br />
                   {walletAddress ?
                     (<span style={{ color: "white" }}>{walletAddress}</span>) :
-                    (<span style={{ color: "white" }}>0x0</span>)}
+                    (<span style={{ color: "white" }}>0x0</span>)}<br />
+                  {stateCrypto ?
+                    (<span>You Are Connected to <h5 style={{ color: "red" }}>{stateCrypto} </h5></span>) :
+                    (<span></span>)}
                 </h5>
                 <h5 style={{ color: "green" }}>
-                  Balance <br />
+                  Your Balance <br />
                   {balance ?
                     (<span style={{ color: "white" }}>{balance}</span>) :
                     (<span style={{ color: "blue" }}>0.00</span>)}
