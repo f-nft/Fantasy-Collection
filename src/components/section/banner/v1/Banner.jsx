@@ -84,17 +84,17 @@ const Banner = () => {
                   </span>{" "}
                   / 10,000 Minted
                 </h4>
+                {{stateCrypto} ?
+                    (<span>You Are Connected to {stateCrypto} Network</span>) :
+                    (<span></span>)}<br />
                 <h5 style={{ color: "green" }}>
                   Your Wallet Address:<br />
                   {walletAddress ?
                     (<span style={{ color: "white" }}>{walletAddress}</span>) :
-                    (<span style={{ color: "white" }}>0x0</span>)}<br />
-                  {stateCrypto ?
-                    (<span>You Are Connected to <h5 style={{ color: "red" }}>{stateCrypto} </h5></span>) :
-                    (<span></span>)}
+                    (<span style={{ color: "white" }}>0x0</span>)}
                 </h5>
                 <h5 style={{ color: "green" }}>
-                  Your Balance <br />
+                  Balance <br />
                   {balance ?
                     (<span style={{ color: "white" }}>{balance}</span>) :
                     (<span style={{ color: "blue" }}>0.00</span>)}

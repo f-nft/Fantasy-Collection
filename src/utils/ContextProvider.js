@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { ModalContext } from "./ModalContext";
 
+
 const ContextProvider = ({ children }) => {
   const [visibility, setVisibility] = useState(false);
   const [walletModalvisibility, setModalvisibility] = useState(false);
