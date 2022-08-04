@@ -26,13 +26,11 @@ const MintNowModal = () => {
   const reload = () => window.location.reload();
   var counts = count.toFixed(1);
   async function mintnative(numberofNFTs) {
-    var Web3Alc = null;
-    var contract = null;
     try {
       const ChainId = await window.ethereum.request({ method: 'eth_chainId' });
       if (ChainId == 0x89) {
-        Web3Alc = createAlchemyWeb3(PolygonRpc);
-        contract = NFTCONTRACT;
+        var Web3Alc = createAlchemyWeb3(PolygonRpc);
+        var contract = NFTCONTRACT;
       }
 
       else if (ChainId == 0x1) {
@@ -51,6 +49,8 @@ const MintNowModal = () => {
       var account = walletAddress;
       var _mintAmount = numberofNFTs;
       var mintRate = Number(await contract.methods.cost().call());
+      console.log(contract)
+
       var mintValue = rate * price;
       console.log("msg.vale :", mintRate);
       var totalAmount = mintValue * _mintAmount;
@@ -63,6 +63,7 @@ const MintNowModal = () => {
           var maxPriority = Number(tips);
           var maxFee = baseFee + maxPriority;
           contract.methods.mint(account, _mintAmount)
+            console.log()
             .send({
               from: account,
               value: totalAmountWei,
@@ -89,6 +90,9 @@ const MintNowModal = () => {
               <div className="mint_img">
                 <img src={mintImg} alt="f-nft mint" style={{ borderRadius: "15px", borderWidth: "5px", borderColor: "#ffffff", textAlign: "center", borderShadow: "#ffffff" }} />
                 <h5 style={{ color: "red", textAlign: "center", textShadow: "#372873" }} onClick={reload}>Please Refesh if You Change The Network</h5>
+                {{crypto} ?
+                    (<span>You Are Connected to {crypto} Network</span>) :
+                    (<span></span>)}<br />
               </div>
               <Button onClick={() => mintModalHandle()} onClose={reload}>
                 <FiX />

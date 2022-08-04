@@ -42,8 +42,8 @@ const WalletModal = () => {
       const chainId = await window.ethereum.request({ method: 'eth_chainId' });
       console.log(chainId)
       if (chainId == 0x89) {
-        alert("You Are Connected to Polygon NetWorks");
-
+        var crypto = "MATIC";
+        setStateCrypto(crypto);
         // Get contract instance
         contract = new web3.eth.Contract(ABI, NFTCONTRACT);
         setStateContract(contract);
@@ -57,15 +57,14 @@ const WalletModal = () => {
         var price = 60 * rate;
         setStatePrice(price);
         // Show Crypto of ChainId connected
-        var crypto = "MATIC";
-        setStateCrypto(crypto);
+        
         setStateChainId(chainId);
       }
-      
+
 
       else if (chainId == 0x1) {
-        alert("You Are Connected to Ethereum NetWorks");
-
+        crypto = "ETH";
+        setStateCrypto(crypto);
         // Get contract instance
         contract = new web3.eth.Contract(ABI, ETHNFTCONTRACT);
         setStateContract(contract);
@@ -79,15 +78,13 @@ const WalletModal = () => {
         price = 60 * rate;
         setStatePrice(price);
         // Show Crypto of ChainId connected
-        crypto = "ETH";
-      setStateCrypto(crypto);
-      setStateChainId(chainId);
+        setStateChainId(chainId);
 
       }
 
       else if (chainId == 0x38) {
-        alert("You Are Connected to Binance Chain NetWorks");
-
+        crypto = "BNB";
+        setStateCrypto(crypto);
         // Get contract instance
         contract = new web3.eth.Contract(ABI, BSCNFTCONTRACT);
         setStateContract(contract)
@@ -97,14 +94,13 @@ const WalletModal = () => {
         rate = localStorage.getItem("bnbRate");
         setStateRate(rate);
         // Get price
-        price = 60*rate;
+        price = 60 * rate;
         setStatePrice(price);
-         // Show Crypto of ChainId connected
-         crypto = "BNB";
-      setStateCrypto(crypto);
-      setStateChainId(chainId);
+        // Show Crypto of ChainId connected
+        
+        setStateChainId(chainId);
 
-        }
+      }
     }
     return mintButtonHandler();
   }

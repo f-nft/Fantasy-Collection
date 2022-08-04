@@ -9,8 +9,7 @@ import { useEffect, useState } from "react";
 import Countdown from "../../countdown/countDown";
 
 const Banner = () => {
-  const { mintModalHandle, priceModalHandle, walletModalHandle } = useModal();
-  const { isWalletConnect, walletAddress, balance } = useModal();
+  const { mintModalHandle, priceModalHandle, walletModalHandle, isWalletConnect, walletAddress, balance, crypto } = useModal();
   const [nftPriceMatic, setNftPriceMatic] = useState(null);
   const [nftPriceBnb, setNftPriceBnb] = useState(null);
   const [nftPriceEth, setNftPriceEth] = useState(null);
@@ -58,7 +57,6 @@ const Banner = () => {
       var nftPriceMatic = nftEthPrice.toFixed(5);
       setNftPriceMatic(nftPriceMatic);
       localStorage.setItem("nftPriceMatic", nftPriceMatic);
-
     };
     getRates();
   }, []);
@@ -86,6 +84,9 @@ const Banner = () => {
                   </span>{" "}
                   / 10,000 Minted
                 </h4>
+                {{crypto} ?
+                    (<span>You Are Connected to {(crypto)} Network</span>) :
+                    (<span></span>)}<br />
                 <h5 style={{ color: "green" }}>
                   Your Wallet Address:<br />
                   {walletAddress ?
