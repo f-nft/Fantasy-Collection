@@ -54,11 +54,13 @@ const MintNowModal = () => {
       console.log(contract)
 
       var mintValue = rate * price;
-      console.log("msg.vale :", mintRate);
-      var totalAmount = mintValue * _mintAmount;
+      var totalAmount=mintValue * _mintAmount;
+      //eslint-disable-next-line
+      if(stateChainId==0x1)
+      totalAmount = price*_mintAmount;
       //convert totalAmount to wei
-      var totalAmountWei = Web3Alc.utils.toWei(totalAmount.toString(), "ether");
 
+      var totalAmountWei = Web3Alc.utils.toWei(totalAmount.toString(), "ether");
       await Web3Alc.eth.getMaxPriorityFeePerGas().then((tips) => {
         Web3Alc.eth.getBlock("pending").then((block) => {
           var baseFee = Number(block.baseFeePerGas);
@@ -70,7 +72,8 @@ const MintNowModal = () => {
               value: totalAmountWei,
               gasPrice: baseFee,
               maxFeePerGas: maxFee,
-              maxPriorityFeePerGas: maxPriority
+              maxPriorityFeePerGas: maxPriority,
+              gasLimit: "0x" + baseFee.toString(16)
             });
         })
           .catch((err) => alert(err.message));

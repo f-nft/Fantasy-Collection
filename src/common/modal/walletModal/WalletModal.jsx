@@ -41,7 +41,7 @@ const WalletModal = () => {
 
       // Get current network
       const chainId = await window.ethereum.request({ method: 'eth_chainId' });
-      console.log(chainId)
+       //eslint-disable-next-line
       if (chainId == 0x89) {
         var crypto = "Polygon";
         setStateCrypto(crypto);
@@ -90,7 +90,7 @@ const WalletModal = () => {
         setStateChainId(chainId);
 
       }
-
+      //eslint-disable-next-line
       else if (chainId == 0x38) {
         crypto = "Binance Chain";
         setStateCrypto(crypto);
