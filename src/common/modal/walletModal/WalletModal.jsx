@@ -45,39 +45,47 @@ const WalletModal = () => {
       if (chainId == 0x89) {
         var crypto = "Polygon";
         setStateCrypto(crypto);
+
         // Get contract instance
         contract = new web3.eth.Contract(ABI, NFTCONTRACT);
         setStateContract(contract);
+
         // Get rpc instance
         const Web3Alc = createAlchemyWeb3(PolygonRpc);
-        setStateWeb3(Web3Alc)
+        setStateWeb3(Web3Alc);
+
         // Get rate
         var rate = localStorage.getItem("maticRate");
         setStateRate(rate);
+
         // Get price
         var price = 60 * rate;
         setStatePrice(price);
+
         // Show Crypto of ChainId connected
-        
         setStateChainId(chainId);
       }
-
 
       else if (chainId == 0x1) {
         crypto = "Ethereum";
         setStateCrypto(crypto);
+
         // Get contract instance
         contract = new web3.eth.Contract(ABI, ETHNFTCONTRACT);
         setStateContract(contract);
+
         // Get rpc instance
         const Web3Alc = createAlchemyWeb3(EthRpc);
-        setStateWeb3(Web3Alc)
+        setStateWeb3(Web3Alc);
+
         // Get rate
         rate = localStorage.getItem("ethRate");
         setStateRate(rate);
+
         // Get price
         price = 60 * rate;
         setStatePrice(price);
+
         // Show Crypto of ChainId connected
         setStateChainId(chainId);
 
@@ -86,19 +94,22 @@ const WalletModal = () => {
       else if (chainId == 0x38) {
         crypto = "Binance Chain";
         setStateCrypto(crypto);
+
         // Get contract instance
         contract = new web3.eth.Contract(ABI, BSCNFTCONTRACT);
         setStateContract(contract)
         const Web3Alc = createAlchemyWeb3(BscRpc);
-        setStateWeb3(Web3Alc)
+        setStateWeb3(Web3Alc);
+
         // Get rate
         rate = localStorage.getItem("bnbRate");
         setStateRate(rate);
+
         // Get price
         price = 60 * rate;
         setStatePrice(price);
+
         // Show Crypto of ChainId connected
-        
         setStateChainId(chainId);
 
       }
@@ -112,7 +123,7 @@ const WalletModal = () => {
         <div className="mint_modal_box">
           <div className="mint_modal_content">
             <div className="modal_header">
-              <h2>CONNECT WALLETss</h2>
+              <h2>CONNECT WALLET</h2>
               <button onClick={() => walletModalHandle()}>
                 <FiX />
               </button>
@@ -171,6 +182,5 @@ const WalletModal = () => {
     </>
   )
 }
-
 
 export default WalletModal;

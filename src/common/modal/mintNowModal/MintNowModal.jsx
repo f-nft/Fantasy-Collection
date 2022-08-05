@@ -6,42 +6,46 @@ import MintModalStyleWrapper from "./MintNow.style";
 import mintImg from "../../../assets/images/icon/fnft.gif";
 import hoverShape from "../../../assets/images/icon/hov_shape_L.svg";
 import { MdPriceChange } from "react-icons/md";
-import { createAlchemyWeb3 } from "@alch/alchemy-web3";
-import { NFTCONTRACT } from "../../config/config";
-import { ETHNFTCONTRACT } from "../../config/ethconfig";
-import { BSCNFTCONTRACT } from "../../config/bscconfig";
+// import { createAlchemyWeb3 } from "@alch/alchemy-web3";
+// import { NFTCONTRACT } from "../../config/config";
+// import { ETHNFTCONTRACT } from "../../config/ethconfig";
+// import { BSCNFTCONTRACT } from "../../config/bscconfig";
 
-const PolygonRpc = "https://polygon-mainnet.g.alchemy.com/v2/qqfXh-S-3dEdCR-orpw_NY06qvD0EFKk";
-const EthRpc = "https://eth-mainnet.g.alchemy.com/v2/wsIm0J69yBeB3UItacaaDKy1yOFkDcl5";
-const BscRpc = "https://api.bscscan.com/api?module=proxy&action=eth_getBlockByNumber&tag=pending&boolean=true&apikey=46Y2MZHAZTE34SD1WQ32BUF42BTDYBY76A"
+// const PolygonRpc = "https://polygon-mainnet.g.alchemy.com/v2/qqfXh-S-3dEdCR-orpw_NY06qvD0EFKk";
+// const EthRpc = "https://eth-mainnet.g.alchemy.com/v2/wsIm0J69yBeB3UItacaaDKy1yOFkDcl5";
+// const BscRpc = "https://api.bscscan.com/api?module=proxy&action=eth_getBlockByNumber&tag=pending&boolean=true&apikey=46Y2MZHAZTE34SD1WQ32BUF42BTDYBY76A"
 
 
 
-const MintNowModal = (contract) => {
+const MintNowModal = () => {
   const [count, setCount] = useState(1);
   const { mintModalHandle, walletAddress,
-    stateRate, statePrice, stateCrypto
+    stateRate, statePrice, stateCrypto, stateContract, stateWeb3
   } = useModal();
+  const contract = stateContract;
+  const Web3Alc = stateWeb3;
+  console.log(Web3Alc)
   const price = statePrice;
   const crypto = stateCrypto;
+  const usdRate = localStorage.getItem("usdRate");
   const reload = () => window.location.reload();
   var counts = count.toFixed(1);
   async function mintnative(numberofNFTs) {
     try {
-      const ChainId = await window.ethereum.request({ method: 'eth_chainId' });
-      if (ChainId == 0x89) {
-        var Web3Alc = createAlchemyWeb3(PolygonRpc);
-        contract = NFTCONTRACT;
-      }
-      else if (ChainId == 0x1) {
-        Web3Alc = createAlchemyWeb3(EthRpc);
-        contract = ETHNFTCONTRACT;
-      }
-      else if (ChainId == 0x38) {
-        Web3Alc = createAlchemyWeb3(BscRpc);
-        contract = BSCNFTCONTRACT;
-      }
-      else return alert("Please Select a Valid Network")
+      // const ChainId = await window.ethereum.request({ method: 'eth_chainId' });
+      // if (ChainId == 0x89) {
+      //   var Web3Alc = createAlchemyWeb3(PolygonRpc);
+      //   contract = NFTCONTRACT;
+      // }
+      // else if (ChainId == 0x1) {
+      //   Web3Alc = createAlchemyWeb3(EthRpc);
+      //   contract = ETHNFTCONTRACT;
+      // }
+      // else if (ChainId == 0x38) {
+      //   Web3Alc = createAlchemyWeb3(BscRpc);
+      //   contract = BSCNFTCONTRACT;
+      // }
+      // else return alert("Please Select a Valid Network")
 
       var rate = stateRate;
       var account = walletAddress;
@@ -61,7 +65,6 @@ const MintNowModal = (contract) => {
           var maxPriority = Number(tips);
           var maxFee = baseFee + maxPriority;
           contract.methods.mint(account, _mintAmount)
-            console.log()
             .send({
               from: account,
               value: totalAmountWei,
@@ -90,7 +93,7 @@ const MintNowModal = (contract) => {
                 <h5 style={{ color: "red", textAlign: "center", textShadow: "#372873" }} onClick={reload}>Please Refesh if You Change The Network</h5>
                 {{crypto} ?
                     (<span>You Are Connected to {crypto} Network</span>) :
-                    (<span></span>)}<br />
+                    (<span>Please Refesh Page Or Connect Your Favorite Network</span>)}<br />
               </div>
               <Button onClick={() => mintModalHandle()} onClose={reload}>
                 <FiX />
@@ -132,7 +135,7 @@ const MintNowModal = (contract) => {
                       </button>
                     </div>
                     <h5>
-                      <span>{MdPriceChange.counts}{count * localStorage.getItem("usdRate")}</span> USD
+                      <span>{MdPriceChange.counts}{count * usdRate}</span> USD
                     </h5>
                   </li>
                 </ul>
