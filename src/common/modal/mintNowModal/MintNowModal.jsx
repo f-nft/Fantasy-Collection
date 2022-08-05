@@ -19,9 +19,7 @@ import { MdPriceChange } from "react-icons/md";
 
 const MintNowModal = () => {
   const [count, setCount] = useState(1);
-  const { mintModalHandle, walletAddress,
-    stateRate, statePrice, stateCrypto, stateContract, stateWeb3
-  } = useModal();
+  const { mintModalHandle, walletAddress, stateRate, statePrice, stateCrypto, stateContract, stateWeb3, stateChainId } = useModal();
   const contract = stateContract;
   const Web3Alc = stateWeb3;
   console.log(Web3Alc)
@@ -50,13 +48,12 @@ const MintNowModal = () => {
       var rate = stateRate;
       var account = walletAddress;
       var _mintAmount = numberofNFTs;
-      var mintRate = await contract.methods.cost().call();
       console.log(contract)
 
       var mintValue = rate * price;
-      var totalAmount=mintValue * _mintAmount;
+      var totalAmount = mintValue * _mintAmount;
       //eslint-disable-next-line
-      if(stateChainId==0x1)
+      if (stateChainId == 0x1)
       totalAmount = price*_mintAmount;
       //convert totalAmount to wei
 
@@ -73,7 +70,6 @@ const MintNowModal = () => {
               gasPrice: baseFee,
               maxFeePerGas: maxFee,
               maxPriorityFeePerGas: maxPriority,
-              gasLimit: "0x" + baseFee.toString(16)
             });
         })
           .catch((err) => alert(err.message));
@@ -93,11 +89,8 @@ const MintNowModal = () => {
               <h2>Collect YOUR NFT before end</h2>
               <div className="mint_img">
                 <img src={mintImg} alt="f-nft mint" style={{ borderRadius: "15px", borderWidth: "5px", borderColor: "#ffffff", textAlign: "center", borderShadow: "#ffffff" }} />
-                <h5 style={{ color: "red", textAlign: "center", textShadow: "#372873" }} onClick={reload}>Please Refesh if You Change The Network</h5>
-                {{crypto} ?
-                    (<span>You Are Connected to {crypto} Network</span>) :
-                    (<span>Please Refesh Page Or Connect Your Favorite Network</span>)}<br />
               </div>
+              <h5 style={{ color: "red", textAlign: "center", textShadow: "#372873" }} onClick={reload}>Please Click To Refesh if You Change The Network</h5>
               <Button onClick={() => mintModalHandle()} onClose={reload}>
                 <FiX />
               </Button>

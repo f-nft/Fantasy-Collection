@@ -6,13 +6,13 @@ const MintModalStyleWrapper = styled.div`
   &.modal_overlay {
     border: 1px 5px solid black;
     border-color: gold;
-    border-width: 1px;
+    border-width: 5px;
     border-radius: 25px;
     position: absolute;
     max-height: 50%;
-    max-width: 50%;
+    max-width: 39%;
     left: 50%;
-    top: 29%;
+    top: 25%;
     transform: translate(-50%, -50%);
     z-index: 999;
     display: flex;
@@ -25,21 +25,21 @@ const MintModalStyleWrapper = styled.div`
       position: absolute;
       justify-content: center;
       left: -450px;
-      top: 10px;
+      top: 5px;
       height: 250%;
       width: 300%;
       background: #fca132;
       content: "";
       opacity: 0.19;
       backdrop-filter: blur(39px);
-
     }
     .mint_img {
     border: 1px 5px solid black;
     border-color: gold;
     border-width: 1px;
-    border-radius: 25px;
+    border-radius: 25px
   }
+
   }
   .mint_modal_box {
     border: 1px 5px solid black;
@@ -50,9 +50,9 @@ const MintModalStyleWrapper = styled.div`
     margin-top: 80px;
     width: 450px;
     max-height: 50%;
-    height: 150%;
+    height: 100%;
    
-    animation: 1s ${modalAnimation}; /* ********* */
+    animation: 3s ${modalAnimation}; /* ********* */
     &::before {
       border: 1px 5px solid black;
     border-color: gold;
@@ -62,7 +62,7 @@ const MintModalStyleWrapper = styled.div`
       position: absolute;
       left: 0;
       top: 0;
-      height: 120%;
+      height: 100%;
       width: 100%;
       background: #171c21;
       content: "";
@@ -159,27 +159,27 @@ const MintModalStyleWrapper = styled.div`
         display: flex;
         align-items: center;
         justify-content: space-between;
-        height: 56px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        height: 39px;
+        border-bottom: 3px solid rgba(255, 255, 255, 0.1);
         h5 {
-          font-family: "Inter";
+          font-family: "Bakbak One";
           font-style: normal;
-          font-weight: 600;
-          font-size: 18px;
-          line-height: 19px;
+          font-weight: 100;
+          font-size: 20px;
+          line-height: 10px;
           text-align: right;
-          color: #ffffff;
+          color: #fffff7;
           margin: 0;
         }
         .mint_quantity_sect {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          max-width: 106px;
+          max-width: 100px;
           width: 100%;
           height: 100%;
           button {
-            border: 5px solid black;
+            border: 1px solid black;
             border-color: gold;
             border-width: 1px;
             border-radius: 25px;
@@ -206,13 +206,13 @@ const MintModalStyleWrapper = styled.div`
             align-items: center;
             justify-content: center;
             background: transparent;
-            padding: 0px 19px;
+            padding: 0px 0px;
             outline: none;
-            font-family: "Bakbak One";
+            font-family: "Arial";
             font-style: normal;
-            font-weight: 400;
+            font-weight: 200;
             font-size: 16px;
-            line-height: 22px;
+            line-height: 25px;
             text-align: center;
             text-transform: uppercase;
             color: #ffffff;
