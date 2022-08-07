@@ -6,6 +6,7 @@ import MintModalStyleWrapper from "./MintNow.style";
 import mintImg from "../../../assets/images/icon/fnft.gif";
 import hoverShape from "../../../assets/images/icon/hov_shape_L.svg";
 import { MdPriceChange } from "react-icons/md";
+import { USDTPOLYABI }
 // import { createAlchemyWeb3 } from "@alch/alchemy-web3";
 // import { NFTCONTRACT } from "../../config/config";
 // import { ETHNFTCONTRACT } from "../../config/ethconfig";
@@ -14,8 +15,6 @@ import { MdPriceChange } from "react-icons/md";
 // const PolygonRpc = "https://polygon-mainnet.g.alchemy.com/v2/qqfXh-S-3dEdCR-orpw_NY06qvD0EFKk";
 // const EthRpc = "https://eth-mainnet.g.alchemy.com/v2/wsIm0J69yBeB3UItacaaDKy1yOFkDcl5";
 // const BscRpc = "https://api.bscscan.com/api?module=proxy&action=eth_getBlockByNumber&tag=pending&boolean=true&apikey=46Y2MZHAZTE34SD1WQ32BUF42BTDYBY76A"
-
-
 
 const MintNowModal = () => {
   const [count, setCount] = useState(1);
@@ -28,6 +27,7 @@ const MintNowModal = () => {
   const usdRate = localStorage.getItem("usdRate");
   const reload = () => window.location.reload();
   var counts = count.toFixed(1);
+  
   async function mintnative(numberofNFTs) {
     try {
       // const ChainId = await window.ethereum.request({ method: 'eth_chainId' });
