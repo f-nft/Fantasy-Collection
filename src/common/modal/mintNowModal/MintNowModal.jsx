@@ -6,82 +6,71 @@ import MintModalStyleWrapper from "./MintNow.style";
 import mintImg from "../../../assets/images/icon/fnft.gif";
 import hoverShape from "../../../assets/images/icon/hov_shape_L.svg";
 import { MdPriceChange } from "react-icons/md";
-import { useEffect } from "react";
-import { createAlchemyWeb3 } from "@alch/alchemy-web3";
-const Web3Alc = createAlchemyWeb3("https://polygon-mainnet.g.alchemy.com/v2/qqfXh-S-3dEdCR-orpw_NY06qvD0EFKk");
+
+// import { USDTPOLYABI } from "../../config/USDTPOLYABI.json";
+// import { createAlchemyWeb3 } from "@alch/alchemy-web3";
+// import { NFTCONTRACT } from "../../config/config";
+// import { ETHNFTCONTRACT } from "../../config/ethconfig";
+// import { BSCNFTCONTRACT } from "../../config/bscconfig";
+
+// const PolygonRpc = "https://polygon-mainnet.g.alchemy.com/v2/qqfXh-S-3dEdCR-orpw_NY06qvD0EFKk";
+// const EthRpc = "https://eth-mainnet.g.alchemy.com/v2/wsIm0J69yBeB3UItacaaDKy1yOFkDcl5";
+// const BscRpc = "https://api.bscscan.com/api?module=proxy&action=eth_getBlockByNumber&tag=pending&boolean=true&apikey=46Y2MZHAZTE34SD1WQ32BUF42BTDYBY76A"
 
 const MintNowModal = () => {
   const [count, setCount] = useState(1);
-  const { mintModalHandle, walletAddress,
-    stateContract
-  } = useModal();
+  const { mintModalHandle, walletAddress, stateRate, statePrice, stateCrypto, stateContract, stateWeb3, stateChainId } = useModal();
+  const contract = stateContract;
+  const Web3Alc = stateWeb3;
+  console.log(Web3Alc)
+  const price = statePrice;
+  const crypto = stateCrypto;
+  const usdRate = localStorage.getItem("usdRate");
   const reload = () => window.location.reload();
-  const [maticRate, setMaticRate] = useState(0);
-  const [bnbRate, setBnBRate] = useState(0);
-  const [ethRate, setEthRate] = useState(0);
   var counts = count.toFixed(1);
-
-  useEffect(() => {
-    async function getRates() {
-      const ethPrice = "https://api.binance.com/api/v3/ticker/price?symbol=ETHUSDT";
-      const responseEth = await fetch(ethPrice)
-      var data = await responseEth.json()
-      console.log("ETH Price " + data.price); //data.price is the price of Eth in USDT
-      var ethRate = 1 / data.price;
-      localStorage.setItem("ethRate", ethRate);
-      setEthRate(ethRate);
-
-      const bnbPrice = "https://api.binance.com/api/v3/ticker/price?symbol=BNBUSDT";
-      const responseBnb = await fetch(bnbPrice)
-      var bnbdata = await responseBnb.json()
-      console.log("ETH Price " + bnbdata.price); //data.price is the price of Bnb in USDT
-      var bnbRate = 1 / bnbdata.price;
-      localStorage.setItem("bnbRate", bnbRate);
-      setBnBRate(bnbRate);
-
-      const maticPrice = "https://api.binance.com/api/v3/ticker/price?symbol=MATICUSDT";
-      const responseMatic = await fetch(maticPrice)
-      var maticdata = await responseMatic.json()
-      console.log("ETH Price " + maticdata.price); //data.price is the price of MATIC in USDT
-      var maticRate = 1 / maticdata.price;
-      localStorage.setItem("maticRate", maticRate);
-      setMaticRate(maticRate);
-
-    }
-    getRates()
-  }, []);
-
-  const ethNewRate = localStorage.getItem("ethRate") * 60;
-  const usdRate = 60;
-  var num = ethNewRate;
-  var n = num.toFixed(5)
-  console.log(ethNewRate);
-
+  
   async function mintnative(numberofNFTs) {
-
     try {
-      var contract = stateContract; // contract instance from state
+      // const ChainId = await window.ethereum.request({ method: 'eth_chainId' });
+      // if (ChainId == 0x89) {
+      //   var Web3Alc = createAlchemyWeb3(PolygonRpc);
+      //   contract = NFTCONTRACT;
+      // }
+      // else if (ChainId == 0x1) {
+      //   Web3Alc = createAlchemyWeb3(EthRpc);
+      //   contract = ETHNFTCONTRACT;
+      // }
+      // else if (ChainId == 0x38) {
+      //   Web3Alc = createAlchemyWeb3(BscRpc);
+      //   contract = BSCNFTCONTRACT;
+      // }
+      // else return alert("Please Select a Valid Network")
+
+      var rate = stateRate;
       var account = walletAddress;
-      var _mintAmount = numberofNFTs
-      var mintRate = Number(await contract.methods.cost().call());
-      var mintValue=maticRate*usdRate;
-      console.log("msg.vale :", mintRate);
+      var _mintAmount = numberofNFTs;
+      console.log(contract)
+
+      var mintValue = rate * price;
       var totalAmount = mintValue * _mintAmount;
+      //eslint-disable-next-line
+      if (stateChainId == 0x1)
+      totalAmount = price*_mintAmount;
       //convert totalAmount to wei
-      var totalAmountWei = Web3Alc.utils.toWei(totalAmount.toString(), "ether");
       
-      await Web3Alc.eth.getMaxPriorityFeePerGas().then((tip) => {
+      var totalAmountWei = Web3Alc.utils.toWei(totalAmount.toString(), "ether");
+      await Web3Alc.eth.getMaxPriorityFeePerGas().then((tips) => {
         Web3Alc.eth.getBlock("pending").then((block) => {
           var baseFee = Number(block.baseFeePerGas);
-          var maxPriority = Number(tip);
+          var maxPriority = Number(tips);
           var maxFee = baseFee + maxPriority;
           contract.methods.mint(account, _mintAmount)
             .send({
               from: account,
-              value:totalAmountWei,
+              value: totalAmountWei,
               gasPrice: baseFee,
               maxFeePerGas: maxFee,
-              maxPriorityFeePerGas: maxPriority
+              maxPriorityFeePerGas: maxPriority,
             });
         })
           .catch((err) => alert(err.message));
@@ -101,8 +90,8 @@ const MintNowModal = () => {
               <h2>Collect YOUR NFT before end</h2>
               <div className="mint_img">
                 <img src={mintImg} alt="f-nft mint" style={{ borderRadius: "15px", borderWidth: "5px", borderColor: "#ffffff", textAlign: "center", borderShadow: "#ffffff" }} />
-                <h5 style={{ color: "red", textAlign: "center", textShadow: "#372873" }} onClick={reload}>Please Refesh if You Change The Network</h5>
               </div>
+              <h5 style={{ color: "red", textAlign: "center", textShadow: "#372873" }} onClick={reload}>Please Click To Refesh if You Change The Network</h5>
               <Button onClick={() => mintModalHandle()} onClose={reload}>
                 <FiX />
               </Button>
@@ -118,9 +107,9 @@ const MintNowModal = () => {
                   </li>
                   <li>
                     <h5>Price Total</h5>
-                    {localStorage.getItem("ethRate") === null ?
+                    {(price) === null ?
                       <h5> ETH</h5> :
-                      < h5 > {n * count} ETH</h5>}
+                      < h5 >{(price * count).toFixed(5)} {(crypto)}</h5>}
                   </li>
                   <li>
                     <h5>Quantity</h5>
@@ -138,7 +127,9 @@ const MintNowModal = () => {
                         value={counts}
                         onChange={(e) => setCount(e.target.value)}
                       />
-                      <button onClick={() => setCount(count + 1)}>+</button>
+                      <button onClick={() => setCount(count + 1)}>
+                        +
+                      </button>
                     </div>
                     <h5>
                       <span>{MdPriceChange.counts}{count * usdRate}</span> USD
