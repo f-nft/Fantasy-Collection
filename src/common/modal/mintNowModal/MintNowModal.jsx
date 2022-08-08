@@ -55,7 +55,8 @@ const MintNowModal = () => {
       var totalAmount = mintValue * _mintAmount;
       //eslint-disable-next-line
       if (stateChainId == 0x1)
-      totalAmount = price*_mintAmount;
+        totalAmount = price * _mintAmount;
+      
       //convert totalAmount to wei
       
       var totalAmountWei = Web3Alc.utils.toWei(totalAmount.toString(), "ether");
