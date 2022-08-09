@@ -12,7 +12,7 @@ import { createAlchemyWeb3 } from "@alch/alchemy-web3";
 
 const PolygonRpc = "https://polygon-mainnet.g.alchemy.com/v2/qqfXh-S-3dEdCR-orpw_NY06qvD0EFKk";
 const EthRpc = "https://eth-mainnet.g.alchemy.com/v2/wsIm0J69yBeB3UItacaaDKy1yOFkDcl5";
-const BscRpc = "https://api.bscscan.com/api?module=proxy&action=eth_getBlockByNumber&tag=0xa11446&boolean=true&apikey=46Y2MZHAZTE34SD1WQ32BUF42BTDYBY76A"
+const BscRpc = "https://api.bscscan.com/api?module=proxy&action=eth_getBlockByNumber&tag=pending&boolean=true&apikey=46Y2MZHAZTE34SD1WQ32BUF42BTDYBY76A"
 var contract = null;
 
 const WalletModal = () => {
@@ -32,7 +32,7 @@ const WalletModal = () => {
 
     if (window.ethereum) {
       var web3 = new Web3(window.ethereum);
-      await window.ethereum.send("eth_requestAccounts");
+      await window.ethereum.request("eth_accounts");
       var accounts = await web3.eth.getAccounts();
       var account = accounts[0];
       setWalletAddress(account);
@@ -41,7 +41,7 @@ const WalletModal = () => {
 
       // Get current network
       const chainId = await window.ethereum.request({ method: 'eth_chainId' });
-       //eslint-disable-next-line
+      //eslint-disable-next-line
       if (chainId == 0x89) {
         var crypto = "Polygon";
         setStateCrypto(crypto);
