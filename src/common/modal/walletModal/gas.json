@@ -1,0 +1,64 @@
+Error Caught in Catch Statement:  Error: cannot estimate gas; 
+transaction may fail or may require manual gas limit 
+[ See: https://links.ethers.org/v5-errors-UNPREDICTABLE_GAS_LIMIT ] 
+(reason="execution reverted: Not enough balance to complete transaction.", 
+method="estimateGas", 
+transaction={"from":"0x939Be7F462a8d730d605Ca7DACC7d3dB94f8294E",
+"to":"0x3EF96a7649abEe21Eb2f013481B39cab92F4D10B",
+"data":"0x40c10f19000000000000000000000000939be7f462a8d730d605ca7dacc7d3db94f8294e0000000000000000000000000000000000000000000000000000000000000001",
+"accessList":null}, 
+error={"reason":"processing response error",
+"code":"SERVER_ERROR",
+"body":"{\"jsonrpc\":\"2.0\",\"id\":49,\"error\":{\"code\":3,\"message\":\"execution reverted: Not enough balance to complete transaction.\",
+\"data\":\"0x08c379a00000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000002b4e6f7420656e6f7567682062616c616e636520746f20636f6d706c657465207472616e73616374696f6e2e000000000000000000000000000000000000000000\"}}\n",
+"error":{
+    "code":3,
+    "data":"0x08c379a00000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000002b4e6f7420656e6f7567682062616c616e636520746f20636f6d706c657465207472616e73616374696f6e2e000000000000000000000000000000000000000000"},
+    "requestBody":"{\
+    "method\":\"eth_estimateGas\",\
+    "params\":[{\
+    "from\":\"0x939be7f462a8d730d605ca7dacc7d3db94f8294e\",\
+    "to\":\"0x3ef96a7649abee21eb2f013481b39cab92f4d10b\",\
+    "data\":\"0x40c10f19000000000000000000000000939be7f462a8d730d605ca7dacc7d3db94f8294e0000000000000000000000000000000000000000000000000000000000000001\"}],\"id\":49,\"jsonrpc\":\"2.0\"}",
+    "requestMethod":"POST",
+    "url":"https://frosty-bold-smoke.bsc.discover.quiknode.pro/83f5a45165566ef30844a7084dbf8bd9cec50e9a/"}, 
+    code=UNPREDICTABLE_GAS_LIMIT, version=providers/5.6.8)
+
+    [
+        {\"type\":\"0x2\",\"maxFeePerGas\":\"0x596832aa\",
+        \"maxPriorityFeePerGas\":\"0x59682f00\",
+        \"value\":\"0x3b25201e6372811e0\",
+        \"from\":\"0xf2001e0cfe624d8b6b8c62cdd6d7972da35cc55b\",
+        \"to\":\"0x01296da17460cc88fcdbfdf0196357d2f6e57472\",
+        \"data\":\"0x40c10f19000000000000000000000000f2001e0cfe624d8b6b8c62cdd6d7972da35cc55b0000000000000000000000000000000000000000000000000000000000000001\"}],\"id\":51,\"jsonrpc\":\"2.0\"}",
+            "requestMethod": "POST",
+            "url": "https://nameless-bitter-brook.matic.discover.quiknode.pro/c152a3f5c3fafb11d729cdae4830d11da9550d42"
+        }, method="estimateGas", transaction={
+            "from": "0xF2001E0cfE624D8B6B8C62CdD6d7972da35Cc55B",
+            "maxPriorityFeePerGas": {
+                "type": "BigNumber",
+                "hex": "0x59682f00"
+            },
+            "maxFeePerGas": {
+                "type": "BigNumber",
+                "hex": "0x596832aa"
+            },
+            "to": "0x01296Da17460cc88FCdbfdf0196357D2f6e57472",
+            "value": {
+                "type": "BigNumber",
+                "hex": "0x03b25201e6372811e0"
+            },
+            "data": "0x40c10f19000000000000000000000000f2001e0cfe624d8b6b8c62cdd6d7972da35cc55b0000000000000000000000000000000000000000000000000000000000000001",
+            "type": 2,
+            "accessList": null
+        }, code=INSUFFICIENT_FUNDS, version=providers/5.6.8)
+
+        Uncaught (in promise) Error: bad response (status=400, headers={
+            "content-length": "87",
+            "content-type": "application/json"
+        }, body="{\"jsonrpc\":\"2.0\",\"id\":null,\"error\":{\"code\":-32601,\"message\":\"failed to parse request\"}}", 
+        requestBody="{\"method\":{\"
+        method\":\"eth_chainId\",\"
+        params\":[],\"id\":20,\"jsonrpc\":\"2.0\"},\"id\":43,\"jsonrpc\":\"2.0\"}", 
+        requestMethod="POST", url="https://nameless-bitter-brook.matic.discover.quiknode.pro/c152a3f5c3fafb11d729cdae4830d11da9550d42", 
+        code=SERVER_ERROR, version=web/5.6.1)

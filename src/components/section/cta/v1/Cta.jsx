@@ -39,14 +39,15 @@ const CTA = () => {
         <div className="f-nft_v1_cta_content">
           <div className="join_comunity_btns">
             <Button lg variant="mint" className="wishlist_btn">
-              Whitelist is Ended
+              Whitelist Now
             </Button>
             <Button lg variant="blue" className="join_discord_btn"
-              onClick={() => {
-                window.open("https://discord.gg/58KS9smeCV", "_blank");
-              }
-              }
+            onClick={() => {
+              window.open("https://discord.gg/FzCKUn3R", "_blank");
+            }
+            }
             >
+              {" "}
               <FaDiscord /> Join Discord
             </Button>
           </div>

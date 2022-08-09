@@ -18,13 +18,13 @@ import PriceModal from "../common/modal/priceModal/PriceModal";
 
 const HomeV1 = () => {
   
-  const { visibility, walletModalvisibility, priceModalVisibiity } = useModal();
+  const { visibility, walletModalvisibility,priceModalVisibiity } = useModal();
   return (
     <Layout>
        <GlobalStyles /> 
       {visibility && <MintNowModal />}
       {walletModalvisibility && <WalletModal />}
-      {priceModalVisibiity && <PriceModal />}
+      {priceModalVisibiity&&<PriceModal />}
       <Header />
       <Banner />
       <HowToMint />
