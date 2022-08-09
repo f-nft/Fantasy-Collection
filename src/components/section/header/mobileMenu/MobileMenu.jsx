@@ -78,7 +78,7 @@ const MobileMenu = ({ mobileMenuhandle }) => {
           <a href="https://twitter.com/Fashion__NFT">
             <FaTwitter />
           </a>
-          <a href="https://discord.gg/FzCKUn3R">
+          <a href="https://discord.gg/58KS9smeCV">
             <FaDiscord />
           </a>
         </div>

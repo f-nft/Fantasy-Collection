@@ -43,7 +43,7 @@ const CTA = () => {
             </Button>
             <Button lg variant="blue" className="join_discord_btn"
               onClick={() => {
-                window.open("https://discord.gg/FzCKUn3R", "_blank");
+                window.open("https://discord.gg/58KS9smeCV", "_blank");
               }
               }
             >

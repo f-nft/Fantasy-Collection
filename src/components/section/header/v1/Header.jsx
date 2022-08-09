@@ -88,7 +88,7 @@ const Header = () => {
                 </button>
                 <Button sm variant="outline" className="join_btn"
                   onClick={() => {
-                    window.open("https://discord.gg/FzCKUn3R", "_blank");
+                    window.open("https://discord.gg/58KS9smeCV", "_blank");
                   }
                   }>
                   <FaDiscord /> Join
