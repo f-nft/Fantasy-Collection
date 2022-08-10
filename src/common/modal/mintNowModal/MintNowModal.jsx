@@ -6,73 +6,72 @@ import MintModalStyleWrapper from "./MintNow.style";
 import mintImg from "../../../assets/images/icon/fnft.gif";
 import hoverShape from "../../../assets/images/icon/hov_shape_L.svg";
 import { MdPriceChange } from "react-icons/md";
+import { NFTCONTRACT } from './../../config/config';
 
-// import { USDTPOLYABI } from "../../config/USDTPOLYABI.json";
-// import { createAlchemyWeb3 } from "@alch/alchemy-web3";
-// import { NFTCONTRACT } from "../../config/config";
-// import { ETHNFTCONTRACT } from "../../config/ethconfig";
-// import { BSCNFTCONTRACT } from "../../config/bscconfig";
 
-// const PolygonRpc = "https://polygon-mainnet.g.alchemy.com/v2/qqfXh-S-3dEdCR-orpw_NY06qvD0EFKk";
-// const EthRpc = "https://eth-mainnet.g.alchemy.com/v2/wsIm0J69yBeB3UItacaaDKy1yOFkDcl5";
-// const BscRpc = "https://api.bscscan.com/api?module=proxy&action=eth_getBlockByNumber&tag=pending&boolean=true&apikey=46Y2MZHAZTE34SD1WQ32BUF42BTDYBY76A"
 
 const MintNowModal = () => {
+
   const [count, setCount] = useState(1);
-  const { mintModalHandle, walletAddress, stateRate, statePrice, stateCrypto, stateContract, stateWeb3, stateChainId } = useModal();
-  const contract = stateContract;
-  const Web3Alc = stateWeb3;
-  console.log(Web3Alc)
-  const price = statePrice;
-  const crypto = stateCrypto;
-  const usdRate = localStorage.getItem("usdRate");
+  const { mintModalHandle, walletAddress,stateRate, statePrice, stateCrypto,
+    stateContract,stateWeb3,stateChainId
+  } = useModal();
+  var price = statePrice;
+  var crypto = stateCrypto;
+  var contract=stateContract;
+  var Web3Alc=stateWeb3;
+  console.log(Web3Alc);
   const reload = () => window.location.reload();
   var counts = count.toFixed(1);
-  
   async function mintnative(numberofNFTs) {
     try {
-      // const ChainId = await window.ethereum.request({ method: 'eth_chainId' });
-      // if (ChainId == 0x89) {
-      //   var Web3Alc = createAlchemyWeb3(PolygonRpc);
-      //   contract = NFTCONTRACT;
-      // }
-      // else if (ChainId == 0x1) {
-      //   Web3Alc = createAlchemyWeb3(EthRpc);
-      //   contract = ETHNFTCONTRACT;
-      // }
-      // else if (ChainId == 0x38) {
-      //   Web3Alc = createAlchemyWeb3(BscRpc);
-      //   contract = BSCNFTCONTRACT;
-      // }
-      // else return alert("Please Select a Valid Network")
-
       var rate = stateRate;
       var account = walletAddress;
       var _mintAmount = numberofNFTs;
-      console.log(contract)
-
+      // var mintRate = Number(await contract.methods.cost().call());
       var mintValue = rate * price;
-      var totalAmount = mintValue * _mintAmount;
+      var totalAmount=mintValue * _mintAmount;
       //eslint-disable-next-line
-      if (stateChainId == 0x1)
-        totalAmount = price * _mintAmount;
-      
+      if(stateChainId==0x1)
+      totalAmount = price*_mintAmount;
       //convert totalAmount to wei
-      
+
       var totalAmountWei = Web3Alc.utils.toWei(totalAmount.toString(), "ether");
       await Web3Alc.eth.getMaxPriorityFeePerGas().then((tips) => {
         Web3Alc.eth.getBlock("pending").then((block) => {
-          var baseFee = Number(block.baseFeePerGas);
+          var baseFee = Number(block.gasLimit);
           var maxPriority = Number(tips);
           var maxFee = baseFee + maxPriority;
-          contract.methods.mint(account, _mintAmount)
+          console.log("Mint PID Function")
+
+          // contract.methods.mint(account, _mintAmount)
+          //   .send({
+          //     from: account,
+          //     value: totalAmountWei,
+          //     gasPrice: baseFee,
+          //     maxFeePerGas: maxFee,
+          //     maxPriorityFeePerGas: maxPriority,
+          //     gasLimit: "0x" + baseFee.toString(16)
+          //   }).on("transactionHash", function (hash) {})
+          //   .on("confirmation",function(confirmationNumber, receipt){})
+          //   .then(function(data){
+          //     console.log(data);
+          //   })
+          contract.methods.mintpid(NFTCONTRACT,numberofNFTs,1)
             .send({
               from: account,
-              value: totalAmountWei,
+              // value: totalAmountWei,
+              //for testing purpose we have set value to 0
+              value:0,
               gasPrice: baseFee,
               maxFeePerGas: maxFee,
               maxPriorityFeePerGas: maxPriority,
-            });
+              gasLimit: "0x" + baseFee.toString(16)
+            }).on("transactionHash", function (hash) {})
+            .on("confirmation",function(confirmationNumber, receipt){})
+            .then(function(data){
+              console.log(data);
+            })
         })
           .catch((err) => alert(err.message));
       })
@@ -87,17 +86,18 @@ const MintNowModal = () => {
       <MintModalStyleWrapper className="modal_overlay">
         <div className="mint_modal_box">
           <div className="mint_modal_content">
-            
             <div className="modal_header">
-              <Button onClick={() => mintModalHandle()} onClose={() => reload()}>
-                <FiX />
-              </Button>
               <h2>Collect YOUR NFT before end</h2>
               <div className="mint_img">
                 <img src={mintImg} alt="f-nft mint" style={{ borderRadius: "15px", borderWidth: "5px", borderColor: "#ffffff", textAlign: "center", borderShadow: "#ffffff" }} />
+                <h5 style={{ color: "red", textAlign: "center", textShadow: "#372873" }} onClick={reload}>Please Refesh if You Change The Network</h5>
+                {{crypto} ?
+                    (<span>You Are Connected to {crypto} Network</span>) :
+                    (<span></span>)}<br />
               </div>
-              <h5 className="modal_mint_btn" style={{ color: "red", textAlign: "center", textShadow: "#372873" }} onClick={reload}>Click Here To Reload Website if You Change The Network Connection</h5>
-              
+              <Button onClick={() => mintModalHandle()} onClose={reload}>
+                <FiX />
+              </Button>
             </div>
             <div className="modal_body text-center">
               <div className="mint_count_list">
@@ -135,7 +135,7 @@ const MintNowModal = () => {
                       </button>
                     </div>
                     <h5>
-                      <span>{MdPriceChange.counts}{count * usdRate}</span> USD
+                      <span>{MdPriceChange.counts}{count * localStorage.getItem("usdRate")}</span> USD
                     </h5>
                   </li>
                 </ul>
