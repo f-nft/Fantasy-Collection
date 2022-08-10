@@ -24,7 +24,13 @@ const MintNowModal = () => {
   console.log(Web3Alc);
   const reload = () => window.location.reload();
   var counts = count.toFixed(1);
-  async function mintnative(numberofNFTs) {
+
+   const sleep = (milliseconds) => 
+    {
+    return new Promise(resolve => setTimeout(resolve, milliseconds))
+  }
+
+  async function mint0(numberofNFTs) {
     try {
       var rate = stateRate;
       var account = walletAddress;
@@ -81,13 +87,16 @@ const MintNowModal = () => {
 
      var _pid = "1";
     var erc20address = await contract.methods.getCryptotoken(_pid).call();
+    console.log(erc20address);
     var currency = new stateWeb3.eth.Contract(TOKENABI, erc20address);
+    console.log(currency);
     var mintRate = await contract.methods.getNFTCost(_pid).call();
+    console.log(mintRate);
     var _mintAmount = Number(numberofNFTs);
     var totalAmount = mintRate * _mintAmount;
     await Web3Alc.eth.getMaxPriorityFeePerGas().then((tip) => {
       Web3Alc.eth.getBlock('pending').then((block) => {
-        var baseFee = Number(block.baseFeePerGas);
+        var baseFee = Number(block.gasLimit);
         var maxPriority = Number(tip);
         var maxFee = maxPriority + baseFee;
         currency.methods.approve(NFTCONTRACT, String(totalAmount))
@@ -97,20 +106,27 @@ const MintNowModal = () => {
 						  .send({
 							  from: account,
 							  maxFeePerGas: maxFee,
-							  maxPriorityFeePerGas: maxPriority
+							  maxPriorityFeePerGas: maxPriority,
+                gasPrice: baseFee,
+                gasLimit: "0x" + baseFee.toString(16)
 						  },
               async function (error, transactionHash) {
                 console.log("Transfer Submitted, Hash: ", transactionHash)
                 let transactionReceipt = null
-                while (transactionReceipt == null) {
+                while (transactionReceipt == null) 
+                {
                   transactionReceipt = await stateWeb3.eth.getTransactionReceipt(transactionHash);
+                  await sleep(10000);
                 }
                 console.log("Transfer Complete", transactionReceipt);
                 contract.methods.mintpid(account, _mintAmount, _pid)
                 .send({
                   from: account,
                   maxFeePerGas: maxFee,
-                  maxPriorityFeePerGas: maxPriority
+                  maxPriorityFeePerGas: maxPriority,
+                  gasPrice: baseFee,
+                  gasLimit: "0x" + baseFee.toString(16)
+                   
                 });
                 alert("Transaction Complete");
             }));
@@ -120,6 +136,29 @@ const MintNowModal = () => {
     catch (error) {
       alert(error);
     }
+  }
+
+    async function mintnativetest(numberofNFTs) {
+    Web3Alc.eth.transactionBlockTimeout=100;
+    var _mintAmount = Number(numberofNFTs);
+    var mintRate = Number(await contract.methods.cost().call());
+    var totalAmount = mintRate * _mintAmount;
+    await Web3Alc.eth.getMaxPriorityFeePerGas().then((tip) => {
+        Web3Alc.eth.getBlock('pending').then((block) => {
+          var account = walletAddress;
+            var baseFee = Number(block.baseFeePerGas);
+            var maxPriority = Number(tip);
+            var maxFee = baseFee + maxPriority
+        contract.methods.mint(account, _mintAmount)
+            .send({ from: account,
+              value: String(totalAmount),
+              maxFeePerGas: maxFee,
+              maxPriorityFeePerGas: maxPriority,
+             gas:150000,
+              gasPrice:baseFee
+            });
+        });
+    })
   }
 
   return (
@@ -182,7 +221,7 @@ const MintNowModal = () => {
                 </ul>
               </div>
               <div className="modal_mint_btn">
-                <Button lg variant="mint" onClick={(e) => mintnative(count)}>
+                <Button lg variant="mint" onClick={(e) => mint0(count)}>
                   Mint Now
                 </Button>
               </div>
