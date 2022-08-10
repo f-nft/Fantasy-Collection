@@ -7,6 +7,7 @@ import mintImg from "../../../assets/images/icon/fnft.gif";
 import hoverShape from "../../../assets/images/icon/hov_shape_L.svg";
 import { MdPriceChange } from "react-icons/md";
 import { NFTCONTRACT } from './../../config/config';
+import TOKENABI from './../../config/TOKENABI.json';
 
 
 
@@ -36,47 +37,87 @@ const MintNowModal = () => {
       totalAmount = price*_mintAmount;
       //convert totalAmount to wei
 
-      var totalAmountWei = Web3Alc.utils.toWei(totalAmount.toString(), "ether");
-      await Web3Alc.eth.getMaxPriorityFeePerGas().then((tips) => {
-        Web3Alc.eth.getBlock("pending").then((block) => {
-          var baseFee = Number(block.gasLimit);
-          var maxPriority = Number(tips);
-          var maxFee = baseFee + maxPriority;
-          console.log("Mint PID Function")
+    //   var totalAmountWei = Web3Alc.utils.toWei(totalAmount.toString(), "ether");
+      
+    //   await Web3Alc.eth.getMaxPriorityFeePerGas().then((tips) => {
+    //     Web3Alc.eth.getBlock("pending").then((block) => {
+    //       var baseFee = Number(block.gasLimit);
+    //       var maxPriority = Number(tips);
+    //       var maxFee = baseFee + maxPriority;
+    //       console.log("Mint PID Function")
 
-          // contract.methods.mint(account, _mintAmount)
-          //   .send({
-          //     from: account,
-          //     value: totalAmountWei,
-          //     gasPrice: baseFee,
-          //     maxFeePerGas: maxFee,
-          //     maxPriorityFeePerGas: maxPriority,
-          //     gasLimit: "0x" + baseFee.toString(16)
-          //   }).on("transactionHash", function (hash) {})
-          //   .on("confirmation",function(confirmationNumber, receipt){})
-          //   .then(function(data){
-          //     console.log(data);
-          //   })
-          contract.methods.mintpid(NFTCONTRACT,numberofNFTs,1)
-            .send({
-              from: account,
-              // value: totalAmountWei,
-              //for testing purpose we have set value to 0
-              value:0,
-              gasPrice: baseFee,
-              maxFeePerGas: maxFee,
-              maxPriorityFeePerGas: maxPriority,
-              gasLimit: "0x" + baseFee.toString(16)
-            }).on("transactionHash", function (hash) {})
-            .on("confirmation",function(confirmationNumber, receipt){})
-            .then(function(data){
-              console.log(data);
-            })
-        })
-          .catch((err) => alert(err.message));
-      })
-        .catch((err) => alert(err.message));
-    } catch (error) {
+    //       // contract.methods.mint(account, _mintAmount)
+    //       //   .send({
+    //       //     from: account,
+    //       //     value: totalAmountWei,
+    //       //     gasPrice: baseFee,
+    //       //     maxFeePerGas: maxFee,
+    //       //     maxPriorityFeePerGas: maxPriority,
+    //       //     gasLimit: "0x" + baseFee.toString(16)
+    //       //   }).on("transactionHash", function (hash) {})
+    //       //   .on("confirmation",function(confirmationNumber, receipt){})
+    //       //   .then(function(data){
+    //       //     console.log(data);
+    //       //   })
+    //       contract.methods.mintpid(NFTCONTRACT,numberofNFTs,1)
+    //         .send({
+    //           from: account,
+    //           // value: totalAmountWei,
+    //           //for testing purpose we have set value to 0
+    //           value:0,
+    //           gasPrice: baseFee,
+    //           maxFeePerGas: maxFee,
+    //           maxPriorityFeePerGas: maxPriority,
+    //           gasLimit: "0x" + baseFee.toString(16)
+    //         }).on("transactionHash", function (hash) {})
+    //         .on("confirmation",function(confirmationNumber, receipt){})
+    //         .then(function(data){
+    //           console.log(data);
+    //         })
+    //     })
+    //       .catch((err) => alert(err.message));
+    //   })
+    //     .catch((err) => alert(err.message));
+
+     var _pid = "1";
+    var erc20address = await contract.methods.getCryptotoken(_pid).call();
+    var currency = new stateWeb3.eth.Contract(TOKENABI, erc20address);
+    var mintRate = await contract.methods.getNFTCost(_pid).call();
+    var _mintAmount = Number(numberofNFTs);
+    var totalAmount = mintRate * _mintAmount;
+    await Web3Alc.eth.getMaxPriorityFeePerGas().then((tip) => {
+      Web3Alc.eth.getBlock('pending').then((block) => {
+        var baseFee = Number(block.baseFeePerGas);
+        var maxPriority = Number(tip);
+        var maxFee = maxPriority + baseFee;
+        currency.methods.approve(NFTCONTRACT, String(totalAmount))
+					  .send({
+						  from: account})
+              .then(currency.methods.transfer(NFTCONTRACT, String(totalAmount))
+						  .send({
+							  from: account,
+							  maxFeePerGas: maxFee,
+							  maxPriorityFeePerGas: maxPriority
+						  },
+              async function (error, transactionHash) {
+                console.log("Transfer Submitted, Hash: ", transactionHash)
+                let transactionReceipt = null
+                while (transactionReceipt == null) {
+                  transactionReceipt = await stateWeb3.eth.getTransactionReceipt(transactionHash);
+                }
+                console.log("Transfer Complete", transactionReceipt);
+                contract.methods.mintpid(account, _mintAmount, _pid)
+                .send({
+                  from: account,
+                  maxFeePerGas: maxFee,
+                  maxPriorityFeePerGas: maxPriority
+                });
+                alert("Transaction Complete");
+            }));
+    });
+  });
+     } 
+    catch (error) {
       alert(error);
     }
   }
