@@ -10,7 +10,9 @@ const MintModalStyleWrapper = styled.div`
     border-radius: 25px;
     position: absolute;
     max-height: 50%;
+    min-height: 50%;
     max-width: 39%;
+    min-width: 300px;
     left: 50%;
     top: 25%;
     transform: translate(-50%, -50%);
@@ -49,12 +51,13 @@ const MintModalStyleWrapper = styled.div`
     position: relative;
     margin-top: 80px;
     width: 450px;
+    max-width: 400px;
     max-height: 50%;
     height: 100%;
-   
+    min-width: 300px;
     animation: 3s ${modalAnimation}; /* ********* */
     &::before {
-      border: 1px 5px solid black;
+    border: 1px 5px solid black;
     border-color: gold;
     border-width: 1px;
     border-radius: 25px;
@@ -64,6 +67,7 @@ const MintModalStyleWrapper = styled.div`
       top: 0;
       height: 100%;
       width: 100%;
+      min-width: 300px;
       background: #171c21;
       content: "";
     }
@@ -87,10 +91,11 @@ const MintModalStyleWrapper = styled.div`
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
-    padding: 45px;
+    padding: 40px;
     padding-bottom: 10px;
     position: relative;
     display: flex;
+    min-width: 300px;
     flex-direction: column;
   }
 
@@ -99,12 +104,13 @@ const MintModalStyleWrapper = styled.div`
       font-family: "Bakbak One";
       font-style: bold;
       font-weight: 500;
-      font-size: 20px;
+      font-size: 15px;
       line-height: 20px;
       text-align: center;
       text-transform: uppercase;
       color: #ffffff;
       max-width: 380px;
+      min-width: 300px;
       margin: auto;
       margin-top: -10px;
       margin-bottom: 10px;
@@ -165,7 +171,7 @@ const MintModalStyleWrapper = styled.div`
           font-family: "Bakbak One";
           font-style: normal;
           font-weight: 100;
-          font-size: 20px;
+          font-size: 15px;
           line-height: 10px;
           text-align: right;
           color: #fffff7;

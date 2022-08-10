@@ -87,15 +87,17 @@ const MintNowModal = () => {
       <MintModalStyleWrapper className="modal_overlay">
         <div className="mint_modal_box">
           <div className="mint_modal_content">
+            
             <div className="modal_header">
+              <Button onClick={() => mintModalHandle()} onClose={() => reload()}>
+                <FiX />
+              </Button>
               <h2>Collect YOUR NFT before end</h2>
               <div className="mint_img">
                 <img src={mintImg} alt="f-nft mint" style={{ borderRadius: "15px", borderWidth: "5px", borderColor: "#ffffff", textAlign: "center", borderShadow: "#ffffff" }} />
               </div>
-              <h5 style={{ color: "red", textAlign: "center", textShadow: "#372873" }} onClick={reload}>Please Click To Refesh if You Change The Network</h5>
-              <Button onClick={() => mintModalHandle()} onClose={reload}>
-                <FiX />
-              </Button>
+              <h5 className="modal_mint_btn" style={{ color: "red", textAlign: "center", textShadow: "#372873" }} onClick={reload}>Click Here To Reload Website if You Change The Network Connection</h5>
+              
             </div>
             <div className="modal_body text-center">
               <div className="mint_count_list">

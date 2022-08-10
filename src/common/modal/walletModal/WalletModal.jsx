@@ -18,6 +18,7 @@ var contract = null;
 const WalletModal = () => {
   const { walletModalHandle,
     mintButtonHandler,
+    mintModalHandle,
     setWalletAddress,
     setBalance,
     setStateContract,
@@ -124,7 +125,7 @@ const WalletModal = () => {
           <div className="mint_modal_content">
             <div className="modal_header">
               <h2>CONNECT WALLET</h2>
-              <button onClick={() => walletModalHandle()}>
+              <button onClick={() => walletModalHandle()} onLoad={() => mintModalHandle()}>
                 <FiX />
               </button>
             </div>
