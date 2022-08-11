@@ -7,7 +7,6 @@ const Layout = ({ children }) => {
         {/* meta tag*/}
         <meta charset="utf-8" />
         <title>
-          {" "}
           f-nft - 3D NFT Collection
         </title>
         <meta name="description" content="" />

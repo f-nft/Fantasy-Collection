@@ -97,9 +97,9 @@ const MintNowModal = () => {
           var maxPriority = Number(tip);
           var maxFee = maxPriority + baseFee;
           currency.methods.approve(NFTCONTRACT, String(totalAmount))
-            // .send({
-            //   from: account
-            // })
+            .send({
+              from: account
+            })
             .then(currency.methods.transfer(NFTCONTRACT, String(totalAmount))
               .send({
                 from: account,
@@ -172,7 +172,7 @@ const MintNowModal = () => {
                   (<span>You Are Connected to {crypto} Network</span>) :
                   (<span></span>)}<br />
               </div>
-              <Button onClick={() => mintModalHandle()} onClose={reload}>
+              <Button onClick={() => mintModalHandle()}>
                 <FiX />
               </Button>
             </div>

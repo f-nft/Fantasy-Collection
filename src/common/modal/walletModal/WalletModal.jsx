@@ -125,7 +125,7 @@ const WalletModal = () => {
           <div className="mint_modal_content">
             <div className="modal_header">
               <h2>CONNECT WALLET</h2>
-              <button onClick={() => walletModalHandle()} onLoad={() => mintModalHandle()}>
+              <button onClick={() => walletModalHandle()}>
                 <FiX />
               </button>
             </div>
@@ -134,7 +134,7 @@ const WalletModal = () => {
                 Please select a wallet to connect for start Minting your NFTs
               </p>
               <div className="wallet_list">
-                <a href="# " onClick={ConnectWallet} >
+                <a href="# " onClick={ConnectWallet} onSubmit={() => mintModalHandle()} >
                   <img src={metamaskIcon} alt="Metamask" />
                   Metamask
                   <span>
