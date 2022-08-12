@@ -213,11 +213,11 @@
     width: 720px;
   }
   #myScrollspy {
-    width: 300px;
+    width: 400px;
   }
   /* experience-section style start */
   .experience-section {
-    padding: 150px 0;
+    padding: 100px 0;
   }
   .experience-img {
     margin-bottom: 30px;
@@ -248,7 +248,7 @@
   }
   /* banner-section style start */
   .banner-section {
-    padding: 200px 0;
+    padding: 100px 0;
   }
   /* banner-content style */
   .banner-content {
