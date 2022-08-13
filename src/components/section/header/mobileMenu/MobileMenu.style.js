@@ -37,7 +37,7 @@ const MobileMenuStyleWrapper = styled.div`
   }
 
   .mobile_menu_logo {
-    width: 79%;
+    width: 100%;
     position: relative;
   }
 

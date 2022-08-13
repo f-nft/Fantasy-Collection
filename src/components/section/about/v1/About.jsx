@@ -1,7 +1,5 @@
 import SectionTitle from "../../../../common/sectionTitle";
-
 import AboutInfoCardList from "../aboutInfoCardList";
-
 import data from "../../../../assets/data/about/aboutv1";
 import aboutThumb1 from "../../../../assets/images/nft/about_us_img1.png";
 import aboutThumb2 from "../../../../assets/images/nft/about_us_img2.png";
