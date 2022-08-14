@@ -9,7 +9,6 @@ import { MdPriceChange } from "react-icons/md";
 import { NFTCONTRACT } from './../../config/config';
 import TOKENABI from './../../config/TOKENABI.json';
 
-
 const MintNowModal = () => {
 
   const [count, setCount] = useState(1);
@@ -22,17 +21,14 @@ const MintNowModal = () => {
   var Web3Alc = stateWeb3;
   const reload = () => window.location.reload();
   var counts = count.toFixed(1);
-  
-  var mintnative = require(stateChainId);
 
   const expectedBlockTime = 10000;
   const sleep = (milliseconds) => {
     return new Promise(resolve => setTimeout(resolve, milliseconds))
   }
-        
   //eslint-disable-next-line
-  if (stateChainId === 0x89) {
-    async function mintnative(numberofNFTs) {
+  async function mintnative(numberofNFTs) {
+    if (stateChainId === 0x89) {
       try {
         var rate = stateRate;
         var account = walletAddress;
@@ -94,72 +90,66 @@ const MintNowModal = () => {
         alert(error);
       }
     }
-  }
-
-  else if (stateChainId === 0x38) {
-    async function mintnative(numberofNFTs) {
-      // Web3Alc.eth.transactionBlockTimeout=100;
-      var _mintAmount = Number(numberofNFTs);
-      try {
-        var mintRate = Number(await contract.methods.cost().call());
-        var totalAmount = mintRate * _mintAmount;
-        await Web3Alc.eth.getMaxPriorityFeePerGas().then((tip) => {
-          Web3Alc.eth.getBlock('pending').then((block) => {
-            var account = walletAddress;
-            var baseFee = Number(block.baseFeePerGas);
-            var maxPriority = Number(tip);
-            var maxFee = baseFee + maxPriority
-            contract.methods.mint(account, _mintAmount)
-              .send({
-                from: account,
-                value: totalAmount,
-                maxFeePerGas: maxFee,
-                maxPriorityFeePerGas: maxPriority,
-                gasPrice: baseFee
-              });
-          });
-        })
-
-      } catch (error) {
-        console.log(error);
-      }
+    else if (stateChainId === 0x38) {
+        // Web3Alc.eth.transactionBlockTimeout=100;
+        var _mintAmount = Number(numberofNFTs);
+        try {
+          var mintRate = Number(await contract.methods.cost().call());
+          var totalAmount = mintRate * _mintAmount;
+          await Web3Alc.eth.getMaxPriorityFeePerGas().then((tip) => {
+            Web3Alc.eth.getBlock('pending').then((block) => {
+              var account = walletAddress;
+              var baseFee = Number(block.baseFeePerGas);
+              var maxPriority = Number(tip);
+              var maxFee = baseFee + maxPriority
+              contract.methods.mint(account, _mintAmount)
+                .send({
+                  from: account,
+                  value: totalAmount,
+                  maxFeePerGas: maxFee,
+                  maxPriorityFeePerGas: maxPriority,
+                  gasPrice: baseFee
+                });
+            });
+          })
+  
+        } catch (error) {
+          console.log(error);
+        }
+      
     }
-  }
+    else if (stateChainId === 0x1) {
 
-  else if (stateChainId === 0x1) {
-
-    //mint function for etherscan
-    async function mintnative(numberofNFTs) {
-      var _mintAmount = Number(numberofNFTs);
-      try {
-        var mintRate = Number(await contract.methods.getNFTCost(1).call());
-        //need to get the price from the contract
-        //currently it is hardcoded
-        mintRate = "50000000000000000";
-        var totalAmount = mintRate * _mintAmount;
-        await Web3Alc.eth.getMaxPriorityFeePerGas().then((tip) => {
-          Web3Alc.eth.getBlock('pending').then((block) => {
-            var account = walletAddress;
-            var baseFee = Number(block.baseFeePerGas);
-            var maxPriority = Number(tip) / 10;
-            var maxFee = baseFee + maxPriority
-            contract.methods.mint(account, _mintAmount)
-              .send({
-                from: account,
-                gas: 21000,
-                value: totalAmount,
-                maxPriorityFeePerGas: 1500000000
-
-              });
-          });
-        })
-
-      } catch (error) {
-        console.log(error);
-
-      }
+      //mint function for etherscan
+        var _mintAmount = Number(numberofNFTs);
+        try {
+          var mintRate = Number(await contract.methods.getNFTCost(1).call());
+          //need to get the price from the contract
+          //currently it is hardcoded
+          mintRate = "50000000000000000";
+          var totalAmount = mintRate * _mintAmount;
+          await Web3Alc.eth.getMaxPriorityFeePerGas().then((tip) => {
+            Web3Alc.eth.getBlock('pending').then((block) => {
+              var account = walletAddress;
+              var baseFee = Number(block.baseFeePerGas);
+              var maxPriority = Number(tip) / 10;
+              var maxFee = baseFee + maxPriority
+              contract.methods.mint(account, _mintAmount)
+                .send({
+                  from: account,
+                  gas: 21000,
+                  value: totalAmount,
+                  maxPriorityFeePerGas: 1500000000
+  
+                });
+            });
+          })
+  
+        } catch (error) {
+          console.log(error);
+        }
     }
-  }
+    }
 
   //mint function for bscscan
   async function mintbsc(numberofNFTs) {
