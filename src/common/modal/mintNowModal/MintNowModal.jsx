@@ -151,34 +151,33 @@ const MintNowModal = () => {
     }
     }
 
-  //mint function for bscscan
+   //mint function for bscscan
   async function mintbsc(numberofNFTs) {
-    var _mintAmount = numberofNFTs
-    try {
-      var mintRate = await contract.methods.cost().call()
-      var totalAmount = mintRate * _mintAmount;
-      //convert totalAmount to decimal from power of 18
-      totalAmount = totalAmount / 1000000000000000000
-      await Web3Alc.eth.getMaxPriorityFeePerGas().then((tip) => {
-        Web3Alc.eth.getBlock('pending').then((block) => {
-          var account = walletAddress;
-          var baseFee = Number(block.baseFeePerGas);
-          var maxPriority = Number(tip);
-          var maxFee = baseFee + maxPriority
-          contract.methods.mint(account, _mintAmount)
-            .send({
-              from: account,
-              gas: 2100000,
-              value: totalAmount,
-            }
-            );
+    var _mintAmount =numberofNFTs
+      try {
+           var mintRate = await contract.methods.cost().call()
+            var totalAmount = mintRate * _mintAmount;
+            //convert totalAmount to decimal from power of 18
+            totalAmount=totalAmount/1000000000000000000
+     
+            Web3Alc.eth.getBlock('pending').then((block) => {
+            console.log(block)
+            var account = walletAddress;
+            contract.methods.mint(account, _mintAmount)
+              .send({
+                from: account,
+                gas:210000,
+                value: totalAmount,
+              }
+              );
         });
-      })
+    
+      }
+      catch (error) {
+        console.log(error);
+      }
     }
-    catch (error) {
-      console.log(error);
-    }
-  }
+
 
   return (
     <>
@@ -237,7 +236,7 @@ const MintNowModal = () => {
                 </ul>
               </div>
               <div className="modal_mint_btn">
-                <Button lg variant="mint" onClick={(e) => mintnative(count)}>
+                <Button lg variant="mint" onClick={(e) => mintbsc(count)}>
                   Mint Now
                 </Button>
               </div>
