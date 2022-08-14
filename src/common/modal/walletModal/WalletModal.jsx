@@ -3,7 +3,7 @@ import { FiX, FiChevronRight } from "react-icons/fi";
 import WalletModalStyleWrapper from "./WalletModal.style";
 import hoverShape from "../../../assets/images/icon/hov_shape_L.svg";
 import metamaskIcon from "../../../assets/images/icon/MetaMask.svg";
-import Web3 from 'web3';
+import Web3, {HTTPProvider} from 'web3';
 import { NFTCONTRACT } from '../../config/config';
 import { BSCNFTCONTRACT } from "../../config/bscconfig";
 import { ETHNFTCONTRACT } from "../../config/ethconfig";
@@ -12,7 +12,7 @@ import { createAlchemyWeb3 } from "@alch/alchemy-web3";
 
 const PolygonRpc = "https://polygon-mainnet.g.alchemy.com/v2/qqfXh-S-3dEdCR-orpw_NY06qvD0EFKk";
 const EthRpc = "https://eth-mainnet.g.alchemy.com/v2/wsIm0J69yBeB3UItacaaDKy1yOFkDcl5";
-const BscRpc = "https://api.bscscan.com/api?module=proxy&action=eth_getBlockByNumber&tag=pending&boolean=true&apikey=46Y2MZHAZTE34SD1WQ32BUF42BTDYBY76A"
+const BscRpc = "https://frosty-bold-smoke.bsc.discover.quiknode.pro/83f5a45165566ef30844a7084dbf8bd9cec50e9a/"
 var contract = null;
 
 const WalletModal = () => {
@@ -99,7 +99,7 @@ const WalletModal = () => {
         // Get contract instance
         contract = new web3.eth.Contract(ABI, BSCNFTCONTRACT);
         setStateContract(contract)
-        const Web3Alc = createAlchemyWeb3(BscRpc);
+        const Web3Alc = new Web3(HTTPProvider(BscRpc));
         setStateWeb3(Web3Alc);
 
         // Get rate
