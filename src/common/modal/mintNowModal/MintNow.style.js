@@ -14,7 +14,7 @@ const MintModalStyleWrapper = styled.div`
     max-width: 39%;
     min-width: 300px;
     left: 50%;
-    top: 25%;
+    top: 30%;
     transform: translate(-50%, -50%);
     z-index: 999;
     display: flex;
