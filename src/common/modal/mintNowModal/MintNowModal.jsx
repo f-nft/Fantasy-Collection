@@ -37,7 +37,7 @@ const MintNowModal = () => {
         var _mintAmount = Number(numberofNFTs);
         var mintValue = rate * price;
         var totalAmount = mintValue * _mintAmount;
-      
+
         //convert totalAmount to wei
         //   var totalAmountWei = Web3Alc.utils.toWei(totalAmount.toString(), "ether");
 
@@ -90,32 +90,32 @@ const MintNowModal = () => {
       }
     }
     else if (stateChainId === 0x38) {
- //mint function for bscscan
-  // async function mintbsc(numberofNFTs) {
-  //   var _mintAmount =numberofNFTs
+      //mint function for bscscan
       try {
-            mintRate = await contract.methods.cost().call()
-            var total = mintRate * _mintAmount;
-            //convert totalAmount to decimal from power of 18
-            totalAmount = Web3.utils.toWei(total)
-            Web3Alc.eth.getBlock('pending').then((block) => {
-            console.log(block)
-            var account = walletAddress;
-            contract.methods.mint(account, _mintAmount)
-              .send({
-                from: account,
-                gas:21000,
-                value: totalAmount,
-              }
-              );
+        var bnbRate = await contract.methods.cost().call()
+        mintRate = Web3.utils.toWei(bnbRate, 'finney');
+        console.log("mint rate Bnb ", mintRate);
+
+        var total = mintRate * _mintAmount;
+        //convert totalAmount to decimal from power of 18
+        totalAmount = Web3.utils.toWei(total)
+        Web3Alc.eth.getBlock('pending').then((block) => {
+          console.log(block)
+          var account = walletAddress;
+          contract.methods.mint(account, _mintAmount)
+            .send({
+              from: account,
+              gas: 21000,
+              value: totalAmount,
+            }
+            );
         });
-    
       }
       catch (error) {
         console.log(error);
       }
     }
-        // Web3Alc.eth.transactionBlockTimeout=100;
+    // Web3Alc.eth.transactionBlockTimeout=100;
     //     try {
     //       mintRate = Number(await contract.methods.cost().call());
     //       totalAmount = mintRate * _mintAmount;
@@ -135,45 +135,41 @@ const MintNowModal = () => {
     //             });
     //         });
     //       })
-  
     //     } catch (error) {
     //       console.log(error);
     //     }
-      
     // }
     else if (stateChainId === 0x1) {
-
       //mint function for etherscan
-        try {
-          mintRate = Number(await contract.methods.getNFTCost(1).call());
-          //need to get the price from the contract
-          //currently it is hardcoded
-          mintRate = 50000000000000000;
-          await Web3Alc.eth.getMaxPriorityFeePerGas().then((tip) => {
-            Web3Alc.eth.getBlock('pending').then((block) => {
-              var account = walletAddress;
-              var baseFee = Number(block.baseFeePerGas);
-              var maxPriority = Number(tip);
-              var maxFee = baseFee + maxPriority
-              contract.methods.mint(account, _mintAmount)
-                .send({
-                  from: account,
-                  gas: 21000,
-                  value: totalAmount,
-                  maxPriorityFeePerGas: 99999
-  
-                });
-            });
-          })
-  
-        } catch (error) {
-          console.log(error);
-        }
+      try {
+        var ethRate = Number(await contract.methods.getNFTCost(1).call());
+        //need to get the price from the contract
+        //currently it is hardcoded
+        mintRate = Web3.utils.toWei(ethRate, 'tether');
+        console.log(mintRate);
+        await Web3Alc.eth.getMaxPriorityFeePerGas().then((tip) => {
+          Web3Alc.eth.getBlock('pending').then((block) => {
+            var account = walletAddress;
+            var baseFee = Number(block.baseFeePerGas);
+            var maxPriority = Number(tip);
+            var maxFee = baseFee + maxPriority
+            contract.methods.mint(account, _mintAmount)
+              .send({
+                from: account,
+                gas: 21000,
+                value: totalAmount,
+                maxPriorityFeePerGas: 99999
+              });
+          });
+        })
+      } catch (error) {
+        console.log(error);
+      }
     }
+    else {
+      await sleep(expectedBlockTime);
     }
-
-  
-
+  }
 
   return (
     <>
@@ -220,7 +216,7 @@ const MintNowModal = () => {
                         type="text"
                         id="quantity"
                         value={counts}
-                        onChange={(e) => setCount(e.target.value)}/>
+                        onChange={(e) => setCount(e.target.value)} />
                       <button onClick={() => setCount(count + 1)}>
                         +
                       </button>

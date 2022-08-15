@@ -46,6 +46,7 @@ const WalletModal = () => {
       if (chainId == 0x89) {
         var crypto = "Polygon";
         setStateCrypto(crypto);
+        console.log(crypto);
 
         // Get contract instance
         contract = new web3.eth.Contract(ABI, NFTCONTRACT);
@@ -70,6 +71,7 @@ const WalletModal = () => {
       else if (chainId == 0x1) {
         crypto = "Ethereum";
         setStateCrypto(crypto);
+        console.log(crypto);
 
         // Get contract instance
         contract = new web3.eth.Contract(ABI, ETHNFTCONTRACT);
@@ -95,6 +97,7 @@ const WalletModal = () => {
       else if (chainId == 0x38) {
         crypto = "Binance Chain";
         setStateCrypto(crypto);
+        console.log(crypto);
 
         // Get contract instance
         contract = new web3.eth.Contract(ABI, BSCNFTCONTRACT);
