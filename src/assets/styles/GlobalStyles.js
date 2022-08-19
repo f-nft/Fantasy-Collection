@@ -24,9 +24,10 @@ body {
     font-size: 16px; 
     vertical-align: baseline;
     font-weight: 500;
-    line-height: 1.6;
+    line-height: 2;
     font-weight: 500;
-    overflow-x: hidden; 
+    overflow-x: hidden;
+    color: #ffffff; 
     background-color: #040C12 !important;
 }
 
@@ -75,7 +76,7 @@ body, p, a{
 @media (min-width: 1400px){
     .container{
         max-width: 1200px;
-        padding: 0px 20px;
+        padding: 20px 20px;
     }
 } 
 

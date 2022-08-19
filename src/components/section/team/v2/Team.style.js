@@ -4,7 +4,7 @@ const TeamStyleWrapper = styled.section`
   background: rgba(25, 35, 40, 0.5);
   backdrop-filter: blur(5px);
   position: relative;
-  padding: 113px 0 120px 0;
+  padding: 39px 0 120px 0;
   z-index: 1;
 
   .team_bear_img {

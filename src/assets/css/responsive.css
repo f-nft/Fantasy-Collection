@@ -213,11 +213,11 @@
     width: 720px;
   }
   #myScrollspy {
-    width: 300px;
+    width: 400px;
   }
   /* experience-section style start */
   .experience-section {
-    padding: 150px 0;
+    padding: 100px 0;
   }
   .experience-img {
     margin-bottom: 30px;
@@ -248,7 +248,7 @@
   }
   /* banner-section style start */
   .banner-section {
-    padding: 200px 0;
+    padding: 100px 0;
   }
   /* banner-content style */
   .banner-content {
@@ -622,7 +622,7 @@
     padding: 80px 20px;
   }
   .footer-main .footer-logo img {
-    max-width: 80%;
+    max-width: 100%;
   }
   .footer-widget-header {
     margin-bottom: 30px;
@@ -898,7 +898,7 @@
             flex-direction: column;
   }
   .footer-main .footer-logo {
-    margin-bottom: 50px;
+    margin-bottom: 10px;
   }
   .footer-main .footer-logo img {
     max-width: 100%;

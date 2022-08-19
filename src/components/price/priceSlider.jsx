@@ -17,24 +17,17 @@ const PriceSlider = () => {
     slidesToScroll: 1,
     responsive: [
       {
-        breakpoint: 1025,
-        settings: {
-          slidesToShow: 4,
-          slidesToScroll: 1,
-        },
-      },
-      {
         //breakpoint for medium screen
         breakpoint: 768,
         settings: {
-          slidesToShow: 3,
+          slidesToShow: 1,
           slidesToScroll: 1,
         },
       },
       {
         breakpoint: 650,
         settings: {
-          slidesToShow: 2,
+          slidesToShow: 1,
           slidesToScroll: 1,
         },
       },
@@ -46,14 +39,14 @@ const PriceSlider = () => {
         },
       },
       {
-        breakpoint: 241,
+        breakpoint: 341,
         settings: {
-          slidesToShow: 2,
+          slidesToShow: 1,
           slidesToScroll: 1,
         },
       },
       {
-        breakpoint: 50,
+        breakpoint: 250,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,

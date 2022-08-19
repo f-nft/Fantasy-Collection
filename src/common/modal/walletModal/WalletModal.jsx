@@ -12,12 +12,13 @@ import { createAlchemyWeb3 } from "@alch/alchemy-web3";
 
 const PolygonRpc = "https://polygon-mainnet.g.alchemy.com/v2/qqfXh-S-3dEdCR-orpw_NY06qvD0EFKk";
 const EthRpc = "https://eth-mainnet.g.alchemy.com/v2/wsIm0J69yBeB3UItacaaDKy1yOFkDcl5";
-const BscRpc = "https://api.bscscan.com/api?module=proxy&action=eth_getBlockByNumber&tag=pending&boolean=true&apikey=46Y2MZHAZTE34SD1WQ32BUF42BTDYBY76A"
+const BscRpc = "https://bsc-mainnet.nodereal.io/v1/8ed65880a0a04853ba46d115f679d4e0"
 var contract = null;
 
 const WalletModal = () => {
   const { walletModalHandle,
     mintButtonHandler,
+    mintModalHandle,
     setWalletAddress,
     setBalance,
     setStateContract,
@@ -32,7 +33,7 @@ const WalletModal = () => {
 
     if (window.ethereum) {
       var web3 = new Web3(window.ethereum);
-      await window.ethereum.request("eth_accounts");
+      await window.ethereum.send("eth_requestAccounts");
       var accounts = await web3.eth.getAccounts();
       var account = accounts[0];
       setWalletAddress(account);
@@ -45,6 +46,7 @@ const WalletModal = () => {
       if (chainId == 0x89) {
         var crypto = "Polygon";
         setStateCrypto(crypto);
+        console.log(crypto);
 
         // Get contract instance
         contract = new web3.eth.Contract(ABI, NFTCONTRACT);
@@ -70,6 +72,7 @@ const WalletModal = () => {
       else if (chainId == 0x1) {
         crypto = "Ethereum";
         setStateCrypto(crypto);
+        console.log(crypto);
 
         // Get contract instance
         contract = new web3.eth.Contract(ABI, ETHNFTCONTRACT);
@@ -95,11 +98,12 @@ const WalletModal = () => {
       else if (chainId == 0x38) {
         crypto = "Binance Chain";
         setStateCrypto(crypto);
+        console.log(crypto);
 
         // Get contract instance
         contract = new web3.eth.Contract(ABI, BSCNFTCONTRACT);
         setStateContract(contract)
-        const Web3Alc = createAlchemyWeb3(BscRpc);
+        var Web3Alc = new Web3.providers.HttpProvider(BscRpc);
         setStateWeb3(Web3Alc);
 
         // Get rate
@@ -134,7 +138,7 @@ const WalletModal = () => {
                 Please select a wallet to connect for start Minting your NFTs
               </p>
               <div className="wallet_list">
-                <a href="# " onClick={ConnectWallet} >
+                <a href="# " onClick={ConnectWallet} onSubmit={() => mintModalHandle()} >
                   <img src={metamaskIcon} alt="Metamask" />
                   Metamask
                   <span>

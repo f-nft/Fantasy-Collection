@@ -64,14 +64,14 @@ const Banner = () => {
   return (
     <>
       <BannerV1Wrapper id="home">
-        <div className="container" style={{ marginTop: "-200px" }}>
-          <div className="row">
+        <div className="container">
+          <div className="row" style={{ marginTop: "-129px", padding: "15px" }}>
             <div className="col-lg-6">
               <div className="f-nft_v1_baner_left">
-                <h1>f-nft Fantasy</h1>
+                <h1 style={{ color: "red" }}>f-nft Fantasy</h1>
                 <h2>👗 3D NFT</h2>
                 <div className="f-nft_v1_timer">
-                  <h5 className="text-uppercase" style={{ color: "red" }}>Public Mint End In</h5>
+                  <h5 className="text-uppercase" style={{ color: "red" }}>Current Public Mint On Ethereum & Polygon Network</h5>
                   <div className="timer timer_1">
                     <Countdown style={{ maxWidth: "30%" }}
                       timeTillDate="10 30 2022, 6:00 am"

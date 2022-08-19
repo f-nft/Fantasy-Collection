@@ -14,7 +14,7 @@ import faqBgThumb from "../../../../assets/images/bg/faq_bg_wattermark.png";
 import data from "../../../../assets/data/faq";
 import FAQStyleWrapper from "./Faq.style";
 
-const FAQ = () => { 
+const FAQ = () => {
 
   return (
     <FAQStyleWrapper className="f-nft_faq_sect" id="faq">
@@ -26,15 +26,13 @@ const FAQ = () => {
               subtitle="QUESTIONS & ANSWERS"
               className="section_title"
             />
-
             <div className="f-nft_title_text">
               <span>Don't get your answer?</span>
               <span>
-                Fell free to leave a message,<a href="# ">Ask Here!</a>
+                Fell free to leave a message,<a href="https://discord.gg/W54qgKMwcD">Ask Here!</a>
               </span>
             </div>
           </div>
-
           <div className="col-md-6">
             <div className="f-nft_faq_content">
               <div className="f-nft_faq_questions">

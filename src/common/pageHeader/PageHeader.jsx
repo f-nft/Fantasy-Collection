@@ -9,7 +9,7 @@ const PageHeader = () => {
           <div className="col-md-5">
             <div className="breadcrumb_area">
               <div className="breadcrumb_menu">
-                <a href="# ">Home</a> <span>.</span> Latest blog
+                <a href="https://nft.f-nft.us">Home</a> <span>.</span> Latest blog
                 <img
                   className="heading_shape"
                   src={titleShape}

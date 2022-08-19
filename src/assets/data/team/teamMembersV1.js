@@ -17,22 +17,22 @@ const data = [
     socialLinks: [
       {
         icon: <FaLinkedinIn />,
-        url: "#",
+        url: "https://www.linkedin.com/in/d%C6%B0%C6%A1ng-l%C3%AA-4649b3184",
       },
       {
         icon: <FaTwitter />,
-        url: "#",
+        url: "https://twitter.com/Fashion__NFT",
       },
       {
         icon: <FaInstagram />,
-        url: "#",
+        url: "https://www.instagram.com/duo_le",
       },
     ],
   },
   {
     avatar: avatarThumb2,
     name: "Alex Tuan",
-    designation: "Marketing",
+    designation: "CEO",
     socialLinks: [
       {
         icon: <FaLinkedinIn />,
