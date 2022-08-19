@@ -23,7 +23,7 @@ const FooterBottomStyleWrapper = styled.div`
   }
 
   .v2_footer_logo {
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     width: 79%;
   }
 
