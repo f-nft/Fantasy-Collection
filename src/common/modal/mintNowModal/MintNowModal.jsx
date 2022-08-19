@@ -7,9 +7,7 @@ import mintImg from "../../../assets/images/icon/fnft.gif";
 import hoverShape from "../../../assets/images/icon/hov_shape_L.svg";
 import { MdPriceChange } from "react-icons/md";
 import { NFTCONTRACT } from './../../config/config';
-import TOKENABI from './../../config/TOKENABI.json';
-
-
+// import TOKENABI from './../../config/TOKENABI.json';
 
 const MintNowModal = () => {
 
@@ -29,71 +27,71 @@ const MintNowModal = () => {
     return new Promise(resolve => setTimeout(resolve, milliseconds))
   }
 
-  async function mint0(numberofNFTs) {
-    try {
-      var rate = stateRate;
-      var account = walletAddress;
-      var _mintAmount = numberofNFTs;
-      // var mintRate = Number(await contract.methods.cost().call());
-      var mintValue = rate * price;
-      var totalAmount = mintValue * _mintAmount;
-      //eslint-disable-next-line
-      if (stateChainId == 0x1)
-        totalAmount = price * _mintAmount;
-      //convert totalAmount to wei
+  // async function mint0(numberofNFTs) {
+  //   try {
+  //     var rate = stateRate;
+  //     var account = walletAddress;
+  //     var _mintAmount = numberofNFTs;
+  //     // var mintRate = Number(await contract.methods.cost().call());
+  //     var mintValue = rate * price;
+  //     var totalAmount = mintValue * _mintAmount;
+  //     //eslint-disable-next-line
+  //     if (stateChainId == 0x1)
+  //       totalAmount = price * _mintAmount;
+  //     //convert totalAmount to wei
 
-      //   var totalAmountWei = Web3Alc.utils.toWei(totalAmount.toString(), "ether");
+  //     //   var totalAmountWei = Web3Alc.utils.toWei(totalAmount.toString(), "ether");
 
 
-      var _pid = "2";
-      var erc20address = await contract.methods.getCryptotoken(_pid).call();
-      var currency = new stateWeb3.eth.Contract(TOKENABI, erc20address);
-      var mintRate = await contract.methods.getNFTCost(_pid).call();
-      totalAmount = mintRate * _mintAmount;
-      await Web3Alc.eth.getMaxPriorityFeePerGas().then((tip) => {
-        Web3Alc.eth.getBlock('pending').then((block) => {
-          var baseFee = Number(block.gasLimit);
-          var maxPriority = Number(tip);
-          var maxFee = maxPriority + baseFee;
-          currency.methods.approve(NFTCONTRACT, String(totalAmount))
-            .send({
-              from: account,
-            })
-            .then(currency.methods.transfer(NFTCONTRACT, String(totalAmount))
-              .send({
-                from: account,
-                maxFeePerGas: maxFee,
-                maxPriorityFeePerGas: maxPriority,
-                gasPrice: baseFee,
-                // gas: 10000000,
-                gasLimit: "0x" + baseFee.toString(16)
-              },
-                async function (error, transactionHash) {
-                  console.log("Transfer Submitted, Hash: ", transactionHash)
-                  let transactionReceipt = null
-                  while (transactionReceipt == null) {
-                    transactionReceipt = await stateWeb3.eth.getTransactionReceipt(transactionHash);
-                    await sleep(expectedBlockTime);
-                  }
-                  console.log("Transfer Complete", transactionReceipt);
-                  contract.methods.mint(account, _mintAmount)
-                    .send({
-                      from: account,
-                      maxFeePerGas: maxFee,
-                      maxPriorityFeePerGas: maxPriority,
-                      gasPrice: baseFee,
-                      // gas: 10000000,
-                      gasLimit: "0x" + baseFee.toString(16)
-                    });
+  //     var _pid = "2";
+  //     var erc20address = await contract.methods.getCryptotoken(_pid).call();
+  //     var currency = new stateWeb3.eth.Contract(TOKENABI, erc20address);
+  //     var mintRate = await contract.methods.getNFTCost(_pid).call();
+  //     totalAmount = mintRate * _mintAmount;
+  //     await Web3Alc.eth.getMaxPriorityFeePerGas().then((tip) => {
+  //       Web3Alc.eth.getBlock('pending').then((block) => {
+  //         var baseFee = Number(block.gasLimit);
+  //         var maxPriority = Number(tip);
+  //         var maxFee = maxPriority + baseFee;
+  //         currency.methods.approve(NFTCONTRACT, String(totalAmount))
+  //           .send({
+  //             from: account,
+  //           })
+  //           .then(currency.methods.transfer(NFTCONTRACT, String(totalAmount))
+  //             .send({
+  //               from: account,
+  //               maxFeePerGas: maxFee,
+  //               maxPriorityFeePerGas: maxPriority,
+  //               gasPrice: baseFee,
+  //               // gas: 10000000,
+  //               gasLimit: "0x" + baseFee.toString(16)
+  //             },
+  //               async function (error, transactionHash) {
+  //                 console.log("Transfer Submitted, Hash: ", transactionHash)
+  //                 let transactionReceipt = null
+  //                 while (transactionReceipt == null) {
+  //                   transactionReceipt = await stateWeb3.eth.getTransactionReceipt(transactionHash);
+  //                   await sleep(expectedBlockTime);
+  //                 }
+  //                 console.log("Transfer Complete", transactionReceipt);
+  //                 contract.methods.mint(account, _mintAmount)
+  //                   .send({
+  //                     from: account,
+  //                     maxFeePerGas: maxFee,
+  //                     maxPriorityFeePerGas: maxPriority,
+  //                     gasPrice: baseFee,
+  //                     // gas: 10000000,
+  //                     gasLimit: "0x" + baseFee.toString(16)
+  //                   });
 
-                }));
-        });
-      });
-    }
-    catch (error) {
-      alert(error);
-    }
-  }
+  //               }));
+  //       });
+  //     });
+  //   }
+  //   catch (error) {
+  //     alert(error);
+  //   }
+  // }
 
   //Currently mint native is working for Polygon
 
@@ -124,12 +122,12 @@ const MintNowModal = () => {
               });
           });
         })
-
+        await sleep(expectedBlockTime);
       } catch (error) {
         console.log(error);
-
       }
     }
+
     //eslint-disable-next-line
     else if (stateCrypto == "Ethereum") {
       //mint for ethereum network
@@ -155,12 +153,12 @@ const MintNowModal = () => {
               });
           });
         })
-
+        await sleep(expectedBlockTime);
       } catch (error) {
         console.log(error);
-
       }
     }
+
     //eslint-disable-next-line
     else if (stateCrypto == "Binance Chain") {
       contract.methods.approve(NFTCONTRACT, 1)
@@ -182,18 +180,15 @@ const MintNowModal = () => {
             }
             );
         });
-
+        await sleep(expectedBlockTime);
       }
       catch (error) {
         console.log(error);
       }
-
     }
     else
       return alert("Minting is not supported for this network");
   }
-
-
 
   return (
     <>

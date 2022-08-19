@@ -118,6 +118,8 @@ const WalletModal = () => {
         setStateChainId(chainId);
 
       }
+      else
+        alert("Please connect to the blockchain");
     }
     return mintButtonHandler();
   }
