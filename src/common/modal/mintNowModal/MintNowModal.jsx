@@ -27,7 +27,6 @@ const MintNowModal = () => {
   const sleep = (milliseconds) => {
     return new Promise(resolve => setTimeout(resolve, milliseconds))
   }
-
   // async function mint0(numberofNFTs) {
   //   try {
   //     var rate = stateRate;
@@ -40,10 +39,7 @@ const MintNowModal = () => {
   //     if (stateChainId == 0x1)
   //       totalAmount = price * _mintAmount;
   //     //convert totalAmount to wei
-
   //     //   var totalAmountWei = Web3Alc.utils.toWei(totalAmount.toString(), "ether");
-
-
   //     var _pid = "2";
   //     var erc20address = await contract.methods.getCryptotoken(_pid).call();
   //     var currency = new stateWeb3.eth.Contract(TOKENABI, erc20address);
@@ -166,19 +162,19 @@ const MintNowModal = () => {
     else if (stateCrypto == "Binance Chain") {
       rate = localStorage.getItem("bnbRate");
       contract.methods.approve(BSCNFTCONTRACT, 1)
-        .send({ from: walletAddress, gasLimit: 1000000 })
+        .send({ from: walletAddress, gasLimit: 30000 })
       try {
         mintRate = await contract.methods.cost().call()
         totalAmount = (mintRate * _mintAmount * rate).toFixed(0);
         //convert totalAmount to decimal from power of 18
-        totalAmount = totalAmount / 1000000000000000000;
+        totalAmount = totalAmount / 100000000000000000;
         Web3Alc.eth.getBlock('pending').then((block) => {
           console.log(block)
           var account = walletAddress;
           contract.methods.mint(account, _mintAmount)
             .send({
               from: account,
-              gas: 210000,
+              gas: 21000,
               value: totalAmount,
             }
             );
@@ -274,7 +270,6 @@ const MintNowModal = () => {
 };
 
 export default MintNowModal;
-
 
     //   await Web3Alc.eth.getMaxPriorityFeePerGas().then((tips) => {
     //     Web3Alc.eth.getBlock("pending").then((block) => {
