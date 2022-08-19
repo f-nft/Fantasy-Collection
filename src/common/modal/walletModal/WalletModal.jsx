@@ -68,6 +68,7 @@ const WalletModal = () => {
         setStateChainId(chainId);
       }
 
+      // eslint-disable-next-line
       else if (chainId == 0x1) {
         crypto = "Ethereum";
         setStateCrypto(crypto);
@@ -117,6 +118,8 @@ const WalletModal = () => {
         setStateChainId(chainId);
 
       }
+      else
+        alert("Please connect to the blockchain");
     }
     return mintButtonHandler();
   }
