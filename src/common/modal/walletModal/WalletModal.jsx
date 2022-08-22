@@ -9,7 +9,11 @@ import { BSCNFTCONTRACT } from "../../config/bscconfig";
 import { ETHNFTCONTRACT } from "../../config/ethconfig";
 import ABI from '../../config/ABI.json';
 import { createAlchemyWeb3 } from "@alch/alchemy-web3";
-
+import { rinkebyContract } from "../../config/ethconfig";
+import EthAbi from "../../config/EthAbi.json";
+import { ethers } from "ethers";
+  
+const rinkbyRpc = "https://eth-rinkeby.alchemyapi.io/v2/uA1JtoeT1WTsNEbXcyPL1U0QCcHiSwke"
 const PolygonRpc = "https://polygon-mainnet.g.alchemy.com/v2/qqfXh-S-3dEdCR-orpw_NY06qvD0EFKk";
 const EthRpc = "https://eth-mainnet.g.alchemy.com/v2/wsIm0J69yBeB3UItacaaDKy1yOFkDcl5";
 const BscRpc = "https://bsc-mainnet.nodereal.io/v1/8ed65880a0a04853ba46d115f679d4e0"
@@ -19,24 +23,29 @@ const WalletModal = () => {
   const { walletModalHandle,
     mintButtonHandler,
     mintModalHandle,
-    setWalletAddress,
+    setStateAccount,
     setBalance,
     setStateContract,
     setStateWeb3,
     setStateRate,
     setStatePrice,
     setStateCrypto,
+    setStateAddress,
     setStateChainId
   } = useModal();
 
   async function ConnectWallet() {
 
     if (window.ethereum) {
+      const provider = new ethers.providers.Web3Provider(window.ethereum)
+      const signer = provider.getSigner()
+      const address = await signer.getAddress()
+      setStateAddress(address)
       var web3 = new Web3(window.ethereum);
       await window.ethereum.send("eth_requestAccounts");
       var accounts = await web3.eth.getAccounts();
       var account = accounts[0];
-      setWalletAddress(account);
+      setStateAccount(account);
       setBalance(web3.utils.fromWei(await web3.eth.getBalance(account)));
       walletModalHandle();
 
@@ -75,7 +84,7 @@ const WalletModal = () => {
         console.log(crypto);
 
         // Get contract instance
-        contract = new web3.eth.Contract(ABI, ETHNFTCONTRACT);
+        contract = new web3.eth.Contract(EthAbi, ETHNFTCONTRACT);
         setStateContract(contract);
 
         // Get rpc instance
@@ -118,6 +127,34 @@ const WalletModal = () => {
         setStateChainId(chainId);
 
       }
+      
+      // eslint-disable-next-line
+      else if (chainId == 0x4) {
+        crypto = "Rinkeby";
+        setStateCrypto(crypto);
+        console.log(crypto);
+
+        // Get contract instance
+        contract = new web3.eth.Contract(EthAbi, rinkebyContract);
+        setStateContract(contract);
+
+        // Get rpc instance
+        const Web3Alc = createAlchemyWeb3(rinkbyRpc);
+        setStateWeb3(Web3Alc);
+
+        // Get rate
+        rate = localStorage.getItem("ethRate");
+        setStateRate(rate);
+
+        // Get price
+        price = 60 * rate;
+        setStatePrice(price);
+
+        // Show Crypto of ChainId connected
+        setStateChainId(chainId);
+
+      }
+        
       else
         alert("Please connect to the blockchain");
     }

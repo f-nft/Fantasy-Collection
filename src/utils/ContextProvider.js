@@ -8,7 +8,7 @@ const ContextProvider = ({ children }) => {
   const [shareModalVisibility, setShareModalvisibility] = useState(false);
   const [priceModalVisibiity, setPriceModalVisibility] = useState(false);
   const [isWalletConnect, setIsWalletConnect] = useState(false);
-  const [walletAddress, setWalletAddress] = useState("");
+  const [stateAccount, setStateAccount] = useState("");
   const [balance, setBalance] = useState(0);
   const [Stateaccounts, setStateaccouts] = useState("");
   const [stateprovider, setStateprovider] = useState("");
@@ -18,6 +18,7 @@ const ContextProvider = ({ children }) => {
   const [stateCrypto, setStateCrypto] = useState("");
   const [stateWeb3, setStateWeb3] = useState("");
   const [stateChainId, setStateChainId] = useState("");
+  const [stateAddress, setStateAddress] = useState("");
 
 
   const mintButtonHandler = () => {
@@ -52,7 +53,7 @@ const ContextProvider = ({ children }) => {
         priceModalHandle,
         isWalletConnect,
         mintButtonHandler,
-        walletAddress, setWalletAddress,
+        stateAccount, setStateAccount,
         balance, setBalance,
         Stateaccounts, setStateaccouts,
         stateprovider, setStateprovider,
@@ -61,7 +62,8 @@ const ContextProvider = ({ children }) => {
         stateRate, setStateRate,
         statePrice, setStatePrice,
         stateCrypto, setStateCrypto,
-        stateChainId, setStateChainId
+        stateChainId, setStateChainId,
+        stateAddress, setStateAddress
       }}
     >
       {children}

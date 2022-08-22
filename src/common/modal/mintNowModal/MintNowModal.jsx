@@ -6,16 +6,19 @@ import MintModalStyleWrapper from "./MintNow.style";
 import mintImg from "../../../assets/images/icon/fnft.gif";
 import hoverShape from "../../../assets/images/icon/hov_shape_L.svg";
 import { MdPriceChange } from "react-icons/md";
-import { NFTCONTRACT } from './../../config/config';
+// import { NFTCONTRACT } from './../../config/config';
 import { BSCNFTCONTRACT } from "../../config/bscconfig";
+import { ethers } from "ethers";
 // import TOKENABI from './../../config/TOKENABI.json';
 
 const MintNowModal = () => {
 
   const [count, setCount] = useState(1);
-  const { mintModalHandle, walletAddress, statePrice, stateCrypto,
-    stateContract, stateWeb3, stateChainId,
+  const { mintModalHandle, stateAccount, statePrice, stateCrypto,
+    stateContract, stateWeb3, stateAddress
   } = useModal();
+  var address = stateAddress;
+  var account = stateAccount;
   var price = statePrice;
   var crypto = stateCrypto;
   var contract = stateContract;
@@ -92,8 +95,9 @@ const MintNowModal = () => {
 
   //Currently mint native is working for Polygon
 
-  async function mintnative(numberofNFTs) {
-    var rate = localStorage.getItem("maticRate");
+  async function mint(numberofNFTs) {
+    var rate = price;
+    console.log("Matic Price ", rate);
     var mintRate = null;
     var totalAmount = null;
     var _mintAmount = Number(numberofNFTs);
@@ -106,7 +110,6 @@ const MintNowModal = () => {
         totalAmount = (mintRate * _mintAmount * rate).toFixed(0);
         await Web3Alc.eth.getMaxPriorityFeePerGas().then((tip) => {
           Web3Alc.eth.getBlock('pending').then((block) => {
-            var account = walletAddress;
             var baseFee = Number(block.baseFeePerGas);
             var maxPriority = Number(tip);
             var maxFee = baseFee + maxPriority
@@ -127,28 +130,34 @@ const MintNowModal = () => {
     }
 
     //eslint-disable-next-line
-    else if (stateCrypto == "Ethereum") {
-      rate = localStorage.getItem("ethRate");
+    else if (stateCrypto == "Ethereum", "Rinkeby") {
+      rate = price * 1000000000000000000;
+      console.log("ETH Price ", rate);
       //mint for ethereum network
       try {
-        // mintRate = Number(await contract.methods.getprice().call());
+        mintRate = Number(await contract.methods.price().call());
+        // mintRate = ethers.utils.formatUnits(mintRate, 'ether');
+        console.log("ETH Contract Price ", mintRate);
         //need to get the price from the contract
         //currently it is hardcoded
         // mintRate = 50000000000000000;
         totalAmount = (_mintAmount * rate).toFixed(0);
+        var total = ethers.utils.parseEther(totalAmount)
+        console.log("Total Amount ", total);
+        
         await Web3Alc.eth.getMaxPriorityFeePerGas().then((tip) => {
           Web3Alc.eth.getBlock('pending').then((block) => {
-            var account = walletAddress;
             var baseFee = Number(block.baseFeePerGas);
             var maxPriority = Number(tip);
             var maxFee = baseFee + maxPriority
-            contract.methods.mint(account, _mintAmount)
-              .send({
-                from: account,
-                gas: 21000,
+            contract.methods.mint(address, _mintAmount).send({
+                from: address,
+                baseFee: baseFee + maxPriority,
+                gas: 300000,
+                fee: _mintAmount * baseFee,
+                maxPriorityFeePerGas: maxFee,
                 value: totalAmount,
-                maxPriorityFeePerGas: maxFee
-
+                to: contract
               });
           });
         })
@@ -160,9 +169,10 @@ const MintNowModal = () => {
 
     //eslint-disable-next-line
     else if (stateCrypto == "Binance Chain") {
-      rate = localStorage.getItem("bnbRate");
+      rate = price;
+      console.log("BNB Price ", rate);
       contract.methods.approve(BSCNFTCONTRACT, 1)
-        .send({ from: walletAddress, gasLimit: 30000 })
+        .send({ from: account, gasLimit: 30000 })
       try {
         mintRate = await contract.methods.cost().call()
         totalAmount = (mintRate * _mintAmount * rate).toFixed(0);
@@ -170,11 +180,10 @@ const MintNowModal = () => {
         totalAmount = totalAmount / 100000000000000000;
         Web3Alc.eth.getBlock('pending').then((block) => {
           console.log(block)
-          var account = walletAddress;
           contract.methods.mint(account, _mintAmount)
             .send({
               from: account,
-              gas: 21000,
+              gas: 30000,
               value: totalAmount,
             }
             );
@@ -249,7 +258,7 @@ const MintNowModal = () => {
                 </ul>
               </div>
               <div className="modal_mint_btn">
-                <Button lg variant="mint" onClick={(e) => mintnative(count)}>
+                <Button lg variant="mint" onClick={(e) => mint(count)}>
                   Mint Now
                 </Button>
               </div>
