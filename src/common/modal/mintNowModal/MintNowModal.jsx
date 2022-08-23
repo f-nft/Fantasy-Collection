@@ -96,18 +96,20 @@ const MintNowModal = () => {
   //Currently mint native is working for Polygon
 
   async function mint(numberofNFTs) {
-    var rate = price;
+    var rate = price * 1000000000000000;
     console.log("Matic Price ", rate);
     var mintRate = null;
     var totalAmount = null;
     var _mintAmount = Number(numberofNFTs);
     //eslint-disable-next-line
-    if (stateCrypto == "Polygon")
-    //mint for Polygon
+    if (stateCrypto == "Polygon", "Mumbai")
+    //mint for Polygon / Mumbai
     {
       try {
         mintRate = Number(await contract.methods.cost().call());
-        totalAmount = (mintRate * _mintAmount * rate).toFixed(0);
+        totalAmount = (_mintAmount * rate).toFixed(0);
+        console.log("Total Price ", rate);
+
         await Web3Alc.eth.getMaxPriorityFeePerGas().then((tip) => {
           Web3Alc.eth.getBlock('pending').then((block) => {
             var baseFee = Number(block.baseFeePerGas);

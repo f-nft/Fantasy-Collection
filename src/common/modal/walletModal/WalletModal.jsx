@@ -12,7 +12,8 @@ import { createAlchemyWeb3 } from "@alch/alchemy-web3";
 import { rinkebyContract } from "../../config/ethconfig";
 import EthAbi from "../../config/EthAbi.json";
 import { ethers } from "ethers";
-  
+
+const mumbaiRpc = "https://polygon-mumbai.g.alchemy.com/v2/c85A1Mrzx-TsgugRWrTQvUfaMz_ZDp6r"
 const rinkbyRpc = "https://eth-rinkeby.alchemyapi.io/v2/uA1JtoeT1WTsNEbXcyPL1U0QCcHiSwke"
 const PolygonRpc = "https://polygon-mainnet.g.alchemy.com/v2/qqfXh-S-3dEdCR-orpw_NY06qvD0EFKk";
 const EthRpc = "https://eth-mainnet.g.alchemy.com/v2/wsIm0J69yBeB3UItacaaDKy1yOFkDcl5";
@@ -144,6 +145,32 @@ const WalletModal = () => {
 
         // Get rate
         rate = localStorage.getItem("ethRate");
+        setStateRate(rate);
+
+        // Get price
+        price = 60 * rate;
+        setStatePrice(price);
+
+        // Show Crypto of ChainId connected
+        setStateChainId(chainId);
+
+      }
+        
+      else if (chainId == 0x80001) {
+        crypto = "Mumbai";
+        setStateCrypto(crypto);
+        console.log(crypto);
+
+        // Get contract instance
+        contract = new web3.eth.Contract(EthAbi, "0x7970b2AC48B547b2aA8B37F860E2271134683B07");
+        setStateContract(contract);
+
+        // Get rpc instance
+        const Web3Alc = createAlchemyWeb3(mumbaiRpc);
+        setStateWeb3(Web3Alc);
+
+        // Get rate
+        rate = localStorage.getItem("maticRate");
         setStateRate(rate);
 
         // Get price
