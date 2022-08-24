@@ -106,7 +106,7 @@ const MintNowModal = () => {
     //mint for Polygon / Mumbai
     {
       try {
-        mintRate = Number(await contract.methods.cost().call());
+        // mintRate = Number(await contract.methods.cost().call());
         totalAmount = (_mintAmount * mintRate).toFixed(0);
         console.log("Total Price ", rate);
 
@@ -147,21 +147,21 @@ const MintNowModal = () => {
         totalAmount = (_mintAmount * rate).toFixed(0);
         var total = ethers.utils.parseEther(totalAmount)
         console.log("Total Amount ", total);
-        
+
         await Web3Alc.eth.getMaxPriorityFeePerGas().then((tip) => {
           Web3Alc.eth.getBlock('pending').then((block) => {
             var baseFee = Number(block.baseFeePerGas);
             var maxPriority = Number(tip);
             var maxFee = baseFee + maxPriority
             contract.methods.mint(address, _mintAmount).send({
-                from: address,
-                baseFee: baseFee + maxPriority,
-                gas: 300000,
-                fee: _mintAmount * baseFee,
-                maxPriorityFeePerGas: maxFee,
-                value: totalAmount,
-                to: contract
-              });
+              from: address,
+              baseFee: baseFee + maxPriority,
+              gas: 300000,
+              fee: _mintAmount * baseFee,
+              maxPriorityFeePerGas: maxFee,
+              value: totalAmount,
+              to: contract
+            });
           });
         })
         await sleep(expectedBlockTime);
