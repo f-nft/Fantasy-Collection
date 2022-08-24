@@ -107,7 +107,7 @@ const MintNowModal = () => {
     {
       try {
         mintRate = Number(await contract.methods.cost().call());
-        totalAmount = (_mintAmount * rate).toFixed(0);
+        totalAmount = (_mintAmount * mintRate).toFixed(0);
         console.log("Total Price ", rate);
 
         await Web3Alc.eth.getMaxPriorityFeePerGas().then((tip) => {
@@ -117,9 +117,10 @@ const MintNowModal = () => {
             var maxFee = baseFee + maxPriority
             contract.methods.mint(account, _mintAmount)
               .send({
+                gasLimit: maxFee,
                 from: account,
+                to: contract,
                 value: totalAmount,
-                maxFeePerGas: maxFee,
                 maxPriorityFeePerGas: maxPriority,
                 gasPrice: baseFee
               });
