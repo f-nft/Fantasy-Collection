@@ -136,7 +136,7 @@ const MintNowModal = () => {
     else if (stateCrypto == "Ethereum", "Rinkeby") {
       //mint for ethereum network
       try {
-        var mintRate = Number(await contract.methods.price().call());
+        mintRate = Number(await contract.methods.price().call());
         // mintRate = ethers.utils.formatUnits(mintRate, 'ether');
         console.log("ETH Contract Price ", mintRate);
         //need to get the price from the contract
