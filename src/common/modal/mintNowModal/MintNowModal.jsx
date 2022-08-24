@@ -19,7 +19,7 @@ const MintNowModal = () => {
   } = useModal();
   var address = stateAddress;
   var account = stateAccount;
-  var price = statePrice;
+  var rate = statePrice;
   var crypto = stateCrypto;
   var contract = stateContract;
   var Web3Alc = stateWeb3;
@@ -96,15 +96,15 @@ const MintNowModal = () => {
   //Currently mint native is working for Polygon
 
   async function mint(numberofNFTs) {
-    var rate = price * 1000000000000000;
-    console.log("Matic Price ", rate);
-    var mintRate = null;
-    var totalAmount = null;
     var _mintAmount = Number(numberofNFTs);
+    var mintRate = rate;
+    var totalAmount = rate * _mintAmount;
     //eslint-disable-next-line
     if (stateCrypto == "Polygon", "Mumbai")
     //mint for Polygon / Mumbai
     {
+      console.log("Matic Price ", mintRate);
+
       try {
         // mintRate = Number(await contract.methods.cost().call());
         totalAmount = (_mintAmount * mintRate).toFixed(0);
@@ -117,11 +117,11 @@ const MintNowModal = () => {
             var maxFee = baseFee + maxPriority
             contract.methods.mint(account, _mintAmount)
               .send({
-                gasLimit: maxFee,
+                gasLimit: baseFee,
                 from: account,
                 to: contract,
                 value: totalAmount,
-                maxPriorityFeePerGas: maxPriority,
+                maxPriorityFeePerGas: maxFee,
                 gasPrice: baseFee
               });
           });
@@ -134,17 +134,15 @@ const MintNowModal = () => {
 
     //eslint-disable-next-line
     else if (stateCrypto == "Ethereum", "Rinkeby") {
-      rate = price * 1000000000000000000;
-      console.log("ETH Price ", rate);
       //mint for ethereum network
       try {
-        mintRate = Number(await contract.methods.price().call());
+        var mintRate = Number(await contract.methods.price().call());
         // mintRate = ethers.utils.formatUnits(mintRate, 'ether');
         console.log("ETH Contract Price ", mintRate);
         //need to get the price from the contract
         //currently it is hardcoded
         // mintRate = 50000000000000000;
-        totalAmount = (_mintAmount * rate).toFixed(0);
+        totalAmount = (_mintAmount * mintRate).toFixed(0);
         var total = ethers.utils.parseEther(totalAmount)
         console.log("Total Amount ", total);
 
@@ -172,13 +170,11 @@ const MintNowModal = () => {
 
     //eslint-disable-next-line
     else if (stateCrypto == "Binance Chain") {
-      rate = price;
-      console.log("BNB Price ", rate);
       contract.methods.approve(BSCNFTCONTRACT, 1)
         .send({ from: account, gasLimit: 30000 })
       try {
         mintRate = await contract.methods.cost().call()
-        totalAmount = (mintRate * _mintAmount * rate).toFixed(0);
+        totalAmount = (rate * _mintAmount * rate).toFixed(0);
         //convert totalAmount to decimal from power of 18
         totalAmount = totalAmount / 100000000000000000;
         Web3Alc.eth.getBlock('pending').then((block) => {
@@ -230,9 +226,9 @@ const MintNowModal = () => {
                   </li>
                   <li>
                     <h5>Price Total</h5>
-                    {(price) === null ?
+                    {(rate) === null ?
                       <h5> ETH</h5> :
-                      < h5 >{(price * count).toFixed(5)} {(crypto)}</h5>}
+                      < h5 >{(rate * count).toFixed(5)} {(crypto)}</h5>}
                   </li>
                   <li>
                     <h5>Quantity</h5>
