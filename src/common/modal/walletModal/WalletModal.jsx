@@ -10,7 +10,6 @@ import { ETHNFTCONTRACT } from "../../config/ethconfig";
 import ABI from '../../config/ABI.json';
 import { createAlchemyWeb3 } from "@alch/alchemy-web3";
 import { rinkebyContract } from "../../config/ethconfig";
-import EthAbi from "../../config/EthAbi.json";
 import { ethers } from "ethers";
 
 const mumbaiRpc = "https://polygon-mumbai.g.alchemy.com/v2/c85A1Mrzx-TsgugRWrTQvUfaMz_ZDp6r"
@@ -85,7 +84,7 @@ const WalletModal = () => {
         console.log(crypto);
 
         // Get contract instance
-        contract = new web3.eth.Contract(EthAbi, ETHNFTCONTRACT);
+        contract = new web3.eth.Contract(ABI, ETHNFTCONTRACT);
         setStateContract(contract);
 
         // Get rpc instance
@@ -128,7 +127,7 @@ const WalletModal = () => {
         setStateChainId(chainId);
 
       }
-      
+
       // eslint-disable-next-line
       else if (chainId == 0x4) {
         crypto = "Rinkeby";
@@ -136,7 +135,7 @@ const WalletModal = () => {
         console.log(crypto);
 
         // Get contract instance
-        contract = new web3.eth.Contract(EthAbi, rinkebyContract);
+        contract = new web3.eth.Contract(ABI, rinkebyContract);
         setStateContract(contract);
 
         // Get rpc instance
@@ -155,14 +154,14 @@ const WalletModal = () => {
         setStateChainId(chainId);
 
       }
-        
+
       else if (chainId == 0x80001) {
         crypto = "Mumbai";
         setStateCrypto(crypto);
         console.log(crypto);
 
         // Get contract instance
-        contract = new web3.eth.Contract(EthAbi, "0x7970b2AC48B547b2aA8B37F860E2271134683B07");
+        contract = new web3.eth.Contract(ABI, "0x7970b2AC48B547b2aA8B37F860E2271134683B07");
         setStateContract(contract);
 
         // Get rpc instance
@@ -181,7 +180,7 @@ const WalletModal = () => {
         setStateChainId(chainId);
 
       }
-        
+
       else
         alert("Please connect to the blockchain");
     }
