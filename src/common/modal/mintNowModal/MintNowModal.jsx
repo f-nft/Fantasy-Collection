@@ -107,7 +107,7 @@ const MintNowModal = () => {
     if(stateCrypto=="Polygon")
     //mint for Polygon
     {
-      try {;
+      try {
              //set mintRate to 65 MATIC
             mintRate = 65;
             totalAmount = mintRate * _mintAmount;
