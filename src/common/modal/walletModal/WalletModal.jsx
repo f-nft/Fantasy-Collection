@@ -45,7 +45,7 @@ const WalletModal = () => {
       await window.ethereum.send("eth_requestAccounts");
       var accounts = await web3.eth.getAccounts();
       var account = accounts[0];
-      setStateAccount(account);
+      setStateAddress(account);
       setBalance(web3.utils.fromWei(await web3.eth.getBalance(account)));
       walletModalHandle();
 

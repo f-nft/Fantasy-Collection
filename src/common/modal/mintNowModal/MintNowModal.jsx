@@ -14,9 +14,10 @@ import TOKENABI from './../../config/TOKENABI.json';
 const MintNowModal = () => {
 
   const [count, setCount] = useState(1);
-  const { mintModalHandle, walletAddress, stateRate, statePrice, stateCrypto,
+  const { mintModalHandle, stateAddress, stateRate, statePrice, stateCrypto,
     stateContract, stateWeb3, stateChainId,
   } = useModal();
+  var account = stateAddress;
   var price = statePrice;
   var crypto = stateCrypto;
   var contract = stateContract;
@@ -32,7 +33,7 @@ const MintNowModal = () => {
   async function mint0(numberofNFTs) {
     try {
       var rate = stateRate;
-      var account = walletAddress;
+      account = stateAddress;
       console.log(account);
       var _mintAmount = numberofNFTs;
       // var mintRate = Number(await contract.methods.cost().call());
@@ -115,7 +116,7 @@ const MintNowModal = () => {
         var totalAmountWei = Web3Alc.utils.toWei(totalAmount.toString(), "ether");
         await Web3Alc.eth.getMaxPriorityFeePerGas().then((tip) => {
           Web3Alc.eth.getBlock('pending').then((block) => {
-            var account = walletAddress;
+            var account = stateAddress;
             var baseFee = Number(block.baseFeePerGas);
             var maxPriority = Number(tip);
             var maxFee = baseFee + maxPriority
@@ -146,7 +147,7 @@ const MintNowModal = () => {
         totalAmount = mintRate * _mintAmount;
         await Web3Alc.eth.getMaxPriorityFeePerGas().then((tip) => {
           Web3Alc.eth.getBlock('pending').then((block) => {
-            var account = walletAddress;
+            var account = stateAddress;
             /* var baseFee=Number(block.baseFeePerGas);
             var maxPriority = Number(tip)/10;
             var maxFee = baseFee + maxPriority */
@@ -169,7 +170,7 @@ const MintNowModal = () => {
     //eslint-disable-next-line
     else if (stateCrypto == "Binance Chain") {
       contract.methods.approve(NFTCONTRACT, 1)
-        .send({ from: walletAddress, gasLimit: 1000000 })
+        .send({ from: account, gasLimit: 1000000 })
 
       try {
         mintRate = await contract.methods.cost().call()
@@ -178,7 +179,6 @@ const MintNowModal = () => {
         totalAmount = totalAmount / 1000000000000000000
         Web3Alc.eth.getBlock('pending').then((block) => {
           console.log(block)
-          var account = walletAddress;
           contract.methods.mint(account, _mintAmount)
             .send({
               from: account,

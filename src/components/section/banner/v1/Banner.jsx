@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 import Countdown from "../../countdown/countDown";
 
 const Banner = () => {
-  const { mintModalHandle, priceModalHandle, walletModalHandle, isWalletConnect, stateAccount, balance, stateCrypto } = useModal();
+  const { mintModalHandle, priceModalHandle, walletModalHandle, isWalletConnect, stateAddress, balance, stateCrypto } = useModal();
   const [nftPriceMatic, setNftPriceMatic] = useState(null);
   const [nftPriceBnb, setNftPriceBnb] = useState(null);
   const [nftPriceEth, setNftPriceEth] = useState(null);
@@ -86,8 +86,8 @@ const Banner = () => {
                 </h4>
                 <h5 style={{ color: "green" }}>
                   Your Wallet Address:<br />
-                  {stateAccount ?
-                    (<span style={{ color: "white" }}>{stateAccount}</span>) :
+                  {stateAddress ?
+                    (<span style={{ color: "white" }}>{stateAddress}</span>) :
                     (<span style={{ color: "white" }}>0x0</span>)}<br />
                   {stateCrypto ?
                     (<span>You Are Connected to <h5 style={{ color: "red" }}>{stateCrypto} </h5></span>) :
