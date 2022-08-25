@@ -10,7 +10,7 @@ import { ETHNFTCONTRACT } from "../../config/ethconfig";
 import ABI from '../../config/ABI.json';
 import { createAlchemyWeb3 } from "@alch/alchemy-web3";
 import { rinkebyContract } from "../../config/ethconfig";
-import { ethers } from "ethers";
+// import { ethers } from "ethers";
 
 const mumbaiRpc = "https://polygon-mumbai.g.alchemy.com/v2/c85A1Mrzx-TsgugRWrTQvUfaMz_ZDp6r"
 const rinkbyRpc = "https://eth-rinkeby.alchemyapi.io/v2/uA1JtoeT1WTsNEbXcyPL1U0QCcHiSwke"
@@ -23,7 +23,7 @@ const WalletModal = () => {
   const { walletModalHandle,
     mintButtonHandler,
     mintModalHandle,
-    setStateAccount,
+    setStateCoin,
     setBalance,
     setStateContract,
     setStateWeb3,
@@ -57,6 +57,9 @@ const WalletModal = () => {
         setStateCrypto(crypto);
         console.log(crypto);
 
+        var coin = "Matic";
+        setStateCoin(coin);
+
         // Get contract instance
         contract = new web3.eth.Contract(ABI, NFTCONTRACT);
         setStateContract(contract);
@@ -81,6 +84,9 @@ const WalletModal = () => {
       else if (chainId == 0x1) {
         crypto = "Ethereum";
         setStateCrypto(crypto);
+        coin = "ETH";
+
+        setStateCoin(coin);
         console.log(crypto);
 
         // Get contract instance
@@ -107,6 +113,10 @@ const WalletModal = () => {
       else if (chainId == 0x38) {
         crypto = "Binance Chain";
         setStateCrypto(crypto);
+        console.log(crypto);
+        
+        coin = "BNB"
+        setStateCoin(coin);
         console.log(crypto);
 
         // Get contract instance
@@ -154,7 +164,8 @@ const WalletModal = () => {
         setStateChainId(chainId);
 
       }
-
+            
+      // eslint-disable-next-line
       else if (chainId == 0x80001) {
         crypto = "Mumbai";
         setStateCrypto(crypto);

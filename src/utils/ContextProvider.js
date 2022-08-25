@@ -19,6 +19,7 @@ const ContextProvider = ({ children }) => {
   const [stateWeb3, setStateWeb3] = useState("");
   const [stateChainId, setStateChainId] = useState("");
   const [stateAddress, setStateAddress] = useState("");
+  const [stateCoin, setStateCoin] = useState("");
 
 
   const mintButtonHandler = () => {
@@ -63,7 +64,8 @@ const ContextProvider = ({ children }) => {
         statePrice, setStatePrice,
         stateCrypto, setStateCrypto,
         stateChainId, setStateChainId,
-        stateAddress, setStateAddress
+        stateAddress, setStateAddress,
+        stateCoin, setStateCoin
       }}
     >
       {children}
