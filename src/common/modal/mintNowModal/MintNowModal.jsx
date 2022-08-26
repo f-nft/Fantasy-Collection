@@ -6,6 +6,7 @@ import MintModalStyleWrapper from "./MintNow.style";
 import mintImg from "../../../assets/images/icon/fnft.gif";
 import hoverShape from "../../../assets/images/icon/hov_shape_L.svg";
 import { MdPriceChange } from "react-icons/md";
+import { ethers } from "ethers";
 // import { NFTCONTRACT } from './../../config/config';
 import { BSCNFTCONTRACT } from "../../config/bscconfig";
 // import TOKENABI from './../../config/TOKENABI.json';
@@ -18,7 +19,6 @@ const MintNowModal = () => {
   } = useModal();
   var account = stateAddress;
   var coin = stateCoin;
-  // var rate = stateRate;
   var price = statePrice;
   var crypto = stateCrypto;
   var contract = stateContract;
@@ -30,72 +30,6 @@ const MintNowModal = () => {
   const sleep = (milliseconds) => {
     return new Promise(resolve => setTimeout(resolve, milliseconds))
   }
-
-  // async function mint0(numberofNFTs) {
-  //   try {
-  //     var rate = stateRate;
-  //     account = stateAddress;
-  //     console.log(account);
-  //     var _mintAmount = numberofNFTs;
-  //     // var mintRate = Number(await contract.methods.cost().call());
-  //     var mintValue = rate * price;
-  //     var totalAmount = mintValue * _mintAmount;
-  //     //eslint-disable-next-line
-  //     if (stateChainId == 0x1)
-  //       totalAmount = price * _mintAmount;
-  //     //convert totalAmount to wei
-
-  //     //   var totalAmountWei = Web3Alc.utils.toWei(totalAmount.toString(), "ether");
-  //     var _pid = "2";
-  //     var erc20address = await contract.methods.getCryptotoken(_pid).call();
-  //     var currency = new stateWeb3.eth.Contract(TOKENABI, erc20address);
-  //     var mintRate = await contract.methods.getNFTCost(_pid).call();
-  //     totalAmount = mintRate * _mintAmount;
-  //     await Web3Alc.eth.getMaxPriorityFeePerGas().then((tip) => {
-  //       Web3Alc.eth.getBlock('pending').then((block) => {
-  //         var baseFee = Number(block.gasLimit);
-  //         var maxPriority = Number(tip);
-  //         var maxFee = maxPriority + baseFee;
-  //         currency.methods.approve(NFTCONTRACT, String(totalAmount))
-  //           .send({
-  //             from: account,
-  //           })
-  //           .then(currency.methods.transfer(NFTCONTRACT, String(totalAmount))
-  //             .send({
-  //               from: account,
-  //               maxFeePerGas: maxFee,
-  //               maxPriorityFeePerGas: maxPriority,
-  //               gasPrice: baseFee,
-  //               // gas: 10000000,
-  //               gasLimit: "0x" + baseFee.toString(16)
-  //             },
-  //               async function (error, transactionHash) {
-  //                 console.log("Transfer Submitted, Hash: ", transactionHash)
-  //                 let transactionReceipt = null
-  //                 while (transactionReceipt == null) {
-  //                   transactionReceipt = await stateWeb3.eth.getTransactionReceipt(transactionHash);
-  //                   await sleep(expectedBlockTime);
-  //                 }
-  //                 console.log("Transfer Complete", transactionReceipt);
-  //                 contract.methods.mint(account, _mintAmount)
-  //                   .send({
-  //                     from: account,
-  //                     maxFeePerGas: maxFee,
-  //                     maxPriorityFeePerGas: maxPriority,
-  //                     gasPrice: baseFee,
-  //                     // gas: 10000000,
-  //                     gasLimit: "0x" + baseFee.toString(16)
-  //                   });
-
-  //               }));
-  //       });
-  //     });
-  //   }
-  //   catch (error) {
-  //     alert(error);
-  //   }
-  // }
-
   //Currently mint native is working for Polygon
 
   async function mintnative(numberofNFTs) {
@@ -104,11 +38,13 @@ const MintNowModal = () => {
     var totalAmount = mintRate * _mintAmount;
     // eslint-disable-next-line
     if (stateCrypto == "Polygon", "Mumbai")
-
     // mint for Polygon
     {
       console.log(stateCrypto)
       try {
+        const provider = new ethers.providers.Web3Provider(window.ethereum)
+        const signer = provider.getSigner()
+        const address = await signer.getAddress()
         var total = totalAmount * 0.97;
         // convert totalAmount to wei
         var totalAmountWei = Web3Alc.utils.toWei(total.toString(), "ether");
@@ -118,12 +54,11 @@ const MintNowModal = () => {
             var baseFee = Number(block.baseFeePerGas);
             var maxPriority = Number(tip);
             var maxFee = baseFee + maxPriority
-            contract.methods.mint(account, _mintAmount)
+            contract.methods.mint(address, _mintAmount)
               .send({
                 from: account,
                 value: Number(totalAmountWei),
-                maxFeePerGas: maxFee,
-                maxPriorityFeePerGas: maxPriority,
+                maxPriorityFeePerGas: maxFee,
                 gasPrice: baseFee
               });
           });
@@ -135,19 +70,19 @@ const MintNowModal = () => {
     }
     //eslint-disable-next-line
     else if (stateCrypto == "Ethereum", "Rinkeby") {
-      //mint for ethereum network
+      // mint for ethereum network
       try {
-        // mintRate = Number(await contract.methods.getNFTCost(1).call());
-        // need to get the price from the contract
-        // currently it is hardcoded
         totalAmount = mintRate * _mintAmount;
         await Web3Alc.eth.getMaxPriorityFeePerGas().then((tip) => {
           Web3Alc.eth.getBlock('pending').then((block) => {
+            const provider = new ethers.providers.Web3Provider(window.ethereum)
+            const signer = provider.getSigner()
+            const address = new signer.getAddress()
             var account = stateAddress;
-            var baseFee=Number(block.baseFeePerGas);
+            var baseFee = Number(block.baseFeePerGas);
             var maxPriority = Number(tip);
             var maxFee = baseFee + maxPriority
-            contract.methods.mint(account, _mintAmount)
+            contract.methods.mint(address, _mintAmount)
               .send({
                 from: account,
                 gas: 30000,
@@ -167,9 +102,13 @@ const MintNowModal = () => {
         .send({ from: account, gasLimit: 300000 })
 
       try {
+        const provider = new ethers.providers.Web3Provider(window.ethereum)
+        const signer = provider.getSigner()
+        const address = await signer.getAddress()
+
         Web3Alc.eth.getBlock('pending').then((block) => {
           console.log(block)
-          contract.methods.mint(account, _mintAmount)
+          contract.methods.mint(address, _mintAmount)
             .send({
               from: account,
               gas: 30000,
