@@ -6,14 +6,14 @@ import MintModalStyleWrapper from "./MintNow.style";
 import mintImg from "../../../assets/images/icon/fnft.gif";
 import hoverShape from "../../../assets/images/icon/hov_shape_L.svg";
 import { MdPriceChange } from "react-icons/md";
-import { NFTCONTRACT } from './../../config/config';
+// import { NFTCONTRACT } from './../../config/config';
 import { BSCNFTCONTRACT } from "../../config/bscconfig";
 // import TOKENABI from './../../config/TOKENABI.json';
 
 const MintNowModal = () => {
 
   const [count, setCount] = useState(1);
-  const { mintModalHandle, stateAddress, stateRate, statePrice, stateCrypto,
+  const { mintModalHandle, stateAddress, statePrice, stateCrypto,
     stateContract, stateWeb3, stateCoin
   } = useModal();
   var account = stateAddress;
@@ -109,8 +109,7 @@ const MintNowModal = () => {
     {
       console.log(stateCrypto)
       try {
-        // set mintRate to 65 MATIC
-        //convert totalAmount to wei
+        // convert totalAmount to wei
         var totalAmountWei = Web3Alc.utils.toWei(totalAmount.toString(), "ether");
         await Web3Alc.eth.getMaxPriorityFeePerGas().then((tip) => {
           Web3Alc.eth.getBlock('pending').then((block) => {
@@ -128,11 +127,9 @@ const MintNowModal = () => {
               });
           });
         })
-        await sleep(expectedBlockTime);
-
       } catch (error) {
         console.log(error);
-
+        await sleep(expectedBlockTime);
       }
     }
     //eslint-disable-next-line
@@ -152,42 +149,38 @@ const MintNowModal = () => {
             contract.methods.mint(account, _mintAmount)
               .send({
                 from: account,
-                gas: 21000,
+                gas: 30000,
                 value: totalAmount,
                 maxPriorityFeePerGas: maxFee
               });
           });
         })
-        await sleep(expectedBlockTime);
-
       } catch (error) {
         console.log(error);
-
+        await sleep(expectedBlockTime);
       }
     }
     //eslint-disable-next-line
     else if (stateCrypto == "Binance Chain") {
       contract.methods.approve(BSCNFTCONTRACT, 1)
-        .send({ from: account, gasLimit: 1000000 })
+        .send({ from: account, gasLimit: 300000 })
 
       try {
-        totalAmount = totalAmount
         Web3Alc.eth.getBlock('pending').then((block) => {
           console.log(block)
           contract.methods.mint(account, _mintAmount)
             .send({
               from: account,
-              gas: 210000,
+              gas: 30000,
               value: totalAmount,
             }
             );
         });
-        await sleep(expectedBlockTime);
-
       }
       catch (error) {
         console.log(error);
       }
+      await sleep(expectedBlockTime);
     }
     else
       return alert("Minting is not supported for this network");
