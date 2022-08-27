@@ -41,7 +41,8 @@ const MintNowModal = () => {
     {
       console.log(stateCrypto)
       try {
-        var total = totalAmount * 0.85;
+        //var total = totalAmount * 0.85;
+        var total=totalAmount*1;
         // convert totalAmount to wei
         var totalAmountWei = Web3Alc.utils.toWei(total.toString(), "ether");
         await Web3Alc.eth.getMaxPriorityFeePerGas().then((tip) => {
