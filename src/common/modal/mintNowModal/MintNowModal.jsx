@@ -32,7 +32,7 @@ const MintNowModal = () => {
   //Currently mint native is working for Polygon
 
   async function mintnative(numberofNFTs) {
-    var mintRate = price*0.05;
+    var mintRate = price;
     var _mintAmount = Number(numberofNFTs);
     var totalAmount = mintRate * _mintAmount;
     // eslint-disable-next-line
