@@ -10,26 +10,22 @@ import { MdPriceChange } from "react-icons/md";
 // import TOKENABI from './../../config/TOKENABI.json';
 import { BSCNFTCONTRACT } from "../../config/bscconfig";
 
-
-
 const MintNowModal = () => {
-
   const [count, setCount] = useState(1);
   const { mintModalHandle, stateAccount, statePrice, stateCrypto,
     stateContract, stateWeb3, stateCoin
   } = useModal();
   var coin = stateCoin;
   var price = statePrice*0.9;
-  var crypto = stateCrypto;
   var contract = stateContract;
   var Web3Alc = stateWeb3;
   const reload = () => window.location.reload();
   var counts = count.toFixed(1);
 
-  const expectedBlockTime = 10000;
-  const sleep = (milliseconds) => {
-    return new Promise(resolve => setTimeout(resolve, milliseconds))
-  }
+  // const expectedBlockTime = 10000;
+  // const sleep = (milliseconds) => {
+  //   return new Promise(resolve => setTimeout(resolve, milliseconds))
+  // }
 
   async function mintnative(numberofNFTs) {
     console.log(stateCrypto)

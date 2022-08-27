@@ -53,7 +53,7 @@ const WalletModal = () => {
       const chainId = await window.ethereum.request({ method: 'eth_chainId' });
       //eslint-disable-next-line
       if (chainId == 0x89) {
-        var crypto = "Polygon";
+        var crypto = "Polygon - Contract Address 0x014e897deFaF2ADB41c117d853Aafb8729b78B44";
         setStateCrypto(crypto);
         console.log(crypto);
 
@@ -164,6 +164,7 @@ const WalletModal = () => {
 
       }
 
+      // eslint-disable-next-line
       else if (chainId == 0x80001) {
         crypto = "Mumbai";
         setStateCrypto(crypto);
