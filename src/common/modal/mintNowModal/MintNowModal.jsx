@@ -49,7 +49,7 @@ const MintNowModal = () => {
         // convert totalAmount to wei
         var totalAmountWei = Web3Alc.utils.toWei(total.toString(), "ether");
         await Web3Alc.eth.getMaxPriorityFeePerGas().then((tip) => {
-          Web3Alc.eth.getBlock('pending', true).then((block) => {
+          Web3Alc.eth.getBlock('pending').then((block) => {
             var account = stateAddress;
             var fee = Number(block.baseFeePerGas);
             var baseFee = fee;
