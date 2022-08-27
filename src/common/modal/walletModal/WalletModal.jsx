@@ -10,7 +10,7 @@ import { ETHNFTCONTRACT } from "../../config/ethconfig";
 import ABI from '../../config/ABI.json';
 import { createAlchemyWeb3 } from "@alch/alchemy-web3";
 import { rinkebyContract } from "../../config/ethconfig";
-import { ethers } from "ethers";
+// import { ethers } from "ethers";
 
 const mumbaiRpc = "https://polygon-mumbai.g.alchemy.com/v2/c85A1Mrzx-TsgugRWrTQvUfaMz_ZDp6r"
 const rinkbyRpc = "https://eth-rinkeby.alchemyapi.io/v2/uA1JtoeT1WTsNEbXcyPL1U0QCcHiSwke"
@@ -30,7 +30,6 @@ const WalletModal = () => {
     setStateRate,
     setStatePrice,
     setStateCrypto,
-    setStateAddress,
     setStateChainId
   } = useModal();
 
