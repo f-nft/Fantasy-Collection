@@ -16,8 +16,9 @@ const MintNowModal = () => {
 
   const [count, setCount] = useState(1);
   const { mintModalHandle, stateAccount, statePrice, stateCrypto,
-    stateContract, stateWeb3,
+    stateContract, stateWeb3, stateCoin
   } = useModal();
+  var coin = stateCoin;
   var price = statePrice*0.9;
   var crypto = stateCrypto;
   var contract = stateContract;
@@ -144,8 +145,8 @@ const MintNowModal = () => {
               <div className="mint_img">
                 <img src={mintImg} alt="f-nft mint" style={{ borderRadius: "15px", borderWidth: "5px", borderColor: "#ffffff", textAlign: "center", borderShadow: "#ffffff" }} />
                 <h5 style={{ color: "red", textAlign: "center", textShadow: "#372873" }} onClick={reload}>Please Refesh if You Change The Network</h5>
-                {{ crypto } ?
-                  (<span>You Are Connected to {crypto} Network</span>) :
+                {{ coin } ?
+                  (<span>You Are Connected to {coin} Network</span>) :
                   (<span></span>)}<br />
               </div>
               <Button onClick={() => mintModalHandle()} onClose={reload}>
@@ -165,7 +166,7 @@ const MintNowModal = () => {
                     <h5>Price Total</h5>
                     {(price) === null ?
                       <h5> ETH</h5> :
-                      < h5 >{(price * count).toFixed(5)} {(crypto)}</h5>}
+                      < h5 >{(price * count).toFixed(5)} {(coin)}</h5>}
                   </li>
                   <li>
                     <h5>Quantity</h5>

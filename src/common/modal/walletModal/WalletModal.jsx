@@ -30,7 +30,8 @@ const WalletModal = () => {
     setStateRate,
     setStatePrice,
     setStateCrypto,
-    setStateChainId
+    setStateChainId,
+    setStateCoin
   } = useModal();
 
   async function ConnectWallet() {
@@ -55,6 +56,9 @@ const WalletModal = () => {
         var crypto = "Polygon";
         setStateCrypto(crypto);
         console.log(crypto);
+
+        var coin = "Matic";
+        setStateCoin(coin);
 
         // Get contract instance
         contract = new web3.eth.Contract(ABI, NFTCONTRACT);
@@ -82,6 +86,9 @@ const WalletModal = () => {
         setStateCrypto(crypto);
         console.log(crypto);
 
+        coin = "ETH";
+        setStateCoin(coin);
+
         // Get contract instance
         contract = new web3.eth.Contract(ABI, ETHNFTCONTRACT);
         setStateContract(contract);
@@ -107,6 +114,9 @@ const WalletModal = () => {
         crypto = "Binance Chain";
         setStateCrypto(crypto);
         console.log(crypto);
+
+        coin = "BNB"
+        setStateCoin(coin);
 
         // Get contract instance
         contract = new web3.eth.Contract(ABI, BSCNFTCONTRACT);
