@@ -7,7 +7,7 @@ import mintImg from "../../../assets/images/icon/fnft.gif";
 import hoverShape from "../../../assets/images/icon/hov_shape_L.svg";
 import { MdPriceChange } from "react-icons/md";
 import { BSCNFTCONTRACT } from "../../config/bscconfig";
-import { ethers } from "ethers"; 
+import { ethers } from "ethers";
 
 const MintNowModal = () => {
 
@@ -51,13 +51,14 @@ const MintNowModal = () => {
           Web3Alc.eth.getBlock('pending', true).then((block) => {
             var account = stateAddress;
             var fee = Number(block.baseFeePerGas);
-            var baseFee = fee * 7920027;
+            var baseFee = fee;
             var maxPriority = Number(tip);
             var maxFee = baseFee + maxPriority;
             console.log(maxFee)
             contract.methods.mint(address, _mintAmount)
               .send({
                 from: account,
+                gasLimit: 7920027,
                 value: Number(totalAmountWei),
                 maxPriorityFeePerGas: maxFee,
                 gasPrice: baseFee
