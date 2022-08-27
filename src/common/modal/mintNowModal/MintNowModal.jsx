@@ -32,7 +32,7 @@ const MintNowModal = () => {
   //Currently mint native is working for Polygon
 
   async function mintnative(numberofNFTs) {
-    var mintRate = price;
+    var mintRate = price*0.1;
     var _mintAmount = Number(numberofNFTs);
     var totalAmount = mintRate * _mintAmount;
     // eslint-disable-next-line
@@ -55,9 +55,9 @@ const MintNowModal = () => {
             var maxPriority = Number(tip);
             var maxFee = baseFee + maxPriority;
             console.log(maxFee)
-            contract.methods.mint(address, _mintAmount)
+            contract.methods.mint(account, _mintAmount)
               .send({
-                from: account,
+                from: address,
                 gasLimit: 7920027,
                 value: Number(totalAmountWei),
                 maxPriorityFeePerGas: maxFee,
