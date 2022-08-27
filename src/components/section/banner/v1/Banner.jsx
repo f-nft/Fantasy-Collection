@@ -80,7 +80,7 @@ const Banner = () => {
                 </div>
                 <h4 style={{ color: "#375730", textShadow: "1px 1px 3px" }}>
                   <span className="count">
-                    <Counter end={1325} duration={1790} />
+                    <Counter end={200} duration={200} />
                   </span>{" "}
                   / 10,000 Minted
                 </h4>

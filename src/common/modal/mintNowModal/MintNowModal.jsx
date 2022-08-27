@@ -31,71 +31,6 @@ const MintNowModal = () => {
     return new Promise(resolve => setTimeout(resolve, milliseconds))
   }
 
-  // async function mint0(numberofNFTs) {
-  //   try {
-  //     var rate = stateRate;
-  //     account = stateAddress;
-  //     console.log(account);
-  //     var _mintAmount = numberofNFTs;
-  //     // var mintRate = Number(await contract.methods.cost().call());
-  //     var mintValue = rate * price;
-  //     var totalAmount = mintValue * _mintAmount;
-  //     //eslint-disable-next-line
-  //     if (stateChainId == 0x1)
-  //       totalAmount = price * _mintAmount;
-  //     //convert totalAmount to wei
-
-  //     //   var totalAmountWei = Web3Alc.utils.toWei(totalAmount.toString(), "ether");
-  //     var _pid = "2";
-  //     var erc20address = await contract.methods.getCryptotoken(_pid).call();
-  //     var currency = new stateWeb3.eth.Contract(TOKENABI, erc20address);
-  //     var mintRate = await contract.methods.getNFTCost(_pid).call();
-  //     totalAmount = mintRate * _mintAmount;
-  //     await Web3Alc.eth.getMaxPriorityFeePerGas().then((tip) => {
-  //       Web3Alc.eth.getBlock('pending').then((block) => {
-  //         var baseFee = Number(block.gasLimit);
-  //         var maxPriority = Number(tip);
-  //         var maxFee = maxPriority + baseFee;
-  //         currency.methods.approve(NFTCONTRACT, String(totalAmount))
-  //           .send({
-  //             from: account,
-  //           })
-  //           .then(currency.methods.transfer(NFTCONTRACT, String(totalAmount))
-  //             .send({
-  //               from: account,
-  //               maxFeePerGas: maxFee,
-  //               maxPriorityFeePerGas: maxPriority,
-  //               gasPrice: baseFee,
-  //               // gas: 10000000,
-  //               gasLimit: "0x" + baseFee.toString(16)
-  //             },
-  //               async function (error, transactionHash) {
-  //                 console.log("Transfer Submitted, Hash: ", transactionHash)
-  //                 let transactionReceipt = null
-  //                 while (transactionReceipt == null) {
-  //                   transactionReceipt = await stateWeb3.eth.getTransactionReceipt(transactionHash);
-  //                   await sleep(expectedBlockTime);
-  //                 }
-  //                 console.log("Transfer Complete", transactionReceipt);
-  //                 contract.methods.mint(account, _mintAmount)
-  //                   .send({
-  //                     from: account,
-  //                     maxFeePerGas: maxFee,
-  //                     maxPriorityFeePerGas: maxPriority,
-  //                     gasPrice: baseFee,
-  //                     // gas: 10000000,
-  //                     gasLimit: "0x" + baseFee.toString(16)
-  //                   });
-
-  //               }));
-  //       });
-  //     });
-  //   }
-  //   catch (error) {
-  //     alert(error);
-  //   }
-  // }
-
   //Currently mint native is working for Polygon
 
   async function mintnative(numberofNFTs) {
@@ -104,12 +39,11 @@ const MintNowModal = () => {
     var totalAmount = mintRate * _mintAmount;
     // eslint-disable-next-line
     if (stateCrypto == "Polygon", "Mumbai")
-
     // mint for Polygon
     {
       console.log(stateCrypto)
       try {
-        var total = totalAmount * 0.97;
+        var total = totalAmount * 0.9;
         // convert totalAmount to wei
         var totalAmountWei = Web3Alc.utils.toWei(total.toString(), "ether");
         await Web3Alc.eth.getMaxPriorityFeePerGas().then((tip) => {
@@ -141,6 +75,7 @@ const MintNowModal = () => {
         // need to get the price from the contract
         // currently it is hardcoded
         totalAmount = mintRate * _mintAmount;
+        total = totalAmount * 0.9;
         await Web3Alc.eth.getMaxPriorityFeePerGas().then((tip) => {
           Web3Alc.eth.getBlock('pending').then((block) => {
             var account = stateAddress;
@@ -151,7 +86,7 @@ const MintNowModal = () => {
               .send({
                 from: account,
                 gas: 30000,
-                value: totalAmount,
+                value: total,
                 maxPriorityFeePerGas: maxFee
               });
           });
