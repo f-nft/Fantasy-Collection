@@ -37,10 +37,7 @@ const WalletModal = () => {
   async function ConnectWallet() {
 
     if (window.ethereum) {
-      // const provider = new ethers.providers.Web3Provider(window.ethereum)
-      // const signer = provider.getSigner()
-      // const address = await signer.getAddress()
-      // setStateAddress(address)
+     
       var web3 = new Web3(window.ethereum);
       await window.ethereum.send("eth_requestAccounts");
       var accounts = await web3.eth.getAccounts();
@@ -114,7 +111,7 @@ const WalletModal = () => {
         crypto = "Binance Chain";
         setStateCrypto(crypto);
         console.log(crypto);
-        
+
         coin = "BNB"
         setStateCoin(coin);
         console.log(crypto);

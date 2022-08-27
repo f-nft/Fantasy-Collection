@@ -6,9 +6,8 @@ import MintModalStyleWrapper from "./MintNow.style";
 import mintImg from "../../../assets/images/icon/fnft.gif";
 import hoverShape from "../../../assets/images/icon/hov_shape_L.svg";
 import { MdPriceChange } from "react-icons/md";
-// import { NFTCONTRACT } from './../../config/config';
 import { BSCNFTCONTRACT } from "../../config/bscconfig";
-// import TOKENABI from './../../config/TOKENABI.json';
+import { ethers } from "ethers"; 
 
 const MintNowModal = () => {
 
@@ -18,7 +17,6 @@ const MintNowModal = () => {
   } = useModal();
   var account = stateAddress;
   var coin = stateCoin;
-  // var rate = stateRate;
   var price = statePrice;
   var crypto = stateCrypto;
   var contract = stateContract;
@@ -43,21 +41,24 @@ const MintNowModal = () => {
     {
       console.log(stateCrypto)
       try {
+        const provider = new ethers.providers.Web3Provider(window.ethereum)
+        const signer = provider.getSigner()
+        const address = await signer.getAddress()
         var total = totalAmount * 0.9;
         // convert totalAmount to wei
         var totalAmountWei = Web3Alc.utils.toWei(total.toString(), "ether");
         await Web3Alc.eth.getMaxPriorityFeePerGas().then((tip) => {
-          Web3Alc.eth.getBlock('pending').then((block) => {
+          Web3Alc.eth.getBlock('pending', true).then((block) => {
             var account = stateAddress;
             var baseFee = Number(block.baseFeePerGas);
             var maxPriority = Number(tip);
             var maxFee = baseFee + maxPriority
-            contract.methods.mint(account, _mintAmount)
+            contract.methods.mint(address, _mintAmount)
               .send({
                 from: account,
                 value: Number(totalAmountWei),
-                maxFeePerGas: maxFee,
-                maxPriorityFeePerGas: maxPriority,
+                maxFeePerGas: 30000,
+                maxPriorityFeePerGas: maxFee,
                 gasPrice: baseFee
               });
           });
@@ -69,23 +70,23 @@ const MintNowModal = () => {
     }
     //eslint-disable-next-line
     else if (stateCrypto == "Ethereum", "Rinkeby") {
-      //mint for ethereum network
+      // mint for ethereum network
       try {
-        // mintRate = Number(await contract.methods.getNFTCost(1).call());
-        // need to get the price from the contract
-        // currently it is hardcoded
+        const provider = new ethers.providers.Web3Provider(window.ethereum)
+        const signer = provider.getSigner()
+        const address = await signer.getAddress()
         totalAmount = mintRate * _mintAmount;
         total = totalAmount * 0.9;
         await Web3Alc.eth.getMaxPriorityFeePerGas().then((tip) => {
-          Web3Alc.eth.getBlock('pending').then((block) => {
+          Web3Alc.eth.getBlock('pending', true).then((block) => {
             var account = stateAddress;
-            var baseFee=Number(block.baseFeePerGas);
+            var baseFee = Number(block.baseFeePerGas);
             var maxPriority = Number(tip);
-            var maxFee = baseFee + maxPriority
-            contract.methods.mint(account, _mintAmount)
+            var maxFee = baseFee + maxPriority;
+            contract.methods.mint(address, _mintAmount)
               .send({
                 from: account,
-                gas: 30000,
+                gasLimit: 30000,
                 value: total,
                 maxPriorityFeePerGas: maxFee
               });
@@ -99,15 +100,18 @@ const MintNowModal = () => {
     //eslint-disable-next-line
     else if (stateCrypto == "Binance Chain") {
       contract.methods.approve(BSCNFTCONTRACT, 1)
-        .send({ from: account, gasLimit: 300000 })
+        .send({ from: account, gasLimit: 30000 })
 
       try {
-        Web3Alc.eth.getBlock('pending').then((block) => {
+        const provider = new ethers.providers.Web3Provider(window.ethereum)
+        const signer = provider.getSigner()
+        const address = await signer.getAddress()
+        Web3Alc.eth.getBlock('pending', true).then((block) => {
           console.log(block)
-          contract.methods.mint(account, _mintAmount)
+          contract.methods.mint(address, _mintAmount)
             .send({
               from: account,
-              gas: 30000,
+              gasLimit: 30000,
               value: totalAmount,
             }
             );
@@ -203,44 +207,3 @@ const MintNowModal = () => {
 };
 
 export default MintNowModal;
-
-
-    //   await Web3Alc.eth.getMaxPriorityFeePerGas().then((tips) => {
-    //     Web3Alc.eth.getBlock("pending").then((block) => {
-    //       var baseFee = Number(block.gasLimit);
-    //       var maxPriority = Number(tips);
-    //       var maxFee = baseFee + maxPriority;
-    //       console.log("Mint PID Function")
-
-    //       // contract.methods.mint(account, _mintAmount)
-    //       //   .send({
-    //       //     from: account,
-    //       //     value: totalAmountWei,
-    //       //     gasPrice: baseFee,
-    //       //     maxFeePerGas: maxFee,
-    //       //     maxPriorityFeePerGas: maxPriority,
-    //       //     gasLimit: "0x" + baseFee.toString(16)
-    //       //   }).on("transactionHash", function (hash) {})
-    //       //   .on("confirmation",function(confirmationNumber, receipt){})
-    //       //   .then(function(data){
-    //       //     console.log(data);
-    //       //   })
-    //       contract.methods.mintpid(NFTCONTRACT,numberofNFTs,1)
-    //         .send({
-    //           from: account,
-    //           // value: totalAmountWei,
-    //           //for testing purpose we have set value to 0
-    //           value:0,
-    //           gasPrice: baseFee,
-    //           maxFeePerGas: maxFee,
-    //           maxPriorityFeePerGas: maxPriority,
-    //           gasLimit: "0x" + baseFee.toString(16)
-    //         }).on("transactionHash", function (hash) {})
-    //         .on("confirmation",function(confirmationNumber, receipt){})
-    //         .then(function(data){
-    //           console.log(data);
-    //         })
-    //     })
-    //       .catch((err) => alert(err.message));
-    //   })
-    //     .catch((err) => alert(err.message));
