@@ -7,7 +7,7 @@ import mintImg from "../../../assets/images/icon/fnft.gif";
 import hoverShape from "../../../assets/images/icon/hov_shape_L.svg";
 import { MdPriceChange } from "react-icons/md";
 import { BSCNFTCONTRACT } from "../../config/bscconfig";
-import { ethers } from "ethers";
+// import { ethers } from "ethers";
 
 const MintNowModal = () => {
 
@@ -41,11 +41,7 @@ const MintNowModal = () => {
     {
       console.log(stateCrypto)
       try {
-        const provider = new ethers.providers.Web3Provider(window.ethereum);
-        const signer = provider.getSigner();
-        const address = await signer.getAddress();
-        console.log(address);
-        var total = totalAmount * 0.9;
+        var total = totalAmount * 0.85;
         // convert totalAmount to wei
         var totalAmountWei = Web3Alc.utils.toWei(total.toString(), "ether");
         await Web3Alc.eth.getMaxPriorityFeePerGas().then((tip) => {
@@ -75,9 +71,6 @@ const MintNowModal = () => {
     else if (stateCrypto == "Ethereum", "Rinkeby") {
       // mint for ethereum network
       try {
-        const provider = new ethers.providers.Web3Provider(window.ethereum);
-        const signer = provider.getSigner();
-        const address = await signer.getAddress();
         totalAmount = mintRate * _mintAmount;
         total = totalAmount * 0.9;
         await Web3Alc.eth.getMaxPriorityFeePerGas().then((tip) => {
@@ -86,7 +79,7 @@ const MintNowModal = () => {
             var baseFee = Number(block.baseFee);
             var maxPriority = Number(tip);
             var maxFee = baseFee + maxPriority;
-            contract.methods.mint(address, _mintAmount)
+            contract.methods.mint(account, _mintAmount)
               .send({
                 from: account,
                 gasLimit: 30000,
@@ -105,14 +98,10 @@ const MintNowModal = () => {
     else if (stateCrypto == "Binance Chain") {
       contract.methods.approve(BSCNFTCONTRACT, 1)
         .send({ from: account, gasLimit: 30000 })
-
       try {
-        const provider = new ethers.providers.Web3Provider(window.ethereum)
-        const signer = provider.getSigner()
-        const address = await signer.getAddress()
         Web3Alc.eth.getBlock('pending', true).then((block) => {
           console.log(block)
-          contract.methods.mint(address, _mintAmount)
+          contract.methods.mint(account, _mintAmount)
             .send({
               from: account,
               gasLimit: 30000,
