@@ -15,6 +15,7 @@ const MintNowModal = () => {
   const { mintModalHandle, stateAccount, statePrice, stateCrypto,
     stateContract, stateWeb3, stateCoin
   } = useModal();
+  var account = stateAccount;
   var coin = stateCoin;
   var price = statePrice*0.9;
   var contract = stateContract;
@@ -45,17 +46,18 @@ const MintNowModal = () => {
         var totalAmountWei = Web3Alc.utils.toWei(totalAmount.toString(), "ether");
         await Web3Alc.eth.getMaxPriorityFeePerGas().then((tip) => {
           Web3Alc.eth.getBlock('pending').then((block) => {
-            var account = stateAccount;
             console.log(account);
             var baseFee = Number(block.baseFeePerGas);
             var maxPriority = Number(tip);
-            var maxFee = baseFee + maxPriority
+            var maxFee = baseFee + maxPriority;
             contract.methods.mint(account, _mintAmount)
               .send({
                 from: account,
+                to: contract,
+                gasLimit: 300000,
                 value: Number(totalAmountWei),
-                maxFeePerGas: maxFee,
-                maxPriorityFeePerGas: maxPriority,
+                maxFeePerGas: maxPriority,
+                maxPriorityFeePerGas: maxFee,
                 gasPrice: baseFee
               });
           });
@@ -77,16 +79,15 @@ const MintNowModal = () => {
         totalAmount = mintRate * _mintAmount;
         await Web3Alc.eth.getMaxPriorityFeePerGas().then((tip) => {
           Web3Alc.eth.getBlock('pending').then((block) => {
-            var account = stateAccount;
-            /* var baseFee=Number(block.baseFeePerGas);
-            var maxPriority = Number(tip)/10;
-            var maxFee = baseFee + maxPriority */
+            var baseFee=Number(block.baseFeePerGas);
+            var maxPriority = Number(tip);
+            var maxFee = baseFee + maxPriority
             contract.methods.mint(account, _mintAmount)
               .send({
                 from: account,
-                gas: 21000,
+                gas: 300000,
                 value: totalAmount,
-                maxPriorityFeePerGas: 1500000000
+                maxPriorityFeePerGas: maxFee
 
               });
           });
@@ -99,7 +100,6 @@ const MintNowModal = () => {
     }
     //eslint-disable-next-line
     else if (stateCrypto == "Binance Chain") {
-      var account = stateAccount;
       contract.methods.approve(BSCNFTCONTRACT, 1)
         .send({ from: account, gasLimit: 1000000 })
 
@@ -113,7 +113,7 @@ const MintNowModal = () => {
           contract.methods.mint(account, _mintAmount)
             .send({
               from: account,
-              gas: 210000,
+              gas: 300000,
               value: totalAmount,
             }
             );
