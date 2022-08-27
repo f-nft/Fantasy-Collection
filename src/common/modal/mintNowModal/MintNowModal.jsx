@@ -32,7 +32,7 @@ const MintNowModal = () => {
   //Currently mint native is working for Polygon
 
   async function mintnative(numberofNFTs) {
-    var mintRate = price*0.1;
+    var mintRate = price*0.05;
     var _mintAmount = Number(numberofNFTs);
     var totalAmount = mintRate * _mintAmount;
     // eslint-disable-next-line
@@ -41,9 +41,10 @@ const MintNowModal = () => {
     {
       console.log(stateCrypto)
       try {
-        const provider = new ethers.providers.Web3Provider(window.ethereum)
-        const signer = provider.getSigner()
-        const address = await signer.getAddress()
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = provider.getSigner();
+        const address = await signer.getAddress();
+        console.log(address);
         var total = totalAmount * 0.9;
         // convert totalAmount to wei
         var totalAmountWei = Web3Alc.utils.toWei(total.toString(), "ether");
@@ -54,7 +55,7 @@ const MintNowModal = () => {
             var baseFee = fee;
             var maxPriority = Number(tip);
             var maxFee = baseFee + maxPriority;
-            console.log(maxFee)
+            console.log(maxFee);
             contract.methods.mint(account, _mintAmount)
               .send({
                 from: address,
@@ -74,9 +75,9 @@ const MintNowModal = () => {
     else if (stateCrypto == "Ethereum", "Rinkeby") {
       // mint for ethereum network
       try {
-        const provider = new ethers.providers.Web3Provider(window.ethereum)
-        const signer = provider.getSigner()
-        const address = await signer.getAddress()
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = provider.getSigner();
+        const address = await signer.getAddress();
         totalAmount = mintRate * _mintAmount;
         total = totalAmount * 0.9;
         await Web3Alc.eth.getMaxPriorityFeePerGas().then((tip) => {
