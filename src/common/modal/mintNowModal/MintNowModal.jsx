@@ -6,115 +6,124 @@ import MintModalStyleWrapper from "./MintNow.style";
 import mintImg from "../../../assets/images/icon/fnft.gif";
 import hoverShape from "../../../assets/images/icon/hov_shape_L.svg";
 import { MdPriceChange } from "react-icons/md";
+// import { NFTCONTRACT } from './../../config/config';
+// import TOKENABI from './../../config/TOKENABI.json';
 import { BSCNFTCONTRACT } from "../../config/bscconfig";
-// import { ethers } from "ethers";
 
 const MintNowModal = () => {
-
   const [count, setCount] = useState(1);
   const { mintModalHandle, stateAddress, statePrice, stateCrypto,
     stateContract, stateWeb3, stateCoin
   } = useModal();
   var account = stateAddress;
   var coin = stateCoin;
-  var price = statePrice;
-  var crypto = stateCrypto;
+  var price = statePrice * 0.9;
   var contract = stateContract;
   var Web3Alc = stateWeb3;
   const reload = () => window.location.reload();
   var counts = count.toFixed(1);
 
-  const expectedBlockTime = 10000;
-  const sleep = (milliseconds) => {
-    return new Promise(resolve => setTimeout(resolve, milliseconds))
-  }
-
-  //Currently mint native is working for Polygon
+  // const expectedBlockTime = 10000;
+  // const sleep = (milliseconds) => {
+  //   return new Promise(resolve => setTimeout(resolve, milliseconds))
+  // }
 
   async function mintnative(numberofNFTs) {
-    var mintRate = price;
+    console.log(stateCrypto)
+    var mintRate = null;
+    var totalAmount = null;
     var _mintAmount = Number(numberofNFTs);
-    var totalAmount = mintRate * _mintAmount;
-    // eslint-disable-next-line
+    //eslint-disable-next-line
     if (stateCrypto == "Polygon", "Mumbai")
-    // mint for Polygon
+    //mint for Polygon
     {
-      console.log(stateCrypto)
       try {
-        var total = totalAmount * 0.85;
-        // convert totalAmount to wei
-        var totalAmountWei = Web3Alc.utils.toWei(total.toString(), "ether");
+        //set mintRate to 65 MATIC
+        mintRate = price;
+        console.log(mintRate);
+        totalAmount = mintRate * _mintAmount;
+        //convert totalAmount to wei
+        var totalAmountWei = Web3Alc.utils.toWei(totalAmount.toString(), "ether");
         await Web3Alc.eth.getMaxPriorityFeePerGas().then((tip) => {
           Web3Alc.eth.getBlock('pending').then((block) => {
-            var account = stateAddress;
-            var fee = Number(block.baseFeePerGas);
-            var baseFee = fee;
+            console.log(account);
+            var baseFee = Number(block.baseFeePerGas);
             var maxPriority = Number(tip);
             var maxFee = baseFee + maxPriority;
-            console.log(maxFee);
             contract.methods.mint(account, _mintAmount)
               .send({
                 from: account,
                 to: contract,
-                gasLimit: 30000,
+                gasLimit: 300000,
                 value: Number(totalAmountWei),
+                maxFeePerGas: maxPriority,
                 maxPriorityFeePerGas: maxFee,
                 gasPrice: baseFee
               });
           });
         })
+
       } catch (error) {
         console.log(error);
-        await sleep(expectedBlockTime);
+
       }
     }
     //eslint-disable-next-line
-    else if (stateCrypto == "Ethereum", "Rinkeby") {
-      // mint for ethereum network
+    else if (stateCrypto == "Ethereum") {
+      //mint for ethereum network
       try {
+        mintRate = Number(await contract.methods.getNFTCost(1).call());
+        //need to get the price from the contract
+        //currently it is hardcoded
+        mintRate = 50000000000000000;
         totalAmount = mintRate * _mintAmount;
-        total = totalAmount * 0.9;
         await Web3Alc.eth.getMaxPriorityFeePerGas().then((tip) => {
-          Web3Alc.eth.getBlock('pending', true).then((block) => {
-            var account = stateAddress;
-            var baseFee = Number(block.baseFee);
+          Web3Alc.eth.getBlock('pending').then((block) => {
+            var baseFee = Number(block.baseFeePerGas);
             var maxPriority = Number(tip);
-            var maxFee = baseFee + maxPriority;
+            var maxFee = baseFee + maxPriority
             contract.methods.mint(account, _mintAmount)
               .send({
                 from: account,
-                gasLimit: 30000,
-                value: total,
-                gasPrice: baseFee,
+                gas: 300000,
+                value: totalAmount,
                 maxPriorityFeePerGas: maxFee
+
               });
           });
         })
+
       } catch (error) {
         console.log(error);
-        await sleep(expectedBlockTime);
+
       }
     }
     //eslint-disable-next-line
     else if (stateCrypto == "Binance Chain") {
       contract.methods.approve(BSCNFTCONTRACT, 1)
-        .send({ from: account, gasLimit: 30000 })
+        .send({ from: account, gasLimit: 1000000 })
+
       try {
-        Web3Alc.eth.getBlock('pending', true).then((block) => {
+        mintRate = await contract.methods.cost().call()
+        totalAmount = mintRate * _mintAmount;
+        //convert totalAmount to decimal from power of 18
+        totalAmount = totalAmount / 1000000000000000000
+        Web3Alc.eth.getBlock('pending').then((block) => {
           console.log(block)
           contract.methods.mint(account, _mintAmount)
             .send({
               from: account,
-              gasLimit: 30000,
+              gas: 300000,
               value: totalAmount,
             }
             );
         });
+
       }
       catch (error) {
         console.log(error);
       }
-      await sleep(expectedBlockTime);
+
     }
     else
       return alert("Minting is not supported for this network");
@@ -130,8 +139,8 @@ const MintNowModal = () => {
               <div className="mint_img">
                 <img src={mintImg} alt="f-nft mint" style={{ borderRadius: "15px", borderWidth: "5px", borderColor: "#ffffff", textAlign: "center", borderShadow: "#ffffff" }} />
                 <h5 style={{ color: "red", textAlign: "center", textShadow: "#372873" }} onClick={reload}>Please Refesh if You Change The Network</h5>
-                {{ crypto } ?
-                  (<span>You Are Connected to {crypto} Network</span>) :
+                {{ coin } ?
+                  (<span>You Are Connected to {coin} Network</span>) :
                   (<span></span>)}<br />
               </div>
               <Button onClick={() => mintModalHandle()} onClose={reload}>
@@ -150,8 +159,8 @@ const MintNowModal = () => {
                   <li>
                     <h5>Price Total</h5>
                     {(price) === null ?
-                      <h5> ETH </h5> :
-                      < h5 >{(price * count).toFixed(4)} {(coin)}</h5>}
+                      <h5> ETH</h5> :
+                      < h5 >{(price * count).toFixed(5)} {(coin)}</h5>}
                   </li>
                   <li>
                     <h5>Quantity</h5>

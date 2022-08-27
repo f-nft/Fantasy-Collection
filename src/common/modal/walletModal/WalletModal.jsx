@@ -42,6 +42,7 @@ const WalletModal = () => {
       var accounts = await web3.eth.getAccounts();
       var account = accounts[0];
       setStateAddress(account);
+      console.log(account);
       setBalance(web3.utils.fromWei(await web3.eth.getBalance(account)));
       walletModalHandle();
 
