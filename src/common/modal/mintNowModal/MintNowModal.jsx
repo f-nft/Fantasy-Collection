@@ -55,7 +55,8 @@ const MintNowModal = () => {
             contract.methods.mint(account, _mintAmount)
               .send({
                 from: account,
-                gasLimit: 7920027,
+                to: contract,
+                gasLimit: 30000,
                 value: Number(totalAmountWei),
                 maxPriorityFeePerGas: maxFee,
                 gasPrice: baseFee
