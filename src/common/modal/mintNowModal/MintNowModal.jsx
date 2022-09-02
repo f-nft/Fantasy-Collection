@@ -54,7 +54,6 @@ const MintNowModal = () => {
               .send({
                 from: account,
                 to: contract,
-                gasLimit: 300000,
                 value: Number(totalAmountWei),
                 maxFeePerGas: maxPriority,
                 maxPriorityFeePerGas: maxFee,
@@ -75,16 +74,16 @@ const MintNowModal = () => {
         totalAmount = mintRate * _mintAmount;
         await Web3Alc.eth.getMaxPriorityFeePerGas().then((tip) => {
           Web3Alc.eth.getBlock('pending').then((block) => {
-            var baseFee = Number(block.baseFeePerGas);
-            var maxPriority = Number(tip);
-            var maxFee = baseFee + maxPriority;
+            const baseFee = Number(block.baseFeePerGas);
+            const maxPriority = Number(tip) + baseFee - 1;
+            const maxFee = baseFee + maxPriority;
             contract.methods.mint(account, _mintAmount)
               .send({
+                gas: baseFee,
+                maxPriorityFeePerGas: maxPriority,
+                maxFeePerGas: maxFee,
                 from: account,
                 value: totalAmount,
-                gasPrice: baseFee,
-                maxFee: maxFee,
-                gasLimit: 300000,
               });
           });
         })
