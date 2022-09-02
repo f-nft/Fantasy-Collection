@@ -7,4 +7,4 @@ export const etherscanapi = "https://api.etherscan.io/api";
 export const moralisapi = "https://deep-index.moralis.io/api/v2";
 // export const Web3Alc = createAlchemyWeb3("https://polygon-mainnet.g.alchemy.com/v2/qqfXh-S-3dEdCR-orpw_NY06qvD0EFKk");
 export const ethnftpng = "https://bafybeifq6s7bsmntf6af3lm2ek4bckysutbttjp6q2e6tnu5k7tfqmvigy.ipfs.nftstorage.link/Fantasy%20%23";
-export const rinkebyContract = "0x5b44c2115c92d184254aDe3b98A62B4dC7700e6d"
+export const rinkebyContract = "0x6400e05e3e5405a926c54BfFc39B16CB6B25da06"

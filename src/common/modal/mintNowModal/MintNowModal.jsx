@@ -72,22 +72,19 @@ const MintNowModal = () => {
     else if (stateCrypto == "Ethereum", "Rinkeby") {
       //mint for ethereum network
       try {
-        //need to get the price from the contract
-        //currently it is hardcoded
         totalAmount = mintRate * _mintAmount;
         await Web3Alc.eth.getMaxPriorityFeePerGas().then((tip) => {
           Web3Alc.eth.getBlock('pending').then((block) => {
-            var baseFee = Number(block.maxPriorityFeePerGas);
+            var baseFee = Number(block.baseFeePerGas);
             var maxPriority = Number(tip);
-            var maxFee = baseFee + maxPriority
+            var maxFee = baseFee + maxPriority;
             contract.methods.mint(account, _mintAmount)
               .send({
                 from: account,
-                gas: baseFee,
-                gasLimit: 500000,
                 value: totalAmount,
-                baseFee: maxPriority,
-                maxFeePerGas: maxFee
+                gasPrice: baseFee,
+                maxFee: maxFee,
+                gasLimit: 300000,
               });
           });
         })
