@@ -16,7 +16,8 @@ const mumbaiRpc = "https://polygon-mumbai.g.alchemy.com/v2/c85A1Mrzx-TsgugRWrTQv
 const rinkbyRpc = "https://eth-rinkeby.alchemyapi.io/v2/uA1JtoeT1WTsNEbXcyPL1U0QCcHiSwke"
 const PolygonRpc = "https://polygon-mainnet.g.alchemy.com/v2/qqfXh-S-3dEdCR-orpw_NY06qvD0EFKk";
 const EthRpc = "https://eth-mainnet.g.alchemy.com/v2/wsIm0J69yBeB3UItacaaDKy1yOFkDcl5";
-const BscRpc = "https://bsc-mainnet.nodereal.io/v1/8ed65880a0a04853ba46d115f679d4e0"
+const BscRpc = "https://bsc-mainnet.nodereal.io/v1/8ed65880a0a04853ba46d115f679d4e0";
+const BscTest = "https://bsctestapi.terminet.io/rpc"
 var contract = null;
 
 const WalletModal = () => {
