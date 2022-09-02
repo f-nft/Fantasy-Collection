@@ -15,13 +15,13 @@ const MintNowModal = () => {
   const { mintModalHandle, stateAddress, statePrice, stateCrypto,
     stateContract, stateWeb3, stateCoin
   } = useModal();
-  var account = stateAddress;
-  var coin = stateCoin;
-  var price = statePrice * 0.9;
-  var contract = stateContract;
-  var Web3Alc = stateWeb3;
+  const account = stateAddress;
+  const coin = stateCoin;
+  const price = statePrice;
+  const contract = stateContract;
+  const Web3Alc = stateWeb3;
   const reload = () => window.location.reload();
-  var counts = count.toFixed(1);
+  const counts = count.toFixed(1);
 
   // const expectedBlockTime = 10000;
   // const sleep = (milliseconds) => {
@@ -29,27 +29,24 @@ const MintNowModal = () => {
   // }
 
   async function mintnative(numberofNFTs) {
-    console.log(stateCrypto)
-    var mintRate = null;
-    var totalAmount = null;
-    var _mintAmount = Number(numberofNFTs);
+    const mintRate = price;
+    const _mintAmount = Number(numberofNFTs);
+    const totalAmount = mintRate * _mintAmount;
+
     //eslint-disable-next-line
     if (stateCrypto == "Polygon", "Mumbai")
     //mint for Polygon
     {
       try {
         //set mintRate to 65 MATIC
-        mintRate = price;
-        console.log(mintRate);
-        totalAmount = mintRate * _mintAmount;
         //convert totalAmount to wei
-        var totalAmountWei = Web3Alc.utils.toWei(totalAmount.toString(), "ether");
+        const totalAmountWei = Web3Alc.utils.toWei(totalAmount.toString(), "ether");
         await Web3Alc.eth.getMaxPriorityFeePerGas().then((tip) => {
           Web3Alc.eth.getBlock('pending').then((block) => {
             console.log(account);
-            var baseFee = Number(block.baseFeePerGas);
-            var maxPriority = Number(tip);
-            var maxFee = baseFee + maxPriority;
+            const baseFee = Number(block.baseFeePerGas);
+            const maxPriority = Number(tip);
+            const maxFee = baseFee + maxPriority;
             contract.methods.mint(account, _mintAmount)
               .send({
                 from: account,
@@ -71,17 +68,16 @@ const MintNowModal = () => {
     else if (stateCrypto == "Ethereum", "Rinkeby") {
       //mint for ethereum network
       try {
-        totalAmount = mintRate * _mintAmount;
         await Web3Alc.eth.getMaxPriorityFeePerGas().then((tip) => {
           Web3Alc.eth.getBlock('pending').then((block) => {
             const baseFee = Number(block.baseFeePerGas);
-            const maxPriority = Number(tip) + baseFee - 1;
+            const maxPriority = Number(tip) + baseFee + 1;
             const maxFee = baseFee + maxPriority;
             contract.methods.mint(account, _mintAmount)
               .send({
-                gas: baseFee,
-                maxPriorityFeePerGas: maxPriority,
-                maxFeePerGas: maxFee,
+                gas: 30000,
+                maxPriorityFeePerGas: maxFee,
+                maxFeePerGas: maxPriority,
                 from: account,
                 value: totalAmount,
               });
@@ -90,7 +86,6 @@ const MintNowModal = () => {
 
       } catch (error) {
         console.log(error);
-
       }
     }
     //eslint-disable-next-line
@@ -99,10 +94,10 @@ const MintNowModal = () => {
         .send({ from: account, gasLimit: 1000000 })
 
       try {
-        mintRate = await contract.methods.cost().call()
-        totalAmount = mintRate * _mintAmount;
+        // mintRate = await contract.methods.cost().call()
+        // totalAmount = mintRate * _mintAmount;
         //convert totalAmount to decimal from power of 18
-        totalAmount = totalAmount / 1000000000000000000
+        // totalAmount = totalAmount / 1000000000000000000
         Web3Alc.eth.getBlock('pending').then((block) => {
           console.log(block)
           contract.methods.mint(account, _mintAmount)
