@@ -91,6 +91,7 @@ const MintNowModal = () => {
       }
     }
       
+    // eslint-disable-next-line  
     else if (stateCrypto == "Ethereum") {
       //mint for ethereum network
       console.log("minting for ethereum")
