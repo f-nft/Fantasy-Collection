@@ -142,6 +142,37 @@ export default function ListNft() {
         return (
             <h1 className="text-3xl">Wallet Not Connected</h1>)
 
+            async function getNFTData() {
+                const nativeBalance = await Moralis.EvmApi.account.getNativeBalance({
+                  address,
+                  chain,
+                })
+                const native = nativeBalance.result.balance.ether
+              
+                const tokenBalances = await Moralis.EvmApi.account.getTokenBalances({
+                  address,
+                  chain,
+                })
+                const tokens = tokenBalances.result.map((token) => token.display())
+                
+                // Get the nfts
+                const nftsBalances = await Moralis.EvmApi.account.getNFTs({
+                  address,
+                  chain,
+                  limit: 10,
+                })
+              
+                // Format the output to return name, amount and metadata
+                const nfts = nftsBalances.result.map((nft) => ({
+                  name: nft.result.name,
+                  amount: nft.result.amount,
+                  metadata: nft.result.metadata,
+                }))
+                
+                // Add nfts to the output
+                return { native, tokens, nfts }
+            }
+            
     return (
         <div className='flex flex-1 justify-center'>
             <div className="container col-lg-12">
