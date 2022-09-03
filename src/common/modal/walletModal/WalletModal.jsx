@@ -10,6 +10,7 @@ import { ETHNFTCONTRACT } from "../../config/ethconfig";
 import ABI from '../../config/ABI.json';
 import { createAlchemyWeb3 } from "@alch/alchemy-web3";
 import { rinkebyContract } from "../../config/ethconfig";
+import { BSCTESCONTRACT } from "../../config/bscconfig";
 // import { ethers } from "ethers";
 
 const mumbaiRpc = "https://polygon-mumbai.g.alchemy.com/v2/c85A1Mrzx-TsgugRWrTQvUfaMz_ZDp6r"
@@ -17,7 +18,7 @@ const rinkbyRpc = "https://eth-rinkeby.alchemyapi.io/v2/uA1JtoeT1WTsNEbXcyPL1U0Q
 const PolygonRpc = "https://polygon-mainnet.g.alchemy.com/v2/qqfXh-S-3dEdCR-orpw_NY06qvD0EFKk";
 const EthRpc = "https://eth-mainnet.g.alchemy.com/v2/wsIm0J69yBeB3UItacaaDKy1yOFkDcl5";
 const BscRpc = "https://bsc-mainnet.nodereal.io/v1/8ed65880a0a04853ba46d115f679d4e0";
-const BscTest = "https://bsctestapi.terminet.io/rpc"
+const BscTest = "https://data-seed-prebsc-1-s1.binance.org:8545/"
 var contract = null;
 
 const WalletModal = () => {
@@ -106,8 +107,9 @@ const WalletModal = () => {
         // Show Crypto of ChainId connected
         setStateChainId(chainId);
 
+
       }
-      //eslint-disable-next-line
+      // eslint-disable-next-line
       else if (chainId == 0x38) {
         crypto = "Binance Chain";
         setStateCrypto(crypto);
@@ -120,7 +122,7 @@ const WalletModal = () => {
         // Get contract instance
         contract = new web3.eth.Contract(ABI, BSCNFTCONTRACT);
         setStateContract(contract)
-        var Web3Alc = new Web3.providers.HttpProvider(BscRpc);
+        const Web3Alc = new Web3.providers.HttpProvider(BscTest);
         setStateWeb3(Web3Alc);
 
         // Get rate
@@ -135,7 +137,35 @@ const WalletModal = () => {
         setStateChainId(chainId);
 
       }
+      // eslint-disable-next-line
+      else if (chainId == 0x61) {
+        crypto = "Binance Chain Testnet";
+        setStateCrypto(crypto);
+        console.log(crypto);
 
+        coin = "BNB"
+        setStateCoin(coin);
+        console.log(crypto);
+
+        // Get contract instance
+        contract = new web3.eth.Contract(ABI, BSCTESCONTRACT);
+        setStateContract(contract)
+        const Web3Alc = new Web3.providers.HttpProvider(BscRpc);
+        setStateWeb3(Web3Alc);
+
+        // Get rate
+        rate = localStorage.getItem("bnbRate");
+        setStateRate(rate);
+
+        // Get price
+        price = 60 * rate;
+        setStatePrice(price);
+
+        // Show Crypto of ChainId connected
+        setStateChainId(chainId);
+
+    }
+    
       // eslint-disable-next-line
       else if (chainId == 0x4) {
         crypto = "Rinkeby";

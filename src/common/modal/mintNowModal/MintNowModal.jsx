@@ -65,6 +65,33 @@ const MintNowModal = () => {
     }
     //eslint-disable-next-line
     else if (stateCrypto == "Rinkeby") {
+      //mint for rinkeby network
+      console.log("minting for rinkeby")
+
+      try {
+         mintRate = price;
+        totalAmount = mintRate * _mintAmount;
+        await Web3Alc.eth.getMaxPriorityFeePerGas().then((tip) => {
+          Web3Alc.eth.getBlock('pending').then((block) => {
+            var totalAmountWei = Web3Alc.utils.toWei(totalAmount.toString(), "ether");
+            contract.methods.mint(account, _mintAmount)
+              .send({
+                from: account,
+                value: totalAmountWei,
+                gas:210000,
+                maxPriorityFeePerGas:2000000000,
+                maxFeePerGas:2000000000,
+              });
+          });
+        })
+
+      } catch (error) {
+        console.log(error);
+
+      }
+    }
+      
+    else if (stateCrypto == "Ethereum") {
       //mint for ethereum network
       console.log("minting for ethereum")
 
@@ -90,6 +117,7 @@ const MintNowModal = () => {
 
       }
     }
+      
     //eslint-disable-next-line
     else if (stateCrypto == "Binance Chain") {
       contract.methods.approve(BSCNFTCONTRACT, 1)

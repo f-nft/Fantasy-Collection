@@ -2,7 +2,7 @@
 export const bscscanapikey = "46Y2MZHAZTE34SD1WQ32BUF42BTDYBY76A";
 export const moralisapikey = "1ByvMyujsaXkDVTlnUjQIje5e09J2zLHGaS2P6JytHVA1LxfAPPYE8UdOpEjc6ca";
 export const BSCNFTCONTRACT = "0x3EF96a7649abEe21Eb2f013481B39cab92F4D10B";
-export const BSCTESCONTRACT = '0x0c92ebb034f82486b52d779297d5e4dc6fec23c7';
+export const BSCTESCONTRACT = '0xc1F32ee1634C4a3d217920122216AeDbd1014F08';
 export const STAKINGCONTRACT = "";
 export const bsctest = "";
 export const bscscanapi = "https://api.bscscan.com/api";
