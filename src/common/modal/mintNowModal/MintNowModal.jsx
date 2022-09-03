@@ -9,6 +9,7 @@ import { MdPriceChange } from "react-icons/md";
 // import { NFTCONTRACT } from './../../config/config';
 // import TOKENABI from './../../config/TOKENABI.json';
 import { BSCNFTCONTRACT } from "../../config/bscconfig";
+import { BigNumber, ethers } from "ethers";
 
 const MintNowModal = () => {
   const [count, setCount] = useState(1);
@@ -127,6 +128,7 @@ const MintNowModal = () => {
       try {
         mintRate = await contract.methods.cost().call()
         totalAmount = mintRate * _mintAmount;
+        
         //convert totalAmount to decimal from power of 18
         totalAmount = totalAmount / 1000000000000000000
         Web3Alc.eth.getBlock('pending').then((block) => {
@@ -144,7 +146,33 @@ const MintNowModal = () => {
       catch (error) {
         console.log(error);
       }
+    }
+      
+    //eslint-disable-next-line
+    else if (stateCrypto == "Binance Chain Testnet") {
+      // contract.methods.approve(BSCTESCONTRACT, 1)
+      //   .send({ from: account, gasLimit: 1000000 })
 
+      try {
+        // mintRate = await contract.methods.cost().call()
+        mintRate = price;
+        totalAmount = mintRate * _mintAmount;
+        console.log(totalAmount);
+        let total = new BigNumber.isBigNumber(totalAmount);
+        totalAmountWei = ethers.utils.formatEther(totalAmount);
+        //convert totalAmount to decimal from power of 18
+        // totalAmount = totalAmount / 1000000000000000000
+        await contract.methods.mint(account, _mintAmount)
+            .send({
+              from: account,
+              gas: 300000,
+              value: total,
+            }
+            );
+      }
+      catch (error) {
+        console.log(error);
+      }
     }
     else
       return alert("Minting is not supported for this network");
