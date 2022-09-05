@@ -8,8 +8,7 @@ import hoverShape from "../../../assets/images/icon/hov_shape_L.svg";
 import { MdPriceChange } from "react-icons/md";
 // import { NFTCONTRACT } from './../../config/config';
 // import TOKENABI from './../../config/TOKENABI.json';
-import { BSCNFTCONTRACT } from "../../config/bscconfig";
-import { BigNumber, ethers } from "ethers";
+import {  ethers } from "ethers";
 
 const MintNowModal = () => {
   const [count, setCount] = useState(1);
@@ -122,27 +121,21 @@ const MintNowModal = () => {
       
     //eslint-disable-next-line
     else if (stateCrypto == "Binance Chain") {
-      contract.methods.approve(BSCNFTCONTRACT, 1)
-        .send({ from: account, gasLimit: 1000000 })
-
-      try {
-        mintRate = await contract.methods.cost().call()
-        totalAmount = mintRate * _mintAmount;
-        
-        //convert totalAmount to decimal from power of 18
-        totalAmount = totalAmount / 1000000000000000000
-        Web3Alc.eth.getBlock('pending').then((block) => {
-          console.log(block)
-          contract.methods.mint(account, _mintAmount)
-            .send({
-              from: account,
-              gas: 300000,
-              value: totalAmount,
-            }
-            );
-        });
-
-      }
+              try {
+          mintRate = price
+          totalAmount = mintRate * _mintAmount;
+          //convert totalAmount to BigNumber
+          totalAmount = ethers.utils.parseUnits(totalAmount.toString(), 18)
+          console.log(totalAmount)
+          await contract.methods.mint(account, _mintAmount)
+              .send({
+                from: account,
+                gas: 300000,
+                value: totalAmount,
+  
+              }
+              );
+        }
       catch (error) {
         console.log(error);
       }
@@ -150,23 +143,19 @@ const MintNowModal = () => {
       
     //eslint-disable-next-line
     else if (stateCrypto == "Binance Chain Testnet") {
-      // contract.methods.approve(BSCTESCONTRACT, 1)
-      //   .send({ from: account, gasLimit: 1000000 })
 
       try {
-        // mintRate = await contract.methods.cost().call()
-        mintRate = price;
+        mintRate = price
         totalAmount = mintRate * _mintAmount;
-        console.log(totalAmount);
-        let total = new BigNumber.isBigNumber(totalAmount);
-        totalAmountWei = ethers.utils.formatEther(totalAmount);
-        //convert totalAmount to decimal from power of 18
-        // totalAmount = totalAmount / 1000000000000000000
+        //convert totalAmount to BigNumber
+        totalAmount = ethers.utils.parseUnits(totalAmount.toString(), 18)
+        console.log(totalAmount)
         await contract.methods.mint(account, _mintAmount)
             .send({
               from: account,
               gas: 300000,
-              value: total,
+              value: totalAmount,
+
             }
             );
       }
