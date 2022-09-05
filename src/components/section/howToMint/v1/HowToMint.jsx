@@ -8,6 +8,9 @@ const HowToMint = () => {
   return (
     <HowToMintWrapper>
       <div className="container how_to_mint_container">
+      <script defer src="https://www.livecoinwatch.com/static/lcw-widget.js"></script>
+      <div class="livecoinwatch-widget-5" lcw-base="USD" lcw-color-tx="#abb8c3" lcw-marquee-1="coins" lcw-marquee-2="movers" lcw-marquee-items="20" >
+        </div>
         <SectionTitle
           classNameName="md-pb-20"
           title="HOW TO MINT"

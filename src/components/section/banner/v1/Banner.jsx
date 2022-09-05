@@ -65,8 +65,8 @@ const Banner = () => {
     <>
       <BannerV1Wrapper id="home">
         <div className="container">
+        <script defer src="https://www.livecoinwatch.com/static/lcw-widget.js"></script> <div className="livecoinwatch-widget-5" lcw-base="USD" lcw-color-tx="#8ed1fc" lcw-marquee-1="coins" lcw-marquee-2="coins" lcw-marquee-items="20" ></div>
           <div className="row" style={{ marginTop: "-129px", padding: "15px" }}>
-          <script defer src="https://www.livecoinwatch.com/static/lcw-widget.js"></script> <div class="livecoinwatch-widget-5" lcw-base="USD" lcw-color-tx="#8ed1fc" lcw-marquee-1="coins" lcw-marquee-2="coins" lcw-marquee-items="20" ></div>
             <div className="col-lg-6">
               <div className="f-nft_v1_baner_left">
                 <h1 style={{ color: "red" }}>f-nft Fantasy</h1>
