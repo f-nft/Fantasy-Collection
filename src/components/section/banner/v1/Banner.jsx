@@ -76,10 +76,10 @@ const Banner = () => {
     <>
       <BannerV1Wrapper id="home">
         <div className="container">
-           <script defer src="https://www.livecoinwatch.com/static/lcw-widget.js"></script>
-           <div class="livecoinwatch-widget-5" lcw-base="USD" lcw-color-tx="#999999" lcw-marquee-1="coins" lcw-marquee-2="movers" lcw-marquee-items="10" >
-              {useScript("https://www.livecoinwatch.com/static/lcw-widget.js")} 
-            </div>
+          <script defer src="https://www.livecoinwatch.com/static/lcw-widget.js"></script>
+          <div class="livecoinwatch-widget-5" lcw-base="USD" lcw-color-tx="#999999" lcw-marquee-1="coins" lcw-marquee-2="movers" lcw-marquee-items="20" >
+            {useScript("https://www.livecoinwatch.com/static/lcw-widget.js")}
+          </div>
           <div className="row" style={{ marginTop: "-129px", padding: "15px" }}>
             <div className="col-lg-6">
               <div className="f-nft_v1_baner_left">
