@@ -18,10 +18,10 @@ const BannerV1Wrapper = styled.section`
   background-size: cover;
   background-position: top center;
   background-repeat: no-repeat;
-  padding-top: 179px;
+  padding-top: 100px;
   
   .f-nft_v1_baner_left {
-    margin-top: 200px;
+    margin-top: 70px;
     max-width: 500px;
     width: 100%;
     min-height: 550px;
@@ -83,7 +83,7 @@ const BannerV1Wrapper = styled.section`
     max-width: 500px;
     width: 100%;
     margin-left: auto;
-    margin-top: 200px;
+    margin-top: 70px;
 
     .mint_live_circle_sect {
       display: flex;
