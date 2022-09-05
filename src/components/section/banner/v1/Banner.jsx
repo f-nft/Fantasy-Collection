@@ -77,11 +77,11 @@ const Banner = () => {
     <>
       <BannerV1Wrapper id="home">
         <div className="container">
-           <div className="livecoinwatch-widget-5" lcw-base="USD" lcw-color-tx="#999999" lcw-marquee-1="coins" lcw-marquee-2="movers" lcw-marquee-items="10" >
-              {useScript("https://www.livecoinwatch.com/static/lcw-widget.js")} 
-            </div>
+          <div className="livecoinwatch-widget-5" lcw-base="USD" lcw-color-tx="#999999" lcw-marquee-1="coins" lcw-marquee-2="movers" lcw-marquee-items="20" >
+            {useScript("https://www.livecoinwatch.com/static/lcw-widget.js")}
+          </div>
           <div className="row">
-              <div className="col-lg-6">
+            <div className="col-lg-6">
               <div className="f-nft_v1_baner_left">
                 <h1 style={{ color: "red" }}>f-nft Fantasy</h1>
                 <h2>👗 3D NFT</h2>
@@ -135,7 +135,7 @@ const Banner = () => {
                     {nftPriceMatic} Matic + gas <br />
                     {nftPriceBnb} BNB + gas<br />
                     <br />
-                    </span>
+                  </span>
                 </div>
               </div>
             </div>
@@ -161,7 +161,7 @@ const Banner = () => {
                 <h4>
                   <span >
                     MINT IS LIVE UNTIL 01 SEP 04:00
-                  </span><br/>
+                  </span><br />
                   <span>
                     Max 10 per wallet </span>
                   <span><br />Presale: SOLDOUT</span>
