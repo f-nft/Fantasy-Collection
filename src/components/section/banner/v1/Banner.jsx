@@ -7,7 +7,6 @@ import mintLiveText from "../../../../assets/images/nft/mint_live_text.png";
 import homeImageBG from "../../../../assets/images/nft/home_img_bg.png";
 import { useEffect, useState } from "react";
 import Countdown from "../../countdown/countDown";
- <script defer src="https://www.livecoinwatch.com/static/lcw-widget.js"></script> 
 const Banner = () => {
   const { mintModalHandle, priceModalHandle, walletModalHandle, isWalletConnect, stateAddress, balance, stateCrypto } = useModal();
   const [nftPriceMatic, setNftPriceMatic] = useState(null);
@@ -78,7 +77,6 @@ const Banner = () => {
     <>
       <BannerV1Wrapper id="home">
         <div className="container">
-          <script defer src="https://www.livecoinwatch.com/static/lcw-widget.js"></script>
            <div className="livecoinwatch-widget-5" lcw-base="USD" lcw-color-tx="#999999" lcw-marquee-1="coins" lcw-marquee-2="movers" lcw-marquee-items="10" >
               {useScript("https://www.livecoinwatch.com/static/lcw-widget.js")} 
             </div>
