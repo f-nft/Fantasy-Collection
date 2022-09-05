@@ -1,7 +1,7 @@
 // import { createAlchemyWeb3 } from "@alch/alchemy-web3";
 export const etherscanapikey = "DUH1Q7R7AZRIFFRTU191M77RQ1KPD2DDC3";
 export const moralisapikey = "1ByvMyujsaXkDVTlnUjQIje5e09J2zLHGaS2P6JytHVA1LxfAPPYE8UdOpEjc6ca";
-export const ETHNFTCONTRACT = "0x6F6BD2eFd2947A0A1b736131bf9A8584e4DD606C";
+export const ETHNFTCONTRACT = "0xc1F32ee1634C4a3d217920122216AeDbd1014F08";
 export const STAKINGCONTRACT = "";
 export const etherscanapi = "https://api.etherscan.io/api";
 export const moralisapi = "https://deep-index.moralis.io/api/v2";
