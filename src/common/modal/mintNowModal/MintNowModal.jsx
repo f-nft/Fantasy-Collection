@@ -8,7 +8,7 @@ import hoverShape from "../../../assets/images/icon/hov_shape_L.svg";
 import { MdPriceChange } from "react-icons/md";
 // import { NFTCONTRACT } from './../../config/config';
 // import TOKENABI from './../../config/TOKENABI.json';
-import {  ethers } from "ethers";
+import { ethers } from "ethers";
 
 const MintNowModal = () => {
   const [count, setCount] = useState(1);
@@ -17,7 +17,7 @@ const MintNowModal = () => {
   } = useModal();
   var account = stateAddress;
   var coin = stateCoin;
-  var price = statePrice * 0.9;
+  var price = statePrice;
   var contract = stateContract;
   var Web3Alc = stateWeb3;
   const reload = () => window.location.reload();
@@ -36,7 +36,7 @@ const MintNowModal = () => {
     {
       try {
         //set mintRate to 65 MATIC
-        mintRate = price;
+        mintRate = price * 0.9;
         console.log(mintRate);
         totalAmount = mintRate * _mintAmount;
         //convert totalAmount to wei
@@ -69,7 +69,7 @@ const MintNowModal = () => {
       console.log("minting for rinkeby")
 
       try {
-         mintRate = price;
+        mintRate = price * 0.9;
         totalAmount = mintRate * _mintAmount;
         await Web3Alc.eth.getMaxPriorityFeePerGas().then((tip) => {
           Web3Alc.eth.getBlock('pending').then((block) => {
@@ -78,9 +78,9 @@ const MintNowModal = () => {
               .send({
                 from: account,
                 value: totalAmountWei,
-                gas:210000,
-                maxPriorityFeePerGas:2000000000,
-                maxFeePerGas:2000000000,
+                gas: 210000,
+                maxPriorityFeePerGas: 2000000000,
+                maxFeePerGas: 2000000000,
               });
           });
         })
@@ -90,14 +90,14 @@ const MintNowModal = () => {
 
       }
     }
-      
+
     // eslint-disable-next-line  
     else if (stateCrypto == "Ethereum") {
       //mint for ethereum network
       console.log("minting for ethereum")
 
       try {
-         mintRate = price;
+        mintRate = price * 0.9;
         totalAmount = mintRate * _mintAmount;
         await Web3Alc.eth.getMaxPriorityFeePerGas().then((tip) => {
           Web3Alc.eth.getBlock('pending').then((block) => {
@@ -106,9 +106,9 @@ const MintNowModal = () => {
               .send({
                 from: account,
                 value: totalAmountWei,
-                gas:210000,
-                maxPriorityFeePerGas:2000000000,
-                maxFeePerGas:2000000000,
+                gas: 210000,
+                maxPriorityFeePerGas: 2000000000,
+                maxFeePerGas: 2000000000,
               });
           });
         })
@@ -118,46 +118,46 @@ const MintNowModal = () => {
 
       }
     }
-      
+
     //eslint-disable-next-line
     else if (stateCrypto == "Binance Chain") {
-              try {
-          mintRate = price
-          totalAmount = mintRate * _mintAmount;
-          //convert totalAmount to BigNumber
-          totalAmount = ethers.utils.parseUnits(totalAmount.toString(), 18)
-          console.log(totalAmount)
-          await contract.methods.mint(account, _mintAmount)
-              .send({
-                from: account,
-                gas: 300000,
-                value: totalAmount,
-  
-              }
-              );
-        }
-      catch (error) {
-        console.log(error);
-      }
-    }
-      
-    //eslint-disable-next-line
-    else if (stateCrypto == "Binance Chain Testnet") {
-
       try {
-        mintRate = price
+        mintRate = price;
         totalAmount = mintRate * _mintAmount;
         //convert totalAmount to BigNumber
         totalAmount = ethers.utils.parseUnits(totalAmount.toString(), 18)
         console.log(totalAmount)
         await contract.methods.mint(account, _mintAmount)
-            .send({
-              from: account,
-              gas: 300000,
-              value: totalAmount,
+          .send({
+            from: account,
+            gas: 300000,
+            value: totalAmount,
 
-            }
-            );
+          }
+          );
+      }
+      catch (error) {
+        console.log(error);
+      }
+    }
+
+    //eslint-disable-next-line
+    else if (stateCrypto == "Binance Chain Testnet") {
+
+      try {
+        mintRate = price;
+        totalAmount = mintRate * _mintAmount;
+        //convert totalAmount to BigNumber
+        totalAmount = ethers.utils.parseUnits(totalAmount.toString(), 18)
+        console.log(totalAmount)
+        await contract.methods.mint(account, _mintAmount)
+          .send({
+            from: account,
+            gas: 300000,
+            value: totalAmount,
+
+          }
+          );
       }
       catch (error) {
         console.log(error);

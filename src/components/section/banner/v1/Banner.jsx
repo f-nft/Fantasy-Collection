@@ -65,14 +65,14 @@ const Banner = () => {
     <>
       <BannerV1Wrapper id="home">
         <div className="container">
-        <script defer src="https://www.livecoinwatch.com/static/lcw-widget.js"></script> <div className="livecoinwatch-widget-5" lcw-base="USD" lcw-color-tx="#8ed1fc" lcw-marquee-1="coins" lcw-marquee-2="coins" lcw-marquee-items="20" ></div>
+          <script defer src="https://www.livecoinwatch.com/static/lcw-widget.js"></script> <div className="livecoinwatch-widget-5" lcw-base="USD" lcw-color-tx="#8ed1fc" lcw-marquee-1="coins" lcw-marquee-2="coins" lcw-marquee-items="20" ></div>
           <div className="row" style={{ marginTop: "-129px", padding: "15px" }}>
             <div className="col-lg-6">
               <div className="f-nft_v1_baner_left">
                 <h1 style={{ color: "red" }}>f-nft Fantasy</h1>
                 <h2>👗 3D NFT</h2>
                 <div className="f-nft_v1_timer">
-                  <h5 className="text-uppercase" style={{ color: "red" }}>Public Mint is Current 10% discounts for Ethereum, Polygon and Binance Network</h5>
+                  <h5 className="text-uppercase" style={{ color: "red" }}>Public Mint is Current 10% discounts for Polygon and Ethereum Network</h5>
                   <div className="timer timer_1">
                     <Countdown style={{ maxWidth: "30%" }}
                       timeTillDate="10 30 2022, 6:00 am"
@@ -121,7 +121,7 @@ const Banner = () => {
                     {nftPriceMatic} Matic + gas <br />
                     {nftPriceBnb} BNB + gas<br />
                     <br />
-                    </span>
+                  </span>
                 </div>
               </div>
             </div>
@@ -147,7 +147,7 @@ const Banner = () => {
                 <h4>
                   <span >
                     MINT IS LIVE UNTIL 01 SEP 04:00
-                  </span><br/>
+                  </span><br />
                   <span>
                     Max 10 per wallet </span>
                   <span><br />Presale: SOLDOUT</span>
