@@ -86,7 +86,7 @@ const Banner = () => {
                 <h1 style={{ color: "red" }}>f-nft Fantasy</h1>
                 <h2>👗 3D NFT</h2>
                 <div className="f-nft_v1_timer">
-                  <h5 className="text-uppercase" style={{ color: "red" }}>Current Public Mint On Ethereum & Polygon Network</h5>
+                  <h5 className="text-uppercase" style={{ color: "red" }}>Public Mint is Current on BSC Ethereum & Polygon Network</h5>
                   <div className="timer timer_1">
                     <Countdown style={{ maxWidth: "30%" }}
                       timeTillDate="10 30 2022, 6:00 am"
@@ -95,7 +95,7 @@ const Banner = () => {
                 </div>
                 <h4 style={{ color: "#375730", textShadow: "1px 1px 3px" }}>
                   <span className="count">
-                    <Counter end={200} duration={200} />
+                    <Counter end={1} duration={200} />
                   </span>{" "}
                   / 10,000 Minted
                 </h4>
