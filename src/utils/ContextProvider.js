@@ -65,7 +65,7 @@ const ContextProvider = ({ children }) => {
         stateCrypto, setStateCrypto,
         stateChainId, setStateChainId,
         stateAddress, setStateAddress,
-        stateCoin, setStateCoin
+        stateCoin, setStateCoin,
       }}
     >
       {children}

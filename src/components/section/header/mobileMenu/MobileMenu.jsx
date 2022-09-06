@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useModal } from "../../../../utils/ModalContext";
 import { FaDiscord, FaTwitter, FaWallet } from "react-icons/fa";
 import { BsXLg } from "react-icons/bs";
 import Button from "../../../../common/button";
@@ -8,8 +7,9 @@ import openseaIcon from "../../../../assets/images/icon/opensea.svg";
 
 import MobileMenuStyleWrapper from "./MobileMenu.style";
 
-const MobileMenu = ({ mobileMenuhandle }) => {
-  const { walletModalHandle } = useModal();
+
+const MobileMenu = (props, mobileMenuhandle) => {
+  mobileMenuhandle = props.mobileMenuhandle;
   const [isSubmenu, setSubmenu] = useState(false);
 
   const handleSubmenu = () => {
@@ -86,7 +86,7 @@ const MobileMenu = ({ mobileMenuhandle }) => {
           sm
           variant="hovered"
           className="connect_btn"
-          onClick={() => walletModalHandle()}
+          onClick={props.data}
         >
           <FaWallet /> Connect
         </Button>

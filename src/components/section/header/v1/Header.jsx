@@ -17,24 +17,24 @@ import { BSCTESCONTRACT } from "../../../../common/config/bscconfig";
 import Web3Modal from "web3modal";
 import WalletConnectProvider from "@walletconnect/web3-provider";
 import Authereum from "authereum";
+
 const providerOptions = {
+  	binancechainwallet: {
+		package: true
+	  },
+    metamask: {
+      package: true
+    },
    authereum: {
     package: Authereum // required
   },
-	binancechainwallet: {
-		package: true
-	  },
 	walletconnect: {
 		package: WalletConnectProvider,
 		options: {
 		  infuraId: "50f6635fbcc742f18ce7a2a5cbe73ffa"
 		}
 	  },
-	
-    metamask: {
-      package: true
-    }
-
+  
 };
 const web3Modal = new Web3Modal({
   network: "mainnet",
@@ -82,7 +82,8 @@ const Header = () => {
     };
   }, []);
     async function ConnectWallet() {
-
+      if(isMobileMenu)
+      setMobileMenu(false)
       try
       {
       web3Modal.clearCachedProvider();
@@ -367,7 +368,7 @@ const Header = () => {
             </div>
           </div>
           {/* <!-- Main Menu END --> */}
-          {isMobileMenu && <MobileMenu mobileMenuhandle={handleMobileMenu} />}
+          {isMobileMenu && <MobileMenu mobileMenuhandle={handleMobileMenu} data={ConnectWallet} />}
         </div>
       </NavWrapper>
     </>

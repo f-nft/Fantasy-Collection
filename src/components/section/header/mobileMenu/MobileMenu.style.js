@@ -37,8 +37,10 @@ const MobileMenuStyleWrapper = styled.div`
   }
 
   .mobile_menu_logo {
-    width: 100%;
+    height: 150px;
+    width: 150px;
     position: relative;
+    margin-inline: auto;
   }
 
   .mobile_menu_close_btn {
@@ -57,7 +59,7 @@ const MobileMenuStyleWrapper = styled.div`
   }
 
   .f-nft_mobile_menu_list {
-    margin-top: 50px;
+    margin-top:10px;
     ul {
       margin: 0;
       padding: 0;
