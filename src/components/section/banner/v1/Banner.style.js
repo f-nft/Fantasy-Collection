@@ -204,6 +204,16 @@ const BannerV1Wrapper = styled.section`
       }
     }
   }
+  @media only screen and (max-width: 480px) {
+     Button {
+      width: 11em
+    }
+  }
+  @media only screen and (max-width: 320px) {
+     Button {
+      width: 9em
+    }
+  }
 
   @media only screen and (max-width: 480px) {
     .f-nft_v1_baner_left {
@@ -277,6 +287,8 @@ const BannerV1Wrapper = styled.section`
   }
   
   @media screen and (max-height: 450px) {
+   
+
     .overlay a {font-size: 20px}
     .overlay .closebtn {
       font-size: 40px;

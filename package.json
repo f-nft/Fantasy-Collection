@@ -11,6 +11,7 @@
     "@testing-library/user-event": "^13.5.0",
     "@walletconnect/web3-provider": "^1.7.8",
     "@web3-react/walletlink-connector": "^6.2.14",
+    "authereum": "^0.1.14",
     "buffer": "^6.0.3",
     "i": "^0.3.7",
     "moment": "^2.29.4",
