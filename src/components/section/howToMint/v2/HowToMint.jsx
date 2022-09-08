@@ -27,10 +27,10 @@ const HowToMint = () => {
             }}> BSC Smart Contract 0xeB63891bdEE6894E5eA3c6BCa8D197CC81d76Bf0 </button></p>
               <p><button style={{color:"blue", border: "1px solid red", borderRadius: "5px", padding: "2px"}} onClick={() => {
               window.open("https://etherscan.io/address/0xc1f32ee1634c4a3d217920122216aedbd1014f08", "_blank");
-              }}>ETHEREUM Smart Contract 0xeB63891bdEE6894E5eA3c6BCa8D197CC81d76Bf0 </button></p>
+              }}>ETHEREUM Smart Contract 0xc1f32ee1634c4a3d217920122216aedbd1014f08 </button></p>
               <p><button style={{color:"purple", border: "1px solid red", borderRadius: "5px", padding: "2px"}} onClick={() => {
               window.open("https://polygonscan.com/token/0x014e897defaf2adb41c117d853aafb8729b78b44", "_blank");
-            }}>POLYGON Smart Contract 0xeB63891bdEE6894E5eA3c6BCa8D197CC81d76Bf0 </button></p>
+            }}>POLYGON Smart Contract 0x014e897defaf2adb41c117d853aafb8729b78b44 </button></p>
           </h4>
         </div>
         </div>
