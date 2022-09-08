@@ -119,6 +119,7 @@ const Header = () => {
         // Get rpc instance
         const Web3Alc = createAlchemyWeb3(PolygonRpc);
         setStateWeb3(Web3Alc);
+        
 
         // Get rate
         var rate = localStorage.getItem("maticRate");

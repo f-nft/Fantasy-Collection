@@ -25,7 +25,6 @@ const MintNowModal = () => {
 
 
   async function mintnative(numberofNFTs) {
-
     console.log(stateCrypto)
     var mintRate = null;
     var totalAmount = null;
@@ -37,15 +36,13 @@ const MintNowModal = () => {
       try {
         //set mintRate to 65 MATIC
         mintRate = price * 0.9;
-        console.log(mintRate);
         totalAmount = mintRate * _mintAmount;
-        //convert totalAmount to wei
         var totalAmountWei = Web3Alc.utils.toWei(totalAmount.toString(), "ether");
         await Web3Alc.eth.getMaxPriorityFeePerGas().then((tip) => {
-          Web3Alc.eth.getBlock('pending').then((block) => {
+          Web3Alc.eth.getBlock('latest').then((block) => {
             var baseFee = Number(block.baseFeePerGas);
-            var maxPriority = Number(tip);
-            var maxFee = baseFee + maxPriority;
+            var maxPriority = Number(tip*1.5);
+            var maxFee =  maxPriority;
             contract.methods.mint(account, _mintAmount)
               .send({
                 from: account,
