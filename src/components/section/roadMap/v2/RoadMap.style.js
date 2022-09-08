@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 const RoadMapStyleWrapper = styled.section`
-  padding-top: 132px;
-  padding-bottom: 146px;
+  padding-top: 32px;
+  padding-bottom: 46px;
   position: relative;
   overflow: hidden;
   z-index: 1;

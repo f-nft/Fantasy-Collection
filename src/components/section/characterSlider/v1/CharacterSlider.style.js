@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
 const CharacterSliderWrapper = styled.section`
-  padding: 20px 40px;
+  padding: 50px 50px;
   position: relative;
   z-index: 1;
 
   .slick-slider {
     .slick-list {
-      margin: 0 -15px;
+      margin: -10px -35px;
     }
 
     .slick-slide {
