@@ -19,7 +19,7 @@ const WalletModal = () => {
             </div>
             <div className="modal_body text-center">
               <p>
-                Please Connect Wallet to start Minting your NFTs
+                Please Connect Wallet to start Minting NFT
               </p>
             
               <div className="modal_bottom_text">
