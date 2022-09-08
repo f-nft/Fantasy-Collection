@@ -27,9 +27,9 @@ const HomeV1 = () => {
       {priceModalVisibiity&&<PriceModal />}
       <Header />
       <Banner />
+      <Counter />
       <HowToMint />
       <CharacterSlider />
-      <Counter />
       <About />
       <RoadMap /> 
       <Team />

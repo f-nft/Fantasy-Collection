@@ -49,6 +49,7 @@ const CharacterSlider = () => {
   };
   return (
     <CharacterSliderWrapper>
+      <h2>BIG CHANCE TO MINT MOST WANTED NFT</h2>
       <Slider {...settings}>
         {data?.map((item, i) => (
           <SliderItem key={i}>

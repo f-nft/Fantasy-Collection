@@ -2,12 +2,12 @@ const data = [
     {
         num: "1",
         mintColor: "green",
-        text: "Connect Your Wallet"
+        text: "Connect Your Wallet (Multi Network)",
     },
     {
         num: "2",
         mintColor: "blue",
-        text: "Select Your Quantity"
+        text: "Select Quantity"
     },
     {
         num: "3",
