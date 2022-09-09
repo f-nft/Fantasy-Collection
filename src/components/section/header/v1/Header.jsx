@@ -19,28 +19,28 @@ import WalletConnectProvider from "@walletconnect/web3-provider";
 import Authereum from "authereum";
 
 const providerOptions = {
-  	binancechainwallet: {
-		package: true
-	  },
-    metamask: {
-      package: true
-    },
-   authereum: {
+  binancechainwallet: {
+    package: true
+  },
+  metamask: {
+    package: true
+  },
+  authereum: {
     package: Authereum // required
   },
-	walletconnect: {
-		package: WalletConnectProvider,
-		options: {
-		  infuraId: "50f6635fbcc742f18ce7a2a5cbe73ffa"
-		}
-	  },
-  
+  walletconnect: {
+    package: WalletConnectProvider,
+    options: {
+      infuraId: "50f6635fbcc742f18ce7a2a5cbe73ffa"
+    }
+  },
+
 };
 const web3Modal = new Web3Modal({
   network: "mainnet",
-  theme: "light",
+  theme: "dark",
   cacheProvider: true,
-  providerOptions 
+  providerOptions
 });
 
 const mumbaiRpc = "https://polygon-mumbai.g.alchemy.com/v2/c85A1Mrzx-TsgugRWrTQvUfaMz_ZDp6r"
@@ -52,7 +52,7 @@ const BscTest = "https://data-seed-prebsc-1-s1.binance.org:8545/"
 var contract = null
 
 const Header = () => {
-   const { 
+  const {
     mintButtonHandler,
     setStateCoin,
     setBalance,
@@ -63,6 +63,7 @@ const Header = () => {
     setStateCrypto,
     setStateAddress,
     setStateChainId,
+    walletModalHandle
   } = useModal();
   const [isMobileMenu, setMobileMenu] = useState(false);
   const handleMobileMenu = () => {
@@ -81,216 +82,206 @@ const Header = () => {
       window.removeEventListener("sticky", handleScroll);
     };
   }, []);
-    async function ConnectWallet() {
-      if(isMobileMenu)
+  async function ConnectWallet() {
+    if (isMobileMenu)
       setMobileMenu(false)
-      try
-      {
+    try {
       web3Modal.clearCachedProvider();
       const provider = await web3Modal.connect()
-      if(web3Modal.cachedProvider){
+      if (web3Modal.cachedProvider) {
+        try {
+          const web3 = new Web3(provider);
+          await window.ethereum.send("eth_requestAccounts");
+          var accounts = await web3.eth.getAccounts();
+          var account = accounts[0];
+          setStateAddress(account);
+          console.log(account);
+          setBalance(web3.utils.fromWei(await web3.eth.getBalance(account)));
 
-      try {
-      
-      const web3 = new Web3(provider);
-      await window.ethereum.send("eth_requestAccounts");
-      var accounts = await web3.eth.getAccounts();
-      var account = accounts[0];
-      setStateAddress(account);
-      console.log(account);
-      setBalance(web3.utils.fromWei(await web3.eth.getBalance(account)));
+          // Get current network
+          const chainId = await window.ethereum.request({ method: 'eth_chainId' });
+          // eslint-disable-next-line
+          if (chainId == 0x89) {
+            var crypto = "Polygon";
+            setStateCrypto(crypto);
+            console.log(crypto);
 
+            var coin = "Matic";
+            setStateCoin(coin);
 
-      // Get current network
-      const chainId = await window.ethereum.request({ method: 'eth_chainId' });
-      //eslint-disable-next-line
-      if (chainId == 0x89) {
-        var crypto = "Polygon";
-        setStateCrypto(crypto);
-        console.log(crypto);
+            // Get contract instance
+            contract = new web3.eth.Contract(ABI, NFTCONTRACT);
+            setStateContract(contract);
 
-        var coin = "Matic";
-        setStateCoin(coin);
-
-        // Get contract instance
-        contract = new web3.eth.Contract(ABI, NFTCONTRACT);
-        setStateContract(contract);
-
-        // Get rpc instance
-        const Web3Alc = createAlchemyWeb3(PolygonRpc);
-        setStateWeb3(Web3Alc);
-        
-
-        // Get rate
-        var rate = localStorage.getItem("maticRate");
-        setStateRate(rate);
-
-        // Get price
-        var price = 60 * rate;
-        setStatePrice(price);
-
-        // Show Crypto of ChainId connected
-        setStateChainId(chainId);
-      }
-
-      // eslint-disable-next-line
-      else if (chainId == 0x1) {
-        crypto = "Ethereum";
-        setStateCrypto(crypto);
-        coin = "ETH";
-
-        setStateCoin(coin);
-        console.log(crypto);
-
-        // Get contract instance
-        contract = new web3.eth.Contract(ABI, ETHNFTCONTRACT);
-        setStateContract(contract);
-
-        // Get rpc instance
-        const Web3Alc = createAlchemyWeb3(EthRpc);
-        setStateWeb3(Web3Alc);
-
-        // Get rate
-        rate = localStorage.getItem("ethRate");
-        setStateRate(rate);
-
-        // Get price
-        price = 60 * rate;
-        setStatePrice(price);
-
-        // Show Crypto of ChainId connected
-        setStateChainId(chainId);
+            // Get rpc instance
+            const Web3Alc = createAlchemyWeb3(PolygonRpc);
+            setStateWeb3(Web3Alc);
 
 
-      }
-      // eslint-disable-next-line
-      else if (chainId == 0x38) {
-        crypto = "Binance Chain";
-        setStateCrypto(crypto);
-        console.log(crypto);
+            // Get rate
+            var rate = localStorage.getItem("maticRate");
+            setStateRate(rate);
 
-        coin = "BNB"
-        setStateCoin(coin);
-        console.log(crypto);
+            // Get price
+            var price = 60 * rate;
+            setStatePrice(price);
 
-        // Get contract instance
-        contract = new web3.eth.Contract(ABI, BSCNFTCONTRACT);
-        setStateContract(contract)
-        const Web3Alc = new Web3.providers.HttpProvider(BscTest);
-        setStateWeb3(Web3Alc);
+            // Show Crypto of ChainId connected
+            setStateChainId(chainId);
+          }
 
-        // Get rate
-        rate = localStorage.getItem("bnbRate");
-        setStateRate(rate);
+          // eslint-disable-next-line
+          else if (chainId == 0x1) {
+            crypto = "Ethereum";
+            setStateCrypto(crypto);
+            coin = "ETH";
 
-        // Get price
-        price = 60 * rate;
-        setStatePrice(price);
+            setStateCoin(coin);
+            console.log(crypto);
 
-        // Show Crypto of ChainId connected
-        setStateChainId(chainId);
+            // Get contract instance
+            contract = new web3.eth.Contract(ABI, ETHNFTCONTRACT);
+            setStateContract(contract);
 
-      }
-      // eslint-disable-next-line
-      else if (chainId == 0x61) {
-        crypto = "Binance Chain Testnet";
-        setStateCrypto(crypto);
-        console.log(crypto);
+            // Get rpc instance
+            const Web3Alc = createAlchemyWeb3(EthRpc);
+            setStateWeb3(Web3Alc);
 
-        coin = "BNB"
-        setStateCoin(coin);
-        console.log(crypto);
+            // Get rate
+            rate = localStorage.getItem("ethRate");
+            setStateRate(rate);
 
-        // Get contract instance
-        contract = new web3.eth.Contract(ABI, BSCTESCONTRACT);
-        setStateContract(contract)
-        const Web3Alc = new Web3.providers.HttpProvider(BscRpc);
-        setStateWeb3(Web3Alc);
+            // Get price
+            price = 60 * rate;
+            setStatePrice(price);
 
-        // Get rate
-        rate = localStorage.getItem("bnbRate");
-        setStateRate(rate);
-
-        // Get price
-        price = 60 * rate;
-        setStatePrice(price);
-
-        // Show Crypto of ChainId connected
-        setStateChainId(chainId);
-
-    }
-    
-      // eslint-disable-next-line
-      else if (chainId == 0x4) {
-        crypto = "Rinkeby";
-        setStateCrypto(crypto);
-        console.log(crypto);
-
-        // Get contract instance
-        contract = new web3.eth.Contract(ABI, rinkebyContract);
-        setStateContract(contract);
-
-        // Get rpc instance
-        const Web3Alc = createAlchemyWeb3(rinkbyRpc);
-        setStateWeb3(Web3Alc);
-
-        // Get rate
-        rate = localStorage.getItem("ethRate");
-        setStateRate(rate);
-
-        // Get price
-        price = 60 * rate;
-        setStatePrice(price);
-
-        // Show Crypto of ChainId connected
-        setStateChainId(chainId);
-
-      }
+            // Show Crypto of ChainId connected
+            setStateChainId(chainId);
+          }
             
-      // eslint-disable-next-line
-      else if (chainId == 0x80001) {
-        crypto = "Mumbai";
-        setStateCrypto(crypto);
-        console.log(crypto);
+          // eslint-disable-next-line
+          else if (chainId == 0x38) {
+            crypto = "Binance Chain";
+            setStateCrypto(crypto);
+            console.log(crypto);
 
-        // Get contract instance
-        contract = new web3.eth.Contract(ABI, "0x7970b2AC48B547b2aA8B37F860E2271134683B07");
-        setStateContract(contract);
+            coin = "BNB"
+            setStateCoin(coin);
+            console.log(crypto);
 
-        // Get rpc instance
-        const Web3Alc = createAlchemyWeb3(mumbaiRpc);
-        setStateWeb3(Web3Alc);
+            // Get contract instance
+            contract = new web3.eth.Contract(ABI, BSCNFTCONTRACT);
+            setStateContract(contract)
+            const Web3Alc = new Web3.providers.HttpProvider(BscTest);
+            setStateWeb3(Web3Alc);
 
-        // Get rate
-        rate = localStorage.getItem("maticRate");
-        setStateRate(rate);
+            // Get rate
+            rate = localStorage.getItem("bnbRate");
+            setStateRate(rate);
 
-        // Get price
-        price = 60 * rate;
-        setStatePrice(price);
+            // Get price
+            price = 60 * rate;
+            setStatePrice(price);
 
-        // Show Crypto of ChainId connected
-        setStateChainId(chainId);
+            // Show Crypto of ChainId connected
+            setStateChainId(chainId);
+          }
+            
+          // eslint-disable-next-line
+          else if (chainId == 0x61) {
+            crypto = "Binance Chain Testnet";
+            setStateCrypto(crypto);
+            console.log(crypto);
 
-      }
+            coin = "BNB"
+            setStateCoin(coin);
+            console.log(crypto);
 
-      else
+            // Get contract instance
+            contract = new web3.eth.Contract(ABI, BSCTESCONTRACT);
+            setStateContract(contract)
+            const Web3Alc = new Web3.providers.HttpProvider(BscRpc);
+            setStateWeb3(Web3Alc);
+
+            // Get rate
+            rate = localStorage.getItem("bnbRate");
+            setStateRate(rate);
+
+            // Get price
+            price = 60 * rate;
+            setStatePrice(price);
+
+            // Show Crypto of ChainId connected
+            setStateChainId(chainId);
+          }
+
+          // eslint-disable-next-line
+          else if (chainId == 0x4) {
+            crypto = "Rinkeby";
+            setStateCrypto(crypto);
+            console.log(crypto);
+
+            // Get contract instance
+            contract = new web3.eth.Contract(ABI, rinkebyContract);
+            setStateContract(contract);
+
+            // Get rpc instance
+            const Web3Alc = createAlchemyWeb3(rinkbyRpc);
+            setStateWeb3(Web3Alc);
+
+            // Get rate
+            rate = localStorage.getItem("ethRate");
+            setStateRate(rate);
+
+            // Get price
+            price = 60 * rate;
+            setStatePrice(price);
+
+            // Show Crypto of ChainId connected
+            setStateChainId(chainId);
+          }
+
+          // eslint-disable-next-line
+          else if (chainId == 0x80001) {
+            crypto = "Mumbai";
+            setStateCrypto(crypto);
+            console.log(crypto);
+
+            // Get contract instance
+            contract = new web3.eth.Contract(ABI, "0x7970b2AC48B547b2aA8B37F860E2271134683B07");
+            setStateContract(contract);
+
+            // Get rpc instance
+            const Web3Alc = createAlchemyWeb3(mumbaiRpc);
+            setStateWeb3(Web3Alc);
+
+            // Get rate
+            rate = localStorage.getItem("maticRate");
+            setStateRate(rate);
+
+            // Get price
+            price = 60 * rate;
+            setStatePrice(price);
+
+            // Show Crypto of ChainId connected
+            setStateChainId(chainId);
+          }
+          else
+            alert("Please connect to the blockchain");
+        } catch (error) {
+          alert(error);
+        } 
+      } 
+      else {
         alert("Please connect to the blockchain");
-         } catch (error) {
-        alert(error);
+        web3Modal.clearCachedProvider();
       }
     }
-    else{
-      alert("Please connect to the blockchain");
-       web3Modal.clearCachedProvider();
-    }
-    }
-      catch(e)
-      {
+    catch (e) {
       alert(e)
-      }
+    } 
     return mintButtonHandler();
-  }
+  } 
   return (
     <>
       <NavWrapper className="f-nft_header" id="navbar">
@@ -347,7 +338,7 @@ const Header = () => {
                 </ul>
               </div>
               <div className="f-nft_menu_btns">
-                <button className="menu_btn" onClick={() => handleMobileMenu()}>
+                <button className="menu_btn" onClick={() => handleMobileMenu(walletModalHandle)}>
                   <MdNotes />
                 </button>
                 <Button sm variant="outline" className="join_btn"
@@ -361,7 +352,7 @@ const Header = () => {
                   sm
                   variant="hovered"
                   className="connect_btn"
-                  onClick={() =>ConnectWallet()}
+                  onClick={() => ConnectWallet()}
                 >
                   <FaWallet /> Connect
                 </Button>

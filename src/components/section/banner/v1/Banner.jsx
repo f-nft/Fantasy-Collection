@@ -26,7 +26,6 @@ const Banner = () => {
     }, [url]);
   };
 
-
   useEffect(() => {
     async function getRates(usdRate, ethRate, bnbRate, maticRate) {
       const ethPrice = "https://api.binance.com/api/v3/ticker/price?symbol=ETHUSDT";
@@ -119,7 +118,7 @@ const Banner = () => {
                   ) : (
                     <Button lg variant="mint" onClick={() => walletModalHandle()}
                     >
-                      Connect Wallet</Button>
+                      Connect Wallet First</Button>
                   )}
                   <Button className="NFTPricebutton" lg variant="outline" data-toggle="modal" data-target="#exampleModalCenter"
                     onClick={() => priceModalHandle()}>
