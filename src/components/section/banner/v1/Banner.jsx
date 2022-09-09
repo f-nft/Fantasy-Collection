@@ -7,6 +7,8 @@ import mintLiveText from "../../../../assets/images/nft/mint_live_text.png";
 import homeImageBG from "../../../../assets/images/nft/home_img_bg.png";
 import { useEffect, useState } from "react";
 import Countdown from "../../countdown/countDown";
+// import CountDownTime from "../../countdown/CountDownTime";
+
 const Banner = () => {
   const { mintModalHandle, priceModalHandle, walletModalHandle, isWalletConnect, stateAddress, balance, stateCrypto } = useModal();
   const [nftPriceMatic, setNftPriceMatic] = useState(null);
@@ -87,8 +89,9 @@ const Banner = () => {
                 <h4 style={{ color: "#375730", textShadow: "1px 1px 3px" }}>
                   <div className="f-nft_v1_timer" align="left">
                     <h5 className="text-uppercase" style={{ color: "purple" }}>Public Mint Current Discounts 10% on Ethereum & Polygon Network</h5>
+                    {/* < CountDownTime /> */}
                     <Countdown style={{ maxWidth: "30%" }}
-                      timeTillDate="10 20 2022, 6:00 am"
+                      timeTillDate="10 30 2022, 6:00 am"
                       timeFormat="MM DD YYYY, h:mm a" />
                   </div>
                   <span className="count" padding="5px" style={{ color: "purple" }}>

@@ -24,7 +24,7 @@ h1 {
 
 .countdown-item {
     color: #ff0000;
-    font-size: 20px;
+    font-size: 25px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -47,7 +47,7 @@ h1 {
 
 .countdown-item span {
     color: rgb(255, 255, 255);
-    font-size: 10px;
+    font-size: 13px;
     font-weight: 400;
     text-transform: uppercase;
 }
@@ -60,5 +60,5 @@ h1 {
     width: 50px;
     height: 50px;
     border-radius: 10%;
-    border: 2px solid #ff01a200;
+    border: 4px solid #ff01a200;
 }
