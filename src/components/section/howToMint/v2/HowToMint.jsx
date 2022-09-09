@@ -21,17 +21,20 @@ const HowToMint = () => {
               </li>
             ))}
           </ul>
-          <div className="contract" align="center">
-            <h4><p><button style={{color:"orange", border: "1px solid red", borderRadius: "5px", padding: "2px"}} onClick={() => {
+          <div className="contract" align="center" maxWidth="30%">
+              <h2>Official Contract</h2>
+            <img src="https://bscscan.com/images/logo-bscscan.svg?v=0.0.3" alt="bscscan" style={{borderRadius: "15px", padding: "3px"}} onClick={() => {
               window.open("https://bscscan.com/token/0xeB63891bdEE6894E5eA3c6BCa8D197CC81d76Bf0", "_blank");
-            }}> BSC Smart Contract 0xeB63891bdEE6894E5eA3c6BCa8D197CC81d76Bf0 </button></p>
-              <p><button style={{color:"blue", border: "1px solid red", borderRadius: "5px", padding: "2px"}} onClick={() => {
+            }} />
+              {/* BSC Smart Contract 0xeB63891bdEE6894E5eA3c6BCa8D197CC81d76Bf0 </img></p> */}
+              <img src="https://etherscan.io/assets/svg/logos/logo-etherscan.svg?v=0.0.2" alt="etherscan" style={{borderRadius: "5px", padding: "3px"}} onClick={() => {
               window.open("https://etherscan.io/address/0xc1f32ee1634c4a3d217920122216aedbd1014f08", "_blank");
-              }}>ETHEREUM Smart Contract 0xc1f32ee1634c4a3d217920122216aedbd1014f08 </button></p>
-              <p><button style={{color:"purple", border: "1px solid red", borderRadius: "5px", padding: "2px"}} onClick={() => {
+              }} />
+                {/* ETHEREUM Smart Contract 0xc1f32ee1634c4a3d217920122216aedbd1014f08 </button></p> */}
+              <img src="https://polygonscan.com/images/logo.svg?v=0.0.3" alt="polygonscan" style={{borderRadius: "5px", padding: "2px"}} onClick={() => {
               window.open("https://polygonscan.com/token/0x014e897defaf2adb41c117d853aafb8729b78b44", "_blank");
-            }}>POLYGON Smart Contract 0x014e897defaf2adb41c117d853aafb8729b78b44 </button></p>
-          </h4>
+            }}/>
+              {/* POLYGON Smart Contract 0x014e897defaf2adb41c117d853aafb8729b78b44 </button></p> */}
         </div>
         </div>
       </div>
