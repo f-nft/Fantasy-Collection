@@ -7,6 +7,8 @@ import mintLiveText from "../../../../assets/images/nft/mint_live_text.png";
 import homeImageBG from "../../../../assets/images/nft/home_img_bg.png";
 import { useEffect, useState } from "react";
 import Countdown from "../../countdown/countDown";
+// import CountDownTime from "../../countdown/CountDownTime";
+
 const Banner = () => {
   const { mintModalHandle, priceModalHandle, walletModalHandle, isWalletConnect, stateAddress, balance, stateCrypto } = useModal();
   const [nftPriceMatic, setNftPriceMatic] = useState(null);
@@ -25,7 +27,6 @@ const Banner = () => {
       };
     }, [url]);
   };
-
 
   useEffect(() => {
     async function getRates(usdRate, ethRate, bnbRate, maticRate) {
@@ -87,10 +88,10 @@ const Banner = () => {
                 <h2>👗 3D NFT</h2>
                 <h4 style={{ color: "#375730", textShadow: "1px 1px 3px" }}>
                   <div className="f-nft_v1_timer" align="left">
-                    <h5 className="text-uppercase" style={{ color: "purple" }}>Public Mint is Current Discounts 10% on thereum & Polygon Network:</h5>
-                    <Countdown style={{ maxWidth: "30%" }}
+                    <h5 className="text-uppercase" style={{ color: "purple" }}>Public Mint Current Discounts 10% on Ethereum & Polygon Network</h5>
+                    <Countdown style={{ maxWidth: "20%" }}
                       timeTillDate="10 30 2022, 6:00 am"
-                      timeFormat="MM DD YYYY, h:mm a" />
+                      timeFormat="MM DD YYYY, h:mm a"/>
                   </div>
                   <span className="count" padding="5px" style={{ color: "purple" }}>
                     <Counter end={200} duration={1000} />
@@ -119,7 +120,7 @@ const Banner = () => {
                   ) : (
                     <Button lg variant="mint" onClick={() => walletModalHandle()}
                     >
-                      Connect Wallet</Button>
+                      Connect Wallet First</Button>
                   )}
                   <Button className="NFTPricebutton" lg variant="outline" data-toggle="modal" data-target="#exampleModalCenter"
                     onClick={() => priceModalHandle()}>

@@ -1,9 +1,11 @@
 import styled from "styled-components";
 
 const HowToMintWrapper = styled.section` 
-    padding-bottom: 100px;
+    padding-bottom: 20px;
     margin-top: 0; 
-
+  .click:hover {
+    background: palegreen;
+  }
   .how_to_mint_container {
     position: relative;
 

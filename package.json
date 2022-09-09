@@ -25,6 +25,8 @@
     "react-animations": "^1.0.0",
     "react-app-rewired": "^2.2.1",
     "react-component-countdown-timer": "^0.1.8",
+    "react-cookie": "^4.1.1",
+    "react-countdown-circle-timer": "^3.0.9",
     "react-countup": "^6.2.0",
     "react-dom": "^18.1.0",
     "react-helmet": "^6.1.0",
