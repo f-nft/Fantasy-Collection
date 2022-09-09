@@ -29,7 +29,7 @@ const FAQ = () => {
             <div className="f-nft_title_text">
               <span>Don't get your answer?</span>
               <span>
-                Fell free to leave a message,<a href="https://discord.gg/W54qgKMwcD">Ask Here!</a>
+                Fell free to leave a message,<a href="https://discord.gg/58KS9smeCV">Ask Here!</a>
               </span>
             </div>
           </div>
