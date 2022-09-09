@@ -1,6 +1,8 @@
 import SectionTitle from "../../../../common/sectionTitle";
 import data from "../../../../assets/data/howToMint";
-
+import polygonlogo from '../logo/logo.svg'
+import logoetherscan from '../logo/logoetherscan.svg'
+import logobscscan from '../logo/logobscscan.svg'
 import HowToMintWrapper from "./HowToMint.style";
 
 const HowToMint = () => {
@@ -21,17 +23,23 @@ const HowToMint = () => {
               </li>
             ))}
           </ul>
+           <SectionTitle
+          classNameName="md-pb-20"
+          title="SMART CONTRACTS"
+          subtitle="KEEP TRACK OF YOUR TRANSACTIONS"
+        />
           <div className="contract" align="center">
-            <h4><p><button style={{color:"orange", border: "1px solid red", borderRadius: "5px", padding: "2px"}} onClick={() => {
+            <button className ="logoButton" onClick={() => {
               window.open("https://bscscan.com/token/0xeB63891bdEE6894E5eA3c6BCa8D197CC81d76Bf0", "_blank");
-            }}> BSC Smart Contract 0xeB63891bdEE6894E5eA3c6BCa8D197CC81d76Bf0 </button></p>
-              <p><button style={{color:"blue", border: "1px solid red", borderRadius: "5px", padding: "2px"}} onClick={() => {
+            }}> <img src={logobscscan} alt="Polygon Logo"/>
+            </button>
+            <button className ="logoButton" onClick={() => {
               window.open("https://etherscan.io/address/0xc1f32ee1634c4a3d217920122216aedbd1014f08", "_blank");
-              }}>ETHEREUM Smart Contract 0xeB63891bdEE6894E5eA3c6BCa8D197CC81d76Bf0 </button></p>
-              <p><button style={{color:"purple", border: "1px solid red", borderRadius: "5px", padding: "2px"}} onClick={() => {
+              }}><img src={logoetherscan} alt="Etherscan logo" /></button>
+              <button className ="logoButton" id="pbtn" onClick={() => {
               window.open("https://polygonscan.com/token/0x014e897defaf2adb41c117d853aafb8729b78b44", "_blank");
-            }}>POLYGON Smart Contract 0xeB63891bdEE6894E5eA3c6BCa8D197CC81d76Bf0 </button></p>
-          </h4>
+            }}><img src={polygonlogo} alt="Polygon Logo"/></button>
+ 
         </div>
         </div>
       </div>

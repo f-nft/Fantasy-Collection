@@ -16,6 +16,31 @@ const HowToMintWrapper = styled.section`
       height: 547px;
       z-index: 0;
     }
+    .contract{
+      margin-top: 50px;
+    }
+    .logoButton {
+      border-radius: 20px;
+      background-color: #fff;
+      margin-inline: 10px;
+      width: 200px;
+      height: 50px;
+    }
+    #pbtn{
+      width: 200px;
+      height: 50px;
+    }
+    //on hover make button bigger
+    .logoButton:hover {
+      transform: scale(1.1);
+      transition: 0.3s;
+    }
+    //on leave make button smaller
+    .logoButton:active {
+      transform: scale(0.9);
+      transition: 0.3s;
+    }
+
 
     .how_to_mint_content {
       position: relative;
