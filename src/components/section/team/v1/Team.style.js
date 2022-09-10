@@ -2,7 +2,7 @@ import styled from "styled-components";
 import teamBg from "../../../../assets/images/bg/v1_team_bg.png";
 
 const TeamStyleWrapper = styled.section`
-  background: rgba(25, 35, 40, 0.5);
+  background: rgba(25, 35, 40, 0.05);
   backdrop-filter: blur(5px);
   position: relative;
   z-index: 1;

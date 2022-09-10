@@ -13,7 +13,7 @@ const AboutStyleWrapper = styled.section`
 
   /* right */
   .v1_about_us_right_text {
-    margin-top: 46px;
+    margin-top: 16px;
 
     p {
       font-family: "Inter";
@@ -96,7 +96,7 @@ const AboutStyleWrapper = styled.section`
       backdrop-filter: blur(20px);
       height: 279px;
       width: 230px;
-      padding: 20px;
+      padding: 10px;
       position: absolute;
       top: 150px;
       right: 20px;
@@ -150,25 +150,25 @@ const AboutStyleWrapper = styled.section`
     margin-top: 120px;
   }
     .about_us_text_card {
-      background: rgba(255, 255, 255, 0.05);
-      width: 100%;
-      min-height: 220px;
-      padding: 35px;
+      background: rgba(255, 255, 255, 0.0001);
+      width: 90%;
+      min-height: 320px;
+      padding: 20px;
 
       h3 {
         font-family: "Bakbak One";
         font-style: normal;
-        font-weight: 400;
-        font-size: 24px;
-        line-height: 40px;
+        font-weight: 300;
+        font-size: 28px;
+        line-height: 50px;
         color: #ffffff;
 
         img {
-          padding-right: 10px;
+          padding-right: 20px;
         }
 
         span {
-          margin-right: 13px;
+          margin-right: 15px;
         }
       }
 
@@ -180,14 +180,14 @@ const AboutStyleWrapper = styled.section`
         line-height: 28px;
         max-width: 289px;
         color: rgba(255, 255, 255, 0.8);
-        padding-top: 18px;
+        padding-top: 5px;
       }
     }
   
 
   @media only screen and (max-width: 1199px) {
     .v1_about_us_right_text {
-      margin-top: 30px;
+      margin-top: 20px;
     }
   }
 
