@@ -147,10 +147,10 @@ const AboutStyleWrapper = styled.section`
   /* list */
 
   .about_us_text_card_sect {
-    margin-top: 120px;
+    margin-top: 79px;
   }
     .about_us_text_card {
-      background: rgba(255, 255, 255, 0.0001);
+      background: rgba(255, 255, 255, 0.041);
       width: 90%;
       min-height: 320px;
       padding: 20px;
@@ -164,11 +164,11 @@ const AboutStyleWrapper = styled.section`
         color: #ffffff;
 
         img {
-          padding-right: 20px;
+          padding-right: 10px;
         }
 
         span {
-          margin-right: 15px;
+          margin-right: -5px;
         }
       }
 
@@ -178,7 +178,7 @@ const AboutStyleWrapper = styled.section`
         font-weight: 500;
         font-size: 16px;
         line-height: 28px;
-        max-width: 289px;
+        max-width: 390px;
         color: rgba(255, 255, 255, 0.8);
         padding-top: 5px;
       }
