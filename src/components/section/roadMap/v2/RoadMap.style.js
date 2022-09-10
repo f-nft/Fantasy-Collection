@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 const RoadMapStyleWrapper = styled.section`
-  padding-top: 132px;
-  padding-bottom: 146px;
+  padding-top: 79px;
+  padding-bottom: 79px;
   position: relative;
   overflow: hidden;
   z-index: 1;
@@ -21,7 +21,7 @@ const RoadMapStyleWrapper = styled.section`
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 52px;
+    margin-top: 39px;
 
     /* devider */
     .v2_roadmap_divider {
@@ -34,8 +34,8 @@ const RoadMapStyleWrapper = styled.section`
       width: 95%;
 
       &.v2_roadmap_card_item_even {
-        padding: 30px 0px 0px 30px;
-        margin-top: 80px;
+        padding: 30px 5px 10px 30px;
+        margin-top: 39px;
         margin-left: auto;
 
         /* corner square shape */
