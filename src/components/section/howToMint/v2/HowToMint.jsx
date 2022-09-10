@@ -39,7 +39,6 @@ const HowToMint = () => {
               <button className ="logoButton" id="pbtn" onClick={() => {
               window.open("https://polygonscan.com/token/0x014e897defaf2adb41c117d853aafb8729b78b44", "_blank");
             }}><img src={polygonlogo} alt="PolygonLogo"/></button>
- 
         </div>
         </div>
       </div>

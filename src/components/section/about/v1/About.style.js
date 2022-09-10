@@ -154,6 +154,7 @@ const AboutStyleWrapper = styled.section`
       width: 90%;
       min-height: 320px;
       padding: 20px;
+      height: 100%;
 
       h3 {
         font-family: "Bakbak One";
