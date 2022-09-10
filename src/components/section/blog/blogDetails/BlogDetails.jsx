@@ -31,11 +31,11 @@ const BlogDetails = () => {
               <div className="blog_post_meta">
                 <a href="# " className="post_author">
                   <img src={avatarIcon} alt="blog post avatar" />
-                  f0nft
+                  f-nft
                 </a>
                 <span>
                   {" "}
-                  <FaCalendarAlt /> 18 JULY, 2022
+                  <FaCalendarAlt /> 18 AUG, 2022
                 </span>
               </div>
               <h1 className="post_title">
@@ -79,7 +79,7 @@ const BlogDetails = () => {
                   Let’s take a closer look at the Heroes Chained IGO information
                   and GamFi holders’ opportunity
                   <br /> to buy $GF tokens before market listing through the IGO
-                  on the Launchpad on January 17.
+                  on the Launchpad on July 17.
                 </p>
                 <ul>
                   <li>
@@ -101,20 +101,20 @@ const BlogDetails = () => {
                     <span>Allocation:</span> $400K (including 5% success fee)
                   </li>
                   <li>
-                    <span>IGO Price:</span> $0.35
+                    <span>IGO Price:</span> $10.00
                   </li>
                   <li>
                     <span>Vesting:</span>20% at TGE, then 13,33% every month for
                     6 months
                   </li>
                 </ul>
-                <h4>About MintO</h4>
+                <h4>About Mint</h4>
                 <p>
                   Randomised words which don't look even slightly believable. If
                   you are going to use a passage
                   <br /> , you need to be sure there isn't
                   anything embarrassing.
-                  <br /> making it over 2,000 years old.{" "}
+                  <br /> making it over 18 years old.{" "}
                 </p>
               </div>
 
