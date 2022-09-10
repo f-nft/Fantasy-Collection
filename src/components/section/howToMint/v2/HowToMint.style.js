@@ -155,6 +155,10 @@ const HowToMintWrapper = styled.section`
   }
 
   @media only screen and (max-width: 480px) {
+    .logoButton {
+      margin-top: 20px;
+    }
+
     .how_to_mint_container {
       .how_to_mint_content {
         ul {

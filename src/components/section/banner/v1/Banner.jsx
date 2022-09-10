@@ -9,8 +9,8 @@ import { useEffect, useState } from "react";
 import Countdown from "../../countdown/countDown";
 // import CountDownTime from "../../countdown/CountDownTime";
 
-const Banner = () => {
-  const { mintModalHandle, priceModalHandle, walletModalHandle, isWalletConnect, stateAddress, balance, stateCrypto } = useModal();
+const Banner = (props) => {
+  const { mintModalHandle, priceModalHandle, isWalletConnect, stateAddress, balance, stateCrypto } = useModal();
   const [nftPriceMatic, setNftPriceMatic] = useState(null);
   const [nftPriceBnb, setNftPriceBnb] = useState(null);
   const [nftPriceEth, setNftPriceEth] = useState(null);
@@ -118,9 +118,9 @@ const Banner = () => {
                     <Button lg variant="mint" onClick={() => mintModalHandle()}>
                       Mint NFT</Button>
                   ) : (
-                    <Button lg variant="mint" onClick={() => walletModalHandle()}
+                    <Button lg variant="mint" onClick={props.data}
                     >
-                      Connect Wallet First</Button>
+                      Mint NFT</Button>
                   )}
                   <Button className="NFTPricebutton" lg variant="outline" data-toggle="modal" data-target="#exampleModalCenter"
                     onClick={() => priceModalHandle()}>

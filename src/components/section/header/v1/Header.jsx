@@ -5,6 +5,7 @@ import { MdNotes } from "react-icons/md";
 import Button from "../../../../common/button";
 import NavWrapper from "./Header.style";
 import MobileMenu from "../mobileMenu/MobileMenu";
+import Banner from "../../banner/v1/Banner";
 import logo from "../../../../assets/images/logo.png";
 import Web3 from 'web3';
 import { NFTCONTRACT } from '../../../../common/config/config';
@@ -17,6 +18,7 @@ import { BSCTESCONTRACT } from "../../../../common/config/bscconfig";
 import Web3Modal from "web3modal";
 import WalletConnectProvider from "@walletconnect/web3-provider";
 import Authereum from "authereum";
+
 
 const providerOptions = {
   binancechainwallet: {
@@ -63,7 +65,8 @@ const Header = () => {
     setStateCrypto,
     setStateAddress,
     setStateChainId,
-    walletModalHandle
+    walletModalHandle,
+    mintModalHandle
   } = useModal();
   const [isMobileMenu, setMobileMenu] = useState(false);
   const handleMobileMenu = () => {
@@ -267,11 +270,13 @@ const Header = () => {
             setStateChainId(chainId);
           }
           else
-            alert("Please connect to the blockchain");
+          alert("Please connect to the blockchain");
+          mintModalHandle()
         } catch (error) {
           alert(error);
         } 
       } 
+
       else {
         alert("Please connect to the blockchain");
         web3Modal.clearCachedProvider();
@@ -363,6 +368,7 @@ const Header = () => {
           {isMobileMenu && <MobileMenu mobileMenuhandle={handleMobileMenu} data={ConnectWallet} />}
         </div>
       </NavWrapper>
+          {<Banner data={ConnectWallet}/>}
     </>
   );
 };

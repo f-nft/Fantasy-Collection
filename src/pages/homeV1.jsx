@@ -2,7 +2,6 @@ import { useModal } from "../utils/ModalContext";
 import GlobalStyles from "../assets/styles/GlobalStyles";
 import Header from "../components/section/header/v1/Header";
 import Layout from "../common/layout";
-import Banner from "../components/section/banner/v1";
 import Counter from "../components/section/counter";
 import CharacterSlider from "../components/section/characterSlider/v1";
 import HowToMint from "../components/section/howToMint/v2";
@@ -26,7 +25,6 @@ const HomeV1 = () => {
       {walletModalvisibility && <WalletModal />}
       {priceModalVisibiity&&<PriceModal />}
       <Header />
-      <Banner />
       <Counter />
       <HowToMint />
       <CharacterSlider />

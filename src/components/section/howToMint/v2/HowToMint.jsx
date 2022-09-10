@@ -31,14 +31,14 @@ const HowToMint = () => {
           <div className="contract" align="center">
             <button className ="logoButton" onClick={() => {
               window.open("https://bscscan.com/token/0xeB63891bdEE6894E5eA3c6BCa8D197CC81d76Bf0", "_blank");
-            }}> <img src={logobscscan} alt="PolygonLogo"/>
+            }}> <img src={logobscscan} alt="Polygon Logo"/>
             </button>
             <button className ="logoButton" onClick={() => {
               window.open("https://etherscan.io/address/0xc1f32ee1634c4a3d217920122216aedbd1014f08", "_blank");
-              }}><img src={logoetherscan} alt="Etherscanlogo" /></button>
+              }}><img src={logoetherscan} alt="Etherscan logo" /></button>
               <button className ="logoButton" id="pbtn" onClick={() => {
               window.open("https://polygonscan.com/token/0x014e897defaf2adb41c117d853aafb8729b78b44", "_blank");
-            }}><img src={polygonlogo} alt="PolygonLogo"/></button>
+            }}><img src={polygonlogo} alt="Polygon Logo"/></button>
  
         </div>
         </div>
