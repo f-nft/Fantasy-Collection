@@ -1,6 +1,6 @@
 const webpack = require("webpack")
 
-module.exports = function override(config, env) {
+module.exports = function override(config, env, loaders) {
     //do stuff with the webpack config...
     config.resolve.fallback = {
         ...config.resolve.fallback,
@@ -22,6 +22,9 @@ module.exports = function override(config, env) {
             process: "process/browser",
             Buffer: ["buffer", "Buffer"],
         }),
+    ]
+    loaders: [
+        { test: /\.js$/, loader: 'babel', query: {compact: false} }
     ]
     return config
 }

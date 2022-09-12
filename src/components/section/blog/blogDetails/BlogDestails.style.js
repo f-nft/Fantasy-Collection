@@ -3,7 +3,7 @@ import quoteBg from "../../../../assets/images/blog/quote.png";
 const BlogDetailsStyleWrapper = styled.div`
   .blog_post_details_wrapper {
     padding-top: 60px;
-    padding-bottom: 140px;
+    padding-bottom: 50px;
   }
   color: rgba(255, 255, 255, 0.8);
   p {
