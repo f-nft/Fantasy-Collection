@@ -18,6 +18,7 @@ import { BSCTESCONTRACT } from "../../../../common/config/bscconfig";
 import Web3Modal from "web3modal";
 import WalletConnectProvider from "@walletconnect/web3-provider";
 import Authereum from "authereum";
+import { NavLink} from "react-router-dom";
 
 
 const providerOptions = {
@@ -295,47 +296,48 @@ const Header = () => {
           <div className="f-nft_menu_sect">
             <div className="f-nft_menu_left_sect">
               <div className="logo">
-                <a href="/">
+                <NavLink to="/">
                   <img src={logo} alt="f-nft nft logo" style={{ maxWidth: '39%' }} />
-                </a>
+                </NavLink>
               </div>
             </div>
             <div className="f-nft_menu_right_sect f-nft_v1_menu_right_sect">
               <div className="f-nft_menu_list">
                 <ul>
                   <li>
-                    <a href="#home">Home</a>
+                    <NavLink to="/">Home</NavLink>
                   </li>
                   <li>
-                    <a href="#about">About</a>
+                    {/* First navigate to home page and then about div */}
+                    <a href ="/#about">About</a>
                   </li>
                   <li>
-                    <a href="#roadmap">Roadmap</a>
+                    <a href="/#roadmap">Roadmap</a>
                   </li>
                   <li>
-                    <a href="#team">Team</a>
+                    <a href="/#team">Team</a>
                   </li>
                   <li>
-                    <a href="#faq">FAQ</a>
+                    <a href="/#faq">FAQ</a>
                   </li>
                   <li className="submenu">
-                    <a href="# ">Blog +</a>
+                    <NavLink to="# ">Blog +</NavLink>
                     <div className="sub_menu_sect">
                       <ul className="sub_menu_list">
                         {/* <li>
-                        <a href="/">Home One</a>
+                        <NavLink to="/">Home One</NavLink>
                       </li>
                       <li>
-                        <a href="/home-two">Home Two</a>
+                        <NavLink to="/home-two">Home Two</NavLink>
                       </li>
                       <li>
-                        <a href="/home-three">Home Three</a>
+                        <NavLink to="/home-three">Home Three</NavLink>
                       </li> */}
                         <li>
-                          <a href="/blogs">Latest Blog</a>
+                          <NavLink to="/blogs">Latest Blog</NavLink>
                         </li>
                         <li>
-                          <a href="/post">Blog Details</a>
+                          <NavLink to="/post">Blog Details</NavLink>
                         </li>
                       </ul>
                     </div>

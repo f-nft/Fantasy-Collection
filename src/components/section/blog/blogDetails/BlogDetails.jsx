@@ -20,7 +20,7 @@ const BlogDetails = () => {
   const { shareModalHandle } = useModal();
   return (
     <BlogDetailsStyleWrapper>
-      <div className="blog_post_details_wrapper">
+      <div className="blog_post_details_wrapper" id="blogs">
         <div className="container">
           <div className="row">
             {/* post details col  */}
