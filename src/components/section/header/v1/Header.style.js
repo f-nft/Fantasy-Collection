@@ -79,6 +79,7 @@ const NavWrapper = styled.nav`
           text-transform: uppercase;
           color: #ffffff;
         }
+       
 
         &:hover {
           a {
@@ -179,6 +180,7 @@ const NavWrapper = styled.nav`
       }
     }
   }
+  
 
   @media (max-width: 1024px) {
     .f-nft_menu_list {
