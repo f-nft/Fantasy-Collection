@@ -8,4 +8,4 @@ export const bsctest = "";
 export const bscscanapi = "https://api.bscscan.com/api";
 export const moralisapi = "https://deep-index.moralis.io/api/v2";
 // export const Web3Alc = createAlchemyWeb3("https://polygon-mainnet.g.alchemy.com/v2/qqfXh-S-3dEdCR-orpw_NY06qvD0EFKk");
-export const nftpng = "https://bafybeibioaytuzmcfyaetgzk5qwveh5lolm5bxbwbnsrura4xy2ikru6x4.ipfs.nftstorage.link/Fantasy%20%23";
+export const nftpng = "https://bafybeie2g4gdq5y2yafuemjteuhpzlzan3g7tu65625zt2j3nyndk7hao4.ipfs.nftstorage.link/Fantasy%20%23";
