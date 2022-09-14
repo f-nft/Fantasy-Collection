@@ -87,6 +87,12 @@ const BannerV1Wrapper = styled.section`
     margin-top: 30px;
     border-radius: 20px;
     z-index: 999;
+    .f-nft_v1_baner_right_img{
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      padding-top: 60px;
+    }
 
     .mint_live_circle_sect {
       display: flex;
@@ -99,7 +105,7 @@ const BannerV1Wrapper = styled.section`
       position: absolute;
       top: -65px;
       left: -65px;
-      z-index: 1;
+      z-index: 1000;
 
       .mint_live_circle {
         position: relative;
@@ -126,7 +132,7 @@ const BannerV1Wrapper = styled.section`
       justify-content: center;
       border-radius: 15px;
       border: 5px;
-      z-index: 999;
+      z-index: 1;
 
       .f-nft_v1_baner_right_img_bg {
         position: absolute;
