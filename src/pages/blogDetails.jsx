@@ -9,8 +9,16 @@ import Footer from "../components/section/footer/v3";
 import ShareModal from "../common/modal/shareModal/ShareModal";
 import WalletModal from "../common/modal/walletModal/WalletModal";
 import PriceModal from "../common/modal/priceModal/PriceModal";
+import { useEffect } from "react";
+
 const Blogs = () => {
-  const { shareModalVisibility, walletModalvisibility,priceModalVisibiity } = useModal();
+  const { shareModalVisibility, walletModalvisibility,priceModalVisibiity,isBanner,setisBanner } = useModal();
+  
+  useEffect(() => {
+    if(isBanner)
+    setisBanner(false)
+    //eslint-disable-next-line
+  }, []);
   return (
     <>
       <Layout>
@@ -19,7 +27,7 @@ const Blogs = () => {
         {walletModalvisibility && <WalletModal />}
         {priceModalVisibiity&&<PriceModal />}
         <Header />
-        <PageHeader />
+        <PageHeader title="Blog Details"/>
         <BlogDetails />
         <CTA />
         <Footer />

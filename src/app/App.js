@@ -4,6 +4,7 @@ import HomeV1 from "../pages/homeV1";
 // import HomeV3 from "../pages/homeV3";
 import Blogs from "../pages/blogs";
 import BlogDetails from "../pages/blogDetails";
+import Gallery from "../pages/Gallery";
 import HowToMint from "../components/section/howToMint/v2";
 import About from "../components/section/about/v1";
 import RoadMap from "../components/section/roadMap/v1";
@@ -26,6 +27,7 @@ function App() {
       <Route path="/home-three" element={<HomeV3 />} /> */}
       <Route path="/blogs" element={<Blogs />} />
       <Route path="/post" element={<BlogDetails />} />
+      <Route path="/gallery" element={<Gallery />} />
     </Routes>
   );
 }

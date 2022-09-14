@@ -1,7 +1,7 @@
 import { FiSearch } from "react-icons/fi";
 import titleShape from "../../assets/images/icon/home-shape.png";
 import PageHeaderStyleWrapper from "./PageHeader.style";
-const PageHeader = () => {
+const PageHeader = ({title}) => {
   return (
     <PageHeaderStyleWrapper>
       <div className="container">
@@ -9,14 +9,14 @@ const PageHeader = () => {
           <div className="col-md-5">
             <div className="breadcrumb_area">
               <div className="breadcrumb_menu">
-                <a href="https://nft.f-nft.us">Home</a> <span>.</span> Latest blog
+                <a href="https://nft.f-nft.us">Home</a> <span>.</span>{title}
                 <img
                   className="heading_shape"
                   src={titleShape}
                   alt="f-nft nft heading shape"
                 />
               </div>
-              <h2 className="breadcrumb_title text-uppercase">Latest blog</h2>
+              <h2 className="breadcrumb_title text-uppercase">{title}</h2>
             </div>
           </div>
 

@@ -14,10 +14,15 @@ import MintNowModal from "../common/modal/mintNowModal";
 import WalletModal from "../common/modal/walletModal/WalletModal";
 import Partner from "../components/section/partner";
 import PriceModal from "../common/modal/priceModal/PriceModal";
-
+import { useEffect } from 'react';
 const HomeV1 = () => {
   
-  const { visibility, walletModalvisibility,priceModalVisibiity } = useModal();
+  const { visibility, walletModalvisibility,priceModalVisibiity,isBanner,setisBanner } = useModal();
+  useEffect(() => {
+  if(!isBanner)
+  setisBanner(true)
+  //eslint-disable-next-line
+  }, []);
   return (
     <Layout>
       <GlobalStyles /> 

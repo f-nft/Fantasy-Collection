@@ -157,7 +157,6 @@ const Banner = (props) => {
                     <img src={characterThumb} alt="avata" />
                   </div>
                 </div>
-
               </div>
             </div>
           </div>

@@ -18,7 +18,8 @@ import { BSCTESCONTRACT } from "../../../../common/config/bscconfig";
 import Web3Modal from "web3modal";
 import WalletConnectProvider from "@walletconnect/web3-provider";
 import Authereum from "authereum";
-import { NavLink} from "react-router-dom";
+import { Link, NavLink} from "react-router-dom";
+import axios from "axios";
 
 
 const providerOptions = {
@@ -67,13 +68,15 @@ const Header = () => {
     setStateAddress,
     setStateChainId,
     walletModalHandle,
-    mintModalHandle
+    mintModalHandle,
+    isBanner
   } = useModal();
   const [isMobileMenu, setMobileMenu] = useState(false);
   const handleMobileMenu = () => {
     setMobileMenu(!isMobileMenu);
   };
   useEffect(() => {
+
     const header = document.getElementById("navbar");
     const handleScroll = window.addEventListener("scroll", () => {
       if (window.pageYOffset > 50) {
@@ -99,7 +102,6 @@ const Header = () => {
           var accounts = await web3.eth.getAccounts();
           var account = accounts[0];
           setStateAddress(account);
-          console.log(account);
           setBalance(web3.utils.fromWei(await web3.eth.getBalance(account)));
 
           // Get current network
@@ -108,7 +110,6 @@ const Header = () => {
           if (chainId == 0x89) {
             var crypto = "Polygon";
             setStateCrypto(crypto);
-            console.log(crypto);
 
             var coin = "Matic";
             setStateCoin(coin);
@@ -277,7 +278,7 @@ const Header = () => {
           alert(error);
         } 
       } 
-
+      
       else {
         alert("Please connect to the blockchain");
         web3Modal.clearCachedProvider();
@@ -286,6 +287,17 @@ const Header = () => {
     catch (e) {
       alert(e)
     } 
+    const accountbalance=await contract.methods.balanceOf(account).call();
+    for(let i=0;i<accountbalance;i++){
+      const tokenid=await contract.methods.tokenOfOwnerByIndex(account,i).call();
+      let tokenuri=await contract.methods.tokenURI(tokenid).call();
+      let tokenuridata=await axios.get(tokenuri);
+      let tokenuridata1=tokenuridata.data;
+      let tokenuridata2=tokenuridata1.image;
+      console.log(tokenuridata2);
+    }
+
+    
     return mintButtonHandler();
   } 
   return (
@@ -319,6 +331,9 @@ const Header = () => {
                   </li>
                   <li>
                     <a href="/#faq">FAQ</a>
+                  </li>
+                  <li>
+                    <Link to="/gallery">Gallery</Link>
                   </li>
                   <li className="submenu">
                     <NavLink to="# ">Blog +</NavLink>
@@ -370,7 +385,7 @@ const Header = () => {
           {isMobileMenu && <MobileMenu mobileMenuhandle={handleMobileMenu} data={ConnectWallet} />}
         </div>
       </NavWrapper>
-          {<Banner data={ConnectWallet}/>}
+          {isBanner&& <Banner data={ConnectWallet}/>}
     </>
   );
 };

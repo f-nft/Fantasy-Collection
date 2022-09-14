@@ -12,6 +12,7 @@
     "@walletconnect/web3-provider": "^1.7.8",
     "@web3-react/walletlink-connector": "^6.2.14",
     "authereum": "^0.1.14",
+    "axios": "^0.27.2",
     "buffer": "^6.0.3",
     "i": "^0.3.7",
     "moment": "^2.29.4",

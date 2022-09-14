@@ -1,0 +1,25 @@
+.nftcard{
+    /* border with 2px violet shade */
+    border: 2px solid #7a2d9c;
+    /* add shadow to card */
+    box-shadow: 0 0 10px #7a2d9c;
+    /* add border radius to card */
+    border-radius: 10px;
+    justify-content: center;
+
+
+}
+.nftcard {
+  animation-name: blinking;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  text-align: center;
+}
+@keyframes blinking {
+  50% {
+    border-color: #ffcd5f;
+  }
+}
+.CardButton{
+    margin-block:1em;
+}
