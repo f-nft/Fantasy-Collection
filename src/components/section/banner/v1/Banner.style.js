@@ -80,17 +80,20 @@ const BannerV1Wrapper = styled.section`
   }
 
   .f-nft_v1_baner_right {
-    max-width: 500px;
-    width: 100%;
+    // max-width: 500px;
+    width: 90%;
+    height: 100%;
     margin-left: auto;
-    margin-top: 50px;
+    margin-top: 30px;
+    border-radius: 20px;
+    z-index: 999;
 
     .mint_live_circle_sect {
       display: flex;
       align-items: center;
       justify-content: center;
       height: 139px;
-      width: 139px;
+      width: 159px;
       border-radius: 80%;
       border: none;
       position: absolute;
@@ -109,6 +112,7 @@ const BannerV1Wrapper = styled.section`
         .mint_live_text {
           animation: ${rotate} 20s linear infinite;
           position: absolute;
+          z-index: 999;
         }
       }
     }
@@ -120,6 +124,9 @@ const BannerV1Wrapper = styled.section`
       display: flex;
       align-items: center;
       justify-content: center;
+      border-radius: 15px;
+      border: 5px;
+      z-index: 999;
 
       .f-nft_v1_baner_right_img_bg {
         position: absolute;
@@ -136,7 +143,7 @@ const BannerV1Wrapper = styled.section`
 
       .f-nft_v1_baner_right_img {
         position: relative;
-        z-index: 1;
+        z-index: 999;
       }
     }
   }
