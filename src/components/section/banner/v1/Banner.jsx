@@ -2,7 +2,7 @@ import { useModal } from "../../../../utils/ModalContext";
 import Counter from "../../../../common/counter";
 import Button from "../../../../common/button";
 import BannerV1Wrapper from "./Banner.style";
-import characterThumb from "../../../../assets/images/nft/Character1.png";
+import characterThumb from "../../../../assets/images/nft/Fantasy0000-0068.gif";
 import mintLiveText from "../../../../assets/images/nft/mint_live_text.png";
 import homeImageBG from "../../../../assets/images/nft/home_img_bg.png";
 import { useEffect, useState } from "react";
@@ -151,7 +151,7 @@ const Banner = (props) => {
                     </div>
                   </div>
                   <div className="f-nft_v1_baner_right_img_bg">
-                    <img src={homeImageBG} alt="" />
+                    <img src={homeImageBG} alt="fantasy" />
                   </div>
                   <div className="f-nft_v1_baner_right_img">
                     <img src={characterThumb} alt="avata" />
