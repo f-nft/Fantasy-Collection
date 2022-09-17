@@ -213,7 +213,9 @@ const BannerV1Wrapper = styled.section`
       padding-right: 0px;
 
       .f-nft_v1_baner_right_img_sect {
-        height: 480px;
+        height: 100%;
+        margin-bottom: 30px;
+        padding-bottom: 30px;
       }
     }
   }
@@ -221,6 +223,20 @@ const BannerV1Wrapper = styled.section`
      Button {
       width: 11em
     }
+      img{
+        width: 100%;
+        height: 70%;
+    
+      }
+      .mint_live_circle_sect{
+        width: 35% !important;
+      }
+
+      .mint_live_circle_sect{
+        margin-left: 40%;
+      }
+
+     
   }
   @media only screen and (max-width: 320px) {
      Button {

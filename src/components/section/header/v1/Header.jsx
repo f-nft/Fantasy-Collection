@@ -8,7 +8,7 @@ import MobileMenu from "../mobileMenu/MobileMenu";
 import Banner from "../../banner/v1/Banner";
 import logo from "../../../../assets/images/logo.png";
 import Web3 from 'web3';
-import { NFTCONTRACT } from '../../../../common/config/config';
+import { NFTCONTRACT,STAKINGCONTRACT } from '../../../../common/config/config';
 import { BSCNFTCONTRACT } from "../../../../common/config/bscconfig";
 import { ETHNFTCONTRACT } from "../../../../common/config/ethconfig";
 import ABI from '../../../../common/config/ABI.json';
@@ -19,7 +19,7 @@ import Web3Modal from "web3modal";
 import WalletConnectProvider from "@walletconnect/web3-provider";
 import Authereum from "authereum";
 import { Link, NavLink} from "react-router-dom";
-import axios from "axios";
+import VAULTABI from "../../../../common/config/VAULTABI.json";
 
 
 const providerOptions = {
@@ -69,7 +69,8 @@ const Header = () => {
     setStateChainId,
     walletModalHandle,
     mintModalHandle,
-    isBanner
+    isBanner,
+    setStakeContract,
   } = useModal();
   const [isMobileMenu, setMobileMenu] = useState(false);
   const handleMobileMenu = () => {
@@ -115,8 +116,8 @@ const Header = () => {
             setStateCoin(coin);
 
             // Get contract instance
-            contract = new web3.eth.Contract(ABI, NFTCONTRACT);
-            setStateContract(contract);
+            setStateContract(new web3.eth.Contract(ABI, NFTCONTRACT));
+            setStakeContract(new web3.eth.Contract(VAULTABI, STAKINGCONTRACT));
 
             // Get rpc instance
             const Web3Alc = createAlchemyWeb3(PolygonRpc);
@@ -229,6 +230,7 @@ const Header = () => {
             // Get contract instance
             contract = new web3.eth.Contract(ABI, rinkebyContract);
             setStateContract(contract);
+            setStakeContract(new web3.eth.Contract(VAULTABI, STAKINGCONTRACT));
 
             // Get rpc instance
             const Web3Alc = createAlchemyWeb3(rinkbyRpc);
@@ -286,18 +288,7 @@ const Header = () => {
     }
     catch (e) {
       alert(e)
-    } 
-    const accountbalance=await contract.methods.balanceOf(account).call();
-    for(let i=0;i<accountbalance;i++){
-      const tokenid=await contract.methods.tokenOfOwnerByIndex(account,i).call();
-      let tokenuri=await contract.methods.tokenURI(tokenid).call();
-      let tokenuridata=await axios.get(tokenuri);
-      let tokenuridata1=tokenuridata.data;
-      let tokenuridata2=tokenuridata1.image;
-      console.log(tokenuridata2);
     }
-
-    
     return mintButtonHandler();
   } 
   return (
