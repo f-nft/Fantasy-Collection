@@ -6,8 +6,8 @@ const modalAnimation = keyframes`${fadeIn}`;
 const CharacterSliderWrapper = styled.section`
 &.modal_overlay {
   position: fixed;
-  height: 50%;
-  width: 50%;
+  height: 100%;
+  width: 100%;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);

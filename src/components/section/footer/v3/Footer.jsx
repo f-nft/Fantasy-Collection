@@ -17,9 +17,7 @@ const Footer = () => {
                   <img src={footerLogo} alt="f-nft nft footer logo" />
                 </a>
                 <p>
-                  f-nft is great solution for launch your NFT for minting. It
-                  uses a dictionary over 200 Latin words, combined with a
-                  handful.
+                  f-nft is great solution for launch your NFT for minting. Our mission is to launch a mixed Nft project, as well as to offer a new and dependable system-based technology in the form of a 3d Nft fantasy fashion.
                 </p>
               </div>
             </div>
