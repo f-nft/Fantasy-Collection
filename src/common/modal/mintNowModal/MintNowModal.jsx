@@ -228,11 +228,6 @@ const MintNowModal = () => {
                   Mint Now
                 </Button>
               </div>
-              <div className="modal_mint_btn">
-                <Button lg variant="warning" onClick={(e) => alert("Discount upto 50%")}>
-                  Mint on Discount
-                </Button>
-              </div>
             </div>
             <div className="modal_bottom_shape_wrap">
               <span className="modal_bottom_shape shape_left">

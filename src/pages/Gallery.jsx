@@ -17,10 +17,19 @@ const Gallery = () => {
   //create a boolean variable to check if the data is loaded or not
     const [discount,setDiscount]=useState(false);
 
+const options = {
+  method: 'GET',
+  url: 'https://api.nftport.xyz/v0/nfts/0x014e897defaf2adb41c117d853aafb8729b78b44',
+  params: {chain: 'polygon', include: 'metadata'},
+  headers: {
+    'Content-Type': 'application/json',
+    Authorization: '0b4d39b3-8ce8-43b6-99f0-427226147a55'
+  }
+};
+
 
    const GETNFTS = async () => {
      const accountbalance=await stateContract.methods.balanceOf(stateAddress).call();
-     console.log("accountbalance",accountbalance);
      for(let i=0;i<accountbalance;i++){
       const tokenid=await stateContract.methods.tokenOfOwnerByIndex(stateAddress,i).call();
       let tokenuri=await stateContract.methods.tokenURI(tokenid).call();
@@ -37,7 +46,7 @@ const Gallery = () => {
         // }
       let tokenuridata2=tokenuridata1.image;
       setData(data=>[...data,tokenuridata2]);
-      console.log(tokenuridata.data.name);
+      // console.log(tokenuridata.data.name);
 
 
       //displaying attributes of each nft
@@ -46,6 +55,9 @@ const Gallery = () => {
                 let tokenuridata2=tokenuridata.data;
                 // console.log(tokenuridata2.attributes[i].value);
         }
+        
+
+
     }
     }
 
