@@ -1,17 +1,17 @@
 .nftcard{
     /* border with 2px violet shade */
-    border: 2px solid #7a2d9c;
+    border: 3px solid #7a2d9c;
     /* add shadow to card */
     box-shadow: 0 0 10px #7a2d9c;
     /* add border radius to card */
-    border-radius: 10px;
+    border-radius: 15px;
     justify-content: center;
-
-
+    padding: 10px;
 }
 .nftcard {
   animation-name: blinking;
-  animation-duration: 1s;
+  border-radius: 10px;
+  animation-duration: 6s;
   animation-iteration-count: infinite;
   text-align: center;
 }
@@ -20,11 +20,11 @@
 }
 @keyframes blinking {
   50% {
-    border-color: #ffcd5f;
+    border-color: #ff0000;
   }
 }
 .CardButton{
-    margin-block:1em;
+    margin-block:3em;
     background-color:#5865f2 !important;
     border: #5865f2 !important;
 }

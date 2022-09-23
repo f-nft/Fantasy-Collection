@@ -50,7 +50,6 @@ const Nft = () => {
       setData(data => [...data, tokenuridata2]);
       // console.log(tokenuridata.data.name);
 
-
       //displaying attributes of each nft
       for (let i = 0; i < tokenuridata.data.attributes.length; i++) {
         let tokenuridata2 = tokenuridata.data;
@@ -82,11 +81,9 @@ const Nft = () => {
           <div className="row">
             {data.map((item, index) => {
               return (
-                <div className="col-md-4" key={index}>
+                <div className="col-md-3" key={index}>
                   <HowToStake />
-
-                  <Stake />
-                  <div className="nftcard" style={{ width: "18rem" }}>
+                  <div className="nftcard" style={{ width: "20rem" }}>
                     <img src={item} alt="nft" className="img-fluid" />
                     <div className="card-body">
                       <p className="card-title">{nftdata[index].name}</p>

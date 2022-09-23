@@ -1,7 +1,5 @@
-class Stake {
-
-    render() {
-        return (
+export default function Stake () {
+    return (
         <div className='row px-4 pt-2'>
             <div className='header container' >
                 <div style={{ fontSize: '25px', borderRadius: '14px', color: '#ffffff', fontWeight: '300', fontFamily: 'Black Ops One' }}>Fantasy NFT Staking Pool Active Rewards</div>
@@ -69,8 +67,5 @@ class Stake {
                 </div>
             </div>
         </div>
-        );
-    };
+    );
 };
-
-export default Stake;
