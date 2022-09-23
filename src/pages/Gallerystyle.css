@@ -22,6 +22,57 @@
 .card-head{
   color:white;
 }
+table{
+  font-size: 18px;
+  color: white !important;
+  text-align: center;
+  border-right: 2px solid #7a2d9c;
+  border-left: 2px solid #7a2d9c;
+
+ 
+}
+.card-title{
+  /* add title styling */
+  font-size: 1.5em;
+  font-weight: bold;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+
+}
+.card{
+  justify-content: center;
+  align-items: center;
+  background-color: #892be2b9 !important;
+  color:aliceblue;
+  text-overflow: ellipsis;
+}
+.headingrow{
+  color: white !important;
+  text-align: center;
+  font-weight: bold;
+  font-family: 'Roboto', sans-serif;
+  width: 18em !important;
+  margin-bottom: 2em;
+  /* add shadow effect on border */
+  box-shadow: 0 0 20px #e2e0e2;
+
+}
+.rewards{
+  padding-top: 1em;
+  font-size: 1.5em;
+  font-weight: bold;
+  text-shadow: #1b1313 0px 0px 25px;
+  font-family: 'Roboto', sans-serif;
+}
+.exchange{
+  font-size: 1.25em ;
+  font-weight: bold;
+  text-shadow: #642828 0px 0px 25px;
+  font-family: 'Roboto', sans-serif;
+  padding-top: 1em;
+
+}
+
 @keyframes blinking {
   50% {
     border-color: #ff0000;
@@ -33,4 +84,37 @@
     border: #5865f2 !important;
     color: white;
     font-size: 1em !important;
+}
+
+/* arrow pointer */
+.arrow {
+  width: 0; 
+  height: 0; 
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-top: 30px solid #2d173f;
+  margin: 0 auto;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+/* add animation to rotate arrow pointer */
+.arrow:hover {
+  animation: arrow 1s infinite;
+  transform: rotateZ(90deg);
+}
+/* animation to rotate arrow pointer */
+.parent {
+	perspective: 500px;	
+	justify-content: center;
+	align-items: center;
+}
+
+.arrow {
+	transform: rotateY(45deg);
+	animation: rotateAnimation 1s linear infinite;
+}
+
+@keyframes rotateAnimation {
+	from {transform: rotateY(45deg);}
+	to {transform: rotateY(225deg);}
 }
