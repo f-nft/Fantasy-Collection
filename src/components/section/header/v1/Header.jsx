@@ -324,7 +324,7 @@ const Header = () => {
                     <a href="/#faq">FAQ</a>
                   </li>
                   <li>
-                    <Link to="/gallery">Gallery</Link>
+                    <Link to="/gallery">NFT</Link>
                   </li>
                   <li className="submenu">
                     <NavLink to="# ">Blog +</NavLink>

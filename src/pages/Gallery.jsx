@@ -8,6 +8,7 @@ import Footer from "../components/section/footer/v3";
 import { useEffect,useState } from "react";
 import axios from "axios";
 import './Gallerystyle.css'
+import HowToStake from "../components/section/howToMint/howtostake/HowToStake";
 const Gallery = () => {
   const {isBanner,setisBanner,stateAddress,stateContract} = useModal();
   const [isAddress,SetisAddress]=useState(false);
@@ -26,7 +27,6 @@ const options = {
     Authorization: '0b4d39b3-8ce8-43b6-99f0-427226147a55'
   }
 };
-
 
    const GETNFTS = async () => {
      const accountbalance=await stateContract.methods.balanceOf(stateAddress).call();
@@ -56,8 +56,6 @@ const options = {
                 // console.log(tokenuridata2.attributes[i].value);
         }
         
-
-
     }
     }
 
@@ -76,8 +74,9 @@ const options = {
       <Layout>
         <GlobalStyles />
         <Header />
-        <PageHeader title="Gallery" />
-        {isAddress?<h1>NFTS FOUND</h1>:<h1>WALLET NOT CONNECTED</h1>}
+        <PageHeader title="NFT" />
+        <HowToStake/>
+        {isAddress?<h1></h1>:<h1>WALLET NOT CONNECTED</h1>}
         {/* {discount?<h1>DISCOUNT NFT FOUND</h1>:<h1>NO DISCOUNT AVAILABLE</h1>} */}
         <div className="container">
         <div className="row">
