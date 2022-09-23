@@ -13,13 +13,13 @@ const Footer = () => {
           <div className="row">
             <div className="col-lg-4">
               <div className="footer_image">
-                <a href="# ">
-                  <img src={footerLogo} alt="f-nft nft footer logo" />
+                <a href="#home">
+                  <img src={footerLogo} alt="f-nft footer logo" maxWidth="70%" />
                 </a>
-                <p>
+              </div>
+              <p>
                   f-nft is great solution for launch your NFT for minting. Our mission is to launch a mixed Nft project, as well as to offer a new and dependable system-based technology in the form of a 3d Nft fantasy fashion.
                 </p>
-              </div>
             </div>
 
             {/* link widgets  */}

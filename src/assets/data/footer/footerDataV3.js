@@ -8,15 +8,15 @@ const data = [
         },
         {
           title: "About",
-          url: "#about",
+          url: "/#about",
         },
         {
           title: "Roadmap",
-          url: "#roadmap",
+          url: "/#roadmap",
         },
         {
           title: "FAQ",
-          url: "#faq",
+          url: "/#faq",
         },
         {
           title: "Articles",
@@ -29,7 +29,7 @@ const data = [
       items: [
         {
           title: "Whitepaper",
-          url: "#",
+          url: "https://docs.f-nft.us/f-nft-project/",
         },
         {
           title: "Terms Canditions",

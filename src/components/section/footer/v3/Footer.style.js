@@ -12,8 +12,8 @@ const FooterStyleWrapper = styled.footer`
   }
   /* footer top  */
   .top-footer-content {
-    padding-bottom: 90px;
-    padding-top: 150px;
+    padding-bottom: 30px;
+    padding-top: 30px;
     background: url(${footerBG});
     background-position: center;
     background-size: cover;
@@ -21,9 +21,11 @@ const FooterStyleWrapper = styled.footer`
     overflow: hidden;
 
     .footer_image {
-      padding-right: 55px;
+      padding-right: 25px;
+      width: 50%;
+      maxWidth: 300px;
       p {
-        margin-top: 45px;
+        margin-top: 15px;
         font-weight: 500;
         color: rgba(255, 255, 255, 0.8);
       }
