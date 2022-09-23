@@ -84,12 +84,11 @@ const options = {
         {data.map((item,index)=>{
             return(
                 <div className="col-md-4" key={index}>
-                    <div className="nftcard" style={{width: "18rem"}}>
+                    <div className="nftcard mb-3" style={{width: "18rem"}}>
                         <img src={item} alt="nft" className="img-fluid"/>
                         <div className="card-body">
                             <p className="card-title">{nftdata[index].name}</p>
                         </div>
-                        
                         <button className="CardButton btn btn-primary">Stake this NFT</button>
                     </div>
                 </div>
