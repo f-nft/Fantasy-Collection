@@ -83,6 +83,7 @@ const Nft = () => {
               return (
                 <div className="col-md-3" key={index}>
                   <HowToStake />
+                  <Stake />
                   <div className="nftcard" style={{ width: "20rem" }}>
                     <img src={item} alt="nft" className="img-fluid" />
                     <div className="card-body">
