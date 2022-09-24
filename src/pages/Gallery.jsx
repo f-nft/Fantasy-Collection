@@ -98,43 +98,6 @@ const options = {
         <div className='row px-4 mx-3 pt-2 mt-3'>
            <div className="toptable">
             <h1 className="heading">Fantasy NFT Staking Pool Active Rewards</h1>
-            {/* <table className='table px-3'>
-              <thead className='thead-light'>
-                  <tr className='headingrow'>
-                      <th scope='col'>Collection</th>
-                      <th scope='col'>Rewards Per Day</th>
-                      <th scope='col'>Exchangeable Items</th>
-                  </tr>
-              </thead>
-            <tbody style={{ fontSize: '18px' }}>
-                <tr>
-                    <td>Discovery</td>
-                    <td className='amount' data-test-id='rewards-summary-ads'>
-                        <span className='amount'>0.50</span>&nbsp;<span class='currency'>FOT</span>
-                    </td>
-                    <td className='exchange'>
-                        <span className='amount'>2</span>&nbsp;<span class='currency'>NFTs/M</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Angel & Devil</td>
-                    <td className='amount' data-test-id='rewards-summary-ac'>
-                        <span className='amount'>2.50</span>&nbsp;<span class='currency'>FOT</span>
-                    </td>
-                    <td className='exchange'><span class='amount'>10</span>&nbsp;<span class='currency'>NFTs/M</span>
-                    </td>
-                </tr>
-                <tr className='stakegoldeffect'>
-                    <td>Chaos</td>
-                    <td className='amount' data-test-id='rewards-summary-one-time'><span class='amount'>1</span>&nbsp;<span class='currency'>FOT™</span>
-                    </td>
-                    <td className='exchange'>
-                        <span className='amount'>25 NFTs/M or </span>
-                        <span className='currency'>100 FOT/M</span>
-                    </td>
-                </tr>
-            </tbody>
-            </table> */}
               <div className="row mt-5 mb-5">
                 {pool.map((item,index)=>{
                   return(
@@ -188,6 +151,7 @@ const options = {
         </div>
      
         {isAddress?<h1>NFTS FOUND</h1>:<h1>WALLET NOT CONNECTED</h1>}
+
         {/* {discount?<h1>DISCOUNT NFT FOUND</h1>:<h1>NO DISCOUNT AVAILABLE</h1>} */}
         
         <div className="container">
