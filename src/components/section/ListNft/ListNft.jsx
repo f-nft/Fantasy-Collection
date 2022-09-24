@@ -223,7 +223,7 @@ export default function ListNft() {
                                     <div className="card-caption col-12 p-0">
                                         <div className="card-body">
                                             <h6 className="mb-0">Fantasy Collection NFT #{nft.tokenId}</h6>
-                                            <h6 className="py-2">Status<p style={{ color: "#f524EE", textShadow: "1px 1px 2px #000000" }}>Currently Staked</p></h6>
+                                            <h6 className="py-2">Status<p style={{ color: "#B10089", textShadow: "1px 1px 2px #000000" }}>Currently Staked</p></h6>
                                             <div className="card-bottom d-flex justify-content-between">
                                                 <input key={i} type="hidden" id='stakeid' value={nft.tokenId} />
                                                 <Button style={{ marginLeft: '15px', backgroundColor: "purple", textShadow: "1px 1px 3px #ffffff", padding: '5px', fontSize: '12px', border: '5px', borderRadius: '8px', boxShadow: '1px 1px 5px #ffffff', marginBottom: '5px' }} onClick={unstakeit}>UNSTAKE</Button>
