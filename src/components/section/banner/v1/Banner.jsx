@@ -7,7 +7,6 @@ import mintLiveText from "../../../../assets/images/nft/mint_live_text.png";
 import homeImageBG from "../../../../assets/images/nft/home_img_bg.png";
 import { useEffect, useState } from "react";
 import Countdown from "../../countdown/countDown";
-// import CountDownTime from "../../countdown/CountDownTime";
 
 const Banner = (props) => {
   const { mintModalHandle, priceModalHandle, isWalletConnect, stateAddress, balance, stateCrypto } = useModal();

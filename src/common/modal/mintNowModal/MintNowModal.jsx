@@ -60,7 +60,7 @@ const MintNowModal = () => {
 
       }
     }
-    //eslint-disable-next-line
+    // eslint-disable-next-line
     else if (stateCrypto == "Rinkeby") {
       //mint for rinkeby network
       console.log("minting for rinkeby")
@@ -89,37 +89,37 @@ const MintNowModal = () => {
     }
 
     // eslint-disable-next-line  
-    else if (stateCrypto == "Ethereum") {
-      //mint for ethereum network
-      console.log("minting for ethereum")
+    // else if (stateCrypto == "Ethereum") {
+    //   //mint for ethereum network
+    //   console.log("minting for ethereum")
 
-      try {
-        mintRate = price * 0.9;
-        totalAmount = mintRate * _mintAmount;
-        await Web3Alc.eth.getMaxPriorityFeePerGas().then((tip) => {
-          Web3Alc.eth.getBlock('pending').then((block) => {
-            var totalAmountWei = Web3Alc.utils.toWei(totalAmount.toString(), "ether");
-            contract.methods.mint(account, _mintAmount)
-              .send({
-                from: account,
-                value: totalAmountWei,
-                gas: 210000,
-                maxPriorityFeePerGas: 2000000000,
-                maxFeePerGas: 2000000000,
-              });
-          });
-        })
+    //   try {
+    //     mintRate = price * 0.9;
+    //     totalAmount = mintRate * _mintAmount;
+    //     await Web3Alc.eth.getMaxPriorityFeePerGas().then((tip) => {
+    //       Web3Alc.eth.getBlock('pending').then((block) => {
+    //         var totalAmountWei = Web3Alc.utils.toWei(totalAmount.toString(), "ether");
+    //         contract.methods.mint(account, _mintAmount)
+    //           .send({
+    //             from: account,
+    //             value: totalAmountWei,
+    //             gas: 210000,
+    //             maxPriorityFeePerGas: 2000000000,
+    //             maxFeePerGas: 2000000000,
+    //           });
+    //       });
+    //     })
 
-      } catch (error) {
-        console.log(error);
+    //   } catch (error) {
+    //     console.log(error);
 
-      }
-    }
+    //   }
+    // }
 
     //eslint-disable-next-line
     else if (stateCrypto == "Binance Chain") {
       try {
-        mintRate = price;
+        mintRate = price * 0.9;
         totalAmount = mintRate * _mintAmount;
         //convert totalAmount to BigNumber
         totalAmount = ethers.utils.parseUnits(totalAmount.toString(), 18)
@@ -140,9 +140,8 @@ const MintNowModal = () => {
 
     //eslint-disable-next-line
     else if (stateCrypto == "Binance Chain Testnet") {
-
       try {
-        mintRate = price;
+        mintRate = price * 0.9;
         totalAmount = mintRate * _mintAmount;
         //convert totalAmount to BigNumber
         totalAmount = ethers.utils.parseUnits(totalAmount.toString(), 18)
@@ -152,7 +151,6 @@ const MintNowModal = () => {
             from: account,
             gas: 300000,
             value: totalAmount,
-
           }
           );
       }
