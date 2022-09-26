@@ -95,11 +95,11 @@ const Gallery = () => {
         <div className='row px-4 mx-3 pt-2 mt-3'>
           <div className="toptable">
             <h1 className="heading">Fantasy NFT Staking Pool Active Rewards</h1>
-            <div className="row mt-5 mb-5">
+            <div className="cardrow row mt-5 mb-5 mx-0">
               {pool.map((item, index) => {
                 return (
                   <>
-                    <div key={index} className="headingrow card mx-auto">
+                    <div key={index} className="headingrow card">
                       <div className="arrow"></div>
                       <div className="parent">
                       </div>
@@ -142,6 +142,7 @@ const Gallery = () => {
               </tbody>
             </table>
             <h5 style={{ color: "blue" }}>FOT™ could be use for upgrade NFT or trade for secret FNFT item</h5>
+    
 
           </div>
         </div>

@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Blaka&family=Kdam+Thmor+Pro&family=Rambla&display=swap");
+
 .nftcard{
     /* border with 2px violet shade */
     border: 5px solid #7a2d9c;
@@ -33,30 +35,29 @@ table{
 }
 .card-title{
   /* add title styling */
-  font-size: 1.5em;
+  font-size: 1.8em;
   font-weight: bold;
   text-align: center;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Black Ops One';
 
 }
 .card{
   justify-content: center;
   align-items: center;
-  background-color: #b4009c4d !important;
   color:aliceblue;
-  border-radius: 20px;
-  text-overflow: ellipsis;
-  background: rgb(39, 51, 89, 0.4);
-  border-radius: 16px;
+  background-color: #b4009c31 !important;
+  border: 1px solid rgba(81, 3, 92, 0.438) !important;
+  border-radius: 20px !important;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
-  border: 1px solid rgba(170, 130, 130, 0.3);
-  background-color: #403279;
   background-image: radial-gradient(at 0% 0%,
       rgba(16, 15, 21, 0.247) 0,
       transparent 100%),
     radial-gradient(at 50% 50%, rgba(0, 0, 0, 0.836) 0, transparent 100%);
+  margin-left:0px !important;
+
+}
+.cardrow{
+  justify-content:space-between;
 }
 .headingrow{
   color: white !important;
@@ -66,22 +67,25 @@ table{
   width: 18em !important;
   margin-bottom: 2em;
   /* add shadow effect on border */
-  box-shadow: 0 0 20px #e2e0e2;
-
+  box-shadow: 0 0 20px #e2e0e2; 
 }
 .rewards{
-  padding-top: 1em;
-  font-size: 1.5em;
+  padding-top: 0.2em;
+  font-size: 1.2em;
   font-weight: bold;
-  text-shadow: #1b1313 0px 0px 25px;
-  font-family: 'Roboto', sans-serif;
+  text-shadow: #855050 0px 0px 25px;
+  font-family: 'Kdam Thmor Pro', sans-serif;
+}
+.secondtable{
+  text-align: center;
+  margin-bottom: 20px;
 }
 .exchange{
-  font-size: 1.25em ;
-  font-weight: bold;
-  text-shadow: #642828 0px 0px 25px;
+  font-size: 1em ;
+  font-weight: italic;
+  text-shadow: #7a2565 0px 0px 25px;
   font-family: 'Roboto', sans-serif;
-  padding-top: 1em;
+  padding-top: 0.2em;
 
 }
 
@@ -98,23 +102,22 @@ table{
     font-size: 1em !important;
 }
 
+
 /* arrow pointer */
 .arrow {
   width: 0; 
-  height: 0; 
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
-  border-top: 10px solid #b103a28f;
-  border-bottom: 30px solid #b103a28f;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #88017d8f;
+  border-bottom: 20px solid #88017d8f;
+  /* border-bottom: 30px solid #b103a28f; */
   margin: 0 auto;
   margin-top: 1em;
   margin-bottom: 1em;
 }
-/* add animation to rotate arrow pointer */
-.arrow:hover {
-  animation: arrow 1s infinite;
-  transform: rotateZ(90deg);
-}
+
+
 /* animation to rotate arrow pointer */
 .parent {
 	perspective: 500px;	
