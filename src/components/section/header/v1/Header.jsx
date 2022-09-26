@@ -376,7 +376,7 @@ const Header = () => {
           {isMobileMenu && <MobileMenu mobileMenuhandle={handleMobileMenu} data={ConnectWallet} />}
         </div>
       </NavWrapper>
-          {isBanner&& <Banner data={ConnectWallet}/>}
+      {isBanner&& <Banner data={ConnectWallet}/>}
     </>
   );
 };
