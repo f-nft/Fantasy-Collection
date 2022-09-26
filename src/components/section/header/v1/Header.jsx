@@ -300,7 +300,7 @@ const Header = () => {
             <div className="f-nft_menu_left_sect">
               <div className="logo">
                 <NavLink to="/">
-                  <img src={logo} alt="f-nft nft logo" style={{ maxWidth: '39%' }} />
+                  <img src={logo} alt="f-nft nft logo"/>
                 </NavLink>
               </div>
             </div>
@@ -376,7 +376,7 @@ const Header = () => {
           {isMobileMenu && <MobileMenu mobileMenuhandle={handleMobileMenu} data={ConnectWallet} />}
         </div>
       </NavWrapper>
-      {isBanner&& <Banner data={ConnectWallet}/>}
+          {isBanner&& <Banner data={ConnectWallet}/>}
     </>
   );
 };

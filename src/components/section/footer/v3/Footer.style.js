@@ -23,7 +23,7 @@ const FooterStyleWrapper = styled.footer`
     .footer_image {
       padding-right: 25px;
       width: 50%;
-      maxWidth: 300px;
+      maxwidth: 300px;
       p {
         margin-top: 15px;
         font-weight: 500;

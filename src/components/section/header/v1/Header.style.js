@@ -41,6 +41,11 @@ const NavWrapper = styled.nav`
       a {
         display: inline-block;
       }
+      img{
+        width: 100px;
+        height: 100px;
+      }
+      
     }
   }
 

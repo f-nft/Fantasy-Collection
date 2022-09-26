@@ -33,7 +33,7 @@ const Footer = () => {
                 <div className="bottom_footer_left">
                   <div className="footer_logo">
                     <a href="# ">
-                      <img src={footerLogo} alt="f-nft logo" style={{ maxWidth: '19%' }} />
+                      <img src={footerLogo} alt="f-nft logo" style={{ maxwidth: '19%' }} />
                     </a>
                   </div>
                   <div className="copiright_text">

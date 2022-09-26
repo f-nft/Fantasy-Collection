@@ -14,7 +14,7 @@ const Footer = () => {
             <div className="col-lg-4">
               <div className="footer_image">
                 <a href="#home">
-                  <img src={footerLogo} alt="f-nft footer logo" maxWidth="70%" />
+                  <img src={footerLogo} alt="f-nft footer logo" maxwidth="70%" />
                 </a>
               </div>
               <p>
