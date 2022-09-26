@@ -19,18 +19,18 @@ const Gallery = () => {
   const pool = [
     {
       collection: "Discovery",
-      Rewards: 0.10,
-      Exchange: "2 NFTs/Quarter",
+      Rewards: "30% APR",
+      Exchange: "40% APY or 2 NFTs",
     },
     {
       collection: "Angel & Devil",
-      Rewards: 0.5,
-      Exchange: "10 NFTs/Quarter"
+      Rewards: "40% APR",
+      Exchange: "50% APY or 5 NFTs"
     },
     {
       collection: "Chaos",
-      Rewards: 1,
-      Exchange: "25 NFTs/Quarter or 100 FOT/Quarter"
+      Rewards: "50% APR",
+      Exchange: "60% APY or 15 NFTs"
     }
 
   ]
@@ -65,8 +65,6 @@ const Gallery = () => {
       let tokenuridata2 = tokenuridata1.image;
       setData(data => [...data, tokenuridata2]);
       // console.log(tokenuridata.data.name);
-
-
       //displaying attributes of each nft
       // for(let i=0;i<tokenuridata.data.attributes.length;i++)
       //   {       
@@ -95,6 +93,10 @@ const Gallery = () => {
         <div className='row px-4 mx-3 pt-2 mt-3'>
           <div className="toptable">
             <h1 className="heading">Fantasy NFT Staking Pool Active Rewards</h1>
+            <h5 className="card-title" style={{color:"green"}}>EARN FOT</h5>
+
+            {isAddress ? <h1>NFTS FOUND</h1> : <h1>WALLET NOT CONNECTED</h1>}
+        {/* {discount?<h1>DISCOUNT NFT FOUND</h1>:<h1>NO DISCOUNT AVAILABLE</h1>} */}
             <div className="cardrow row mt-5 mb-5 mx-0">
               {pool.map((item, index) => {
                 return (
@@ -105,9 +107,9 @@ const Gallery = () => {
                       </div>
                       <div className="card-body">
                         <h2 className="card-title">{item.collection}</h2>
-                        <h3 className="rewards">Rewards Per Day</h3>
-                        <h4 className="card-text">{item.Rewards} FOT</h4>
-                        <h3 className="rewards">Exchangeable</h3>
+                        <h3 className="rewards">Rewards</h3>
+                        <h4 className="card-text">{item.Rewards}</h4>
+                        <h3 className="rewards">Quarterly</h3>
                         <h4 className="exchange">{item.Exchange}</h4>
                       </div>
                     </div>
@@ -141,16 +143,9 @@ const Gallery = () => {
                 </tr>
               </tbody>
             </table>
-            <h5 style={{ color: "blue" }}>FOT™ could be use for upgrade NFT or trade for secret FNFT item</h5>
-    
-
+            <h5 style={{ color: "purple" }}>FOT™ could be use for upgrade NFT or trade for secret FNFT item - FOT price is starting from $1.00</h5>
           </div>
         </div>
-
-        {isAddress ? <h1>NFTS FOUND</h1> : <h1>WALLET NOT CONNECTED</h1>}
-
-        {/* {discount?<h1>DISCOUNT NFT FOUND</h1>:<h1>NO DISCOUNT AVAILABLE</h1>} */}
-
         <div className="container">
           <div className="row">
             {data.map((item, index) => {

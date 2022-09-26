@@ -14,7 +14,7 @@ import mediumIcon from "../images/icon/med.svg";
 const data = [
   {
     thumb: openseaIcon,
-    url: "https://opensea.io/collection/fantasy-collections",
+    url: "https://opensea.io/collection/fantasy-collection",
   },
   {
     icon: <FaTwitter />,

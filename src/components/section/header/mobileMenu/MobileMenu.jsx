@@ -72,7 +72,7 @@ const MobileMenu = (props, mobileMenuhandle) => {
           </ul>
         </div>
         <div className="mobile_menu_social_links">
-          <a href="https://opensea.io/collection/fantasy-collections">
+          <a href="https://opensea.io/collection/fantasy-collection">
             <img src={openseaIcon} alt="f-nft social icon" />
           </a>
           <a href="https://twitter.com/Fashion__NFT">
