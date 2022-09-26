@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Blaka&family=Kdam+Thmor+Pro&family=Rambla&display=swap");
+
 .nftcard{
     /* border with 2px violet shade */
     border: 5px solid #7a2d9c;
@@ -33,10 +35,10 @@ table{
 }
 .card-title{
   /* add title styling */
-  font-size: 1.5em;
+  font-size: 1.8em;
   font-weight: bold;
   text-align: center;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Black Ops One';
 
 }
 .card{
@@ -68,22 +70,22 @@ table{
   box-shadow: 0 0 20px #e2e0e2; 
 }
 .rewards{
-  padding-top: 1em;
-  font-size: 1.5em;
+  padding-top: 0.2em;
+  font-size: 1.2em;
   font-weight: bold;
-  text-shadow: #1b1313 0px 0px 25px;
-  font-family: 'Roboto', sans-serif;
+  text-shadow: #855050 0px 0px 25px;
+  font-family: 'Kdam Thmor Pro', sans-serif;
 }
 .secondtable{
   text-align: center;
   margin-bottom: 20px;
 }
 .exchange{
-  font-size: 1.25em ;
-  font-weight: bold;
-  text-shadow: #642828 0px 0px 25px;
+  font-size: 1em ;
+  font-weight: italic;
+  text-shadow: #7a2565 0px 0px 25px;
   font-family: 'Roboto', sans-serif;
-  padding-top: 1em;
+  padding-top: 0.2em;
 
 }
 
@@ -104,10 +106,11 @@ table{
 /* arrow pointer */
 .arrow {
   width: 0; 
-  height: 0; 
-  border-left: 20px solid transparent;
-  border-right: 20px solid transparent;
-  border-top: 30px solid #b103a28f;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #88017d8f;
+  border-bottom: 20px solid #88017d8f;
   /* border-bottom: 30px solid #b103a28f; */
   margin: 0 auto;
   margin-top: 1em;
