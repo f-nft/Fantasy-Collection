@@ -184,9 +184,7 @@ const BannerV1Wrapper = styled.section`
       max-width: 568px;
       width: 100%;
 
-      .f-nft_v1_baner_right_img {
-        width: 55%;
-      }
+     
     }
   }
 

@@ -19,14 +19,19 @@ const MobileMenu = (props, mobileMenuhandle) => {
     <MobileMenuStyleWrapper className="f-nft_mobile_menu">
       <div className="f-nft_mobile_menu_content">
         <div className="mobile_menu_logo">
-          <img className="f-nft_logo" src={logo} alt="f-nft logo" />
-          <button
-            className="mobile_menu_close_btn"
-            onClick={() => mobileMenuhandle()}
-          >
-            {" "}
-            <BsXLg />{" "}
-          </button>
+          <div className="logoimage">
+              <img className="f-nft__logo" src={logo} alt="f-nft logo" />
+          </div>
+          <div className="closebutton">
+              <button
+                className="mobile_menu_close_btn"
+                onClick={() => mobileMenuhandle()}
+              >
+                {" "}
+                <BsXLg />
+                {" "}
+              </button>
+          </div>
         </div>
         <div className="f-nft_mobile_menu_list">
           <ul>

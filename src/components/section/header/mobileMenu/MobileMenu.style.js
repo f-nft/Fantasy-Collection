@@ -35,12 +35,21 @@ const MobileMenuStyleWrapper = styled.div`
     margin-left: auto;
     animation: 1s ${menuAnimation};
   }
+  .logoimage{
+    width: 50%;
+    height: 100%;
+    // background: white !important;
+  }
+  .f-nft__logo{
+    width: 100%;
+    height:100%
+  }
 
   .mobile_menu_logo {
-    height: 150px;
-    width: 150px;
+    height: 100px;
     position: relative;
-    margin-inline: auto;
+    // background: blue;
+    margin-inline: space-evenly;
   }
 
   .mobile_menu_close_btn {
