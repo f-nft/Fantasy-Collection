@@ -2,7 +2,7 @@ import { useModal } from "../../../../utils/ModalContext";
 import Counter from "../../../../common/counter";
 import Button from "../../../../common/button";
 import BannerV1Wrapper from "./Banner.style";
-import characterThumb from "../../../../assets/images/nft/updatednft.webp";
+import characterThumb from "../../../../assets/images/nft/Fantasy0000-0068.gif";
 import mintLiveText from "../../../../assets/images/nft/mint_live_text.png";
 import homeImageBG from "../../../../assets/images/nft/home_img_bg.png";
 import { useEffect, useState } from "react";
@@ -85,13 +85,13 @@ const Banner = (props) => {
               <div className="f-nft_v1_baner_left">
                 <h1 style={{ color: "red" }}>f-nft Fantasy</h1>
                 <h2>👗 3D NFT</h2>
-                <h4 style={{ color: "#375730", textShadow: "1px 1px 3px" }}>
+                <h4 style={{ color: "#992730", textShadow: "1px 1px 3px" }}>
                   <div className="f-nft_v1_timer" align="left">
-                    <h5 className="text-uppercase" style={{ color: "purple" }}>Public Mint Discounts 10% on Polygon Network in</h5>
+                    <h5 className="text-uppercase" style={{ color: "red", fontSize: "16px" }}>Public Mint Discounts 10% on Polygon Network in</h5>
                   </div>
                    <Countdown timeTillDate="10 30 2022, 6:00 am" timeFormat="MM DD YYYY, h:mm a"/>
-                  <span className="count" padding="5px" style={{ color: "purple" }}>
-                    <Counter end={36}
+                  <span className="count" padding="5px" style={{ color: "pink" }}>
+                    <Counter end={39}
                       // duration={1}
                     />
                   </span>{" "}

@@ -17,11 +17,11 @@ const data = [
   },
   {
     title: "How secure is this token?",
-    text: "All our SmartContract is verified at Main network",
+    text: "All our SmartContract is verified",
   },
   {
-    title: "What is your contract address ?",
-    text: "https://etherscan.io/token/0x6f6bd2efd2947a0a1b736131bf9a8584e4dd606c - https://polygonscan.com/token/0x01296da17460cc88fcdbfdf0196357d2f6e57472 - https://bscscan.com/token/0x3ef96a7649abee21eb2f013481b39cab92f4d10b",
+    title: "Can i make money from this NFT",
+    text: "Yes, you can make money from this NFT by Staking your NFT and getting your reward",
   },
 ];
 
