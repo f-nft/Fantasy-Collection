@@ -6,15 +6,15 @@
   --color-primary: #111627;
   --color-primary-opacity: #111627ef;
   --color-secondary: #1E2640;
-  --color-accent: #d6995f;
-  --color-accent-hover: #b8773a;
+  --color-accent: #d65f97;
+  --color-accent-hover: #b83a79;
   --color-accent-text: #1E2640;
   --color-white-btn: #922C40;
   --color-white-btn-hover: #681916;
-  --color-white-btn-text: #F3EAC0;
+  --color-white-btn-text: #f3c0e6;
   --color-connect-btn: #922C40;
   --color-connect-btn-hover: #681916;
-  --color-connect-btn-text: #F3EAC0;
+  --color-connect-btn-text: #f3c0de;
   --color-dark-purple:#0d0d2b;
   --color-dark-blue:#121a31ef;
   --color-white: #ffffff;
@@ -27,9 +27,9 @@
   --color-grey-3: #828282;
   --color-dark-green: #0b4138;
   --color-black-10: rgba(31, 28, 28, 0.678);
-  --color-thumb: #b8773a;
-  --color-track: #681916;
-  --color-thumb-hover: #925822;
+  --color-thumb: #b83a84;
+  --color-track: #68164d;
+  --color-thumb-hover: #92226d;
 }
 
 /* Scrollbar */
