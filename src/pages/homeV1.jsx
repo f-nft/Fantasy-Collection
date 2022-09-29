@@ -16,25 +16,25 @@ import Partner from "../components/section/partner";
 import PriceModal from "../common/modal/priceModal/PriceModal";
 import { useEffect } from 'react';
 const HomeV1 = () => {
-  
-  const { visibility, walletModalvisibility,priceModalVisibiity,isBanner,setisBanner } = useModal();
+
+  const { visibility, walletModalvisibility, priceModalVisibiity, isBanner, setisBanner } = useModal();
   useEffect(() => {
-  if(!isBanner)
-  setisBanner(true)
-  //eslint-disable-next-line
+    if (!isBanner)
+      setisBanner(true)
+    //eslint-disable-next-line
   }, []);
   return (
     <Layout>
-      <GlobalStyles /> 
+      <GlobalStyles />
       {visibility && <MintNowModal />}
       {walletModalvisibility && <WalletModal />}
-      {priceModalVisibiity&&<PriceModal />}
+      {priceModalVisibiity && <PriceModal />}
       <Header />
       <Counter />
       <HowToMint />
       <CharacterSlider />
       <About />
-      <RoadMap /> 
+      <RoadMap />
       <Team />
       <FAQ />
       <Partner />

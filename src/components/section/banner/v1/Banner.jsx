@@ -89,10 +89,10 @@ const Banner = (props) => {
                   <div className="f-nft_v1_timer" align="left">
                     <h5 className="text-uppercase" style={{ color: "red", fontSize: "16px" }}>Public Mint Discounts 10% on Polygon Network in</h5>
                   </div>
-                   <Countdown timeTillDate="10 30 2022, 6:00 am" timeFormat="MM DD YYYY, h:mm a"/>
+                  <Countdown timeTillDate="10 30 2022, 6:00 am" timeFormat="MM DD YYYY, h:mm a" />
                   <span className="count" padding="5px" style={{ color: "pink" }}>
-                    <Counter end={39}
-                      // duration={1}
+                    <Counter end={59}
+                    // duration={1}
                     />
                   </span>{" "}
                   / 10,000 Minted
@@ -151,7 +151,7 @@ const Banner = (props) => {
                     <img src={homeImageBG} alt="fantasy" />
                   </div>
                   <div className="f-nft_v1_baner_right_img">
-                    <img src={characterThumb} alt="avata"/>
+                    <img src={characterThumb} alt="avata" />
                   </div>
                 </div>
               </div>
