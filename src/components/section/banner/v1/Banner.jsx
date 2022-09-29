@@ -89,9 +89,9 @@ const Banner = (props) => {
                   <div className="f-nft_v1_timer" align="left">
                     <h5 className="text-uppercase" style={{ color: "red", fontSize: "16px" }}>Public Mint Discounts 10% on Polygon Network in</h5>
                   </div>
-                  <Countdown timeTillDate="10 30 2022, 6:00 am" timeFormat="MM DD YYYY, h:mm a" />
+                  <Countdown timeTillDate="10 1 2022, 0:00 am" timeFormat="MM DD YYYY, h:mm a" />
                   <span className="count" padding="5px" style={{ color: "pink" }}>
-                    <Counter end={59}
+                    <Counter end={72}
                     // duration={1}
                     />
                   </span>{" "}
@@ -100,8 +100,8 @@ const Banner = (props) => {
                 <h5 style={{ color: "green" }}>
                   Your Wallet Address:<br />
                   {stateAddress ?
-                    (<span style={{ color: "white" }}>{stateAddress}</span>) :
-                    (<span style={{ color: "white" }}>0x0</span>)}<br />
+                    (<span style={{ color: "orange" }}>{stateAddress}</span>) :
+                    (<span style={{ color: "orange" }}>0x0</span>)}<br />
                   {stateCrypto ?
                     (<span>You Are Connected to <h5 style={{ color: "red" }}>{stateCrypto} </h5></span>) :
                     (<span></span>)}
@@ -109,8 +109,8 @@ const Banner = (props) => {
                 <h5 style={{ color: "green" }}>
                   Your Balance <br />
                   {balance ?
-                    (<span style={{ color: "white" }}>{balance}</span>) :
-                    (<span style={{ color: "blue" }}>0.00</span>)}
+                    (<span style={{ color: "orange" }}>{balance}</span>) :
+                    (<span style={{ color: "orange" }}>0.00</span>)}
                 </h5>
                 <div className="banner_buttons">
                   {isWalletConnect ? (
