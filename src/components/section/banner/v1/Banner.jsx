@@ -57,7 +57,6 @@ const Banner = (props) => {
       setNftPriceBnb(nftPriceBnb);
       localStorage.setItem("nftPriceBnb", nftPriceBnb);
 
-
       const maticPrice = "https://api.binance.com/api/v3/ticker/price?symbol=MATICUSDT";
       const responseMatic = await fetch(maticPrice)
       var maticData = await responseMatic.json()
@@ -89,7 +88,7 @@ const Banner = (props) => {
                   <div className="f-nft_v1_timer" align="left">
                     <h5 className="text-uppercase" style={{ color: "red", fontSize: "16px" }}>Public Mint Discounts 10% on Polygon Network in</h5>
                   </div>
-                  <Countdown timeTillDate="09 30 2022, 0:00 am" timeFormat="MM DD YYYY, h:mm a" />
+                  <Countdown timeTillDate="09 30 2022, 12:12" timeFormat="MM DD YYYY, h:mm" />
                   <span className="count" padding="5px" style={{ color: "pink" }}>
                     <Counter end={72}
                     // duration={1}
