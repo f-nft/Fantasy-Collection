@@ -10,12 +10,14 @@
     justify-content: center;
    
 }
+
 .nftcard {
   animation-name: blinking;
   border-radius: 10px;
   animation-duration: 6s;
   animation-iteration-count: infinite;
   text-align: center;
+
 }
 .heading{
   text-shadow: #B10089 0px 0px 15px;
@@ -66,6 +68,7 @@ table{
   justify-content:space-between;
 }
 .headingrow{
+
   color: white !important;
   text-align: center;
   font-weight: bold;

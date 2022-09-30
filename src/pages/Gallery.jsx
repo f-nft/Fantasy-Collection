@@ -8,6 +8,11 @@ import Footer from "../components/section/footer/v3";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import './Gallerystyle.css'
+import Particles from "react-tsparticles"
+import { loadFull } from "tsparticles";
+import { useCallback } from "react";
+import Whycrypto from '../components/GalleryComponents/Why_crypto'
+import Features from "../components/GalleryComponents/Features";
 const Gallery = () => {
   const { isBanner, setisBanner, stateAddress, stateContract } = useModal();
   const [isAddress, SetisAddress] = useState(false);
@@ -83,9 +88,98 @@ const Gallery = () => {
       GETNFTS()
     //eslint-disable-next-line
   }, [stateAddress, stateContract]);
+ const particlesInit = useCallback(async (engine) => {
+        await loadFull(engine);
+    }, []);
+
+    const particlesLoaded = useCallback(async (container) => {
+        await console.log(container);
+    }, []);
 
   return (
-    <>
+    <> 
+      <div className="canvas" style={{position: 'absolute'}} >
+         <Particles
+            id="tsparticles"
+            init={particlesInit}
+            loaded={particlesLoaded}
+            options={{
+                background: {
+                    color: {
+                        value: "transparent",
+                    }, 
+                },
+                fpsLimit: 120,
+                interactivity: {
+                    events: {
+                        onClick: {
+                            enable: true,
+                            mode: "push",
+                        },
+                        onHover: {
+                            enable: true,
+                             mode: "grab",
+                        },
+                        resize: true,
+                    },
+                    modes: {
+                        push: {
+                            quantity: 4,
+                        },
+                        repulse: {
+                            distance: 200,
+                            duration: 0.4,
+                        },
+                    },
+                },
+                particles: {
+                    color: {
+                        value: "#ffffff",
+                    },
+                    links: {
+                        color: "#ffffff",
+                        distance: 160,
+                        enable: true,
+                        opacity: 0.5,
+                        width: 1,
+                    },
+                    collisions: {
+                        enable: true,
+                    },
+                    move: {
+                        directions: "none",
+                        enable: true,
+                        outModes: {
+                            default: "bounce",
+                        },
+                        random: false,
+                        speed: 2.95,
+                        straight: false,
+                    },
+                    number: {
+                        density: {
+                            enable: true,
+                            area: 800,
+                        },
+                        value: 50,
+                    },
+                    opacity: {
+                        value: 0.5,
+                    },
+                    shape: {
+                        type: "circle",
+                    },
+                    size: {
+                        value: { min: 1,max: 6},
+                    },
+                 
+                },
+                detectRetina: true,
+
+            }}
+        />
+      </div>
+  
       <Layout>
         <GlobalStyles />
         <Header />
@@ -96,7 +190,6 @@ const Gallery = () => {
             <h5 className="card-title" style={{color:"green"}}>EARN FOT</h5>
 
             {isAddress ? <h1>NFTS FOUND</h1> : <h1>WALLET NOT CONNECTED</h1>}
-        {/* {discount?<h1>DISCOUNT NFT FOUND</h1>:<h1>NO DISCOUNT AVAILABLE</h1>} */}
             <div className="cardrow row mt-5 mb-5 mx-0">
               {pool.map((item, index) => {
                 return (
@@ -117,7 +210,8 @@ const Gallery = () => {
                 )
               }
               )}
-            </div>
+   
+        </div>
           </div>
           <div className='secondtable'>
             <h1 className="heading">FOT Token Stake Farms</h1>
@@ -132,13 +226,13 @@ const Gallery = () => {
                 <tr>
                   <td>Stake FOT to Earn FOT</td>
                   <td className='amount' data-test-id='rewards-summary-ads'>
-                    <span className='amount'>0.01 FOT</span>&nbsp;<span class='currency'>Per FOT Staked</span>
+                    <span className='amount'>0.01 FOT</span>&nbsp;<span className='currency'>Per FOT Staked</span>
                   </td>
                 </tr>
                 <tr>
                   <td>Stake FOT to Earn FOT™</td>
                   <td className='amount' data-test-id='rewards-summary-ac'>
-                    <span className='amount'>0.005 FOT™</span>&nbsp;<span class='currency'>Per FOT Staked</span>
+                    <span className='amount'>0.005 FOT™</span>&nbsp;<span className='currency'>Per FOT Staked</span>
                   </td>
                 </tr>
               </tbody>
@@ -164,8 +258,13 @@ const Gallery = () => {
           </div>
         </div>
         <CTA />
+        <Whycrypto />
+        <Features />
+        <div style={{position:"relative"}}>
         <Footer />
+        </div>
       </Layout>
+
     </>
   );
 };
