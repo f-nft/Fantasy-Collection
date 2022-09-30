@@ -179,7 +179,6 @@ const Gallery = () => {
             }}
         />
       </div>
-  
       <Layout>
         <GlobalStyles />
         <Header />

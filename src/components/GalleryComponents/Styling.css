@@ -1,0 +1,158 @@
+.media-container{
+margin-inline: 40px;
+margin-block: 60px;
+
+
+}
+.media-icon{
+    height:80px;
+    width:80px;
+    border-radius: 40px;
+    padding: 10px;
+    background: #000;
+}
+.head{
+    font-size: 40px;
+    font-weight: 300;
+    color: white !important;
+    margin: 20px;
+    padding: 0;
+}
+.media{
+    display: flex;
+    flex-direction: row;
+    width: 30rem;
+    margin-top:100px;
+
+}
+.uppermedia{
+    justify-content: space-between !important;
+    display: flex;
+    flex-direction: row;
+}
+.lowermedia{
+    margin-top: 50px;
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+}
+.banner_grid{
+    justify-content: center;
+    text-align: center;
+}
+.banner__title{
+    font-size: 40px;
+    font-weight: 300;
+    color: white !important;
+    margin-inline: 0;
+    padding: 0;
+    margin-block: 20px;
+}
+.banner__text{
+    font-size: 16px;
+    font-weight: 300;
+    color: white !important;
+    margin: 0;
+    padding-inline: 100px;
+}
+.whyList{
+    color:aliceblue;
+    margin-top: 60px;
+    margin-bottom: 30px;
+    list-style-type: circle;
+    font-size: 20px;
+    text-align: left;
+
+}
+.ListDiv{
+    justify-content: center;
+    text-align: center;
+    margin-inline: 25%;
+
+}
+.nav__list__item_2{
+    padding-block: 10px;
+    font-weight: bold;
+}
+.features{
+    background-color: #000;
+}
+.featurehead{
+    color:aliceblue !important;
+    padding-top: 5em;
+}
+.banner--left{
+    text-align: center;
+    margin-block: 60px;
+}
+.banner__text{
+    font-size: 16px;
+    font-weight: 300;
+    color: white !important;
+    margin: 0;
+}
+.featurecard{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-top: 4rem;
+    color:aliceblue;
+    background-color: #8100701c !important;
+    border: 1px solid rgba(81, 3, 92, 0.438) !important;
+    border-radius: 20px !important;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.034);
+     background-image: radial-gradient(at 0% 0%,
+      rgba(255, 50, 146, 0.158) 0,
+      transparent 100%),
+    radial-gradient(at 50% 50%, rgba(0, 0, 0, 0) 0, transparent 100%);
+    width: 15rem;
+    height: 15rem;
+}
+.road-body{
+    margin-top: 3em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+.table{
+    background:#10171d !important;
+    position:relative
+}
+
+
+
+
+@media only screen and (max-width: 800px) {
+    .media{
+        display: flex;
+        flex-direction: column;
+        width: 25rem
+    }
+    .uppermedia{
+        justify-content: space-between !important;
+        display: flex;
+        flex-direction: column;
+    }
+    .lowermedia{
+        margin-top: 30px;
+        justify-content: center;
+        display: flex;
+        flex-direction: column;
+    }
+    .ListDiv{
+        justify-content: center;
+        text-align: center;
+        margin-inline: 0%;
+    }
+    .road-body{
+        display: flex;
+        flex-direction: column;
+        align-items: center !important;
+        
+    }
+    .featurecard{
+        margin-top: 30px;
+
+    }
+
+}
