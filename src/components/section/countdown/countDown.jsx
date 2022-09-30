@@ -85,9 +85,9 @@ const SVGCircle = ({ radius }) => (
     <svg className="countdown-svg">
         <path
             fill="none"
-            stroke="blue"
-            strokeWidth="4"
-            d={describeArc(50, 50, 40, 0, radius)}
+            stroke="white"
+            strokeWidth="1"
+            d={describeArc(50, 50, 50, 0, radius)}
             // d={describeArc(50, 50, 48, 0, radius)} --orignial value
             
         />

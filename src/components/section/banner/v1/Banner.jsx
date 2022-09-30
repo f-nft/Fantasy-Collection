@@ -89,7 +89,7 @@ const Banner = (props) => {
                   <div className="f-nft_v1_timer" align="left">
                     <h5 className="text-uppercase" style={{ color: "red", fontSize: "16px" }}>Public Mint Discounts 10% on Polygon Network in</h5>
                   </div>
-                  <Countdown timeTillDate="09 30 2022, 0:00 am" timeFormat="MM DD YYYY, h:mm a" />
+                  <Countdown timeTillDate="10 01 2022, 0:00 am" timeFormat="MM DD YYYY, h:mm a" />
                   <span className="count" padding="5px" style={{ color: "pink" }}>
                     <Counter end={72}
                     // duration={1}
