@@ -39,7 +39,7 @@ const CTA = () => {
         <div className="f-nft_v1_cta_content">
           <div className="join_comunity_btns">
             <Button lg variant="mint" className="wishlist_btn">
-              Whitelist Now
+              Whitelist ENDED
             </Button>
             <Button lg variant="blue" className="join_discord_btn"
             onClick={() => {
