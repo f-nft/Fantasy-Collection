@@ -51,7 +51,7 @@ const CTA = () => {
               <FaDiscord /> Join Discord
             </Button>
           </div>
-          <div className="cta_social_links">
+          <div className="cta_social_links" alt="social">
             <ul>
               {data?.map((item, i) => (
                 <li key={i}>

@@ -7,6 +7,7 @@ import mintLiveText from "../../../../assets/images/nft/mint_live_text.png";
 import homeImageBG from "../../../../assets/images/nft/home_img_bg.png";
 import { useEffect, useState } from "react";
 import Countdown from "../../countdown/countDown";
+import data from "../../../../assets/data/socialProfile";
 
 const Banner = (props) => {
   const { mintModalHandle, priceModalHandle, isWalletConnect, stateAddress, balance, stateCrypto } = useModal();
@@ -86,11 +87,11 @@ const Banner = (props) => {
                 <h2>👗 3D NFT</h2>
                 <h4 style={{ color: "#992730", textShadow: "1px 1px 3px" }}>
                   <div className="f-nft_v1_timer" align="left">
-                    <h5 className="text-uppercase" style={{ color: "red", fontSize: "16px" }}>Public Mint Discounts 10% on Polygon Network in</h5>
+                      <h5 className="text-uppercase" style={{ color: "red", fontSize: "16px" }}>New events update at <a href="#CTA">Oficial </a></h5>
                   </div>
-                  <Countdown timeTillDate="09 30 2022, 12:12" timeFormat="MM DD YYYY, h:mm" />
+                  {/* <Countdown timeTillDate="09 30 2022, 12:12" timeFormat="MM DD YYYY, h:mm" /> */}
                   <span className="count" padding="5px" style={{ color: "pink" }}>
-                    <Counter end={72}
+                    <Counter end={76}
                     // duration={1}
                     />
                   </span>{" "}
