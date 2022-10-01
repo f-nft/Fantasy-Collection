@@ -20,11 +20,11 @@ export default function Features() {
           <div className="card__header">
             <h3> Total Supply </h3>
           </div>
-          <h2>100 Trillion</h2>
+          <h2>100 Millions</h2>
         </div>
         <div className="featurecard card--secondary card--white">
           <div className="card__header">
-            <h3> Community </h3>
+            <h3>Community</h3>
           </div>
           <h2>20%</h2>
         </div>
@@ -53,18 +53,18 @@ export default function Features() {
           <div className="banner--left">
             <h2 className="banner__title">Rewards for Community</h2>
             <p className="banner__text text text--small text--regular text--muted">
-              ECAT offers rewards for Community Creation. If you have a a piece of art, media, or anything ECAT related send it to @ElonCatMoon Twitter for a chance at an airdrop.
+              FOT offers rewards for Community Creation. If you have a a piece of art, media, or anything FOT related send it to @ElonCatMoon Twitter for a chance at an airdrop.
             </p>
           </div>
         </div>
         <div className="banner-bottom-margin">
           <div className="banner--left">
             <h2 className="banner__title">
-              Vote on ECAT Governance
+              Vote on FOT Governance
             </h2>
             <p className="banner__text text text--small text--regular text--muted">
-              ECAT will slowly transition into a DAO where all governance and changes will be voted on through the community using the 
-              ECAT token. 
+              FOT will slowly transition into a DAO where all governance and changes will be voted on through the community using the 
+              FOT token. 
             </p>
           </div>
         </div>
@@ -74,7 +74,7 @@ export default function Features() {
               Hold and Earn
             </h2>
             <p className="banner__text text text--small text--regular text--muted">
-            Holding certain amounts of ECAT during a Snapshot guarantees you airdrops of NFTs, Future Tokens, etc.
+            Holding certain amounts of FOT during a Snapshot guarantees you airdrops of NFTs, Future Tokens, etc.
             </p>
           </div>
         </div>

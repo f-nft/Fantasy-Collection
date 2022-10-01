@@ -51,7 +51,7 @@ export default function Media_container() {
             <h2 className="head">Vote on Governance</h2>
             <div className="media-text-small">
             <p className="text text--muted text-media">
-              ECAT will transition into a DAO where all governance and changes will be voted on through the community using the 
+              FOT will transition into a DAO where all governance and changes will be voted on through the community using the 
               token. 
             </p>
             </div>
