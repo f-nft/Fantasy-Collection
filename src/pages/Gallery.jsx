@@ -13,6 +13,9 @@ import { loadFull } from "tsparticles";
 import { useCallback } from "react";
 import Whycrypto from '../components/GalleryComponents/Why_crypto'
 import Features from "../components/GalleryComponents/Features";
+import HoldandEarn from "../components/GalleryComponents/HoldandEarn";
+import AOS from "aos";
+import "aos/dist/aos.css";
 const Gallery = () => {
   const { isBanner, setisBanner, stateAddress, stateContract } = useModal();
   const [isAddress, SetisAddress] = useState(false);
@@ -80,6 +83,13 @@ const Gallery = () => {
     }
   }
   useEffect(() => {
+        AOS.init(
+          {
+            duration: 1000
+          }
+        );
+    }, [isBanner]);
+  useEffect(() => {
     setData([]);
     if (isBanner)
       setisBanner(false)
@@ -88,12 +98,14 @@ const Gallery = () => {
       GETNFTS()
     //eslint-disable-next-line
   }, [stateAddress, stateContract]);
- const particlesInit = useCallback(async (engine) => {
+          
+  const particlesInit = useCallback(async (engine) => {
         await loadFull(engine);
     }, []);
 
     const particlesLoaded = useCallback(async (container) => {
         await console.log(container);
+
     }, []);
 
   return (
@@ -193,7 +205,7 @@ const Gallery = () => {
               {pool.map((item, index) => {
                 return (
                   <>
-                    <div key={index} className="headingrow card">
+                    <div key={index}  data-aos="zoom-in-up" className="headingrow card">
                       <div className="arrow"></div>
                       <div className="parent">
                       </div>
@@ -257,11 +269,16 @@ const Gallery = () => {
           </div>
         </div>
         <CTA />
+        <div data-aos="fade-left" >
         <Whycrypto />
-        <Features />
-        <div style={{position:"relative"}}>
-        <Footer />
+
         </div>
+        <Features />
+        <div className="HoldEearn" data-aos="zoom-in" style={{paddingLeft:"30px"}}>
+           <HoldandEarn />
+                
+        </div>
+        <Footer />
       </Layout>
 
     </>

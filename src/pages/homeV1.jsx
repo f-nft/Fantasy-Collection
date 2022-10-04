@@ -15,10 +15,16 @@ import WalletModal from "../common/modal/walletModal/WalletModal";
 import Partner from "../components/section/partner";
 import PriceModal from "../common/modal/priceModal/PriceModal";
 import { useEffect } from 'react';
+import AOS from "aos";
+import "aos/dist/aos.css";
 const HomeV1 = () => {
 
   const { visibility, walletModalvisibility, priceModalVisibiity, isBanner, setisBanner } = useModal();
   useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      once: true,
+    });
     if (!isBanner)
       setisBanner(true)
     //eslint-disable-next-line

@@ -75,7 +75,8 @@ margin-block: 60px;
     font-weight: bold;
 }
 .features{
-    background-color: #000;
+    background-color: #0f1113;
+    padding-bottom: 5rem;
 }
 .featurehead{
     color:aliceblue !important;
@@ -117,6 +118,12 @@ margin-block: 60px;
 .table{
     background:#10171d !important;
     position:relative
+}
+.HoldandEarn{
+    background-color: #040c12;
+    color:aliceblue;
+    padding-top: 5em;
+    padding-bottom: 5em;
 }
 
 

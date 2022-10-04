@@ -10,7 +10,8 @@ import Countdown from "../../countdown/countDown";
 import data from "../../../../assets/data/socialProfile";
 
 const Banner = (props) => {
-  const { mintModalHandle, priceModalHandle, isWalletConnect, stateAddress, balance, stateCrypto } = useModal();
+  const { mintModalHandle, priceModalHandle, isWalletConnect, 
+    stateAddress, balance, stateCrypto } = useModal();
   const [nftPriceMatic, setNftPriceMatic] = useState(null);
   const [nftPriceBnb, setNftPriceBnb] = useState(null);
   const [nftPriceEth, setNftPriceEth] = useState(null);
@@ -69,6 +70,7 @@ const Banner = (props) => {
       var nftPriceMatic = nftEthPrice.toFixed(5);
       setNftPriceMatic(nftPriceMatic);
       localStorage.setItem("nftPriceMatic", nftPriceMatic);
+
     };
     getRates();
   }, []);

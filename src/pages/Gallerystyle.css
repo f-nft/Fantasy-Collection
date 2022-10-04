@@ -50,8 +50,12 @@ table{
   font-family: 'Black Ops One';
 
 }
+
+.HoldEearn{
+  min-height: 450px;
+}
 .card{
-  padding: 100px;
+  padding: 50px;
   justify-content: center;
   align-items: center;
   color:aliceblue;
