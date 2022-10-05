@@ -27,7 +27,7 @@ function App() {
       <Route path="/home-three" element={<HomeV3 />} /> */}
       <Route path="/blogs" element={<Blogs />} />
       <Route path="/post" element={<BlogDetails />} />
-      <Route path="/gallery" element={<Gallery />} />
+      <Route path="/nfts" element={<Gallery />} />
     </Routes>
   );
 }

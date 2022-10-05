@@ -14,6 +14,7 @@ import { useCallback } from "react";
 import Whycrypto from '../components/GalleryComponents/Why_crypto'
 import Features from "../components/GalleryComponents/Features";
 import HoldandEarn from "../components/GalleryComponents/HoldandEarn";
+import { Typewriter } from 'react-simple-typewriter'
 import AOS from "aos";
 import "aos/dist/aos.css";
 const Gallery = () => {
@@ -203,7 +204,7 @@ const Gallery = () => {
             {isAddress ? <h1>NFTS FOUND</h1> : <h1>WALLET NOT CONNECTED</h1>}
             <div className="cardrow row mt-5 mb-5 mx-0">
               {pool.map((item, index) => {
-                return (
+                return (  
                   <>
                     <div key={index}  data-aos="zoom-in-up" className="headingrow card">
                       <div className="arrow"></div>
@@ -225,7 +226,18 @@ const Gallery = () => {
         </div>
           </div>
           <div className='secondtable'>
-            <h1 className="heading">FOT Token Stake Farms</h1>
+         
+            <h1 className="heading">
+               <Typewriter
+            words={['FOT Token Stake Farms']}
+            loop={2}
+            cursor
+            cursorStyle='!'
+            typeSpeed={50}
+            deleteSpeed={50}
+            delaySpeed={1000}
+          />
+            </h1>
             <table className='table table-bordered table-dark' style={{ borderRadius: '14px' }} >
               <thead className='thead-light' style={{ fontSize: '20px' }}>
                 <tr>
@@ -248,7 +260,16 @@ const Gallery = () => {
                 </tr>
               </tbody>
             </table>
-            <h5 style={{ color: "purple" }}>FOT™ could be use for upgrade NFT or trade for secret FNFT item - FOT price is starting from $1.00</h5>
+            <h5 style={{ color: "purple" }}>
+                 <Typewriter
+            words={['FOT™ could be use for upgrade NFT or trade for secret FNFT item - FOT price is starting from $1.00']}
+            cursor
+            cursorStyle='_'
+            typeSpeed={30}
+            loop={2}
+          />
+          
+          </h5>
           </div>
         </div>
         <div className="container">

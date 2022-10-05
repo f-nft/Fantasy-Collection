@@ -4,6 +4,7 @@ import { BsXLg } from "react-icons/bs";
 import Button from "../../../../common/button";
 import logo from "../../../../assets/images/logo.png";
 import openseaIcon from "../../../../assets/images/icon/opensea.svg";
+import { Link} from "react-router-dom";
 
 import MobileMenuStyleWrapper from "./MobileMenu.style";
 
@@ -50,6 +51,9 @@ const MobileMenu = (props, mobileMenuhandle) => {
             <li className="mobile_menu_hide">
               <a href="#faq">FAQ</a>
             </li>
+             <li>
+                  <Link to="/nfts">NFT</Link>
+              </li>
             <li className="submenu mobile_submenu" onClick={handleSubmenu}>
               <a href="# ">Blog +</a>
               <ul
