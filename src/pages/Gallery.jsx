@@ -122,7 +122,7 @@ const Gallery = () => {
                         value: "transparent",
                     }, 
                 },
-                fpsLimit: 120,
+                // fpsLimit: 120,
                 interactivity: {
                     events: {
                         onClick: {
