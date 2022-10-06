@@ -10,7 +10,7 @@ export default function Features() {
         <div className="banner--left">
           <div className="banner__title card--secondary card--white">
               <h2> Total Supply</h2>
-            <h3>10 Millions</h3>
+            <h3>10,000,000 FOT</h3>
           </div>
           <p className="card__header">
             No future minting allowed in the contract. Tokens will be
