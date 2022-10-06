@@ -19,13 +19,13 @@ export default function Features() {
           <div className="card__header">
             <h3> Total Supply </h3>
           </div>
-          <h2>100 Millions</h2>
+          <h2>10 Millions</h2>
         </div>
         <div className="featurecard card--secondary card--white">
           <div className="card__header">
             <h3>Community</h3>
           </div>
-          <h2>20%</h2>
+          <h2>30%</h2>
         </div>
         <div className="featurecard card--white card--white">
           <div className="card__header">
@@ -35,9 +35,9 @@ export default function Features() {
         </div>
         <div className="featurecard card--white card--white">
           <div className="card__header">
-            <h3>Burn</h3>
+            <h3>Reward</h3>
           </div>
-          <h2>40%</h2>
+          <h2>30%</h2>
         </div>
         <div className="featurecard card--white card--white">
           <div className="card__header">
@@ -48,8 +48,6 @@ export default function Features() {
         </div>
           </div>
         </div>
-       
-
       </section>
     );
 }
