@@ -7,11 +7,9 @@ export default function Grid_choose() {
       <div className="grid_choose">
         <div className="card_why">
           <div className="banner_grid">
-          <h2 className="banner__title">Why you should buy FOT Token</h2>
-          
+          <h1 className="featurehead">Why you should buy FOT Token</h1>
           <p className="banner__text text text--small text--regular text--muted why-text">
             Experience the next generation cryptocurrency Token. A community project that will transition into a Decentralized Autonomous Organization (DAO) using the FOT Token for governance. No other Token rewards so aggressively for holding the Token. FOT is a Fair Launch token with no future minting allowed. Join us to the Moon!
-
           </p>
           <div className="ListDiv">
               <ul className="whyList">
