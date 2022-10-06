@@ -9,7 +9,7 @@ import About from "../components/section/about/v1";
 import RoadMap from "../components/section/roadMap/v1";
 import Team from "../components/section/team/v1";
 import FAQ from "../components/section/faq/v3";
-import Footer from "../components/section/footer/v1";
+import Footer from "../components/section/footer/v3";
 import MintNowModal from "../common/modal/mintNowModal";
 import WalletModal from "../common/modal/walletModal/WalletModal";
 import Partner from "../components/section/partner";

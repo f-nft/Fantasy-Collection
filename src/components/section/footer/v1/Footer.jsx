@@ -13,13 +13,11 @@ const Footer = () => {
   return (
     <FooterStyleWrapper>
       <CTA />
-
       <div className="f-nft_v1_main_footer">
         <div className="f-nft_v1_main_footer_overlay"></div>
         <div className="three_charectre_img">
           <img src={characterShape} alt="f-nft nft character" />
         </div>
-
         <div className="footer_bottom">
           <div className="footer_bottom_content">
             <span className="footer_shapes_left">
