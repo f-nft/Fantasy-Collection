@@ -18,7 +18,7 @@ export default function Features() {
             <br /> community interaction, and surprise airdrops and only reward
             by staking NFT.
           </p>
-          <div className="road-body features-card">
+          <div className="road-body features-card ">
             <div className="featurecard card--secondary card--white">
               <div className="card__header">
                 <h3>Communities</h3>

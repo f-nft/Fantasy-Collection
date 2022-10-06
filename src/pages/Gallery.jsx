@@ -17,6 +17,7 @@ import HoldandEarn from "../components/GalleryComponents/HoldandEarn";
 import { Typewriter } from 'react-simple-typewriter'
 import AOS from "aos";
 import "aos/dist/aos.css";
+import Mediacontainer from './../components/GalleryComponents/Media_container';
 const Gallery = () => {
   const { isBanner, setisBanner, stateAddress, stateContract } = useModal();
   const [isAddress, SetisAddress] = useState(false);
@@ -290,14 +291,24 @@ const Gallery = () => {
           </div>
         </div>
         <CTA />
-        <div data-aos="fade-left" >
-        <Whycrypto />
+       
+          <div className="row">
+            <div className="col-md-6">
+              <Mediacontainer/>
+            </div>
+            <div className="col-md-6">
+                <Features />
+        {/* <Whycrypto /> */}
+            </div>
+          </div>
+        
 
-        </div>
-        <Features />
+        {/* <div data-aos="fade-left" >
+
+        </div> */}
+      
         <div className="HoldEearn" data-aos="zoom-in" style={{paddingLeft:"30px"}}>
-           <HoldandEarn />
-                
+           <HoldandEarn />      
         </div>
         <Footer />
       </Layout>

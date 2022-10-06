@@ -23,16 +23,10 @@
   width: 30rem;
   margin-top: 100px;
 }
-.uppermedia {
-  justify-content: space-between !important;
-  display: flex;
-  flex-direction: row;
-}
+
 .lowermedia {
   margin-top: 50px;
-  justify-content: center;
-  display: flex;
-  flex-direction: row;
+ 
 }
 .banner_grid {
   justify-content: center;
@@ -71,8 +65,10 @@
   font-weight: bold;
 }
 .features {
-  background-color: #0f1113;
+  background-color: #000000;
   padding: 1px;
+  height: 100%;
+  position: relative;
 }
 .featurehead {
   color: rgb(184, 1, 102) !important;
@@ -81,6 +77,7 @@
 .banner--left {
   text-align: center;
   margin-block: 60px;
+  height: 100%;
 }
 .banner__text {
   font-size: 16px;
