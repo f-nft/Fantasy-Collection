@@ -10,7 +10,7 @@ const Partner = () => {
           <SectionTitle
             isCenter={true}
             subtitle="AS SEEN IN"
-            title="Our Partners"
+            title="Our Backers"
             className="text-center"
           />
           <div className="our_partnar_content">

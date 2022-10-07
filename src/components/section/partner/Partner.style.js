@@ -2,8 +2,7 @@ import styled from "styled-components";
 
 const PartnerStyledWrapper = styled.section`
   .our_partnar_content {
-    margin-top: 57px;
-
+    margin-top: 79px;
     ul {
       display: flex;
       align-items: center;
@@ -11,7 +10,6 @@ const PartnerStyledWrapper = styled.section`
       flex-wrap: wrap;
       padding: 0;
       margin: 0;
-
       li {
         width: 25%;
         display: flex;
@@ -19,7 +17,7 @@ const PartnerStyledWrapper = styled.section`
         justify-content: center;
         background: rgba(255, 255, 255, 0.05);
         backdrop-filter: blur(10px);
-        height: 150px;
+        height: 100px;
 
         &:nth-of-type(2),
         &:nth-child(4),

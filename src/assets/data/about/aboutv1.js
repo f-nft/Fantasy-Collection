@@ -15,8 +15,8 @@ const data = {
     },
     {
       icon: aboutCardIcon2,
-      title: "Play to Earn",
-      text: "Earn a living Despite the fact that NFTs, like cryptocurrencies, appear to be useful to the majority of people, the industry is plagued by a lot of speculation, and while there are losers, the vast majority of players profit from trades.",
+      title: "Wear to Earn",
+      text: "Earn a living Despite the fact that NFTs, like Cryptocurrencies, appear to be useful to the majority of people, the industry is plagued by a lot of speculation, and while there are losers, the vast majority of players profit from trades.",
     },
     {
       icon: aboutCardIcon3,
