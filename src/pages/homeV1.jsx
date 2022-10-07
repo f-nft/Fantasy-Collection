@@ -20,25 +20,25 @@ import "aos/dist/aos.css";
 const HomeV1 = () => {
 
   const { visibility, walletModalvisibility, priceModalVisibiity, isBanner, setisBanner } = useModal();
-  useEffect(() => {
-    AOS.init({
-      duration: 1000,
-      once: true,
-    });
-    if (!isBanner)
-      setisBanner(true)
-    //eslint-disable-next-line
-  }, []);
+  // useEffect(() => {
+  //   AOS.init({
+  //     duration: 1000,
+  //     once: true,
+  //   });
+  //   if (!isBanner)
+  //     setisBanner(true)
+  //   //eslint-disable-next-line
+  // }, []);
   return (
     <Layout>
       <GlobalStyles />
-      {visibility && <MintNowModal />}
-      {walletModalvisibility && <WalletModal />}
+      {/* {visibility && <MintNowModal />}
+      {walletModalvisibility && <WalletModal />} */}
       {priceModalVisibiity && <PriceModal />}
       <Header />
-      <Counter />
-      <HowToMint />
       <CharacterSlider />
+      <Counter />
+      {/* <HowToMint /> */}
       <About />
       <RoadMap />
       <Team />

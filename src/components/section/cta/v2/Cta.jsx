@@ -37,7 +37,7 @@ const CTA = () => {
             <div className="col-lg-6">
               <div className="join_comunity_btns">
                 <Button lg variant="mint" className="wishlist_btn">
-                  Whitelist Now
+                  Whitelist Ended
                 </Button>
                 <Button lg variant="blue" className="join_discord_btn" href="https://discord.gg/58KS9smeCV" target="_blank">
                   {" "}

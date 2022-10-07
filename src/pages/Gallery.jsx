@@ -291,22 +291,17 @@ const Gallery = () => {
           </div>
         </div>
         <CTA />
-       
+        
           <div className="row">
-            <div className="col-md-6">
+          <div className="col-md-6">
               <Mediacontainer/>
             </div>
             <div className="col-md-6">
-                <Features />
-        {/* <Whycrypto /> */}
-            </div>
+            <Features />
           </div>
-        
-
+            </div>
         {/* <div data-aos="fade-left" >
-
         </div> */}
-      
         <div className="HoldEearn" data-aos="zoom-in" style={{paddingLeft:"30px"}}>
            <HoldandEarn />      
         </div>

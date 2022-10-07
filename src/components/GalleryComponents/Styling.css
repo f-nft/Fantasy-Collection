@@ -58,15 +58,15 @@
 .ListDiv {
   justify-content: center;
   text-align: center;
-  margin-inline: 25%;
+  margin-inline: 15%;
 }
 .nav__list__item_2 {
   padding-block: 10px;
   font-weight: bold;
 }
 .features {
-  background-color: #000000;
-  padding: 1px;
+    animation-name: blinking;
+    padding: 1px;
   height: 100%;
   position: relative;
 }
@@ -117,8 +117,8 @@
 .HoldandEarn {
   background-color: #040c12;
   color: aliceblue;
-  padding-top: 5em;
-  padding-bottom: 5em;
+  padding-top: 15em;
+  padding-bottom: 15em;
 }
 
 @media only screen and (max-width: 800px) {
