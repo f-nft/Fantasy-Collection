@@ -25,7 +25,7 @@ const HowToMint = () => {
           </ul>
            <SectionTitle
           classNameName="md-pb-20"
-          title="SMART CONTRACTS"
+          title="F-NFT FANTASY SMART CONTRACTS"
           subtitle="KEEP TRACK OF YOUR TRANSACTIONS"
         />
           <div className="contract" align="center">

@@ -6,12 +6,12 @@ import characterThumb from "../../../../assets/images/nft/Fantasy0000-0068.gif";
 import mintLiveText from "../../../../assets/images/nft/mint_live_text.png";
 import homeImageBG from "../../../../assets/images/nft/home_img_bg.png";
 import { useEffect, useState } from "react";
-import {Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Countdown from "../../countdown/countDown";
 import data from "../../../../assets/data/socialProfile";
 
 const Banner = (props) => {
-  const { mintModalHandle, priceModalHandle, isWalletConnect, 
+  const { mintModalHandle, priceModalHandle, isWalletConnect,
     stateAddress, balance, stateCrypto } = useModal();
   const [nftPriceMatic, setNftPriceMatic] = useState(null);
   const [nftPriceBnb, setNftPriceBnb] = useState(null);
@@ -39,7 +39,7 @@ const Banner = (props) => {
       ethRate = 1 / ethData.price;
       localStorage.setItem("ethRate", ethRate);
 
-      usdRate = 60;
+      usdRate = 66;
       setUsdRate(usdRate);
       localStorage.setItem("usdRate", usdRate);
 
@@ -75,7 +75,6 @@ const Banner = (props) => {
     };
     getRates();
   }, []);
-
   return (
     <>
       <BannerV1Wrapper id="home">
@@ -90,7 +89,7 @@ const Banner = (props) => {
                 <h2>👗 3D NFT</h2>
                 <h4 style={{ color: "#992730", textShadow: "1px 1px 3px" }}>
                   <div className="f-nft_v1_timer" align="left">
-                      <h4 className="text-uppercase" style={{ color: "red", fontSize: "16px" }}>Public Mint is Now Ended <br /> New events update at Official Social</h4>
+                    <h4 className="text-uppercase" style={{ color: "red", fontSize: "16px" }}>Public Mint is Now Ended <br /> New events update at Official Social</h4>
                   </div>
                   {/* <Countdown timeTillDate="09 30 2022, 12:12" timeFormat="MM DD YYYY, h:mm" /> */}
                   {/* <span className="count" padding="5px" style={{ color: "pink" }}>
@@ -116,9 +115,9 @@ const Banner = (props) => {
                     (<span style={{ color: "orange" }}>0.00</span>)}
                 </h5> */}
                 <div className="banner_buttons">
-                <Link to="/nfts"><Button lg variant="mint">
-Fantasy NFT Collections</Button>
-            </Link>
+                  <Link to="/nfts"><Button lg variant="mint">
+                    Fantasy NFT Collections</Button>
+                  </Link>
                   {/* {isWalletConnect ? (
                     <Button lg variant="mint" onClick={() => mintModalHandle()}>
                       Mint NFT</Button>
