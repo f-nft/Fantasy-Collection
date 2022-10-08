@@ -31,6 +31,8 @@ export default function Features() {
               </div>
               <h2>30%</h2>
             </div>
+            </div>
+            <div className="road-body features-card ">
             <div className="featurecard card--white card--white">
               <div className="card__header">
                 <h3>Teams</h3>
