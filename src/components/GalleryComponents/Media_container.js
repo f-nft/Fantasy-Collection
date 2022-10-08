@@ -40,8 +40,6 @@ export default function Media_container() {
             </div>
           </div>
         </div>
-      </div>
-      <div className="lowermedia">
         <div className="media">
           <div className="icon-container">
             <div className="media-icon">

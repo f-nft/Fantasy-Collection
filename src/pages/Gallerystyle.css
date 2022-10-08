@@ -132,7 +132,11 @@ table{
   margin-bottom: 1em;
 }
 
+.MediaContainer{
+  justify-content: center;
+  align-items: center;
 
+}
 /* animation to rotate arrow pointer */
 .parent {
 	perspective: 500px;	

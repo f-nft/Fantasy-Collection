@@ -11,7 +11,7 @@ import './Gallerystyle.css'
 import Particles from "react-tsparticles"
 import { loadFull } from "tsparticles";
 import { useCallback } from "react";
-import Whycrypto from '../components/GalleryComponents/Why_crypto'
+// import Whycrypto from '../components/GalleryComponents/Why_crypto'
 import Features from "../components/GalleryComponents/Features";
 import HoldandEarn from "../components/GalleryComponents/HoldandEarn";
 import { Typewriter } from 'react-simple-typewriter'
@@ -24,8 +24,8 @@ const Gallery = () => {
   //create a state variable to store the data in array
   const [data, setData] = useState([]);
   const [nftdata, setNftdata] = useState([]);
-  //create a boolean variable to check if the data is loaded or not
-  const [discount, setDiscount] = useState(false);
+
+  // const [discount, setDiscount] = useState(false);
   const pool = [
     {
       collection: "Discovery",
@@ -45,15 +45,15 @@ const Gallery = () => {
 
   ]
 
-  const options = {
-    method: 'GET',
-    url: 'https://api.nftport.xyz/v0/nfts/0x014e897defaf2adb41c117d853aafb8729b78b44',
-    params: { chain: 'polygon', include: 'metadata' },
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: '0b4d39b3-8ce8-43b6-99f0-427226147a55'
-    }
-  };
+  // const options = {
+  //   method: 'GET',
+  //   url: 'https://api.nftport.xyz/v0/nfts/0x014e897defaf2adb41c117d853aafb8729b78b44',
+  //   params: { chain: 'polygon', include: 'metadata' },
+  //   headers: {
+  //     'Content-Type': 'application/json',
+  //     Authorization: '0b4d39b3-8ce8-43b6-99f0-427226147a55'
+  //   }
+  // };
 
 
   const GETNFTS = async () => {
@@ -91,6 +91,7 @@ const Gallery = () => {
           }
         );
     }, [isBanner]);
+
   useEffect(() => {
     setData([]);
     if (isBanner)
@@ -195,8 +196,11 @@ const Gallery = () => {
       </div>
       <Layout>
         <GlobalStyles />
-        <Header />
+        <Header/>
+        <div  style={{position:"relative"}} >
+
         <PageHeader title="NFT" />
+        </div>
         <div className='row px-4 mx-3 pt-2 mt-3'>
           <div className="toptable">
             <h1 className="heading">Fantasy NFT Staking Pool Active Rewards</h1>
@@ -206,7 +210,7 @@ const Gallery = () => {
             <div className="cardrow row mt-5 mb-5 mx-0">
               {pool.map((item, index) => {
                 return (  
-                  <>
+                 
                     <div key={index}  data-aos="zoom-in-up" className="headingrow card">
                       <div className="arrow"></div>
                       <div className="parent">
@@ -219,7 +223,7 @@ const Gallery = () => {
                         <h4 className="exchange">{item.Exchange}</h4>
                       </div>
                     </div>
-                  </>
+             
                 )
               }
               )}
@@ -293,10 +297,10 @@ const Gallery = () => {
         <CTA />
         
           <div className="row">
-          <div className="col-md-6">
+          <div className="MediaContainer col-md-6">
               <Mediacontainer/>
             </div>
-            <div className="col-md-6">
+            <div className="FeatureContainer col-md-6">
             <Features />
           </div>
             </div>

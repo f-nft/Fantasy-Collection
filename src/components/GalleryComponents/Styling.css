@@ -1,6 +1,6 @@
 .media-container {
   padding: 5px;
-  margin-inline: 150px;
+  margin-inline: 50px;
   margin-block: 10px;
 }
 .media-icon {
@@ -20,14 +20,10 @@
 .media {
   display: flex;
   flex-direction: row;
-  width: 30rem;
+  width: 'max-content';
   margin-top: 100px;
 }
 
-.lowermedia {
-  margin-top: 50px;
- 
-}
 .banner_grid {
   justify-content: center;
   text-align: center;
@@ -125,19 +121,20 @@
   .media {
     display: flex;
     flex-direction: column;
-    width: 25rem;
+    width: 100% !important;
   }
-  .uppermedia {
-    justify-content: space-between !important;
-    display: flex;
-    flex-direction: column;
-  }
-  .lowermedia {
-    margin-top: 30px;
+  .media-container {
+    padding: 5px;
+    text-align: center;
     justify-content: center;
+  }
+  .icon-container {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
+
   .ListDiv {
     justify-content: center;
     text-align: center;
