@@ -92,7 +92,7 @@ const Gallery = () => {
       }
     );
   }, [isBanner]);
-
+  
   useEffect(() => {
     setData([]);
     if (isBanner)
@@ -100,7 +100,7 @@ const Gallery = () => {
     stateAddress ? SetisAddress(true) : SetisAddress(false)
     if (stateContract)
       GETNFTS()
-    //eslint-disable-next-line
+      //eslint-disable-next-line
   }, [stateAddress, stateContract]);
 
   const particlesInit = useCallback(async (engine) => {
@@ -111,9 +111,10 @@ const Gallery = () => {
     await console.log(container);
 
   }, []);
-
+  
   return (
     <>
+    <MetaDecorator />
       <div className="canvas" style={{ position: 'absolute' }} >
         <Particles
           id="tsparticles"
@@ -194,7 +195,6 @@ const Gallery = () => {
           }}
         />
       </div>
-      <MetaDecorator />
       <Layout>
         <GlobalStyles />
         <Header />
