@@ -86,12 +86,12 @@ const Gallery = () => {
     }
   }
   useEffect(() => {
-        AOS.init(
-          {
-            duration: 1000
-          }
-        );
-    }, [isBanner]);
+    AOS.init(
+      {
+        duration: 1000
+      }
+    );
+  }, [isBanner]);
 
   useEffect(() => {
     setData([]);
@@ -102,147 +102,147 @@ const Gallery = () => {
       GETNFTS()
     //eslint-disable-next-line
   }, [stateAddress, stateContract]);
-          
+
   const particlesInit = useCallback(async (engine) => {
-        await loadFull(engine);
-    }, []);
+    await loadFull(engine);
+  }, []);
 
-    const particlesLoaded = useCallback(async (container) => {
-        await console.log(container);
+  const particlesLoaded = useCallback(async (container) => {
+    await console.log(container);
 
-    }, []);
+  }, []);
 
   return (
-    <> 
-      <div className="canvas" style={{position: 'absolute'}} >
-         <Particles
-            id="tsparticles"
-            init={particlesInit}
-            loaded={particlesLoaded}
-            options={{
-                background: {
-                    color: {
-                        value: "transparent",
-                    }, 
+    <>
+      <div className="canvas" style={{ position: 'absolute' }} >
+        <Particles
+          id="tsparticles"
+          init={particlesInit}
+          loaded={particlesLoaded}
+          options={{
+            background: {
+              color: {
+                value: "transparent",
+              },
+            },
+            // fpsLimit: 120,
+            interactivity: {
+              events: {
+                onClick: {
+                  enable: true,
+                  mode: "push",
                 },
-                // fpsLimit: 120,
-                interactivity: {
-                    events: {
-                        onClick: {
-                            enable: true,
-                            mode: "push",
-                        },
-                        onHover: {
-                            enable: true,
-                             mode: "grab",
-                        },
-                        resize: true,
-                    },
-                    modes: {
-                        push: {
-                            quantity: 4,
-                        },
-                        repulse: {
-                            distance: 200,
-                            duration: 0.4,
-                        },
-                    },
+                onHover: {
+                  enable: true,
+                  mode: "grab",
                 },
-                particles: {
-                    color: {
-                        value: "#ffffff",
-                    },
-                    links: {
-                        color: "#ffffff",
-                        distance: 160,
-                        enable: true,
-                        opacity: 0.5,
-                        width: 1,
-                    },
-                    collisions: {
-                        enable: true,
-                    },
-                    move: {
-                      "enable": true,
-                    "speed": 4,
-                    "direction": "none",
-                    "random": true,
-                    "straight": false,
-                    "out_mode": "out",
-                    "bounce": false,
-                    },
-                    number: {
-                        density: {
-                            enable: true,
-                            area: 800,
-                        },
-                        value: 50,
-                    },
-                    opacity: {
-                        value: 0.5,
-                    },
-                    shape: {
-                        type: "circle",
-                    },
-                    size: {
-                        value: { min: 1,max: 6},
-                    },
-                 
+                resize: true,
+              },
+              modes: {
+                push: {
+                  quantity: 4,
                 },
-                detectRetina: true,
+                repulse: {
+                  distance: 200,
+                  duration: 0.4,
+                },
+              },
+            },
+            particles: {
+              color: {
+                value: "#ffffff",
+              },
+              links: {
+                color: "#ffffff",
+                distance: 160,
+                enable: true,
+                opacity: 0.5,
+                width: 1,
+              },
+              collisions: {
+                enable: true,
+              },
+              move: {
+                "enable": true,
+                "speed": 4,
+                "direction": "none",
+                "random": true,
+                "straight": false,
+                "out_mode": "out",
+                "bounce": false,
+              },
+              number: {
+                density: {
+                  enable: true,
+                  area: 800,
+                },
+                value: 50,
+              },
+              opacity: {
+                value: 0.5,
+              },
+              shape: {
+                type: "circle",
+              },
+              size: {
+                value: { min: 1, max: 6 },
+              },
 
-            }}
+            },
+            detectRetina: true,
+
+          }}
         />
       </div>
-      <MetaDecorator/>
+      <MetaDecorator />
       <Layout>
         <GlobalStyles />
-        <Header/>
-        <div  style={{position:"relative"}} >
+        <Header />
+        <div style={{ position: "relative" }} >
 
-        <PageHeader title="NFT" />
+          <PageHeader title="NFT" />
         </div>
         <div className='row px-4 mx-3 pt-2 mt-3'>
           <div className="toptable">
             <h1 className="heading">Fantasy NFT Staking Pool Active Rewards</h1>
-            <h5 className="card-title" style={{color:"green"}}>EARN FOT</h5>
+            <h5 className="card-title" style={{ color: "green" }}>EARN FOT</h5>
 
             {isAddress ? <h1>NFTS FOUND</h1> : <h1>WALLET NOT CONNECTED</h1>}
             <div className="cardrow row mt-5 mb-5 mx-0">
               {pool.map((item, index) => {
-                return (  
-                 
-                    <div key={index}  data-aos="zoom-in-up" className="headingrow card" >
-                      <div className="arrow"></div>
-                      <div className="parent">
-                      </div>
-                      <div className="card-body">
-                        <h2 className="card-title">{item.collection}</h2>
-                        <h3 className="rewards">Rewards</h3>
-                        <h4 className="card-text">{item.Rewards}</h4>
-                        <h3 className="rewards">Quarterly</h3>
-                        <h4 className="exchange">{item.Exchange}</h4>
-                      </div>
+                return (
+
+                  <div key={index} data-aos="zoom-in-up" className="headingrow card" >
+                    <div className="arrow"></div>
+                    <div className="parent">
                     </div>
-             
+                    <div className="card-body">
+                      <h2 className="card-title">{item.collection}</h2>
+                      <h3 className="rewards">Rewards</h3>
+                      <h4 className="card-text">{item.Rewards}</h4>
+                      <h3 className="rewards">Quarterly</h3>
+                      <h4 className="exchange">{item.Exchange}</h4>
+                    </div>
+                  </div>
+
                 )
               }
               )}
-   
+
             </div>
           </div>
           <div className='secondtable'>
-         
+
             <h1 className="heading">
-               <Typewriter
-            words={['FOT Token Stake Farms']}
-            loop={2}
-            cursor
-            cursorStyle='!'
-            typeSpeed={50}
-            deleteSpeed={50}
-            delaySpeed={1000}
-          />
+              <Typewriter
+                words={['FOT Token Stake Farms']}
+                loop={2}
+                cursor
+                cursorStyle='!'
+                typeSpeed={50}
+                deleteSpeed={50}
+                delaySpeed={1000}
+              />
             </h1>
             <table className='table table-bordered table-dark' style={{ borderRadius: '14px' }} >
               <thead className='thead-light' style={{ fontSize: '20px' }}>
@@ -255,27 +255,27 @@ const Gallery = () => {
                 <tr>
                   <td>Stake FOT to Earn FOT</td>
                   <td className='amount' data-test-id='rewards-summary-ads'>
-                    <span className='amount'>0.01 FOT</span>&nbsp;<span className='currency'>Per FOT Staked</span>
+                    <span className='amount'>From 40% APY Earn FOT</span>&nbsp;<span className='currency'>Per FOT Staked</span>
                   </td>
                 </tr>
                 <tr>
                   <td>Stake FOT to Earn FOT™</td>
                   <td className='amount' data-test-id='rewards-summary-ac'>
-                    <span className='amount'>0.005 FOT™</span>&nbsp;<span className='currency'>Per FOT Staked</span>
+                    <span className='amount'>From 30% APY Earn FOT™</span>&nbsp;<span className='currency'>Per FOT Staked</span>
                   </td>
                 </tr>
               </tbody>
             </table>
             <h5 style={{ color: "purple" }}>
-                 <Typewriter
-            words={['FOT™ could be use for upgrade NFT or trade for secret FNFT item - FOT price is starting from $1.00']}
-            cursor
-            cursorStyle='_'
-            typeSpeed={30}
-            loop={2}
-          />
-          
-          </h5>
+              <Typewriter
+                words={['FOT™ could be use for upgrade NFT or trade for secret FNFT item - FOT price is starting from $1.00']}
+                cursor
+                cursorStyle='_'
+                typeSpeed={30}
+                loop={2}
+              />
+
+            </h5>
           </div>
         </div>
         <div className="container">
@@ -296,18 +296,18 @@ const Gallery = () => {
           </div>
         </div>
         <CTA />
-        
-          <div className="row">
+
+        <div className="row">
           <div className="MediaContainer col-md-6">
-              <Mediacontainer/>
-            </div>
-            <div className="FeatureContainer col-md-6">
+            <Mediacontainer />
+          </div>
+          <div className="FeatureContainer col-md-6">
             <Features />
           </div>
-            </div>
+        </div>
 
         <div className="HoldEearn">
-           <HoldandEarn/>      
+          <HoldandEarn />
         </div>
         <Footer />
       </Layout>
