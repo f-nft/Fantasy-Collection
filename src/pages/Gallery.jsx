@@ -304,8 +304,8 @@ const Gallery = () => {
           </div>
             </div>
 
-        <div className="HoldEearn" style={{paddingLeft:"30px"}}>
-           <HoldandEarn />      
+        <div className="HoldEearn">
+           <HoldandEarn/>      
         </div>
         <Footer />
       </Layout>

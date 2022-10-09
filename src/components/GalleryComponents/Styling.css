@@ -67,7 +67,7 @@
   position: relative;
 }
 .featurehead {
-  color: rgb(184, 1, 102) !important;
+  color: purple;
   padding-top: 5px;
 }
 .banner--left {
@@ -87,7 +87,7 @@
   text-align: center;
   padding-top: 4rem;
   color: aliceblue;
-  background-color: #8100701c !important;
+  background-color: rgb(37, 7, 37);
   border: 1px solid rgba(92, 3, 65, 0.438) !important;
   border-radius: 150px !important;
   box-shadow: 0 4px 30px rgba(61, 61, 61, 0.034);
@@ -100,6 +100,7 @@
   width: 15rem;
   height: 15rem;
 }
+
 .road-body {
   margin-top: 3em;
   display: flex;
