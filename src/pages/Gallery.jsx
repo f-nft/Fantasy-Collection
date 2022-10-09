@@ -17,6 +17,7 @@ import HoldandEarn from "../components/GalleryComponents/HoldandEarn";
 import { Typewriter } from 'react-simple-typewriter'
 import AOS from "aos";
 import "aos/dist/aos.css";
+import MetaDecorator from "../components/MetaDecorator";
 import Mediacontainer from './../components/GalleryComponents/Media_container';
 const Gallery = () => {
   const { isBanner, setisBanner, stateAddress, stateContract } = useModal();
@@ -193,6 +194,7 @@ const Gallery = () => {
             }}
         />
       </div>
+      <MetaDecorator/>
       <Layout>
         <GlobalStyles />
         <Header/>
