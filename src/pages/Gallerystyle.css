@@ -72,9 +72,9 @@ table{
 }
 .cardrow{
   justify-content:space-between;
+  position: relative;
 }
 .headingrow{
-
   color: white !important;
   text-align: center;
   font-weight: bold;

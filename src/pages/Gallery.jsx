@@ -162,14 +162,13 @@ const Gallery = () => {
                         enable: true,
                     },
                     move: {
-                        directions: "none",
-                        enable: true,
-                        outModes: {
-                            default: "bounce",
-                        },
-                        random: false,
-                        speed: 2.95,
-                        straight: false,
+                      "enable": true,
+                    "speed": 4,
+                    "direction": "none",
+                    "random": true,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false,
                     },
                     number: {
                         density: {
@@ -211,7 +210,7 @@ const Gallery = () => {
               {pool.map((item, index) => {
                 return (  
                  
-                    <div key={index}  data-aos="zoom-in-up" className="headingrow card">
+                    <div key={index}  data-aos="zoom-in-up" className="headingrow card" >
                       <div className="arrow"></div>
                       <div className="parent">
                       </div>
@@ -228,7 +227,7 @@ const Gallery = () => {
               }
               )}
    
-        </div>
+            </div>
           </div>
           <div className='secondtable'>
          
@@ -304,9 +303,8 @@ const Gallery = () => {
             <Features />
           </div>
             </div>
-        {/* <div data-aos="fade-left" >
-        </div> */}
-        <div className="HoldEearn" data-aos="zoom-in" style={{paddingLeft:"30px"}}>
+
+        <div className="HoldEearn" style={{paddingLeft:"30px"}}>
            <HoldandEarn />      
         </div>
         <Footer />

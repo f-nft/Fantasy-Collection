@@ -27,7 +27,7 @@ export default function HoldandEarn() {
     <AboutInfoCardListWrapper className="about_us_text_card_sect">
       <div className="row">
         {aboutInfo?.map((item, i) => (
-          <div key={i} className="col-md-4">
+          <div  data-aos="zoom-in" key={i} className="col-md-4 ">
             <AboutCard {...item} />
           </div>
         ))}
