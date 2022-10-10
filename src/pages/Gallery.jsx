@@ -88,7 +88,8 @@ const Gallery = () => {
   useEffect(() => {
         AOS.init(
           {
-            duration: 1000
+            duration: 500,
+
           }
         );
     }, [isBanner]);
@@ -160,10 +161,10 @@ const Gallery = () => {
                         width: 1,
                     },
                     collisions: {
-                        enable: true,
+                        enable: false,
                     },
                     move: {
-                      "enable": true,
+                    "enable": true,
                     "speed": 4,
                     "direction": "none",
                     "random": true,
