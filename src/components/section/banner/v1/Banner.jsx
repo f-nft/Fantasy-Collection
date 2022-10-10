@@ -1,5 +1,4 @@
 import { useModal } from "../../../../utils/ModalContext";
-import Counter from "../../../../common/counter";
 import Button from "../../../../common/button";
 import BannerV1Wrapper from "./Banner.style";
 import characterThumb from "../../../../assets/images/nft/Fantasy0000-0068.gif";
@@ -7,12 +6,10 @@ import mintLiveText from "../../../../assets/images/nft/mint_live_text.png";
 import homeImageBG from "../../../../assets/images/nft/home_img_bg.png";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Countdown from "../../countdown/countDown";
-import data from "../../../../assets/data/socialProfile";
 
 const Banner = (props) => {
-  const { mintModalHandle, priceModalHandle, isWalletConnect,
-    stateAddress, balance, stateCrypto } = useModal();
+  const {  priceModalHandle,
+ } = useModal();
   const [nftPriceMatic, setNftPriceMatic] = useState(null);
   const [nftPriceBnb, setNftPriceBnb] = useState(null);
   const [nftPriceEth, setNftPriceEth] = useState(null);
