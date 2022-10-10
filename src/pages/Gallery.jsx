@@ -208,7 +208,7 @@ const Gallery = () => {
             <h5 className="card-title" style={{ color: "green" }}>EARN FOT</h5>
 
             {isAddress ? <h1>NFTS FOUND</h1> : <h1>WALLET NOT CONNECTED</h1>}
-            <div className="cardrow row mt-5 mb-5 mx-0">
+            <div className="cardrow row mt-5 mb-5 mx-0" id="rewards">
               {pool.map((item, index) => {
                 return (
 
@@ -297,7 +297,7 @@ const Gallery = () => {
         </div>
         <CTA />
 
-        <div className="row">
+        <div className="row" id="features">
           <div className="MediaContainer col-md-6">
             <Mediacontainer />
           </div>
@@ -306,7 +306,7 @@ const Gallery = () => {
           </div>
         </div>
 
-        <div className="HoldEearn">
+        <div className="HoldEearn" id="Hold">
           <HoldandEarn />
         </div>
         <Footer />
