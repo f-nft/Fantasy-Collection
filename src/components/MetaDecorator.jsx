@@ -1,17 +1,36 @@
-import React from 'react';
-import MetaTags from 'react-meta-tags';
-import logoImage from '../assets/images/logo.png';
+import React from "react";
+import PropTypes from "prop-types";
+import { Helmet } from "react-helmet";
+import PreviewImage from './preview.png'
 
 
-function MetaDecorator() {
-  return (
-    <MetaTags>
-        <title>React App</title>
-        <meta name="description" content="React App" />
-        <meta property="og:title" content="React App" />
-        <meta property="og:image" content={logoImage} />
-    </MetaTags>
-  )
-}
+const metaDecorator = {
+  "hostname": "https://nft.f-nft.us/",
+  "twitterUsername": "@Fashion__NFT",
+};
 
-export default MetaDecorator
+const MetaDecorator = ({ title, description }) => (
+  <Helmet>
+    <title>{title}</title>
+    <meta property="og:title" content={title} />
+    <meta name="description" content={description} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={PreviewImage} />
+    <meta
+      property="og:url"
+      content={metaDecorator.hostname + window.location.pathname + window.location.search}
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image:alt" content="ImagePreview" />
+    <meta name="twitter:site" content={metaDecorator.twitterUsername} />
+  </Helmet>
+);
+
+MetaDecorator.propTypes = {
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  imageUrl: PropTypes.string.isRequired,
+  imageAlt: PropTypes.string.isRequired,
+};
+
+export default MetaDecorator;

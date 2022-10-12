@@ -13,6 +13,7 @@ import Footer from "../components/section/footer/v3";
 import Partner from "../components/section/partner";
 import PriceModal from "../common/modal/priceModal/PriceModal";
 import "aos/dist/aos.css";
+import MetaDecorator from "../components/MetaDecorator";
 import { useEffect } from "react";
 const HomeV1 = () => {
 
@@ -23,7 +24,13 @@ const HomeV1 = () => {
   }, []);
  
   return (
+    <>
+     <MetaDecorator
+        title="Fashion NFT"
+        description="Fashion NFT is a collection of 10,000 unique NFTs that are generated and stored on the Ethereum blockchain. Each NFT is a unique digital representation of a fashion character."
+      />
     <Layout>
+     
       <GlobalStyles />
       {/* {visibility && <MintNowModal />}
       {walletModalvisibility && <WalletModal />} */}
@@ -39,6 +46,7 @@ const HomeV1 = () => {
       <Partner />
       <Footer />
     </Layout>
+    </>
   );
 };
 
