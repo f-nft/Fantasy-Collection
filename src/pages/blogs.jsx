@@ -8,6 +8,7 @@ import CTA from "../components/section/cta/v2";
 import Footer from "../components/section/footer/v3";
 import WalletModal from "../common/modal/walletModal/WalletModal";
 import { useEffect } from "react";
+import MetaDecorator from "../components/MetaDecorator";
 const Blogs = () => {
   const { walletModalvisibility,isBanner,setisBanner } = useModal();
   useEffect(() => {
@@ -17,6 +18,10 @@ const Blogs = () => {
   }, []);
   return (
     <>
+      <MetaDecorator
+        title="Fashion NFT"
+        description="Fashion NFT is a collection of 10,000 unique NFTs that are generated and stored on the Ethereum blockchain. Each NFT is a unique digital representation of a fashion character."
+      />
       <Layout>
         <GlobalStyles />
         {walletModalvisibility && <WalletModal />}

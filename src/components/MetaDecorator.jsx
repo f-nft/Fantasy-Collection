@@ -29,8 +29,6 @@ const MetaDecorator = ({ title, description }) => (
 MetaDecorator.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
-  imageUrl: PropTypes.string.isRequired,
-  imageAlt: PropTypes.string.isRequired,
 };
 
 export default MetaDecorator;
