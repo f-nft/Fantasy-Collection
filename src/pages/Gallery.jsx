@@ -91,17 +91,21 @@ const Gallery = () => {
         duration: 500
       }
     );
+    
   }, [isBanner]);
   
   useEffect(() => {
-    setData([]);
-    if (isBanner)
+      setData([]);
       setisBanner(false)
     stateAddress ? SetisAddress(true) : SetisAddress(false)
     if (stateContract)
       GETNFTS()
       //eslint-disable-next-line
   }, [stateAddress, stateContract]);
+  useEffect(() => {
+     setisBanner(false)
+     //eslint-disable-next-line
+  }, []);
 
   const particlesInit = useCallback(async (engine) => {
     await loadFull(engine);
