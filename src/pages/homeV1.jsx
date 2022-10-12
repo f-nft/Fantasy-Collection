@@ -16,18 +16,18 @@ import "aos/dist/aos.css";
 import { useEffect } from "react";
 const HomeV1 = () => {
 
-  const {priceModalVisibiity,setisBanner } = useModal();
+  const {priceModalVisibiity,setisBanner,isBanner } = useModal();
   useEffect(() => {
     setisBanner(true);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [isBanner]);
  
   return (
     <>
     <Layout>
      
       <GlobalStyles />
-      {/* {visibility && <MintNowModal />}
+      {/* {visibility && <MintNowModal />}  
       {walletModalvisibility && <WalletModal />} */}
       {priceModalVisibiity && <PriceModal />}
       <Header />

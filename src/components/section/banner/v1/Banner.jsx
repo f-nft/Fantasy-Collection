@@ -6,6 +6,11 @@ import mintLiveText from "../../../../assets/images/nft/mint_live_text.png";
 import homeImageBG from "../../../../assets/images/nft/home_img_bg.png";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Zoom from 'react-reveal/Zoom';
+import Fade from 'react-reveal/Fade';
+import { Typewriter } from 'react-simple-typewriter'
+import Flash from 'react-reveal/Flash';
+
 
 const Banner = (props) => {
   const {  priceModalHandle,
@@ -82,11 +87,29 @@ const Banner = (props) => {
           <div className="row">
             <div className="col-lg-6">
               <div className="f-nft_v1_baner_left">
+                <Fade>
                 <h1 style={{ color: "red" }}>f-nft Fantasy</h1>
+                </Fade>
+                <Zoom delay={500}>
                 <h2>👗 3D NFT</h2>
+                </Zoom>
                 <h4 style={{ color: "#992730", textShadow: "1px 1px 3px" }}>
                   <div className="f-nft_v1_timer" align="left">
-                    <h4 className="text-uppercase" style={{ color: "red", fontSize: "16px" }}>Public Mint is Now Ended <br /> New events update at Official Social</h4>
+                    <h4 className="text-uppercase" style={{ color: "red", fontSize: "16px" }}>
+                       <Typewriter
+                words={['  Public Mint is Now Ended']}
+                loop={2}
+                cursor
+                cursorStyle='!'
+                typeSpeed={50}
+                deleteSpeed={50}
+                delaySpeed={1000}
+              />
+              <br/>
+              <Flash>
+              'New events update at Official Social'
+              </Flash>
+              </h4>
                   </div>
                   {/* <Countdown timeTillDate="09 30 2022, 12:12" timeFormat="MM DD YYYY, h:mm" /> */}
                   {/* <span className="count" padding="5px" style={{ color: "pink" }}>
@@ -153,7 +176,9 @@ const Banner = (props) => {
                     <img src={homeImageBG} alt="fantasy" />
                   </div>
                   <div className="f-nft_v1_baner_right_img">
+                    <Zoom>
                     <img src={characterThumb} alt="avata" />
+                    </Zoom>
                   </div>
                 </div>
               </div>

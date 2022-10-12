@@ -104,7 +104,7 @@ const Gallery = () => {
   useEffect(() => {
      setisBanner(false)
      //eslint-disable-next-line
-  }, []);
+  }, [isBanner]);
 
   const particlesInit = useCallback(async (engine) => {
     await loadFull(engine);
