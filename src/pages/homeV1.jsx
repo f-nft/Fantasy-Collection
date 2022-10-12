@@ -13,6 +13,7 @@ import Footer from "../components/section/footer/v3";
 import Partner from "../components/section/partner";
 import PriceModal from "../common/modal/priceModal/PriceModal";
 import "aos/dist/aos.css";
+import {Helmet} from "react-helmet";
 import { useEffect } from "react";
 const HomeV1 = () => {
 
@@ -24,6 +25,13 @@ const HomeV1 = () => {
  
   return (
     <Layout>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Home</title>
+        <link rel="canonical" href="https://f-nft.us/" />
+        
+      </Helmet>
+
       <GlobalStyles />
       {/* {visibility && <MintNowModal />}
       {walletModalvisibility && <WalletModal />} */}
