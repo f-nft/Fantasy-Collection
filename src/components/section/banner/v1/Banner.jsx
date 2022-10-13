@@ -154,9 +154,15 @@ const Banner = (props) => {
                 <div className="coin-info">
                   <span>
                     <h4>Mint Price ${usdRate} USD <br /></h4>
-                    {nftPriceEth} ETH + gas <br />
-                    {nftPriceMatic} Matic + gas <br />
-                    {nftPriceBnb} BNB + gas<br />
+                    <Fade left>
+                        <div>  {nftPriceEth} ETH + gas <br /></div> 
+                    </Fade>
+                    <Fade right>
+                        <div>{nftPriceMatic} Matic + gas <br /></div>
+                    </Fade>
+                    <Fade left>
+                        <div>{nftPriceBnb} BNB + gas<br /></div>
+                    </Fade>  
                     <br />
                   </span>
                 </div>

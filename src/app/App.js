@@ -11,6 +11,7 @@ import RoadMap from "../components/section/roadMap/v1";
 import Team from "../components/section/team/v1";
 import FAQ from "../components/section/faq/v3";
 import Partner from "../components/section/partner";
+import Mint from '../pages/mint'
 
 function App() {
   return (
@@ -28,6 +29,8 @@ function App() {
       <Route path="/blogs" element={<Blogs />} />
       <Route path="/post" element={<BlogDetails />} />
       <Route path="/nfts" element={<Gallery />} />
+      <Route path="/mint" element={<Mint />} />
+
     </Routes>
   );
 }
