@@ -5,7 +5,7 @@ import Header from "../components/section/header/v1/Header";
 import PageHeader from "../common/pageHeader";
 import CTA from "../components/section/cta/v2";
 import Footer from "../components/section/footer/v3";
-import { useEffect, useState } from "react";
+import { useEffect, useState,Suspense } from "react";
 import axios from "axios";
 import './Gallerystyle.css'
 import Particles from "react-tsparticles"
@@ -18,6 +18,9 @@ import { Typewriter } from 'react-simple-typewriter'
 import AOS from "aos";
 import "aos/dist/aos.css";
 import Mediacontainer from './../components/GalleryComponents/Media_container';
+import { Canvas } from "@react-three/fiber";
+import { OrbitControls } from "@react-three/drei";
+import AnimatedSphere from "../components/GalleryComponents/AnimatedSphere";
 const Gallery = () => {
   const { isBanner, setisBanner, stateAddress, stateContract } = useModal();
   const [isAddress, SetisAddress] = useState(false);
@@ -304,7 +307,18 @@ const Gallery = () => {
             <Mediacontainer />
           </div>
           <div className="FeatureContainer col-md-6">
-            <Features />
+            {/* <Features /> */}
+             <Canvas camera={{ position: [0, 0,75], fov: 50 }}>     
+                    <OrbitControls enableZoom={false} autoRotate={false}
+                    />                
+                    <ambientLight intensity={0.2} /> 
+                    <directionalLight position={[10, 10, 5]} intensity={1.5} />
+                    <AnimatedSphere position={[11, 15, 0]} text={"Communities"}/>  
+                    <AnimatedSphere position={[-11, 15, 0]}text={"Rewards"}/>  
+                    <AnimatedSphere position={[11, -10, 0]}text={"Teams"}/>  
+                    <AnimatedSphere position={[-11, -10, 0]}text={"Liquidity Pool"}/>  
+                </Canvas>
+               
           </div>
         </div>
 
