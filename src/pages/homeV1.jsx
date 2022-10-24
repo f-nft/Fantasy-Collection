@@ -12,11 +12,12 @@ import FAQ from "../components/section/faq/v3";
 import Footer from "../components/section/footer/v3";
 import Partner from "../components/section/partner";
 import PriceModal from "../common/modal/priceModal/PriceModal";
+import EventModal from "../common/modal/eventModal/EventModal";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
 const HomeV1 = () => {
 
-  const {priceModalVisibiity,setisBanner,isBanner } = useModal();
+  const {priceModalVisibiity,setisBanner,isBanner,eventhandler } = useModal();
   useEffect(() => {
     setisBanner(true);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -25,10 +26,10 @@ const HomeV1 = () => {
   return (
     <>
     <Layout>
-     
+
       <GlobalStyles />
-      {/* {visibility && <MintNowModal />}  
-      {walletModalvisibility && <WalletModal />} */}
+      {eventhandler&& <EventModal />}
+      {/*{walletModalvisibility && <WalletModal />} */}
       {priceModalVisibiity && <PriceModal />}
       <Header />
       <CharacterSlider />
