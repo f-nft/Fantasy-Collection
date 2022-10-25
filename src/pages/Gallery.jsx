@@ -5,7 +5,7 @@ import Header from "../components/section/header/v1/Header";
 import PageHeader from "../common/pageHeader";
 import CTA from "../components/section/cta/v2";
 import Footer from "../components/section/footer/v3";
-import { useEffect, useState,Suspense } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import './Gallerystyle.css'
 import Particles from "react-tsparticles"
