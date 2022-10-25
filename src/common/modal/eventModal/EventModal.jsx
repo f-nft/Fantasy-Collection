@@ -12,9 +12,6 @@ const EventModal = () => {
   const {seteventhandler} = useModal();
 
   const reload = () => window.location.reload();
-
-
-
   return (
     <>
       <EventModalWrapper className="modal_over">
