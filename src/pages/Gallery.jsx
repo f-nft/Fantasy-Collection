@@ -18,9 +18,6 @@ import { Typewriter } from 'react-simple-typewriter'
 import AOS from "aos";
 import "aos/dist/aos.css";
 import Mediacontainer from './../components/GalleryComponents/Media_container';
-import { Canvas } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
-import AnimatedSphere from "../components/GalleryComponents/AnimatedSphere";
 const Gallery = () => {
   const { isBanner, setisBanner, stateAddress, stateContract } = useModal();
   const [isAddress, SetisAddress] = useState(false);
@@ -308,17 +305,7 @@ const Gallery = () => {
           </div>
           <div className="FeatureContainer col-md-6">
             {/* <Features /> */}
-             <Canvas camera={{ position: [0, 0,75], fov: 50 }}>     
-                    <OrbitControls enableZoom={false} autoRotate={false}
-                    />                
-                    <ambientLight intensity={0.2} /> 
-                    <directionalLight position={[10, 10, 5]} intensity={1.5} />
-                    <AnimatedSphere position={[11, 15, 0]} text={"Communities"}/>  
-                    <AnimatedSphere position={[-11, 15, 0]}text={"Rewards"}/>  
-                    <AnimatedSphere position={[11, -10, 0]}text={"Teams"}/>  
-                    <AnimatedSphere position={[-11, -10, 0]}text={"Liquidity Pool"}/>  
-                </Canvas>
-               
+            <Features />
           </div>
         </div>
 
