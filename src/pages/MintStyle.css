@@ -1,8 +1,0 @@
-/* on Hover change mouse cursor to pointer */
-#ContractHeading:hover{
-    cursor: pointer;
-    color:blueviolet !important;
-}
-.wrapper{
-    color: white;
-}
