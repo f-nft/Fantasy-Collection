@@ -27,7 +27,7 @@ const HomeV1 = () => {
     <Layout>
 
       <GlobalStyles />
-      {eventhandler&&<EventModal/>}
+     <EventModal/>
       {/*{walletModalvisibility && <WalletModal />} */}
       {priceModalVisibiity && <PriceModal />}
       <Header />
