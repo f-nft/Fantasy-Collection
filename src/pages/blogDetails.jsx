@@ -10,7 +10,6 @@ import ShareModal from "../common/modal/shareModal/ShareModal";
 import WalletModal from "../common/modal/walletModal/WalletModal";
 import PriceModal from "../common/modal/priceModal/PriceModal";
 import { useEffect } from "react";
-import MetaDecorator from "../components/MetaDecorator";
 
 const Blogs = () => {
   const { shareModalVisibility, walletModalvisibility,priceModalVisibiity,isBanner,setisBanner } = useModal();
@@ -22,10 +21,6 @@ const Blogs = () => {
   }, []);
   return (
     <>
-  <MetaDecorator
-        title="Fashion NFT"
-        description="Fashion NFT is a collection of 10,000 unique NFTs that are generated and stored on the Ethereum blockchain. Each NFT is a unique digital representation of a fashion character."
-      />
       <Layout>
         <GlobalStyles />
         {shareModalVisibility && <ShareModal />}
