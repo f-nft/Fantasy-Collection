@@ -1,12 +1,11 @@
 import { Typewriter } from "react-simple-typewriter";
 import { useModal } from "../../../utils/ModalContext";
-import { FiX } from "react-icons/fi";
+import {FiX} from 'react-icons/fi';
 import Button from "../../button";
 import EventModalWrapper from "./Event.style";
 import mintImg from "../../../assets/images/nft/3_chr_img.png";
 import data from "../../../assets/data/eventdata";
-import {GiDevilMask} from "react-icons/gi";
-import {MdEmojiEvents} from "react-icons/md";
+ import {MdEmojiEvents} from "react-icons/md";
 
 const EventModal = () => {
   const {seteventhandler} = useModal();
@@ -18,7 +17,7 @@ const EventModal = () => {
         <div className="mint_modal_box">
           <div className="mint_modal_content">
             <div className="modal_header">
-              <h2> <span  className="bump"><MdEmojiEvents/>BUMP<MdEmojiEvents/></span></h2>
+              <h2><MdEmojiEvents/> <span  className="bump">BUMP</span> <MdEmojiEvents/></h2>
               <h4 className="eventtype">
                 <Typewriter
                 words={['Event is Live']}
@@ -67,7 +66,7 @@ const EventModal = () => {
               </div>
               
               <h6>
-                  <span className="bump"><GiDevilMask/> Awards <GiDevilMask/> </span>
+               <span className="bump"> Awards </span>
                 </h6>
               <div className="mint_count_list">
                 <ul>
