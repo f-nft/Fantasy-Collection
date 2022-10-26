@@ -24,7 +24,6 @@ const ContextProvider = ({ children }) => {
   const [StakeContract,setStakeContract]=useState("");
   const [eventhandler,seteventhandler]=useState(true);
 
-
   const mintButtonHandler = () => {
     setIsWalletConnect(true);
   }
