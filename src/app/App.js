@@ -13,6 +13,7 @@ import FAQ from "../components/section/faq/v3";
 import Partner from "../components/section/partner";
 function App() {
   return (
+    
     <Routes>
       <Route path="/" element={<HomeV1 />} exact />
       <Route path="/home" element={<HomeV1 />} exact />
