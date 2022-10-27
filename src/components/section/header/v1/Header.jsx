@@ -312,16 +312,28 @@ const Header = () => {
                   </li>
                   <li>
                     {/* First navigate to home page and then about div */}
-                    <a href ="/#about">About</a>
+                    {isBanner?
+                    (<a href ="/#about">About</a>):
+                    (<a href ="#rewards">Rewards</a>)
+                    }
                   </li>
                   <li>
-                    <a href="/#roadmap">Roadmap</a>
+                    {isBanner?
+                    (<a href="/#roadmap">Roadmap</a>):
+                    (<a href="#features">Features</a>)
+                    }
                   </li>
                   <li>
-                    <a href="/#team">Team</a>
+                    {isBanner?
+                    (<a href="/#team">Team</a>):
+                    (<a href="#Hold">   Hold and Earn</a>)
+                    }
                   </li>
                   <li>
-                    <a href="/#faq">FAQ</a>
+                    {isBanner?
+                    (<a href="/#faq">FAQ</a>):
+                    (null)
+                    }
                   </li>
                   <li>
                     <Link to="/nfts">NFT</Link>

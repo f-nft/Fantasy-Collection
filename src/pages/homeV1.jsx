@@ -2,7 +2,6 @@ import { useModal } from "../utils/ModalContext";
 import GlobalStyles from "../assets/styles/GlobalStyles";
 import Header from "../components/section/header/v1/Header";
 import Layout from "../common/layout";
-// import Counter from "../components/section/counter";
 import CharacterSlider from "../components/section/characterSlider/v1";
 import HowToMint from "../components/section/howToMint/v2";
 import About from "../components/section/about/v1";
@@ -12,21 +11,24 @@ import FAQ from "../components/section/faq/v3";
 import Footer from "../components/section/footer/v3";
 import Partner from "../components/section/partner";
 import PriceModal from "../common/modal/priceModal/PriceModal";
+import EventModal from "../common/modal/eventModal/EventModal";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
 const HomeV1 = () => {
 
-  const {priceModalVisibiity,setisBanner } = useModal();
+  const {priceModalVisibiity,setisBanner,isBanner,eventhandler } = useModal();
   useEffect(() => {
     setisBanner(true);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [isBanner]);
  
   return (
+    <>
     <Layout>
+
       <GlobalStyles />
-      {/* {visibility && <MintNowModal />}
-      {walletModalvisibility && <WalletModal />} */}
+      {eventhandler&&<EventModal />}
+      {/*{walletModalvisibility && <WalletModal />} */}
       {priceModalVisibiity && <PriceModal />}
       <Header />
       <CharacterSlider />
@@ -39,6 +41,7 @@ const HomeV1 = () => {
       <Partner />
       <Footer />
     </Layout>
+    </>
   );
 };
 

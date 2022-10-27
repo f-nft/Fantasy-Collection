@@ -22,7 +22,7 @@ const ContextProvider = ({ children }) => {
   const [stateCoin, setStateCoin] = useState("");
   const [isBanner,setisBanner]=useState(true);
   const [StakeContract,setStakeContract]=useState("");
-
+  const [eventhandler,seteventhandler]=useState(true);
 
   const mintButtonHandler = () => {
     setIsWalletConnect(true);
@@ -69,7 +69,8 @@ const ContextProvider = ({ children }) => {
         stateAddress, setStateAddress,
         stateCoin, setStateCoin,
         isBanner,setisBanner,
-        StakeContract,setStakeContract
+        StakeContract,setStakeContract,
+        eventhandler,seteventhandler
       }}
     >
       {children}

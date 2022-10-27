@@ -73,7 +73,7 @@ table{
 /* on hover zoom in */
 .card:hover {
   transform: scale(1.1) !important;
-  transition: 0.01s ease-in-out !important;
+  transition: 0.3s ease-in-out !important;
 }
 
 .cardrow{
@@ -226,5 +226,6 @@ table{
   background-image: radial-gradient(at 100% 60%,
       rgb(0, 0, 0) 0,
       transparent 50%);
+  -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
