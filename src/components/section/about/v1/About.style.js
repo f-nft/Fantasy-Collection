@@ -6,7 +6,7 @@ const AboutStyleWrapper = styled.section`
   background-size: cover;
   background-position: center left;
   background-repeat: no-repeat;
-  min-height: 901px;
+ 
   p {
     margin-bottom: 0;
   }

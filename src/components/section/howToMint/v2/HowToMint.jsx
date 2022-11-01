@@ -10,7 +10,7 @@ const HowToMint = () => {
     <HowToMintWrapper>
       <div className="container how_to_mint_container">
         <SectionTitle
-          classNameName="md-pb-20"
+          className="md-pb-20"
           title="HOW TO MINT"
           subtitle="EASY STEPS"
         />

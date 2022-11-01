@@ -3,6 +3,7 @@ import styled from "styled-components";
 const HowToMintWrapper = styled.section` 
     padding-bottom: 20px;
     margin-top: 0; 
+    margin-bottom: 100px;
   .click:hover {
     background: palegreen;
   }
