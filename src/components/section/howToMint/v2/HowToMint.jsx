@@ -17,10 +17,12 @@ const HowToMint = () => {
         <div className="how_to_mint_content">
           <ul>
             {data?.map((item, i) => (
-              <li key={i}>
+             
+              <li key={i} className='mintbox'>
                 <h4 className={item.mintColor}>{item.num}</h4>
                 <p>{item.text}</p>
               </li>
+
             ))}
           </ul>
            <SectionTitle

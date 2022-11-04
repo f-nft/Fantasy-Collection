@@ -1,3 +1,4 @@
+import "aos/dist/aos.css";
 const RoadMapItem = ({ id, icon, title, text }) => {
   return (
     <div
@@ -6,6 +7,7 @@ const RoadMapItem = ({ id, icon, title, text }) => {
           ? `v2_roadmap_card_item v2_roadmap_card_item_odd`
           : `v2_roadmap_card_item v2_roadmap_card_item_even`
       }
+      data-aos="zoom-in"
     >
       <div className="v2_roadmap_card_box"></div>
       <div className="v2_roadmap_card_content">
