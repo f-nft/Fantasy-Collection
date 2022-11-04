@@ -33,6 +33,17 @@ const HowToMintWrapper = styled.section`
       width: 200px;
       height: 50px;
     }
+  
+    .mintbox{
+      border-radius: 20px;
+      border: 1px solid transparent linear-gradient(180deg, #FFC000 0%, #FFC000 100%)
+      margin-inline: 10px;
+    }
+
+/*       background: transparent linear-gradient(130deg, rgba(243, 155, 13, 1) 0%, rgba(90, 197, 190, 1) 50%, rgba(90, 197, 190, 0) 75%) 0% 0% no-repeat padding-box;
+ */
+
+
     //on hover make button bigger
     .logoButton:hover {
       transform: scale(1.1);

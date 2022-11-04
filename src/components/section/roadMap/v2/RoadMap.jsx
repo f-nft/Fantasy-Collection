@@ -4,10 +4,11 @@ import RoadMapItem from "./RoadMapItem";
 import roadMapBgShape from "../../../../assets/images/nft/v2_roadmap_bg_shape.png";
 import data from "../../../../assets/data/roadMap/roadMapV1";
 import RoadMapStyleWrapper from "./RoadMap.style";
+
 const RoadMap = () => {
   return (
     <RoadMapStyleWrapper id="roadmap">
-      <div className="container">
+      <div className="container">     
         <SectionTitle
           isCenter={true}
           title="Roadmap"
