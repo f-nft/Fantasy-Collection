@@ -32,7 +32,7 @@ const HomeV1 = () => {
     <Layout>
 
       <GlobalStyles />
-      {eventhandler&&<EventModal />}
+//     {eventhandler&&<EventModal />}
       {/*{walletModalvisibility && <WalletModal />} */}
       {priceModalVisibiity && <PriceModal />}
       <Header />
