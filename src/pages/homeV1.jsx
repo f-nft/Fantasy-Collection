@@ -18,14 +18,14 @@ import Aos from "aos";
 const HomeV1 = () => {
 
   const {priceModalVisibiity,setisBanner,isBanner,eventhandler } = useModal();
-  useEffect(() => {
-    setisBanner(true);
-    Aos.init({ 
-      duration: 450,
-      once: true,
-   });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isBanner]);
+//   useEffect(() => {
+//     setisBanner(true);
+//     Aos.init({ 
+//       duration: 450,
+//       once: true,
+//    });
+//     // eslint-disable-next-line react-hooks/exhaustive-deps
+//   }, [isBanner]);
  
   return (
     <>
