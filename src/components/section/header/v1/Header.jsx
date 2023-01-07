@@ -293,6 +293,8 @@ const Header = () => {
   } 
   return (
     <>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1924299470979517"
+     crossorigin="anonymous"></script>
       <NavWrapper className="f-nft_header" id="navbar">
         <div className="container">
           {/* Main Menu Start */}
