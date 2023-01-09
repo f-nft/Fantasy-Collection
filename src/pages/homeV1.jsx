@@ -30,14 +30,13 @@ const HomeV1 = () => {
   return (
     <>
     <Layout>
-
       <GlobalStyles />
-      {eventhandler&&<EventModal />}
-      {walletModalvisibility && <WalletModal />}
+      {/* {eventhandler&&<EventModal />} */}
+      {/* {walletModalvisibility && <WalletModal />} */}
       {priceModalVisibiity && <PriceModal />}
       <Header />
-      {<CharacterSlider />}
-      {<Counter />}
+      {/* {<CharacterSlider />} */}
+      {/* {<Counter />} */}
       <HowToMint />
       <About />
       <RoadMap />
